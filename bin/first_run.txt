@@ -1,0 +1,5 @@
+//Copy & paste the following script within your commandline or bash
+
+npm install npm@latest
+npm install npm -g
+npm run init

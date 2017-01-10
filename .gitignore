@@ -1,0 +1,14 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea
+*.iml
+.sass-cache
+.DS_store
+npm-debug.log
+
+bower_components
+node_modules
+out
+gen
+
+build
+dist

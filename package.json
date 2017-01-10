@@ -1,0 +1,71 @@
+{
+  "name": "tamaramack_porfolio",
+  "version": "0.0.1",
+  "description": "Works completed & explored",
+  "main": "web.js",
+  "config":{
+    "port": 9001
+  },
+  "engines": {
+    "node": "6.9.3",
+    "npm": "3.10.10"
+  },
+  "dependencies": {
+    "async": "*",
+    "bower": "*",
+    "compression": "*",
+    "connect-livereload": "*",
+    "express": "*",
+    "geolocation": "*",
+    "grunt": "*",
+    "grunt-cli": "*",
+    "grunt-concurrent": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-requirejs": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-express": "*",
+    "grunt-jsdoc": "*",
+    "grunt-newer": "*",
+    "grunt-parallel": "*",
+    "grunt-sass": "*",
+    "grunt-shell": "*",
+    "js-beautify": "*",
+    "jshint-stylish": "*",
+    "load-grunt-config": "*",
+    "navigator": "*",
+    "node-sass": "*",
+    "nodemailer": "*",
+    "request": "*",
+    "request-caching": "*",
+    "semver": "*",
+    "shelljs": "*",
+    "swig": "*",
+    "time-grunt": "*",
+    "underscore": "*"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node web.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tamaramack/tamaramack.github.io.git"
+  },
+  "keywords": [
+    "porfolio",
+    "spa",
+    "javascript",
+    "node",
+    "ES6"
+  ],
+  "author": "Tamara G. Mack",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/tamaramack/tamaramack.github.io/issues"
+  },
+  "homepage": "https://github.com/tamaramack/tamaramack.github.io#readme"
+}

@@ -49,7 +49,14 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "env":"env",
+    "preinstall": "bash ./bin/preinstall.sh",
+    "postinstall": "bash ./bin/postinstall.sh",
+    "postversion": "post_version",
     "start": "node web.js"
+  },
+  "bin": {
+    "post_version": "bin/postversion.js"
   },
   "repository": {
     "type": "git",

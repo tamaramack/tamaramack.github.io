@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# To enable this hook, rename this file to "post-merge".
+# To enable this hook, rename this file to "pre-commit".
 
 array__contains (){
     local branch
@@ -14,7 +14,7 @@ branches=("master" "staging" "qa" "development")
 if [ 0 != "$(array__contains current_branch branches)" ]
 then
     # update package.json && bower.json
-    bash ./bin/postversion.sh no-push
+    bash ./bin/postversion.sh no-commit
 else
     echo "No timestamp Update"
 	git fetch --tags

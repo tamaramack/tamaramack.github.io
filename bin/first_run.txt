@@ -2,4 +2,4 @@
 
 npm install npm@latest
 npm install npm -g
-npm run init
+bash ./bin/init.sh

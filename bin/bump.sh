@@ -2,16 +2,25 @@
 # https://www.atlassian.com/git/tutorials/git-hooks/
 # http://stackoverflow.com/questions/16709404/how-to-automate-the-commit-and-push-process-git
 
+versionType=@1
+echo "Version type called: $versionType"
+
 git add .
 
-echo 'Enter the commit message:'
-read commitMessage
+echo "Enter the $versionType message: [optional: 'Version $versionType to <newTag>']"
+read versionMessage
 
-git commit -m "$commitMessage"
+if ( -v "$versionMessage" ); then
+    versionMessage="Version $versionType to %s"
+fi
 
-echo 'Enter the name of the branch:'
-read branch
+echo 'Commit version tag to git? <no>|<yes> [optional: <yes>]'
+read processType
 
-git push origin $branch
+if ( "$processType" == "no" );
+    then
+        git version --no-git-tag-version $versionType -m "$versionMessage"
+    else
+        git version $versionType -m "$versionMessage"
+fi
 
-read

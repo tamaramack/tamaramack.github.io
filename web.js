@@ -58,14 +58,13 @@ app.use('/temp', _path('/build/temp'));
 
 app.use('/data', _path('/app/data'));
 app.use('/views', _path('/app/views'));
-app.use('/modules', _path('/app/views/modules'));
+app.use('/pages', _path('/app/pages'));
 app.use('/scripts', _path('/app/scripts'));
 app.use('/styles', _path('/app/styles'));
 
 
 app.use('/libs', _path('/bower_components'));
 app.use('/node', _path('/node_modules'));
-
 
 if (ENV === 'development') {
     app.use(livereload());
@@ -77,6 +76,16 @@ app.get('/npm-debug.log', function (req, res) {
     res.sendFile(__dirname + '/npm-debug.log');
 });
 
+app.get('/', function (req, res) {
+    res.locals.package =  JSON.stringify(_package);
+
+    res.locals.version = _package.version;
+    res.locals.build = _package.config.build;
+    res.locals.timestamp = _package.config.timestamp;
+    res.locals.port = _package.config.port;
+
+    res.render('hook');
+});
 
 if (ENV === 'development') {
     module.exports = app;

@@ -50,13 +50,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "env":"env",
+    "init": "bash ./bin/init.sh",
     "preinstall": "bash ./bin/preinstall.sh",
     "postinstall": "bash ./bin/postinstall.sh",
-    "postversion": "post_version",
+    "postversion": "bash ./bin/postversion.sh",
     "start": "node web.js"
   },
   "bin": {
-    "post_version": "bin/postversion.js"
+    "build_timestamp": "bin/timestamp.js"
   },
   "repository": {
     "type": "git",

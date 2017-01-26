@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block title %}
+GIT HOOKS || {% parent %}
+{% endblock %}
+
+{% block css %}
+{% parent %}
+{% endblock %}
+
+{% block js %}
+{% parent %}
+<script src="/libs/jquery/dist/jquery.js" type="text/javascript"></script>
+{% endblock %}
+
+
+{% block content %}
+<h1>Hello World</h1>
+
+<video id="videoId" width="800" src='http://www.w3schools.com/tags/mov_bbb.mp4'></video>
+
+<br/>
+<button id="directBtn">Direct</button>
+<button id="indirectBtn">setTimeout</button>
+<button id="indirectModifiedBtn">Delayed Loop</button>
+
+
+<script language="javascript">
+    //alert(hls);
+    $('#directBtn').click(direct);
+    $('#indirectBtn').click(indirect);
+    $('#indirectModifiedBtn').click(indirectModified);
+
+    function direct() {
+        console.log('direct clicked', Date.now());
+        var elem = document.getElementById("videoId");
+        if (elem.mozRequestFullScreen) {
+            console.log('has moz fullscreen');
+            elem.mozRequestFullScreen();
+        } else {
+            console.log('has fullscreen');
+            elem.requestFullscreen();
+        }
+    }
+
+    function indirect() {
+        setTimeout(function () {
+            console.log('indirect clicked, 1ms delay');
+            direct();
+        }, 1);
+    }
+
+    var i = 0;
+    function indirectModified() {
+        if (!i) {
+            i = new Date();
+            //i.setSeconds(i.getSeconds() + 1);
+            i.setMilliseconds(i.getMilliseconds() + 900);
+            i = +i;
+        }
+        console.log('indirect modified', Date.now());
+
+        if (Date.now() < i) {
+            //console.log(i);
+            indirectModified();
+        } else {
+            console.log('indirect modified clicked, 900ms delay', Date.now());
+            i = 0;
+            direct();
+        }
+    }
+
+</script>
+{% endblock %}

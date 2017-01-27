@@ -11,7 +11,7 @@ echo "Enter the $versionType message: [default: 'Version $versionType to <newTag
 read versionMessage
 
 if [ -z "$versionMessage" ]; then
-    versionMessage="Version $versionType to %s"
+    versionMessage="Version $versionType to v%s"
 fi
 
 echo 'Commit version tag to git? <no>|<yes> [default: <yes>]'

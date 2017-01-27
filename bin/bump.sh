@@ -19,8 +19,8 @@ read processType
 
 if [ "$processType" == "no" ];
     then
-        git version --no-git-tag-version $versionType -m "$versionMessage"
+        npm version --no-git-tag-version $versionType -m "$versionMessage"
     else
-        git version $versionType -m "$versionMessage"
+        npm version $versionType -m "$versionMessage"
 fi
 

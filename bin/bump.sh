@@ -2,7 +2,7 @@
 # https://www.atlassian.com/git/tutorials/git-hooks/
 # http://stackoverflow.com/questions/16709404/how-to-automate-the-commit-and-push-process-git
 
-versionType=@1
+versionType=$1
 echo "Version type called: $versionType"
 
 git add .

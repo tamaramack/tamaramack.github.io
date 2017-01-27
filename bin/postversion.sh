@@ -16,7 +16,7 @@ array_contains (){
 git fetch --tags
 
 # Update package.json & bower.json with passing arguments
-node ./bin/build_timestamp.js $output $timestamp
+node ./bin/timestamp.js $output $timestamp
 
 if [[ -n "$@" ]]; then
     echo "ARGUMENTS PASSED"

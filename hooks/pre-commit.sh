@@ -11,7 +11,7 @@ array__contains (){
 current_branch=`git rev-parse --abbrev-ref HEAD 2>/dev/null`
 branches=("master" "staging" "qa" "development")
 
-if [ 0 != "$(array__contains current_branch branches)" ]
+if [ ! "$(array__contains current_branch branches)" ]
 then
     # update package.json && bower.json
     bash ./bin/postversion.sh no-commit

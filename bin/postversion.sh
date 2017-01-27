@@ -17,15 +17,16 @@ git fetch --tags
 
 # Update package.json & bower.json with passing arguments
 node ./bin/timestamp.js $output $timestamp
+git add .
 
 if [[ -n "$@" ]]; then
-    echo "ARGUMENTS PASSED"
+    echo "ARGUMENTS PASSED : $@"
 
-    if [[ 1 == "$(array_contains "no-commit")" ]]; then
+    if [[ ! "$(array_contains "no-commit")" ]]; then
         echo "Commit"
         git commit -m "Update timestamp: $timestamp & build: $output" ./*.json
 
-        if [ 1 == "$(array_contains "no-push")" ]; then
+        if [ ! "$(array_contains "no-push")" ]; then
             echo "Push"
             git push origin HEAD
             git push --follow-tags

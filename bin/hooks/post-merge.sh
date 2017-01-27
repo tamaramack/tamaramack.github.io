@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 #
 # To enable this hook, rename this file to "post-merge".
 
@@ -22,5 +22,3 @@ else
     git update-index --add ./*.json
     git add .
 fi
-
-exit 0

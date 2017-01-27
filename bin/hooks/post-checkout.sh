@@ -1,5 +1,4 @@
-#!/bin/sh
-
+#!/usr/bin/env bash
 
 current_branch=`git rev-parse --abbrev-ref HEAD 2>/dev/null`
 branches=("master" "staging" "qa" "development")
@@ -48,5 +47,3 @@ else
 #npm install npm
 #npm -f link
 fi
-
-exit 0

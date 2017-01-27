@@ -18,10 +18,22 @@ then
     # check for staging
     if [ "$current_branch" == "$staging_branch" ]
     then
-     :
+        # Inquiry if version update is necessary
+        echo "Bump git tag version? <no>|<yes> [default: no]"
+        read boolBump
+
+        if [ "$boolBump" == "yes" ]
+        then
+            echo "Version Type? [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease | from-git]"
+            read versionType
+
+            bash ./bin/bump.sh $versionType
+        fi
     fi
 else
-  :
+    # update package.json && bower.json
+    # bash ./bin/version.sh
+	echo "PRE PUSH :: NO PROCESS"
 fi
 
 exit 0

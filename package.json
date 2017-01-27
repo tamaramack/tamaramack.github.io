@@ -4,7 +4,9 @@
   "description": "Works completed & explored",
   "main": "web.js",
   "config": {
-    "port": 9001
+    "port": 9001,
+    "build": "e122fa6",
+    "timestamp": 1485491907960
   },
   "engines": {
     "node": "6.9.3",
@@ -53,6 +55,7 @@
     "init": "bash ./bin/init.sh",
     "preinstall": "bash ./bin/preinstall.sh",
     "postinstall": "bash ./bin/postinstall.sh",
+    "version": "bash ./bin/version.sh",
     "postversion": "bash ./bin/postversion.sh",
     "start": "node web.js"
   },

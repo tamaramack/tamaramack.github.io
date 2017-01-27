@@ -29,6 +29,15 @@ then
     npm install -g foundation-cli
 fi
 
+npm -g install npm@latest
+npm -g install graceful-fs@latest
+npm -g install minimatch@latest
+npm -g install coffee-script@latest
+npm -g install marked@latest
+npm -g install jshint@latest
+npm -g install node-gyp@latest
+npm -g install node-sass@latest
+
 npm install -g
 npm link
 npm prune

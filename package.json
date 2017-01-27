@@ -4,7 +4,9 @@
   "description": "Works completed & explored",
   "main": "web.js",
   "config": {
-    "port": 9001
+    "port": 9001,
+    "build": "6143920",
+    "timestamp": 1485478137954
   },
   "engines": {
     "node": "6.9.3",

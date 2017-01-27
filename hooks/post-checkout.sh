@@ -22,7 +22,7 @@ then
             echo "Merge from remote $qa_branch? <no>|<yes> [default: no]"
             read boolMerge
 
-            if [ boolMerge == "yes" ]
+            if [ "$boolMerge" == "yes" ]
             then
                 git fetch origin $qa_branch:$qa_branch
                 git merge $qa_branch
@@ -33,7 +33,7 @@ then
             echo "Merge from remote $dev_branch? <no>|<yes> [default: no]"
             read boolMerge
 
-            if [ boolMerge == "yes" ]
+            if [ "$boolMerge" == "yes" ]
             then
                 git fetch origin $dev_branch:$dev_branch
                 git merge $dev_branch

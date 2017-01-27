@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
-bash ./bin/tagpackage.sh
+echo "VERSION"
+commitMessage=`bash ./bin/tagpackage.sh`
 
 echo "POST VERSION"
 echo "COMMIT VERSION TIMESTAMP"
 
-git commit -m "Update timestamp: $timestamp & build: $output" ./*.json
+git commit -m "$commitMessage" ./*.json
 git add .
 
 git push origin HEAD

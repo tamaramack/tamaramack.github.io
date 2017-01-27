@@ -55,6 +55,7 @@
     "init": "bash ./bin/init.sh",
     "preinstall": "bash ./bin/preinstall.sh",
     "postinstall": "bash ./bin/postinstall.sh",
+    "version": "bash ./bin/version.sh",
     "postversion": "bash ./bin/postversion.sh",
     "start": "node web.js"
   },

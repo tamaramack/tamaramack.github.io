@@ -31,7 +31,9 @@ then
         fi
     fi
 else
-  :
+    # update package.json && bower.json
+    # bash ./bin/version.sh
+	echo "PRE PUSH :: NO PROCESS"
 fi
 
 exit 0

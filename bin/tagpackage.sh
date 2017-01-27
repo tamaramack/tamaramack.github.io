@@ -2,10 +2,10 @@
 
 echo "VERSION"
 
-[[ @1 ]] && output=@1 || output=`git describe --tags --always --long`
+[[ "$1" ]] && output=$1 || output=`git describe --tags --always --long`
 echo "Tag output: $output"
 
-[[ @2 ]] && timestamp=@2 || timestamp=`date +%s%N | cut -b1-13`
+[[ "$2" ]] && timestamp=$2 || timestamp=`date +%s%N | cut -b1-13`
 # or `date +%s%3N` verify difference later
 echo "Timestamp output: $timestamp"
 

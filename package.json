@@ -1,12 +1,12 @@
 {
   "name": "tamaramack_porfolio",
-  "version": "0.0.3-0",
+  "version": "0.0.5-1",
   "description": "Works completed & explored",
   "main": "web.js",
   "config": {
     "port": 9001,
-    "build": "e5f8400",
-    "timestamp": 1485504647156
+    "build": "v0.0.3-0-4-gb2d2038",
+    "timestamp": 1485510314357
   },
   "engines": {
     "node": "6.9.3",
@@ -55,7 +55,6 @@
     "init": "bash ./bin/init.sh",
     "preinstall": "bash ./bin/preinstall.sh",
     "postinstall": "bash ./bin/postinstall.sh",
-    "version": "bash ./bin/version.sh",
     "postversion": "bash ./bin/postversion.sh",
     "start": "node web.js"
   },

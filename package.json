@@ -1,12 +1,12 @@
 {
   "name": "tamaramack_porfolio",
-  "version": "0.0.1",
+  "version": "0.0.2-0",
   "description": "Works completed & explored",
   "main": "web.js",
   "config": {
     "port": 9001,
-    "build": "573a75e",
-    "timestamp": 1485495013210
+    "build": "110dfa8",
+    "timestamp": 1485495168125
   },
   "engines": {
     "node": "6.9.3",

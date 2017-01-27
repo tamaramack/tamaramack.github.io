@@ -10,14 +10,14 @@ git add .
 echo "Enter the $versionType message: [optional: 'Version $versionType to <newTag>']"
 read versionMessage
 
-if ( -v "$versionMessage" ); then
+if [ -v "$versionMessage" ]; then
     versionMessage="Version $versionType to %s"
 fi
 
 echo 'Commit version tag to git? <no>|<yes> [optional: <yes>]'
 read processType
 
-if ( "$processType" == "no" );
+if [ "$processType" == "no" ];
     then
         git version --no-git-tag-version $versionType -m "$versionMessage"
     else

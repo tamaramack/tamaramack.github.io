@@ -7,14 +7,14 @@ echo "Version type called: $versionType"
 
 git add .
 
-echo "Enter the $versionType message: [optional: 'Version $versionType to <newTag>']"
+echo "Enter the $versionType message: [default: 'Version $versionType to <newTag>']"
 read versionMessage
 
 if [ -v "$versionMessage" ]; then
     versionMessage="Version $versionType to %s"
 fi
 
-echo 'Commit version tag to git? <no>|<yes> [optional: <yes>]'
+echo 'Commit version tag to git? <no>|<yes> [default: <yes>]'
 read processType
 
 if [ "$processType" == "no" ];

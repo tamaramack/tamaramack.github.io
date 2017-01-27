@@ -9,11 +9,6 @@ timestamp=`date +%s%N | cut -b1-13`
 # or `date +%s%3N` verify difference later
 echo "$timestamp"
 
-array_contains (){
-    for arg in "$@"; do [[ "$arg" == "$1" ]] && return 0; done
-    return 1
-}
-
 # Pull/Fetch Tags from remote
 git fetch --tags
 

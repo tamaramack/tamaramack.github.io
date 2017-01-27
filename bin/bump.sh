@@ -10,7 +10,7 @@ git add .
 echo "Enter the $versionType message: [default: 'Version $versionType to <newTag>']"
 read versionMessage
 
-if [ -v "$versionMessage" ]; then
+if [ -z "$versionMessage" ]; then
     versionMessage="Version $versionType to %s"
 fi
 

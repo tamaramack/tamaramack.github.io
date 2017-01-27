@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
-echo "VERSION"
-commitMessage=`bash ./bin/tagpackage.sh`
+output=`git describe --tags --always --long`
+
+timestamp=`date +%s%N | cut -b1-13`
+
+bash ./bin/tagpackage.sh "$output" "$timestamp"
 
 echo "POST VERSION"
 echo "COMMIT VERSION TIMESTAMP"

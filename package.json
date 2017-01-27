@@ -5,8 +5,8 @@
   "main": "web.js",
   "config": {
     "port": 9001,
-    "build": "e122fa6",
-    "timestamp": 1485491907960
+    "build": "b97b5a4",
+    "timestamp": 1485504229028
   },
   "engines": {
     "node": "6.9.3",
@@ -60,7 +60,7 @@
     "start": "node web.js"
   },
   "bin": {
-    "build_timestamp": "bin/timestamp.js"
+    "build_timestamp": "bin/build_timestamp.js"
   },
   "repository": {
     "type": "git",

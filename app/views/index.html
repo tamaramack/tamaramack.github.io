@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "layout.html" %}
 
-</body>
-</html>
+{% block title %}
+HELP || {% parent %}
+{% endblock %}
+
+{% block css %}
+{% parent %}
+{% endblock %}
+
+{% block js %}
+{% parent %}
+{% endblock %}
+
+{% block header %}
+{% include "partials/head.html" %}
+{% endblock %}
+
+{% block content %}
+
+{% endblock %}
+
+{% block footer %}
+{% include "partials/foot.html" %}
+{% endblock %}

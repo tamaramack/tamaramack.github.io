@@ -53,6 +53,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "env": "env",
     "init": "bash ./bin/init.sh",
+    "timestamp": "version_timestamp",
     "preinstall": "bash ./bin/preinstall.sh",
     "postinstall": "bash ./bin/postinstall.sh",
     "postversion": "bash ./bin/postversion.sh",

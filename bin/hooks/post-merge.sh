@@ -11,13 +11,16 @@ array__contains (){
     echo "$return_"
 }
 
+git add .
+git tag -l | xargs git tag -d
+git fetch --tags
+
 if [ 0 == "$(array__contains $current_branch)" ]
 then
     echo "No timestamp Update"
-    git fetch --tags
 else
     # update package.json && bower.json
-    echo "PRE MERGE"
+    echo "POST MERGE"
     bash ./bin/tagpackage.sh
     git update-index --add ./*.json
     git add .

@@ -17,6 +17,9 @@ echo "Current branch: $current_branch : $(array__contains $current_branch)"
 
 if [ 0 == "$(array__contains $current_branch)" ]
 then
+
+    git tag -l | xargs git tag -d
+    git fetch --tags
     git fetch origin $current_branch
 
     case "$current_branch" in
@@ -43,7 +46,7 @@ then
         ;;
     esac
 else
-    echo "Launch npm link"
-#npm install npm
-#npm -f link
+    echo "No Post Merge Action"
+    #npm install npm
+    #npm -f link
 fi

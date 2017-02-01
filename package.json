@@ -5,8 +5,8 @@
   "main": "web.js",
   "config": {
     "port": 9001,
-    "build": "v0.0.5-4-5-ga9f9924",
-    "timestamp": 1485799970955
+    "build": "v0.0.5-4-7-gba4dc2c",
+    "timestamp": 1485989296784
   },
   "engines": {
     "node": "6.9.3",
@@ -40,6 +40,7 @@
     "navigator": "^1.0.1",
     "node-sass": "^3.8.0",
     "nodemailer": "^2.5.0",
+    "npm": "^4.1.2",
     "request": "^2.74.0",
     "request-caching": "0.0.1",
     "semver": "^5.3.0",
@@ -48,7 +49,9 @@
     "time-grunt": "^1.4.0",
     "underscore": "^1.8.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "load-grunt-config": "^0.19.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "env": "env",

@@ -30,6 +30,7 @@ then
 fi
 
 npm -g install npm@latest
+npm -g install grunt-cli@latest
 npm -g install graceful-fs@latest
 npm -g install minimatch@latest
 npm -g install coffee-script@latest

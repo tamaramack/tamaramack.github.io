@@ -11,11 +11,15 @@ GIT HOOKS || {% parent %}
 {% block js %}
 {% parent %}
 <script src="/libs/jquery/dist/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+</script>
 {% endblock %}
 
 
 {% block content %}
-<h1>Hello World</h1>
+<h1>Hello World - Version {{version}}</h1>
+<h2>Build: <code>{{build}}</code></h2>
 
 <video id="videoId" width="800" src='http://www.w3schools.com/tags/mov_bbb.mp4'></video>
 

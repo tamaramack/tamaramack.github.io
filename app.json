@@ -1,0 +1,25 @@
+{
+  "name": "tamaramack.github.io",
+  "description": "Tamara Mack's Portfolio and Sample Pages",
+  "keywords": [
+    "Resume",
+    "Portfolio",
+    "Samples",
+    "SPA",
+    "Tester"
+  ],
+  "website": "tamaramack.herokuapp.com/",
+  "repository": "https://github.com/tamaramack/tamaramack.github.io",
+  "success_url": "/",
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons":[],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env bash
 #
-# To enable this hook, rename this file to "post-merge".
+# To enable this hook, rename this file to "pre-commit".
 
 current_branch=`git rev-parse --abbrev-ref HEAD 2>/dev/null`
 branches=("master" "staging" "qa" "development")
@@ -17,10 +17,8 @@ then
     git fetch --tags
 else
     # update package.json && bower.json
-    echo "PRE MERGE"
+    echo "PRE COMMIT"
     bash ./bin/tagpackage.sh
     git update-index --add ./*.json
     git add .
 fi
-
-exit 0

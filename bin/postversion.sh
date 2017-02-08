@@ -4,6 +4,8 @@ output=`git describe --tags --always --long`
 
 timestamp=`date +%s%N | cut -b1-13`
 
+commitMessage="Update timestamp: $timestamp & build: $output"
+
 bash ./bin/tagpackage.sh "$output" "$timestamp"
 
 echo "POST VERSION"

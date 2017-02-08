@@ -1,5 +1,7 @@
 //Copy & paste the following script within your commandline or bash
 
 npm install npm@latest
-npm install npm -g
+npm install npm-cli@latest -g
+npm install pug-cli@latest -g
+npm install grunt-cli@latest -g
 bash ./bin/init.sh

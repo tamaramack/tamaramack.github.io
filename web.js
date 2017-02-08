@@ -1,6 +1,7 @@
 /**
  * web.js file for tamaramack.github.io on 1/9/2017.
  * https://codeforgeek.com/2016/04/continuous-integration-deployment-jenkins-node-js/
+ * https://pugjs.org/api/reference.html
  */
 console.log("Initiate web.js");
 
@@ -23,6 +24,7 @@ var app = express();
 var _ = require('underscore');
 var nodemailer = require('nodemailer');
 var swig = require('swig');
+var pug = require('pug');
 var sass = require('node-sass');
 var _package = require('./package.json');
 
@@ -38,6 +40,7 @@ app.set('port', PORT);
 app.set('views', __dirname + '/app/views');
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
+//app.set('view engine', 'pug');
 app.set('view cache', false);
 app.set('case sensitive routing', false);
 
@@ -154,4 +157,8 @@ function onListening() {
         ? 'pipe ' + addr
         : 'port ' + addr.port;
     console.log('Listening on ' + bind);
+}
+
+function renderPartial(template, res){
+    res.render(template, {layout:false});
 }

@@ -1,0 +1,37 @@
+
+.select-inline-block {
+
+  * {
+    @include transition(all 250ms linear);
+  }
+
+  > div {
+    display:inline-block;
+
+    label {
+      padding: 0.25rem;
+      margin: 0 0 0 0.25rem;
+      border-radius: 0.2rem;
+      border: 1px solid rgba(0, 0, 0, 0);
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.02);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      &.selected {
+        background: rgba(0, 0, 150, 0.05);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        &:hover {
+          background: rgba(0, 0, 100, 0.1);
+          border: 1px solid rgba(0, 0, 0, 0.15);
+        }
+      }
+
+      [type='checkbox'],
+      [type='radio'] {
+        margin: 0.2rem 0.2rem 0 0;
+      }
+    }
+  }
+}

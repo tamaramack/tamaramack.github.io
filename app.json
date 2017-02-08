@@ -17,6 +17,10 @@
     }
   },
   "addons":[],
+  "scripts": {
+  },
+  "env": {
+  },
   "buildpacks": [
     {
       "url": "heroku/nodejs"

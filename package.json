@@ -1,12 +1,12 @@
 {
   "name": "tamaramack_porfolio",
-  "version": "0.0.5-4",
+  "version": "0.0.5-5",
   "description": "Works completed & explored",
   "main": "web.js",
   "config": {
     "port": 9001,
-    "build": "v0.0.5-4-10-g4d0beb2",
-    "timestamp": 1486519128971
+    "build": "v0.0.5-4-11-g4ab6964",
+    "timestamp": 1486527545567
   },
   "engines": {
     "node": "6.9.3",
@@ -50,9 +50,7 @@
     "time-grunt": "^1.4.0",
     "underscore": "^1.8.3"
   },
-  "devDependencies": {
-    "load-grunt-config": "^0.19.2"
-  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "env": "env",

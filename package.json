@@ -5,8 +5,8 @@
   "main": "web.js",
   "config": {
     "port": 9001,
-    "build": "v0.0.5-4-8-gd729ede",
-    "timestamp": 1485994461050
+    "build": "v0.0.5-4-9-gf18aac3",
+    "timestamp": 1486513689058
   },
   "engines": {
     "node": "6.9.3",
@@ -37,6 +37,7 @@
     "js-beautify": "^1.6.3",
     "jshint-stylish": "^2.2.1",
     "load-grunt-config": "^0.19.2",
+    "mongodb": "^2.2.22",
     "navigator": "^1.0.1",
     "node-sass": "^3.8.0",
     "nodemailer": "^2.5.0",

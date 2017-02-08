@@ -27,7 +27,7 @@ module.exports = function (grunt, opt) {
             compress: {
                 dead_code: true,
                 global_defs: {
-                    "$SPA_DEBUG": false
+                    "$DEBUG": false
                 }
             },
             banner: '<%= banner %>'

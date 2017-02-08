@@ -5,8 +5,8 @@
   "main": "web.js",
   "config": {
     "port": 9001,
-    "build": "v0.0.5-5-17-g0929f26",
-    "timestamp": 1486542830242
+    "build": "v0.0.5-5-18-g4a78650",
+    "timestamp": 1486544510814
   },
   "engines": {
     "node": "6.9.3",
@@ -40,6 +40,7 @@
     "navigator": "^1.0.1",
     "node-sass": "^3.8.0",
     "nodemailer": "^2.5.0",
+    "npm": "^4.1.2",
     "pug": "^2.0.0-beta11",
     "request": "^2.74.0",
     "request-caching": "0.0.1",

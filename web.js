@@ -90,9 +90,9 @@ app.get('/', function (req, res) {
     //res.render('hook');
     var str = '<h1>';
     str += 'Version:&nbsp' + _package.version;
-    str += '</h1><h2>'
+    str += '</h1><h2>';
     str += 'Build:&nbsp' + _package.config.build;
-    str += '</h2><h3>'
+    str += '</h2><h3>';
     str += 'Build Date:&nbsp' + new Date(parseInt(_package.config.timestamp));
     str += '</h3>';
     res.send(str);

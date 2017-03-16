@@ -45,7 +45,7 @@ define('configuration-utils-model', ['jquery', 'configuration-object-mapper-mode
         });
 
         setTimeout(function () {
-            window.$PAGE_WAIT.trigger(window.$PAGE_WAIT.UTILS);
+            window.$PAGE_WAIT.trigger(window.$PAGE_WAIT.UTILITIES);
         }, 5);
     }
 

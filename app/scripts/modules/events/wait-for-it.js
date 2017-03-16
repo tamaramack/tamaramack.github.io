@@ -9,10 +9,12 @@ window.$PAGE_WAIT = (function ($) {
     function Wait() {
         Object.defineProperties(this, {
             //Pages
-            UTILS: _define('utils')
-            , PAGE: _define('page')
-            , PANEL: _define('panel')
-            , PLAYER: _define('player')
+            SUMMARY: _define('summary')
+            , HOMEPAGE: _define('homepage')
+            , SIMCITY: _define('simcity')
+            , RESUME: _define('resume')
+            , CANVAS: _define('canvas')
+            , VIDEO: _define('video')
 
             //Modules
             , MODELS: _define('models')

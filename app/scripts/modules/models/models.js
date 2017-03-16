@@ -6,9 +6,9 @@ define('configuration-object-mapper-model',function () {
     var wait = window.$PAGE_WAIT;
 
     var page = window.$page, _console = window['console'];
-    wait.on(wait.CONSOLE, function () {
+    wait.on(wait.LOG, function () {
         page = window.$page;
-        _console = page.console.getInstance('Data Models');
+        _console = page.console.getInstance('Object Models');
         _console.log('Wait Condition Initialized :: window.$page.console', Date.now());
     });
 

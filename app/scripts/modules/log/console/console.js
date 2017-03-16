@@ -26,8 +26,10 @@ define(function(){
     }
 
     function _Console(scopeName, _mode, parent) {
-        if (window.console.constructor && (window.console.constructor instanceof Function))
+        if ((window.console.constructor instanceof Function)
+            && (window.console.constructor.call instanceof Function)) {
             window.console.constructor.call(this);
+        }
 
         var _scopeName = scopeName || this.timestamp;
 

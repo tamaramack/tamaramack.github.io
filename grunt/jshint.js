@@ -24,6 +24,6 @@ module.exports = {
     },
 
     all: [
-        'app/scripts/**/**/**.js'
+        'dist/**/**/**.js'
     ]
 };

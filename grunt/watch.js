@@ -29,6 +29,8 @@ module.exports = {
     concat: {
         files: [
             'app/scripts/**.js'
+            , 'app/scripts/misc/**.js'
+            , 'app/scripts/base/**/**.js'
         ],
         tasks: [
             'newer:concat'

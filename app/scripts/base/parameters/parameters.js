@@ -15,7 +15,6 @@
     page.$DEBUG_MODE = testDebugMode(jsonString.debugMode) || 0;
     page.$VERSION = jsonString.version || false;
     page.$ADBLOCK = window.hasOwnProperty('_ADBLOCK') ? window._ADBLOCK : false;
-    page.$STORAGE = {};
     page.$SYSTEM_ENVIRONMENT = jsonString._environment;
     page.$SOURCEPATH = jsonString._page.sourcePath;
     page.$PACKAGE_JSON = jsonString._package;

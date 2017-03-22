@@ -21,12 +21,14 @@ module.exports = function (grunt, opt) {
         },
         base: {
             files: {
-                'dist/base.js': [base + '**.js']
-                , 'dist/base/events.js': [base + 'events/**.js']
-                , 'dist/base/logs.js': [base + 'logs/**.js']
-                , 'dist/base/models.js': [base + 'models/**.js']
-                , 'dist/base/parameters.js': [base + 'parameters/**.js']
-                , 'dist/base/utilities.js': [base + 'utilities/**.js']
+                'dist/base.js': [
+                    base + '**.js'
+                    , base + 'parameters/**.js'
+                    , base + 'logs/**.js'
+                    , base + 'utilities/**.js'
+                    , base + 'events/**.js'
+                    , base + 'models/**.js'
+                ]
             }
         },
         configuration: {

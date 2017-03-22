@@ -4,26 +4,27 @@
 
 (function (base) {
 
-    function StorageEventModel(){
-        Object.defineProperties(this,{
-            e:_define(false)
-            , type:_define(false)
-            , instance:_define('default')
-            , index:_define(-1)
+    function StorageEventModel() {
+        Object.defineProperties(this, {
+            e: _define(false)
+            , type: _define(false)
+            , instance: _define('default')
+            , index: _define(-1)
+            , timestamp: {value: Date.now()}
+            , performance: {value: performance.now()}
         });
     }
 
     StorageEventModel.prototype = Object.create({
-        constructor:StorageEventModel
-    },{
-        timestamp:{value:Date.now()}
-        , log:{
-            value:new MessageModel(),
-            enumerable:true
+        constructor: StorageEventModel
+    }, {
+        log: {
+            value: new MessageModel(),
+            enumerable: true
         }
-        , handler:{
-            value:false,
-            writable:true
+        , handler: {
+            value: false,
+            writable: true
         }
     });
 
@@ -50,11 +51,11 @@
     }
 
 
-    function _define(obj){
+    function _define(obj) {
         return {
-            value:obj,
-            writable:true,
-            enumerable:true
+            value: obj,
+            writable: true,
+            enumerable: true
         }
     }
 })(window.$base);

@@ -6,7 +6,7 @@
 
     function DOMElementModel(element, showAllProperties) {
         if (!element) return {};
-        Object.defineProperty(this,'$PAGE_MAPPED_ELEMENT',{
+        Object.defineProperty(this,'$MAPPED_ELEMENT',{
             value: Date.now()
         });
 

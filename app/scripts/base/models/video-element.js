@@ -46,7 +46,7 @@
         }
 
         //unique to this MODEL
-        this.fullscreen = base.utils.detect.detectFullscreenSupport(element);
+        this.fullscreen = base.detect.detectFullscreenSupport(element);
     }
 
 

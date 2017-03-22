@@ -2,15 +2,10 @@
  * detect file for tamaramack.github.io on 21-Mar-17.
  */
 
-(function(base){
+(function (base, $) {
     Date = window.Date;
-    var wait = window.wait;
 
     var _console = window.console;
-    /*wait.on(wait.CONSOLE, function () {
-     _console = window.$page.console.getInstance('Feature Detection');
-     _console.log('Wait Condition Initialized :: window.$page.console', Date.now());
-     });*/
 
     var DONE_AUTOPLAY,
         DONE_FLASH,
@@ -86,7 +81,8 @@
         });
 
         Object.defineProperties(this, {
-            detectionCompleted: {
+            timestamp: {value: Date.now()}
+            , detectionCompleted: {
                 get: function () {
                     return (this.done.autoplay
                     && this.done.flash
@@ -115,8 +111,7 @@
     }
 
     Detection.prototype = Object.create({constructor: Detection}, {
-        timestamp: {value: Date.now()}
-        , addCallbackDetection: {value: addCallbackDetection}
+        addCallbackDetection: {value: addCallbackDetection}
         , detectFullscreenSupport: {value: detectFullscreenSupport}
         , isHTML5: {value: isHTML5}
         , canPlayHTML5Video: {value: canPlayHTML5Video}
@@ -128,7 +123,10 @@
         , __runCallback: {value: __runCallback}
     });
 
-    base.detect = Detection;
+    Object.defineProperty(base, 'detect', {
+        value: new Detection(),
+        enumerable: true
+    });
 
     function __getBody() {
         var body = document.body;
@@ -327,7 +325,8 @@
 
         var _detected, _activex;
         try {
-            _activex = 'ActiveXObject' in window && 'Pan' in new window.ActiveXObject('ShockwaveFlash.ShockwaveFlash');
+            _activex = 'ActiveXObject' in window
+                && 'Pan' in new window.ActiveXObject('ShockwaveFlash.ShockwaveFlash');
         } catch (e) {
             _console.error('Error reading ActiveXObject', e);
         }
@@ -433,19 +432,17 @@
 
     function getFlashDetectLegacy(parentObj) {
         parentObj.legacy = null;
-        wait.on(wait.UTILS, function () {
-            var utils = window.$page.utils;
-            if (window['FlashDetect']) {
-                //console.info('GOT IT', FlashDetect);
-                parentObj.legacy = utils.cloneObjToJson(FlashDetect);
-            } else {
-                if (!_flashCounter_2 > 0) return;
-                //console.warn('waiting for Flash Detect Scripts');
-                setTimeout(function () {
-                    _flashCounter_2--;
-                    getFlashDetectLegacy(parentObj);
-                }, 10);
-            }
-        });
+        var utils = base.utils;
+        if (window['FlashDetect']) {
+            //console.info('GOT IT', FlashDetect);
+            parentObj.legacy = utils.cloneObjToJson(FlashDetect);
+        } else {
+            if (!_flashCounter_2 > 0) return;
+            //console.warn('waiting for Flash Detect Scripts');
+            setTimeout(function () {
+                _flashCounter_2--;
+                getFlashDetectLegacy(parentObj);
+            }, 10);
+        }
     }
-})(window.$base);
+})(window.$base, jQuery);

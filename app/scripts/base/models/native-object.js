@@ -11,8 +11,8 @@
             return _object;
         }
 
-        depthNumber = isNaN(parseInt(depthNumber)) ? 2 : depthNumber;
-        Object.defineProperty(this,'$PAGE_MAPPED_NATIVE',{
+        depthNumber = isNaN(+(depthNumber)) ? 2 : depthNumber;
+        Object.defineProperty(this,'$MAPPED_NATIVE',{
             value: Date.now()
         });
 
@@ -36,10 +36,10 @@
                 }
                 this[prop] = (_newStringArray).join(' ');
             } else if (_typeof === '[object Object]') {
-                if (depthNumber && _object.hasOwnProperty(prop)) {
+                if ((depthNumber > 0) && _object.hasOwnProperty(prop)) {
                     M = base.models.NativeObjectModel;
-                    var _depthNumber = depthNumber - 1;
-                    this[prop] = new M(item, _depthNumber);
+                    depthNumber--;
+                    this[prop] = new M(item, depthNumber);
                 }
             }
 

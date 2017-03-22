@@ -8,13 +8,13 @@
 (function (base, $) {
     Date = window.Date;
 
-    var Models = base.Models;
     var wait = base.wait;
 
     function Utils() {
 
         Object.defineProperties(this, {
-            getURL: _define(getURL)
+            timestamp: {value: Date.now()}
+            , getURL: _define(getURL)
             , resizeElement: _define(resizeElement)
             , getDateTime: _define(getDateTime)
             , getTime: _define(getTime)
@@ -46,17 +46,12 @@
             , toNumber: _define(toNum)
         });
 
-        setTimeout(function () {
-            wait.trigger(wait.UTILITIES);
-        }, 5);
     }
 
     Utils.prototype = Object.create({
         constructor: Utils
     }, {
-        timestamp: {value: Date.now()}
-        , models: _define(Models)
-        , requestAnimationFrame: _define((function () {
+        requestAnimationFrame: _define((function () {
             return window.requestAnimationFrame ||
                 window.webkitRequestAnimationFrame ||
                 window.mozRequestAnimationFrame ||
@@ -74,7 +69,10 @@
         })())
     });
 
-    return Utils;
+    Object.defineProperty(base, 'utils', {
+        value: new Utils(),
+        enumerable: true
+    });
 
     function _define(value) {
         return {
@@ -100,7 +98,7 @@
             //this.console().warn('_Utils.resizeElement', jqObj, ele[revDim](), ratio, calcRatio);
             //ele[revDim](calcRatio);
             ele.css('min-' + dim, calcRatio + 'px');
-        }, 200, wait.UTILS + '_resizeElement_' + jqObj.toString());
+        }, 200, wait.UTILITIES + '_resizeElement_' + jqObj.toString());
     }
 
     function getDateTime(date) {
@@ -204,19 +202,20 @@
     function cloneObjToJson(obj, replacer) {
         if (!obj || obj === null)return obj;
         var _this = this;
-        var cache = [];
+        var cache = [],
+            models = base.models;
         replacer = replacer || function (key, value) {
                 if (value instanceof Function) {
                     return (value.toString()).replace(/(\r)(\s+)/gm, ' ');
                 } else if (typeof value === 'object' && value !== null) {
-                    var M = _this.models.nativeObj;
+                    var M = models.NativeObjectModel;
                     if (cache.indexOf(value) !== -1) return "[CIRCULAR_REFERENCE]";
                     cache.push(value);
 
                     if (Object.prototype.toString.call(value) === '[object HTMLVideoElement]') {
-                        M = _this.models.videoModel;
+                        M = models.VideoElementModel;
                     } else if (_this.isDomElement(value)) {
-                        M = _this.models.domModel;
+                        M = models.DOMElementModel;
                     }
                     return new M(value);
                 }
@@ -406,4 +405,4 @@
             && isFinite(date))) date = new Date();
         return date;
     }
-})(window.$base = window.$base || {}, jQuery);
+})(window.$base, jQuery);

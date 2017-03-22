@@ -25,11 +25,6 @@
             value: {},
             enumerable: true
         }
-
-        , utilities: {
-            value: {},
-            enumerable: true
-        }
     });
 
 })();

@@ -44,7 +44,8 @@
         var _scopeName = scopeName || this.timestamp;
 
         Object.defineProperties(this, {
-            parent: {
+            timestamp: {value: (new Date()).getTime()}
+            , parent: {
                 get: function () {
                     return parent || null;
                 }
@@ -66,8 +67,7 @@
     }
 
     _Console.prototype = Object.create(window.console, {
-        timestamp: {value: (new Date()).getTime()}
-        , id: {
+        id: {
             get: function () {
                 var name = this.scopeName.replace(/[(\s|\W)*]+/gm, '_');
                 return (name).toLowerCase() + '_' + this.timestamp;

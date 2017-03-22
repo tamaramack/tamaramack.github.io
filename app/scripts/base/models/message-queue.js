@@ -20,19 +20,22 @@
 
         //console.error('AbstractEventQueue',this);
         var _this = this;
-        Object.defineProperty(this, 'addEvent', {
-            value: function () {
-                return _this._addEvent.apply(_this, arguments);
-            },
-            enumerable: true
+        Object.defineProperties(this, {
+            timestamp: {value: Date.now()}
+            , addEvent: {
+                value: function () {
+                    return _this._addEvent.apply(_this, arguments);
+                },
+                enumerable: true
+            }
         });
+
     }
 
     AbstractEventQueue.prototype = Object.create({
         constructor: AbstractEventQueue
     }, {
-        timestamp: {value: Date.now()}
-        , eventQueue: {
+        eventQueue: {
             value: {},
             enumerable: true
         }

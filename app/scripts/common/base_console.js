@@ -10,7 +10,7 @@ if (window.$GLOBAL_PARAMETERS.$DEBUG) {
          * FOR CATCHING THIRD PARTY CONSOLES DURING TESTING
          */
         var len = methods.length,
-            _store = storage.console = {};
+            _store = storage.console = [];
         storage.alert = [];
 
         if ('undefined' === typeof _console)window.console = {};
@@ -44,15 +44,15 @@ if (window.$GLOBAL_PARAMETERS.$DEBUG) {
             _console[methods[len]] = wrap(methods[len], orig, callback);
 
         }
-    }(window.$GLOBAL_PARAMETERS.$LOG_STORAGE,
+    }(window.$base.store,
         window.console,
         ['error', 'debug', 'info', 'assert', 'dir', 'log', 'trace', 'warn'],
         function (name, args, method) {
-            (window.$GLOBAL_PARAMETERS.$LOG_STORAGE.console[name]).push({
+            (window.$base.store.console).push({
                 now: Date.now(),
                 perf: performance.now(),
                 type: name,
-                args: args
+                e: args
             });
         }
     ));

@@ -4,12 +4,14 @@
 
 (function (base) {
 
-    function StorageEventModel() {
+    function StorageEventModel(obj) {
+        obj = obj || {};
         Object.defineProperties(this, {
-            e: _define(false)
-            , type: _define(false)
-            , instance: _define('default')
-            , index: _define(-1)
+            e: _define(obj.e || false)
+            , module: _define(obj.module || 'default')
+            , type: _define(obj.type || false)
+            , instance: _define(obj.instance || 'default')
+            , index: _define(obj.index || -1)
             , timestamp: {value: Date.now()}
             , performance: {value: performance.now()}
         });

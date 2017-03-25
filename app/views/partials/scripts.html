@@ -21,27 +21,9 @@
             //console.warn('ONLOAD DONE', arguments);
         }
     }
-
-    Object.defineProperties(window, {
-        $GLOBAL_FUNCTIONS: {
-            value: {},
-            enumerable: true
-        }
-        , $GLOBAL_MODELS: {
-            value: {},
-            enumerable: true
-        }
-        , $GLOBAL_PARAMETERS: {
-            value: {},
-            enumerable: true
-        }
-        , $URL_LOCATION:{
-            value: window.location.href,
-            writable: true
-        }
-    });
-    window.$GLOBAL_PARAMETERS.$DATASTRING = '{{datastring}}';
-    window.$GLOBAL_PARAMETERS.$PAGE_TIMESTAMP = (new Date()).getTime();
+    window.$DATASTRING = '{{datastring}}';
+    window.$PAGE_TIMESTAMP = Date.now();
+    window.$PAGE_PERFORMANCE = performance.now();
 </script>
 <script type="text/javascript" src="/libs/modernizr/bin/modernizr"></script>
 <script type="text/javascript" src="/libs/knockout/dist/knockout.js"></script>

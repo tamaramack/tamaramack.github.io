@@ -5,14 +5,15 @@ module.exports = function (grunt, opt) {
     return {
         options: {
             sourceMap: true,
-            presets: ['es2015']
+            presets: ['latest']
         },
         dist: {
             files: [{
                 expand: true,
                 cwd: 'dist/concat/',
                 src: ['**/*.js'],
-                dest: 'dist/babel/'
+                dest: 'dist/babel/',
+                ext: '.js'
             }]
         }
     }

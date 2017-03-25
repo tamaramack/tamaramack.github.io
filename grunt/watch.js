@@ -39,8 +39,7 @@ module.exports = {
 
     babel: {
         files: [
-            'dist/**/**.js'
-            , '!dist/babel/'
+            'dist/concat/**/**.js'
         ],
         tasks: [
             'newer:babel'

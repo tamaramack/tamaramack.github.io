@@ -22,8 +22,7 @@ module.exports = function (grunt, opt) {
         base: {
             files: {
                 'dist/concat/base.js': [
-                    '"use strict";'
-                    , base + '**.js'
+                    base + '**.js'
                     , base + 'parameters/**.js'
                     , base + 'logs/**.js'
                     , base + 'utilities/**.js'

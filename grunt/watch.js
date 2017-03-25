@@ -37,9 +37,19 @@ module.exports = {
         ]
     },
 
+    babel: {
+        files: [
+            'dist/**/**.js'
+            , '!dist/babel/'
+        ],
+        tasks: [
+            'newer:babel'
+        ]
+    },
+
     script: {
         files: [
-            'dist/**.js'
+            'dist/babel/**/**.js'
         ],
         tasks: [
             'newer:uglify'

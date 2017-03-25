@@ -39,11 +39,12 @@
     });
 
     function addListener(eventStringOrArray, callback) {
-        var eventArray = (typeof eventStringOrArray === 'string') ? eventStringOrArray.split(' ') : eventStringOrArray,
+        let eventArray = (typeof eventStringOrArray === 'string') ? eventStringOrArray.split(' ') : eventStringOrArray,
             len = eventArray.length;
 
+        var eventName;
         while (len--) {
-            var eventName = eventArray[len];
+            eventName = eventArray[len];
             _addListener.call(this, eventName, callback, arguments[2]);
         }
         //console.error(eventArray, this.listeners);
@@ -58,18 +59,19 @@
             };
         }
 
-        var index = this.getIndex(this.listeners[eventName], callback);
+        let index = this.getIndex(this.listeners[eventName], callback);
         if (index === -1) {
             (this.listeners[eventName]).push(callback);
         }
     }
 
     function removeListener(eventStringOrArray, callback) {
-        var eventArray = (typeof eventStringOrArray === 'string') ? eventStringOrArray.split(' ') : eventStringOrArray,
+        let eventArray = (typeof eventStringOrArray === 'string') ? eventStringOrArray.split(' ') : eventStringOrArray,
             len = eventArray.length;
 
+        var eventName;
         while (len--) {
-            var eventName = eventArray[len];
+            eventName = eventArray[len];
             _removeListener.call(this, eventName, callback, arguments[2]);
         }
     }
@@ -89,14 +91,14 @@
             };
         }
 
-        var index = this.getIndex(this.listeners[eventName], callback);
+        let index = this.getIndex(this.listeners[eventName], callback);
         if (index > -1) {
             (this.listeners[eventName]).splice(index, 1);
         }
     }
 
     function notify(eventType, event) {
-        var _type = eventType;
+        let _type = eventType;
         if (!!eventType && typeof eventType !== 'string') {
             _type = eventType.type;
             event = eventType;
@@ -128,8 +130,9 @@
             handler = fn.callback;
         }
 
+        var callback;
         while (index--) {
-            var callback = fnArray[index];
+            callback = fnArray[index];
             if (callback === fn ||
                 ((scope && handler) &&
                 callback['scope'] === scope && callback['callback'] === handler))

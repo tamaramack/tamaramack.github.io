@@ -37,13 +37,13 @@ module.exports = function (grunt, opt) {
         debugAll: {
             options: debugOpt,
             files: [
-                allfiles('dist/', 'build/js/debug')
+                allfiles('dist/babel/', 'build/js/debug/')
             ]
         },
         all: {
             options: minOpt,
             files: [
-                allfiles('dist/', 'build/js', true)
+                allfiles('dist/babel/', 'build/js/', true)
             ]
         }
     }

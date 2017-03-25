@@ -7,8 +7,7 @@
 
 (function (base, $) {
     Date = window.Date;
-
-    var wait = base.wait;
+    let wait = base.wait;
 
     function Utils() {
 
@@ -82,7 +81,7 @@
     }
 
     function getURL() {
-        return window.parameters.$PAGE_SOURCEPATH;
+        return base.parameters.href;
     }
 
     function uniqueID(prefix) {
@@ -90,11 +89,11 @@
     }
 
     function resizeElement(jqObj, ratio, dim) {
-        var revDim = dim === 'height' ? 'width' : 'height',
+        let revDim = dim === 'height' ? 'width' : 'height',
             ele = $(jqObj);
 
         wait.throttle(function () {
-            var calcRatio = (ele[revDim]()) * ratio;
+            let calcRatio = (ele[revDim]()) * ratio;
             //this.console().warn('_Utils.resizeElement', jqObj, ele[revDim](), ratio, calcRatio);
             //ele[revDim](calcRatio);
             ele.css('min-' + dim, calcRatio + 'px');
@@ -108,7 +107,7 @@
     }
 
     function getTime() {
-        var date = (new Date()).getTime();
+        const date = (new Date()).getTime();
         return {
             timestamp: date,
             string: this.getTimeString(date)
@@ -120,7 +119,7 @@
 
         var h, m, s, _get = 'get';
         if (UTC) _get += 'UTC';
-        var t = {
+        const t = {
             hours: date[_get + 'Hours'](),
             minutes: date[_get + 'Minutes'](),
             seconds: date[_get + 'Seconds'](),
@@ -136,9 +135,9 @@
     function syntaxHighlight(json) {
         json = json || "";
         json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-        var regex = /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g;
-        return json.replace(regex, function (match) {
-            var cls = 'number';
+        const regex = /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g;
+        return json.replace(regex, (match) => {
+            let cls = 'number';
             if (/^"/.test(match)) {
                 if (/:$/.test(match)) {
                     cls = 'key';
@@ -176,8 +175,8 @@
         }
 
         //Merge the object into the extended object
-        var merge = function (obj) {
-            for (var prop in obj) {
+        function merge(obj) {
+            for (let prop in obj) {
                 if (!obj[prop]) continue;
                 //If deep merge and property is an object, merge properties
                 if (deep && Object.prototype.toString.call(obj[prop]) === '[object Object]') {
@@ -186,9 +185,9 @@
                     extended[prop] = obj[prop];
                 }
             }
-        };
+        }
 
-        var len = _arguments.length;
+        let len = _arguments.length;
         //_arguments.reverse();
         //Loop through each object and conduct a merge
         while (len--) {
@@ -201,27 +200,26 @@
 
     function cloneObjToJson(obj, replacer) {
         if (!obj || obj === null)return obj;
-        var _this = this;
         var cache = [],
             models = base.models;
-        replacer = replacer || function (key, value) {
+        replacer = replacer || ((key, value) => {
                 if (value instanceof Function) {
                     return (value.toString()).replace(/(\r)(\s+)/gm, ' ');
                 } else if (typeof value === 'object' && value !== null) {
-                    var M = models.NativeObjectModel;
+                    let M = models.NativeObjectModel;
                     if (cache.indexOf(value) !== -1) return "[CIRCULAR_REFERENCE]";
                     cache.push(value);
 
                     if (Object.prototype.toString.call(value) === '[object HTMLVideoElement]') {
                         M = models.VideoElementModel;
-                    } else if (_this.isDomElement(value)) {
+                    } else if (this.isDomElement(value)) {
                         M = models.DOMElementModel;
                     }
                     return new M(value);
                 }
 
                 return value;
-            };
+            });
 
         obj = JSON.stringify(obj, replacer);
         cache = null;
@@ -253,8 +251,7 @@
         if (Array.isArray) {
             return Array.isArray(_obj);
         }
-        var _check = Object.prototype.toString.call([]);
-        if (_check === '[object Array]') {
+        if (Object.prototype.toString.call([]) === '[object Array]') {
             return Object.prototype.toString.call(_obj) === '[object Array]';
         }
         return false;
@@ -265,20 +262,20 @@
     }
 
     function getFnName(fn) {
-        var f = typeof fn == 'function';
-        var s = f && ((fn.name && ['', fn.name]) || fn.toString().match(/function ([^\(]+)/));
+        const f = typeof fn === 'function';
+        const s = f && ((fn.name && ['', fn.name]) || fn.toString().match(/function ([^\(]+)/));
         return (!f && 'false') || (s && s[1] || 'anonymous');
     }
 
     function has(obj, arr) {
         if (!arr) return false;
         if (this.isArray(arr)) {
-            var i = arr.length;
+            let i = arr.length;
             while (i--) {
                 if (arr[i] === obj) return true;
             }
         } else {
-            var keys = Object.keys(arr),
+            let keys = Object.keys(arr),
                 i = keys.length;
             while (i--) {
                 if (arr[keys[i]] === obj) return true;
@@ -288,26 +285,24 @@
     }
 
     function encode(str) {
-        var el = document.createElement("div");
+        const el = document.createElement("div");
         el.innerText = el.textContent = str;
         if (!this.isString(el.innerHTML)) {
             el.innerHTML = '';
             console.warn('object IS NOT a string in encode.');
         }
         str = (el.innerHTML).toString();
-        delete el;
         return str;
     }
 
     function decode(str) {
-        var txt = document.createElement("textarea");
+        const txt = document.createElement("textarea");
         txt.innerHTML = decodeURIComponent(str);
         if (!this.isString(txt.value)) {
             txt.value = '';
             console.warn('object IS NOT a string in decode.');
         }
         str = (txt.value).toString();
-        delete txt;
         return str;
     }
 
@@ -318,19 +313,15 @@
         } else {
             err = error;
         }
-        var stack = err.stack;
+        let stack = err.stack;
         try {
             throw err;
         } catch (e) {
             stack = e.stack;
             if (!stack) {
-                if ((this)['getStackTrace'] instanceof Function) {
-                    stack = this.getStackTrace();
-                } else if ((this)['captureStackTrace'] instanceof Function) {
-                    stack = this.captureStackTrace();
-                } else {
-                    stack = e.message;
-                }
+                stack = (this.getStackTrace && this.getStackTrace())
+                    || (this.captureStackTrace && this.captureStackTrace())
+                    || e.message;
             }
         }
         return stack || '';
@@ -356,7 +347,7 @@
     }
 
     function identifyObject(obj) {
-        var primitive = this.primitiveType(typeof obj);
+        const primitive = this.primitiveType(typeof obj);
         if (primitive) {
             return primitive;
         }
@@ -369,7 +360,7 @@
         if (this.isHtmlCollection(obj)) {
             return 'HTMLCollection';
         }
-        var _jq = jQuery;
+        let _jq = jQuery;
         if (obj instanceof _jq) {
             return 'jQuery';
         }
@@ -379,14 +370,14 @@
     function toBool(obj) {
         if (typeof obj === 'undefined') return false;
         if (typeof obj === 'boolean') return obj;
-        var _obj = parseInt(obj);
+        const _obj = parseInt(obj);
         if (isNaN(_obj))return obj === 'true';
         return _obj !== 0;
     }
 
     function toNum(obj) {
         if (typeof obj === 'undefined') return 0;
-        var _obj = parseInt(obj);
+        let _obj = parseInt(obj);
         if (isNaN(_obj)) {
             _obj = 0;
             if (obj === true || obj === 'true') _obj = 1;
@@ -395,7 +386,7 @@
     }
 
     function __formattime(time) {
-        var len = ('' + time).length;
+        const len = ('' + time).length;
         return len === 1 ? '0' + time : time;
     }
 

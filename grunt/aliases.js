@@ -9,11 +9,11 @@ module.exports = {
     },
     merge: {
         description: 'Merge and Update Scripts Files',
-        tasks: ['clean', 'sass', 'concat', 'uglify']
+        tasks: ['clean', 'sass', 'concat', 'babel', 'uglify']
     },
     dev: {
         description: 'Development build',
-        tasks: ['concurrent:first', 'concurrent:second', 'concurrent:third']
+        tasks: ['concurrent:first', 'concurrent:second', 'concurrent:third', 'concurrent:fourth']
     },
     prod: {
         description: 'Production build',

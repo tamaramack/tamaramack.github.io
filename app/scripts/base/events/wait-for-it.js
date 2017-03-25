@@ -4,12 +4,14 @@
 
 (function (base, $) {
     Date = window.Date;
-    var eventObject = $({});
+    let console = window.console;
+    const eventObject = $({});
 
     function Wait() {
         Object.defineProperties(this, {
             //Pages
-            SUMMARY: _define('summary')
+            timestamp: {value: Date.now()}
+            , SUMMARY: _define('summary')
             , HOMEPAGE: _define('homepage')
             , SIMCITY: _define('simcity')
             , RESUME: _define('resume')
@@ -26,28 +28,17 @@
             , LAYOUT: _define('layout')
         });
 
-        var waitItems = base.parameters.$WAIT_ITEMS;
-
-        for (var id in waitItems) {
-            var item = waitItems[id],
-                len = item.callbacks.length;
-            var eventType = item.condition || id;
-            while (len--) {
-                this.on(eventType, item.callbacks[len]);
-            }
-        }
     }
 
     Wait.prototype = Object.create({
         constructor: Wait
     }, {
-        timestamp: {value: Date.now()}
-        , debounce: _define(debounce)
+        debounce: _define(debounce)
         , throttle: _define(throttle)
         , on: _define(on)
         , trigger: _define(trigger)
         , events: {value: {}}
-        , _hold:{value:{}}
+        , _hold: {value: {}}
         , _waitCondition: {value: waitCondition}
         , _setWait: {value: setWait}
     });
@@ -58,24 +49,24 @@
     });
 
     function debounce(callback, time, unqId) {
-        var _hold = this._hold;
+        let _hold = this._hold;
         return function () {
-            var _this = this, _arguments = arguments;
+            const _arguments = arguments.slice();
             if (!isNaN(parseInt(_hold[unqId]))) {
                 clearTimeout(_hold[unqId]);
             }
-            _hold[unqId] = setTimeout(function () {
+            _hold[unqId] = setTimeout(() => {
                 //console.log('debounceTime for ' + unqId + ':  ' + _hold[unqId]);
-                if (callback instanceof Function) callback.apply(_this, _arguments);
+                if (callback instanceof Function) callback.apply(this, _arguments);
                 delete _hold[unqId];
             }, time);
         }
     }
 
     function throttle(callback, time, unqId) {
-        var _hold = this._hold;
+        let _hold = this._hold;
         this._hold[unqId] = false;
-        var clear = function () {
+        const clear = () => {
             _hold[unqId] = false;
         };
         return function () {
@@ -114,20 +105,21 @@
             return;
         }
         eventObject.trigger(eventType).off(eventType);
-        if (this.events[eventType])this.events[eventType].callbacks = false;
+        if (this.events[eventType]) this.events[eventType].callbacks = false;
     }
 
     function waitCondition(condition, callback, timeInterval) {
-        var eventName = false;
-        for (var _event in this.events) {
-            var item = this.events[_event];
+        var item;
+        let eventName = false;
+        for (let _event in this.events) {
+            item = this.events[_event];
             if (item.condition === condition) {
                 eventName = _event;
                 break;
             }
         }
 
-        if (!!eventName) {
+        if (eventName) {
             eventObject.on(eventName, callback);
             if (!(this.events[eventName].callbacks)) {
                 this.trigger(eventName);
@@ -150,7 +142,7 @@
 
     function setWait(eventName, timeInterval) {
         timeInterval = parseInt(timeInterval) || 5;
-        var _condition = (this.events[eventName]).condition;
+        const _condition = (this.events[eventName]).condition;
 
         if (_condition instanceof Function && !_condition()) {
             if ((this.events[eventName]).status > 2000) {
@@ -159,10 +151,9 @@
                 return;
             }
 
-            var _this = this;
-            setTimeout(function () {
-                (_this.events[eventName]).status++;
-                setWait.call(_this, eventName, timeInterval);
+            setTimeout(() => {
+                (this.events[eventName]).status++;
+                setWait.call(this, eventName, timeInterval);
             }, timeInterval);
             return;
         }

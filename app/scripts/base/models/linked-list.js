@@ -6,7 +6,8 @@
 
     function LinkedListAbstract() {
         Object.defineProperties(this, {
-            _length: {
+            timestamp: {value: Date.now()}
+            , _length: {
                 value: 0,
                 writable: true
             }
@@ -26,8 +27,7 @@
     LinkedListAbstract.prototype = Object.create({
         constructor: LinkedListAbstract
     }, {
-        timestamp: {value: Date.now()}
-        , searchByPosition: {
+         searchByPosition: {
             value: searchByPosition,
             enumerable: true
         }
@@ -54,7 +54,7 @@
     });
 
     function add(data) {
-        var node = new Node(data);
+        const node = new Node(data);
         if (this._length) {
             this.last.next = node;
             node.previous = this.last;

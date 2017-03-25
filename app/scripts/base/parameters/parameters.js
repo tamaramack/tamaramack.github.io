@@ -22,7 +22,7 @@
     page.$URL_LOCATION = window.location.href;
 
     page.$MODULES = {};
-    for (var prop in jsonString.modules) {
+    for (let prop in jsonString.modules) {
         page.$MODULES[prop] = jsonString.modules[prop];
     }
 
@@ -32,8 +32,8 @@
         , version: _define('$VERSION', String)
         , modules: {
             get: function () {
-                var arr = [];
-                for (var name in page.$MODULES) {
+                const arr = [];
+                for (let name in page.$MODULES) {
                     if (page.$MODULES[name]) arr.push(name);
                 }
                 return arr;
@@ -42,28 +42,26 @@
         }
         , href: {
             get: function () {
-                var utils = base.utils;
-                return utils.decode(page.$URL_LOCATION);
+                return base.utils.decode(page.$URL_LOCATION);
             }
         }
     });
 
     function _define(returnObject, dataType) {
-        var to = function (value) {
-            var utils = base.utils;
+        function to(value) {
+            let utils = base.utils;
             if (dataType === Boolean) return utils.toBoolean(value);
             else if (dataType === Number) return utils.toNumber(value);
             else return value;
-        };
+        }
 
         return {
-            get: function () {
+            get: () => {
                 return to(page[returnObject]);
             },
-            set: base.wait.debounce(function (newValue) {
-                var utils = base.utils;
+            set: base.wait.debounce((newValue) => {
                 if (dataType === Boolean || dataType === Number)
-                    newValue = utils.toNumber(newValue);
+                    newValue = base.utils.toNumber(newValue);
                 page[returnObject] = newValue;
             }, 50, 'setBase_' + returnObject),
             enumerable: true
@@ -78,7 +76,6 @@
             _console.warn('object IS NOT a string in _decode.');
         }
         str = (txt.value).toString();
-        delete txt;
         return str;
     }
 

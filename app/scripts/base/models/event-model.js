@@ -11,7 +11,7 @@
             , module: _define(obj.module || 'default')
             , type: _define(obj.type || false)
             , instance: _define(obj.instance || 'default')
-            , index: _define(obj.index || -1)
+            , index: _define((base.store && base.store.length) || -1)
             , timestamp: {value: Date.now()}
             , performance: {value: performance.now()}
         });
@@ -35,16 +35,6 @@
         value: StorageEventModel,
         enumerable: true
     });
-
-
-    function SeqEventObj() {
-        this.evt = {};
-        this.type = '';
-        this.instance = '';
-        this.index = 0;
-        this.log = new MessageModel();
-        this.timestamp = Date.now();
-    }
 
     function MessageModel() {
         this.type = '';

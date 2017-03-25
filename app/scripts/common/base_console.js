@@ -46,9 +46,9 @@
     window.console,
     ['error', 'debug', 'info', 'assert', 'dir', 'log', 'trace', 'warn'],
     function (name, args, method) {
-        (window.$base.store.console).push({
-            now: Date.now(),
-            perf: performance.now(),
+        (window.$base.store).push({
+            instance: method,
+            module: 'console',
             type: name,
             e: args
         });

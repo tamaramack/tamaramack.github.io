@@ -31,7 +31,7 @@
     });
 
     Object.defineProperty(base.parameters, 'store', {
-        value: StoreModel,
+        value: new StoreModel(),
         enumerable: true
     });
 

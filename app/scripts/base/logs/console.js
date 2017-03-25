@@ -2,12 +2,20 @@
  * console file for tamaramack.github.io on 21-Mar-17.
  */
 
-(function (base) {
+(function (base, $) {
 
     window['console'] = window['console'] || undefined;
     if ('undefined' === typeof window['console']) window.console = {};
 
     let gv = base.parameters;
+
+    if (gv.debug){
+        $.getScript('/js/common/base_console.js').done((script, textStatus) => {
+            console.log('Check console compatibility', textStatus);
+        }).fail((jqxhr, settings, exception) => {
+            console.error(exception);
+        });
+    }
 
     const level1 = ['warn', 'error'];
     const level2 = (['debug', 'info']).concat(level1);
@@ -263,4 +271,4 @@
 
     }
 
-})(window.$base);
+})(window.$base, jQuery);

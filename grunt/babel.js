@@ -7,12 +7,30 @@ module.exports = function (grunt, opt) {
             sourceMap: true,
             presets: ['latest']
         },
-        dist: {
+        concat: {
             files: [{
                 expand: true,
                 cwd: 'dist/concat/',
                 src: ['**/*.js'],
                 dest: 'dist/babel/',
+                ext: '.js'
+            }]
+        },
+        misc:{
+            files:[{
+                expand: true,
+                cwd: 'app/scripts/misc/',
+                src: ['*.js'],
+                dest: 'dist/babel/misc/',
+                ext: '.js'
+            }]
+        },
+        common:{
+            files:[{
+                expand: true,
+                cwd: 'app/scripts/common/',
+                src: ['*.js'],
+                dest: 'dist/babel/common/',
                 ext: '.js'
             }]
         }

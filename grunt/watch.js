@@ -29,7 +29,6 @@ module.exports = {
     concat: {
         files: [
             'app/scripts/**.js'
-            , 'app/scripts/misc/**.js'
             , 'app/scripts/base/**/**.js'
         ],
         tasks: [
@@ -40,6 +39,8 @@ module.exports = {
     babel: {
         files: [
             'dist/concat/**/**.js'
+            , 'app/scripts/misc/**.js'
+            , 'app/scripts/common/**.js'
         ],
         tasks: [
             'newer:babel'

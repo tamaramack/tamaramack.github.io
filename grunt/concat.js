@@ -4,6 +4,7 @@
 module.exports = function (grunt, opt) {
     var path = 'app/scripts/',
         data = path + 'data/',
+        base = path + 'base/',
         configuration = data + "configuration/",
         console = data + 'console/',
         moduleMgmt = data + 'module/',
@@ -18,9 +19,21 @@ module.exports = function (grunt, opt) {
                 return '\n/**\n * SOURCE: ' + filepath + '\n*/\n' + src;
             }
         },
+        base: {
+            files: {
+                'dist/concat/base.js': [
+                    base + '**.js'
+                    , base + 'events/**.js'
+                    , base + 'utilities/**.js'
+                    , base + 'logs/**.js'
+                    , base + 'parameters/**.js'
+                    , base + 'models/**.js'
+                ]
+            }
+        },
         configuration: {
             files: {
-                'dist/global.js': ['app/scripts/**.js']
+                'dist/concat/global.js': ['app/scripts/**.js']
             }
         }
     }

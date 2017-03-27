@@ -27,7 +27,7 @@ module.exports = function (grunt, opt) {
             compress: {
                 dead_code: true,
                 global_defs: {
-                    "$SPA_DEBUG": false
+                    "$DEBUG": false
                 }
             },
             banner: '<%= banner %>'
@@ -37,13 +37,13 @@ module.exports = function (grunt, opt) {
         debugAll: {
             options: debugOpt,
             files: [
-                allfiles('dist/', 'build/js/debug')
+                allfiles('dist/babel/', 'build/js/debug/', true)
             ]
         },
         all: {
             options: minOpt,
             files: [
-                allfiles('dist/', 'build/js', true)
+                allfiles('dist/babel/', 'build/js/', true)
             ]
         }
     }

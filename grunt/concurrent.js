@@ -11,12 +11,17 @@ module.exports = {
         //'jshint',
         'clean'
     ],
+
     second: [
         'sass',
         'concat'
     ],
 
     third: [
+        'babel'
+    ],
+
+    fourth: [
         'uglify'
     ]
 };

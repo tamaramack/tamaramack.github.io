@@ -206,7 +206,6 @@ function setBaseFlags(req, res, next){
         },
         _page: {
             timestamp: Date.now(),
-            performance: performance.now(),
             sourcePath: res.locals.sourcePath,
             configPath: res.locals.configPath
         }

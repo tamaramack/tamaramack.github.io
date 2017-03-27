@@ -1,19 +1,23 @@
 {% extends "layout.html" %}
 
 {% block title %}
-Portfolio || {% parent %}
+TMack Portfolio || {% parent %}
 {% endblock %}
 
 {% block css %}
 {% parent %}
+{% include "partials/styles.html" %}
 {% endblock %}
 
 {% block js %}
 {% parent %}
+{% include "partials/scripts.html" %}
 {% endblock %}
 
 {% block header %}
-{% include "partials/head.html" %}
+<header>
+    {% include "partials/head.html" %}
+</header>
 {% endblock %}
 
 {% block content %}

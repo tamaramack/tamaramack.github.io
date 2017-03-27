@@ -23,10 +23,10 @@ module.exports = function (grunt, opt) {
             files: {
                 'dist/concat/base.js': [
                     base + '**.js'
-                    , base + 'parameters/**.js'
-                    , base + 'logs/**.js'
-                    , base + 'utilities/**.js'
                     , base + 'events/**.js'
+                    , base + 'utilities/**.js'
+                    , base + 'logs/**.js'
+                    , base + 'parameters/**.js'
                     , base + 'models/**.js'
                 ]
             }

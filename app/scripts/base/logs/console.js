@@ -63,7 +63,7 @@
                 }
             }
             , mode: {
-                value: _mode || gv.$DEBUG_MODE,
+                value: _mode || gv.mode,
                 enumerable: true,
                 writable: true
             }
@@ -116,7 +116,7 @@
         , __console__: {value: {}}
         , _debug: {
             get: function () {
-                return gv.$DEBUG
+                return gv.debug
             },
             configurable: true
         }
@@ -200,7 +200,7 @@
 
     function reload(mode) {
         if (typeof mode === 'undefined')
-            mode = gv.$DEBUG_MODE;
+            mode = gv.mode;
 
         this.mode = isNaN(mode) ? this.mode : mode;
         //console.warn('RELOAD REQUESTED.', this.mode);
@@ -254,7 +254,7 @@
     }
 
     function _getLevel(mode) {
-        if (!gv.$DEBUG
+        if (!gv.debug
             || (isNaN(mode) && !(mode instanceof Array)))return [];
         if (mode instanceof Array) return mode;
 

@@ -34,7 +34,8 @@
         CURRENT_STATE = STATES.off;
 
         Object.defineProperties(this, {
-            requestId: {
+            timestamp: {value: Date.now()}
+            , requestId: {
                 get: function () {
                     return GlobalID;
                 },
@@ -64,12 +65,11 @@
     RequestFrame.prototype = Object.create({
         constructor: RequestFrame
     }, {
-        timestamp: {value: Date.now()}
 
         /**
          *
          */
-        , process: {value: process}
+        process: {value: process}
 
         /**
          *

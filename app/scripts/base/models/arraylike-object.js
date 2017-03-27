@@ -10,7 +10,8 @@
         //console.warn('DynamicArrayAbstract init',emptyArray);
 
         Object.defineProperties(this, {
-            _pointer: {
+            timestamp: {value: Date.now()}
+            , _pointer: {
                 value: -1,
                 writable: true
             }
@@ -21,8 +22,7 @@
     DynamicArrayAbstract.prototype = Object.create({
         constructor: DynamicArrayAbstract
     }, {
-        timestamp: {value: Date.now()}
-        , add: {value: add}
+        add: {value: add}
         , remove: {value: remove}
         , removeAll: {value: removeAll}
         , goTo: {value: goTo}
@@ -58,11 +58,11 @@
     });
 
     function add(assetArray) {
-        if(!Array.isArray(assetArray)) assetArray = [assetArray];
+        if (!Array.isArray(assetArray)) assetArray = [assetArray];
         var arr = [],
             i = assetArray.length;
         while (i--) {
-            if (assetArray[i]){
+            if (assetArray[i]) {
                 var item = new Item(assetArray[i], this);
                 //console.warn('DynamicArrayAbstract',item);
                 arr.unshift(item);
@@ -84,7 +84,7 @@
                     var removed = (this.array).splice(j, 1);
                     break;
                 }
-                if((this.array[j]).data === arr[i]){
+                if ((this.array[j]).data === arr[i]) {
                     var removed = (this.array).splice(j, 1);
                 }
             }

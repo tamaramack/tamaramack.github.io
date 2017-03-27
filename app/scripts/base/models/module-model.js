@@ -9,7 +9,8 @@
     function abstract(Module) {
         EventObserver.call(this);
         Object.defineProperties(this, {
-            _module: {
+            timestamp: {value: Date.now()}
+            , _module: {
                 value: Module || false
             }
             , view: {
@@ -28,19 +29,18 @@
     }
 
     abstract.prototype = Object.create(EventObserver.prototype, {
-        timestamp: {value: Date.now()}
-        , constructor: {
+        constructor: {
             value: abstract,
-            configurable:true,
-            writable:true
+            configurable: true,
+            writable: true
         }
-        , parent:{
-            get:function(){
+        , parent: {
+            get: function () {
                 return window.$page.modules;
             }
         }
-        , _view:{
-            get:function(){
+        , _view: {
+            get: function () {
                 return base.parameters.$MODULES[this._module]
             }
         }

@@ -10,11 +10,13 @@
     delete window.$DATASTRING;
     _console.debug('JSON STRING QUERY', jsonString);
 
+    const ADBLOCK = window.hasOwnProperty('_ADBLOCK') ? window._ADBLOCK : false;
+
     var page = {};
     page.$DEBUG = jsonString.debug || 0;
-    page.$DEBUG_MODE = testDebugMode(jsonString.debugMode) || 0;
+    page.$DEBUG_MODE = testDebugMode(jsonString.mode) || 0;
     page.$VERSION = jsonString.version || false;
-    page.$ADBLOCK = window.hasOwnProperty('_ADBLOCK') ? window._ADBLOCK : false;
+
     page.$SYSTEM_ENVIRONMENT = jsonString._environment;
     page.$SOURCEPATH = jsonString._page.sourcePath;
     page.$PACKAGE_JSON = jsonString._package;
@@ -29,7 +31,13 @@
     Object.defineProperties(base.parameters, {
         debug: _define('$DEBUG', Boolean)
         , mode: _define('$DEBUG_MODE', Number)
-        , version: _define('$VERSION', String)
+        //, version: _define('$VERSION', String)
+        , adblock: {
+            get:function(){
+                return window.hasOwnProperty('_ADBLOCK') ? window._ADBLOCK : false;
+            },
+            enumerable:true
+        }
         , modules: {
             get: function () {
                 const arr = [];

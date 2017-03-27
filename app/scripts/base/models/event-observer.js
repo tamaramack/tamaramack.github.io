@@ -6,7 +6,8 @@
 
     function AbstractEventObserver() {
         Object.defineProperties(this, {
-            listeners: {
+            timestamp: {value: Date.now()}
+            , listeners: {
                 value: {},
                 enumerable: true
             }
@@ -17,8 +18,7 @@
     AbstractEventObserver.prototype = Object.create({
         constructor: AbstractEventObserver
     }, {
-        timestamp: {value: Date.now()}
-        , addListener: {
+         addListener: {
             value: addListener,
             enumerable: true
         }

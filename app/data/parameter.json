@@ -1,0 +1,15 @@
+{
+  "base": [
+    {
+      "name": "debug",
+      "type": "Boolean",
+      "defValue": 0
+    },
+    {
+      "name": "mode",
+      "type": "Number",
+      "defValue": 0
+    }
+  ],
+  "main": []
+}

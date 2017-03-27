@@ -6,9 +6,11 @@
     var _console = window['console'];
 
     var jsonString = _decode(window.$DATASTRING);
+    _console.debug('JSON STRING QUERY', jsonString);
+
     jsonString = jsonString.length ? JSON.parse(jsonString) : {};
     delete window.$DATASTRING;
-    _console.debug('JSON STRING QUERY', jsonString);
+    _console.debug('JSON QUERY', jsonString);
 
     const ADBLOCK = window.hasOwnProperty('_ADBLOCK') ? window._ADBLOCK : false;
 

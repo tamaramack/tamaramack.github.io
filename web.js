@@ -75,6 +75,10 @@ if (ENV === 'development') {
     app.use('/app', _path('/app'));
 }
 
+app.get('/favicon.ico', function (req, res) {
+    res.sendFile(__dirname + '/favicon.ico');
+});
+
 app.get('/npm-debug.log', function (req, res) {
     res.sendFile(__dirname + '/npm-debug.log');
 });
@@ -99,9 +103,11 @@ app.get('/test', function (req, res) {
 });
 
 app.get('/help', function (req, res) {
+    res.render('hook');
 });
 
 app.get('/', setBaseFlags, function (req, res) {
+    res.render('index');
 });
 
 if (ENV === 'development') {

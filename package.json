@@ -5,8 +5,8 @@
   "main": "web.js",
   "config": {
     "port": 9001,
-    "build": "v0.0.6-3-gff98f4d",
-    "timestamp": 1491433873445
+    "build": "v0.0.6-4-g08f06cd",
+    "timestamp": 1491959194250
   },
   "engines": {
     "node": "6.9.3",
@@ -18,6 +18,7 @@
     "bower": "^1.7.9",
     "compression": "^1.6.2",
     "connect-livereload": "^0.5.4",
+    "dotenv": "^4.0.0",
     "express": "^4.14.0",
     "geolocation": "^0.2.0",
     "grunt": "^1.0.1",

@@ -1,4 +1,7 @@
-<script>
+//
+   Created by 206445994 on 11-Apr-17.
+
+script.
     //XMLHttpRequest.prototype.realSend = XMLHttpRequest.prototype.open;
     var onLoadEnd = function () {
         console.log("XMLHttpRequest onLoadEnd data: ", arguments);
@@ -21,11 +24,11 @@
             //console.warn('ONLOAD DONE', arguments);
         }
     }
-    window.$DATASTRING = '{{datastring}}';
+    window.$DATASTRING = '#{datastring}';
     window.$PAGE_TIMESTAMP = Date.now();
     window.$PAGE_PERFORMANCE = performance.now();
-</script>
-<script type="text/javascript" src="/libs/modernizr/bin/modernizr"></script>
-<script type="text/javascript" src="/libs/knockout/dist/knockout.js"></script>
-<script type="text/javascript" src="/libs/jquery/dist/jquery.js"></script>
-<script type="text/javascript" src="/js/showads.js"></script>
+
+script(type="text/javascript", src="/libs/modernizr/bin/modernizr")
+script(src="/libs/knockout/dist/knockout.js")
+script(src="/libs/jquery/dist/jquery.js")
+script(src="/js/showads.js")

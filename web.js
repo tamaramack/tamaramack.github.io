@@ -2,6 +2,7 @@
  * web.js file for tamaramack.github.io on 1/9/2017.
  * https://codeforgeek.com/2016/04/continuous-integration-deployment-jenkins-node-js/
  * https://pugjs.org/api/reference.html
+ * https://nodejs.org/api/modules.html
  */
 console.log("Initiate web.js");
 
@@ -23,25 +24,28 @@ var app = express();
 
 var _ = require('underscore');
 var nodemailer = require('nodemailer');
-var swig = require('swig');
+//var swig = require('swig');
 var pug = require('pug');
 var sass = require('node-sass');
 var _package = require('./package.json');
-
+var dotenv = require('dotenv');
+dotenv.load();
 
 var PORT = normalizePort(process.env.PORT || _package.config.port);
 var ENV = process.env.NODE_ENV || app.get('env') || 'development';
+var isPROD = (ENV === 'production');
 //var BUILD = process.env.BUILD_NUMBER || 0;
 
 console.log(sass.info);
-swig.setDefaults({cache: false});
+//swig.setDefaults({cache: isPROD});
 
 app.set('port', PORT);
 app.set('views', __dirname + '/app/views');
-app.engine('html', swig.renderFile);
-app.set('view engine', 'html');
-//app.set('view engine', 'pug');
-app.set('view cache', false);
+//app.engine('html', swig.renderFile);
+app.engine('pug', pug.renderFile);
+//app.set('view engine', 'html');
+app.set('view engine', 'pug');
+app.set('view cache', isPROD);
 app.set('case sensitive routing', false);
 
 app.use(function (req, res, next) {
@@ -107,6 +111,7 @@ app.get('/help', function (req, res) {
 });
 
 app.get('/', setBaseFlags, function (req, res) {
+    res.locals.title = "Main";
     res.render('index');
 });
 
@@ -118,7 +123,6 @@ if (ENV === 'development') {
     server.on('error', onError);
     server.on('listening', onListening);
 }
-
 
 function _path(url) {
     return express.static(path.join(__dirname, url));

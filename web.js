@@ -23,7 +23,6 @@ var cache = new request_cache.MemoryCache(public_lru, private_lru);
 var app = express();
 
 var _ = require('underscore');
-var nodemailer = require('nodemailer');
 //var swig = require('swig');
 var pug = require('pug');
 var sass = require('node-sass');
@@ -49,13 +48,6 @@ app.set('view cache', isPROD);
 app.set('case sensitive routing', false);
 app.locals.pretty = true;
 
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
-
 app.use(compression());
 
 app.use('/', _path('/app'));
@@ -70,9 +62,16 @@ app.use('/pages', _path('/app/pages'));
 app.use('/scripts', _path('/app/scripts'));
 app.use('/styles', _path('/app/styles'));
 
-
 app.use('/libs', _path('/bower_components'));
 app.use('/node', _path('/node_modules'));
+
+
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 if (ENV === 'development') {
     app.use(livereload());
@@ -107,11 +106,16 @@ app.get('/test', function (req, res) {
     res.send(str);
 });
 
+/***
+ * Set base parameters to all html pages
+ */
+app.use(setBaseFlags);
+
 app.get('/help', function (req, res) {
     res.render('hook');
 });
 
-app.get('/', setBaseFlags, function (req, res) {
+app.get('/', function (req, res) {
     res.locals.title = "Main";
     res.render('index');
 });
@@ -333,37 +337,6 @@ function getGeoLocation(req, res, next) {
     }
 
     geolocation.getCurrentPosition(success, error, options);
-}
-
-function sendEmailerNotifier(req, res) {
-    //https://github.com/andris9/Nodemailer
-    var date = new Date();
-    var datetime = date.toDateString() + ' ' + date.toTimeString();
-    var smtpTransport = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-            user: "nd.vidreq@gmail.com",
-            pass: "nbcnewsvideo"
-        }
-    });
-
-    var mailOptions = {
-        from: "nd.vidreq@gmail.com", // sender address
-        to: "nd.vidreq@gmail.com", // list of receivers
-        subject: "This is a Test: " + datetime, // Subject line
-        text: "Hello world, This is test.  Please ignore.", // plaintext body
-        html: req.query.html
-    };
-
-    smtpTransport.sendMail(mailOptions, function (error, info) {
-        if (error) {
-            console.log(error);
-            res.end("error");
-        } else {
-            console.log("Message sent: " + info.response);
-            res.end("sent");
-        }
-    });
 }
 
 function isTrue(obj) {

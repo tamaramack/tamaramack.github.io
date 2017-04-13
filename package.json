@@ -5,8 +5,8 @@
   "main": "web.js",
   "config": {
     "port": 9001,
-    "build": "v0.0.6-4-g08f06cd",
-    "timestamp": 1491959194250
+    "build": "v0.0.6-5-gd76fbbf",
+    "timestamp": 1492044543036
   },
   "engines": {
     "node": "6.9.3",
@@ -55,7 +55,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo 'Error: no test specified' && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "env": "env",
     "init": "bash ./bin/init.sh",
     "timestamp": "version_timestamp",

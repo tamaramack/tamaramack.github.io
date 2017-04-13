@@ -1,6 +1,3 @@
-//
-   Created by 206445994 on 11-Apr-17.
-
 script.
     //XMLHttpRequest.prototype.realSend = XMLHttpRequest.prototype.open;
     var onLoadEnd = function () {
@@ -24,11 +21,11 @@ script.
             //console.warn('ONLOAD DONE', arguments);
         }
     }
-    window.$DATASTRING = '#{datastring}';
+    window.$DATASTRING = decodeURIComponent('#{datastring}');
     window.$PAGE_TIMESTAMP = Date.now();
     window.$PAGE_PERFORMANCE = performance.now();
 
-script(type="text/javascript", src="/libs/modernizr/bin/modernizr")
+// script(type="text/javascript", src="/libs/modernizr/src/Modernizr.js")
 script(src="/libs/knockout/dist/knockout.js")
 script(src="/libs/jquery/dist/jquery.js")
 script(src="/js/showads.js")

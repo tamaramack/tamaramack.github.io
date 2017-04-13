@@ -47,6 +47,7 @@ app.engine('pug', pug.renderFile);
 app.set('view engine', 'pug');
 app.set('view cache', isPROD);
 app.set('case sensitive routing', false);
+app.locals.pretty = true;
 
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -226,7 +227,7 @@ function setBaseFlags(req, res, next){
     }
 
     _.extend(datastring, obj);
-    res.locals.datastring = JSON.stringify(datastring);
+    res.locals.datastring = encodeURIComponent(JSON.stringify(datastring));
     next();
 }
 

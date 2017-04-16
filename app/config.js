@@ -3,7 +3,7 @@
  */
 
 (function () {
-    var debug = window.$GLOBAL_PARAMETERS.$DEBUG ? 'js/debug' : 'js';
+    var debug = window.$base.parameters.debug ? 'js/debug' : 'js';
     var modules = debug + '/modules';
     var data = debug + '/data';
     var player = modules + '/player';

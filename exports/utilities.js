@@ -5,17 +5,30 @@
 module.exports = {
     isTrue: isTrue,
     verifyString: verifyString,
-    isOne: isOne
+    isOne: isOne,
+    normalizePort: normalizePort,
+    static_path: static_path
 };
 
+/**
+ *
+ * @param obj
+ * @returns {boolean}
+ */
 function isTrue(obj) {
     if (typeof obj === 'undefined') return false;
     if (typeof obj === 'boolean') return obj;
-    var _obj = parseInt(obj);
+    let _obj = parseInt(obj);
     if (isNaN(_obj))return obj === 'true';
     return _obj !== 0;
 }
 
+/**
+ *
+ * @param obj
+ * @param defValue
+ * @returns {*}
+ */
 function isOne(obj, defValue) {
     if (typeof obj === 'undefined') return defValue || 0;
     var _obj = parseInt(obj);
@@ -26,7 +39,35 @@ function isOne(obj, defValue) {
     return _obj;
 }
 
+/**
+ *
+ * @param obj
+ * @returns {*}
+ */
 function verifyString(obj) {
     if (!!obj)return obj.toString();
     return false;
+}
+
+/**
+ * Normalize a port into a number, string, or false.
+ * @param val
+ * @returns {*}
+ */
+function normalizePort(val) {
+    const port = parseInt(val, 10);
+    if (isNaN(port)) return val;
+    if (port >= 0) return port;
+    return false;
+}
+
+/**
+ *
+ * @param _url
+ * @param dir
+ * @returns {*}
+ */
+function static_path(_url, dir) {
+    const url = (require("path")).join(dir || '', _url);
+    return (require("express")).static(url);
 }

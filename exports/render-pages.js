@@ -1,5 +1,6 @@
 /**
  * render-pages file for tamaramack.github.io on 14-Apr-17.
+ * http://stackoverflow.com/questions/37694878/how-to-render-data-using-express-4-pug-jade-angularjs
  */
 
 module.exports = function renderPages(app, ENV) {
@@ -16,6 +17,8 @@ module.exports = function renderPages(app, ENV) {
      */
     app.use(require(__dirname + '/base.js'));
 
+
+    app.use('/', require(__dirname + '/pages/main'));
 
     return {};
 };

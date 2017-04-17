@@ -20,7 +20,7 @@
 
             //Modules
             , MODELS: _define('models')
-            , UTILITIES: _define('utilities')
+            , UTILS: _define('utils')
             , DATA: _define('data')
             , CONFIGURATION: _define('configuration')
             , LINKS: _define('links')

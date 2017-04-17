@@ -4,6 +4,7 @@
 .sass-cache
 .DS_store
 npm-debug.log
+.env
 
 bower_components
 node_modules

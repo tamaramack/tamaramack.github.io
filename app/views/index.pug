@@ -1,0 +1,17 @@
+extends layout.pug
+
+append css
+    include partials/styles.pug
+
+prepend js
+    include partials/scripts.pug
+
+block header
+    header
+        include partials/head.pug
+
+block content
+
+
+block footer
+    include partials/foot.pug

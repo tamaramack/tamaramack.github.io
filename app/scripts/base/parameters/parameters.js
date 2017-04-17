@@ -12,8 +12,6 @@
     delete window.$DATASTRING;
     _console.debug('JSON QUERY', jsonString);
 
-    const ADBLOCK = window.hasOwnProperty('_ADBLOCK') ? window._ADBLOCK : false;
-
     var page = {};
     page.$DEBUG = jsonString.debug || 0;
     page.$DEBUG_MODE = testDebugMode(jsonString.mode) || 0;

@@ -1,0 +1,32 @@
+
+.toggle-button-block {
+
+  * {
+    @include transition(all 250ms linear);
+  }
+
+  label {
+
+    &.selected {
+      color: $white;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      background-color: $primary-color;
+      &:hover {
+        color: $white;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        background-color: scale-color($primary-color, $lightness: -15%);
+      }
+    }
+
+    [type='checkbox'],
+    [type='radio'] {
+      visibility: hidden;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      height: 1px;
+      width: 1px;
+      z-index: -9999;
+    }
+  }
+}

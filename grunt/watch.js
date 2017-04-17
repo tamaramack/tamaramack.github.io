@@ -16,7 +16,7 @@ module.exports = {
     },
     reload: {
         files: [
-            'app/views/**/**/**.html'
+            'app/views/**/**/**.pug'
             , 'app/*.js'
             , 'build/js/**/**/**/**.js'
             , 'build/css/**.css'

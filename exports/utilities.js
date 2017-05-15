@@ -3,11 +3,11 @@
  */
 
 module.exports = {
-    isTrue: isTrue,
-    verifyString: verifyString,
-    isOne: isOne,
-    normalizePort: normalizePort,
-    static_path: static_path
+  isTrue,
+  verifyString,
+  isOne,
+  normalizePort,
+  static_path
 };
 
 /**
@@ -16,11 +16,11 @@ module.exports = {
  * @returns {boolean}
  */
 function isTrue(obj) {
-    if (typeof obj === 'undefined') return false;
-    if (typeof obj === 'boolean') return obj;
-    let _obj = parseInt(obj);
-    if (isNaN(_obj))return obj === 'true';
-    return _obj !== 0;
+  if (typeof obj === 'undefined') return false;
+  if (typeof obj === 'boolean') return obj;
+  const _obj = parseInt(obj);
+  if (isNaN(_obj)) return obj === 'true';
+  return _obj !== 0;
 }
 
 /**
@@ -30,13 +30,13 @@ function isTrue(obj) {
  * @returns {*}
  */
 function isOne(obj, defValue) {
-    if (typeof obj === 'undefined') return defValue || 0;
-    var _obj = parseInt(obj);
-    if (isNaN(_obj)) {
-        _obj = 0;
-        if (obj === true || obj === 'true') _obj = 1;
-    }
-    return _obj;
+  if (typeof obj === 'undefined') return defValue || 0;
+  var _obj = parseInt(obj);
+  if (isNaN(_obj)) {
+    _obj = 0;
+    if (obj === true || obj === 'true') _obj = 1;
+  }
+  return _obj;
 }
 
 /**
@@ -45,8 +45,8 @@ function isOne(obj, defValue) {
  * @returns {*}
  */
 function verifyString(obj) {
-    if (!!obj)return obj.toString();
-    return false;
+  if (obj) return obj.toString();
+  return false;
 }
 
 /**
@@ -55,10 +55,10 @@ function verifyString(obj) {
  * @returns {*}
  */
 function normalizePort(val) {
-    const port = parseInt(val, 10);
-    if (isNaN(port)) return val;
-    if (port >= 0) return port;
-    return false;
+  const port = parseInt(val, 10);
+  if (isNaN(port)) return val;
+  if (port >= 0) return port;
+  return false;
 }
 
 /**
@@ -68,6 +68,6 @@ function normalizePort(val) {
  * @returns {*}
  */
 function static_path(_url, dir) {
-    const url = (require("path")).join(dir || '', _url);
-    return (require("express")).static(url);
+  const url = (require('path')).join(dir || '', _url);
+  return (require('express')).static(url);
 }

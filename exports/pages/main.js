@@ -4,22 +4,22 @@
 
 var _ = require('underscore');
 var express = require('express');
+
 var router = express.Router();
 
-
-router.get('/', setMainFlags, function (req, res) {
-    res.locals.title = "Main";
-    res.render('index');
+router.get('/', setMainFlags, (req, res) => {
+  res.locals.title = 'Main';
+  res.render('index');
 });
 
 module.exports = router;
 
 function setMainFlags(req, res, next) {
-    var datastring = JSON.parse(decodeURIComponent(res.locals.datastring || "{}"));
-    var _query = req.query || {},
-        obj = {};
+  const datastring = JSON.parse(decodeURIComponent(res.locals.datastring || '{}'));
+  var _query = req.query || {};
+  var obj = {};
 
-    _.extend(datastring, obj);
-    res.locals.datastring = encodeURIComponent(JSON.stringify(datastring));
-    next();
+  _.extend(datastring, obj);
+  res.locals.datastring = encodeURIComponent(JSON.stringify(datastring));
+  next();
 }

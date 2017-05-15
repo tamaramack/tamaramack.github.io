@@ -4,21 +4,20 @@
  */
 
 module.exports = function renderPages(app, ENV) {
-    const geolocation = require(__dirname + '/geolocation.js');
-    const isPROD = (ENV === 'production');
+  const geolocation = require(`${__dirname}/geolocation.js`);
+  const isPROD = (ENV === 'production');
 
-    /**
-     * Set geolocation to all html pages
-     */
-    //app.use(geolocation(isPROD));
+  /**
+   * Set geolocation to all html pages
+   */
+  // app.use(geolocation(isPROD));
 
-    /**
-     * Set base parameters to all html pages
-     */
-    app.use(require(__dirname + '/base.js'));
+  /**
+   * Set base parameters to all html pages
+   */
+  app.use(require(`${__dirname}/base.js`));
 
+  app.use('/', require(`${__dirname}/pages/main`));
 
-    app.use('/', require(__dirname + '/pages/main'));
-
-    return {};
+  return {};
 };

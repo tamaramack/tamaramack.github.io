@@ -5,8 +5,8 @@
   "main": "web.js",
   "config": {
     "port": 9001,
-    "build": "e2ceffc",
-    "timestamp": 1492453002210
+    "build": "v0.0.6-11-g36ea1e1",
+    "timestamp": 1492571063734
   },
   "engines": {
     "node": "6.9.3",

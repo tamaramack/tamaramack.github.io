@@ -7,6 +7,8 @@ module.exports = function renderPages(app, ENV) {
   const geolocation = require(`${__dirname}/geolocation.js`);
   const isPROD = (ENV === 'production');
 
+  app.param('pageModule', /^[a-zA-Z0-9-_]+$/);
+
   /**
    * Set geolocation to all html pages
    */
@@ -17,7 +19,19 @@ module.exports = function renderPages(app, ENV) {
    */
   app.use(require(`${__dirname}/base.js`));
 
-  app.use('/', require(`${__dirname}/pages/main`));
+  app.get('/', require(`${__dirname}/pages/main`));
+
+  app.get('/i/:pageModule', (req, res) => {
+    res.render('');
+  });
+
+  app.get('/:pageModule', (req, res) => {
+    res.render('');
+  });
+
+  app.get('/help', (req, res) => {
+    res.render('hook');
+  });
 
   return {};
 };

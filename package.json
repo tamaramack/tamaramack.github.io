@@ -5,8 +5,8 @@
   "main": "web.js",
   "config": {
     "port": 9001,
-    "build": "bc1bc85",
-    "timestamp": 1494961152432
+    "build": "v0.0.7-4-g3adbe91",
+    "timestamp": 1495822385966
   },
   "engines": {
     "node": "6.9.3",
@@ -76,6 +76,8 @@
     "spa",
     "javascript",
     "node",
+    "canvas",
+    "pug",
     "ES6"
   ],
   "author": "Tamara G. Mack",

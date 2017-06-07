@@ -4,9 +4,9 @@
 
 module.exports = function requestJsonCallback(res, isCached) {
   return function(error, response, body) {
-    if (isCached) {
+    if (isCached)
       response = (response && response.value && response.value.response) || response;
-    }
+
     var _json = {
       status: 'success',
       statusCode: response && response.statusCode,

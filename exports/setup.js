@@ -1,7 +1,8 @@
 /**
  * setup file for tamaramack.github.io on 13-Apr-17.
  */
-const utils = require(`${__dirname}/utilities.js`);
+const utils = require('./utilities');
+
 const _path = utils.static_path;
 
 module.exports = function(express, app, pug) {

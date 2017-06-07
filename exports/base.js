@@ -3,7 +3,7 @@
  */
 const _ = require('underscore');
 const packageJson = require('../package.json');
-const utils = require(`${__dirname}/utilities.js`);
+const utils = require('./utilities');
 
 /**
  * Set base parameters to all html pages

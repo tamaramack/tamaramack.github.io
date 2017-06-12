@@ -1,0 +1,76 @@
+[
+  {
+    "id": "bbqgrill",
+    "name": "BBQ Grill",
+    "category": "appliances",
+    "time": 148,
+    "revenue": 530,
+    "cost": {
+      "simCash": 0,
+      "dependencies": {
+        "metal": 3,
+        "spatula": 1
+      }
+    }
+  },
+  {
+    "id": "refrigerator",
+    "name": "Refrigerator",
+    "category": "appliances",
+    "time": 189,
+    "revenue": 1060,
+    "cost": {
+      "simCash": 0,
+      "dependencies": {
+        "plastic": 2,
+        "chemicals": 2,
+        "electricalcomponents": 2
+      }
+    }
+  },
+  {
+    "id": "lightingsystem",
+    "name": "Lighting System",
+    "category": "appliances",
+    "time": 94,
+    "revenue": 890,
+    "cost": {
+      "simCash": 0,
+      "dependencies": {
+        "glass": 1,
+        "chemicals": 1,
+        "electricalcomponents": 1
+      }
+    }
+  },
+  {
+    "id": "tv",
+    "name": "TV",
+    "category": "appliances",
+    "time": 135,
+    "revenue": 1280,
+    "cost": {
+      "simCash": 0,
+      "dependencies": {
+        "plastic": 2,
+        "glass": 2,
+        "electricalcomponents": 2
+      }
+    }
+  },
+  {
+    "id": "microwaveoven",
+    "name": "Microwave Oven",
+    "category": "appliances",
+    "time": 108,
+    "revenue": 480,
+    "cost": {
+      "simCash": 0,
+      "dependencies": {
+        "glass": 1,
+        "metals": 4,
+        "electricalcomponents": 1
+      }
+    }
+  }
+]

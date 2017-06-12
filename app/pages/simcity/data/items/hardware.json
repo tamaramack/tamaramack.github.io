@@ -1,0 +1,89 @@
+[
+  {
+    "id": "hammer",
+    "name": "Hammer",
+    "category": "hardware",
+    "time": 0,
+    "revenue": 90,
+    "cost": {
+      "simCash": 0,
+      "dependencies": {
+        "metal": 1,
+        "wood": 1
+      }
+    }
+  },
+  {
+    "id": "measuringtape",
+    "name": "Measuring Tape",
+    "category": "hardware",
+    "time": 0,
+    "revenue": 110,
+    "cost": {
+      "simCash": 0,
+      "dependencies": {
+        "metal": 1,
+        "plastic": 1
+      }
+    }
+  },
+  {
+    "id": "shovel",
+    "name": "Shovel",
+    "category": "hardware",
+    "time": 0,
+    "revenue": 150,
+    "cost": {
+      "simCash": 0,
+      "dependencies": {
+        "metal": 1,
+        "wood": 1,
+        "plastic": 1
+      }
+    }
+  },
+  {
+    "id": "cookingutensils",
+    "name": "Cooking Utensils",
+    "category": "hardware",
+    "time": 0,
+    "revenue": 250,
+    "cost": {
+      "simCash": 0,
+      "dependencies": {
+        "metal": 2,
+        "wood": 2,
+        "plastic": 2
+      }
+    }
+  },
+  {
+    "id": "ladder",
+    "name": "Ladder",
+    "category": "hardware",
+    "time": 0,
+    "revenue": 420,
+    "cost": {
+      "simCash": 0,
+      "dependencies": {
+        "metal": 2,
+        "planks": 2
+      }
+    }
+  },
+  {
+    "id": "drill",
+    "name": "Drill",
+    "category": "hardware",
+    "time": 0,
+    "revenue": 590,
+    "cost": {
+      "simCash": 0,
+      "dependencies": {
+        "metal": 2,
+        "plastic": 2,
+        "electricalcomponents": 1
+      }
+    }
+  }
+]

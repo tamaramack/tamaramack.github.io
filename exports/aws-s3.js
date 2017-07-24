@@ -12,8 +12,8 @@ module.exports = function _s3() {
       defaultDirPrefix = '',
       client = s3.createClient({
         s3Options: {
-          accessKeyId: '',
-          secretAccessKey: '',
+          accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+          secretAccessKey: process.env.AWS_SECRET_KEY,
           region: ''
         }
       });
@@ -25,11 +25,15 @@ module.exports = function _s3() {
    * @param remotePath
    * @param customBucket
    */
-  function upload(filename, localPath, remotePath = defaultDirPrefix, customBucket) {
+  function upload(
+    filename,
+    localPath,
+    remotePath = defaultDirPrefix,
+    customBucket = bucket) {
     const params = {
       localFile: path.join(localPath, filename),
       s3Params: {
-        Bucket: (customBucket || bucket),
+        Bucket: customBucket,
         Key: path.join(remotePath, filename)
       }
     };
@@ -53,11 +57,15 @@ module.exports = function _s3() {
    * @param remotePath
    * @param customBucket
    */
-  function download(filename, localPath, remotePath = defaultDirPrefix, customBucket) {
+  function download(
+    filename,
+    localPath,
+    remotePath = defaultDirPrefix,
+    customBucket = bucket) {
     const params = {
       localFile: path.join(localPath, filename),
       s3Params: {
-        Bucket: (customBucket || bucket),
+        Bucket: customBucket,
         Key: path.join(remotePath, filename)
       }
     };
@@ -66,7 +74,8 @@ module.exports = function _s3() {
       console.error('unable to download:', err.stack);
     });
     downloader.on('progress', () => {
-      console.log('progress', downloader.progressAmount, downloader.progressTotal);
+      console.log('progress', downloader.progressAmount,
+        downloader.progressTotal);
     });
     downloader.on('end', () => {
       console.log('done downloading');
@@ -79,13 +88,16 @@ module.exports = function _s3() {
    * @param remotePath
    * @param customBucket
    */
-  function directoryUpload(localPath, remotePath = defaultDirPrefix, customBucket) {
+  function directoryUpload(
+    localPath,
+    remotePath = defaultDirPrefix,
+    customBucket = bucket) {
     const params = {
       localDir: localPath,
       deleteRemoved: true, // default false, whether to remove s3 objects
       // that have no corresponding local file.
       s3Params: {
-        Bucket: (customBucket || bucket),
+        Bucket: customBucket,
         Prefix: remotePath
       }
     };

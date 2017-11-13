@@ -13,3 +13,4 @@ gen
 
 build
 dist
+package-lock.json

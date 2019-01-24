@@ -43,10 +43,6 @@ const resultGet = getFiles(__dirname, app);
 
 const resultRender = renderPages(app, ENV);
 
-app.get('/help', (req, res) => {
-  res.render('hook');
-});
-
 if (ENV === 'development') {
   module.exports = app;
 } else {

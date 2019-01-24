@@ -5,8 +5,8 @@
   "main": "web.js",
   "config": {
     "port": 9001,
-    "build": "3adbe91",
-    "timestamp": 1495217690734
+    "build": "v0.0.7-14-ged0b06a",
+    "timestamp": 1548360499332
   },
   "engines": {
     "node": "6.11.2",
@@ -48,6 +48,7 @@
     "pug": "^2.0.0-rc.4",
     "request": "^2.74.0",
     "request-caching": "0.0.1",
+    "s3": "^4.4.0",
     "semver": "^5.3.0",
     "shelljs": "^0.7.8",
     "swig": "^1.4.2",
@@ -85,6 +86,8 @@
     "spa",
     "javascript",
     "node",
+    "canvas",
+    "pug",
     "ES6"
   ],
   "author": "Tamara G. Mack",

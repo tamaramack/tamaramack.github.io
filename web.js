@@ -7,13 +7,15 @@
 console.log('Initiate web.js');
 
 var server;
-const livereload = require('connect-livereload');
+const http = require('http');
 const express = require('express');
 const pug = require('pug');
+const production = require('./exports/create-server');
+
 const dotenv = require('dotenv');
-const request = require('request');
 const LRU = require('lru-cache');
 const request_cache = require('request-caching');
+const _package = require('./package.json');
 
 const app = express();
 const public_lru = new LRU();
@@ -22,33 +24,27 @@ const cache = new request_cache.MemoryCache(public_lru, private_lru);
 
 dotenv.load();
 
-const setApp = require('./exports/setup');
-const getFiles = require('./exports/get-files');
+const utils = require('./exports/utilities');
+const setApp = require('./exports/setup')(express, app, __dirname);
+const getFiles = require('./exports/get-files')(express, app, __dirname);
 const renderPages = require('./exports/render-pages');
+
+const PORT = utils.normalizePort(process.env.PORT || _package.config.port);
+const ENV = process.env.NODE_ENV || app.get('env') || 'development';
 
 var _ = require('underscore');
 // var swig = require('swig');
 var sass = require('node-sass');
-var _package = require('./package.json');
 
 console.log(sass.info);
 // swig.setDefaults({cache: isPROD});
 
-const resultSet = setApp(express, app, pug),
-    PORT = resultSet.port,
-    ENV = resultSet.env;
-var isPROD = (ENV === 'production');
+setApp(pug, ENV, PORT);
+getFiles(app, _package);
+renderPages(app, ENV, PORT);
 
-const resultGet = getFiles(__dirname, app);
-
-const resultRender = renderPages(app, ENV);
-
-if (ENV === 'development') {
-  module.exports = app;
-} else {
-  const production = require('./exports/create-server.js');
-  production((require('http')).createServer(app), app.get('port'));
-}
+if (ENV === 'development') module.exports = app;
+else production(http.createServer(app), PORT);
 
 function renderPartial(template, res) {
   res.render(template, {layout: false});

@@ -63,11 +63,14 @@ function normalizePort(val) {
 
 /**
  *
- * @param _url
+ * @param path
+ * @param express
  * @param dir
- * @returns {*}
+ * @returns {_path}
  */
-function static_path(_url, dir) {
-  const url = (require('path')).join(dir || '', _url);
-  return (require('express')).static(url);
+function static_path(path, express, dir) {
+  return function _path(_url) {
+    const url = path.join(dir || '', _url);
+    return express.static(url);
+  };
 }

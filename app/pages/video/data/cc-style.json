@@ -1,0 +1,17 @@
+{
+  "color": {
+    "white": "White",
+    "black": "Black",
+    "red": "Red",
+    "green": "Green",
+    "blue": "Blue",
+    "yellow": "Yellow",
+    "magenta": "Magenta",
+    "cyan": "Cyan"
+  },
+  "opacity": {
+    "1": "Opaque",
+    "0.5": "Semi-Transparent",
+    "0": "Transparent"
+  }
+}

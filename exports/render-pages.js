@@ -1,37 +1,61 @@
 /**
  * render-pages file for tamaramack.github.io on 14-Apr-17.
  * http://stackoverflow.com/questions/37694878/how-to-render-data-using-express-4-pug-jade-angularjs
+ * https://webapplog.com/jade/
  */
 
-module.exports = function renderPages(app, ENV) {
-  const geolocation = require(`${__dirname}/geolocation.js`);
-  const isPROD = (ENV === 'production');
+module.exports = (() => {
+  const mainFn = require('./pages/main');
+  const baseFn = require('./base');
+  const pug = require('pug');
 
-  app.param('pageModule', /^[a-zA-Z0-9-_]+$/);
+  return renderPages;
 
-  /**
-   * Set geolocation to all html pages
-   */
-  // app.use(geolocation(isPROD));
+  function renderPages(app, ENV, PORT) {
+    const isPROD = (ENV === 'production');
 
-  /**
-   * Set base parameters to all html pages
-   */
-  app.use(require(`${__dirname}/base.js`));
+    /**
+     * Set base parameters to all html pages
+     */
+    app.use(baseFn(ENV, PORT));
 
-  app.get('/', require(`${__dirname}/pages/main`));
+    app.get('/', mainFn);
 
-  app.get('/i/:pageModule', (req, res) => {
-    res.render('');
-  });
+    /**
+     * Full Page Module
+     */
+    app.get('/i/:pageModule', (req, res) => {
+      // Compile the source code
+      const params = req.params;
 
-  app.get('/:pageModule', (req, res) => {
-    res.render('');
-  });
+      const pageFile = '',
+          pageLocals = {
+            debug: !isPROD
+          };
 
-  app.get('/help', (req, res) => {
-    res.render('hook');
-  });
+      pug.renderFile(pageFile, pageLocals, (error, html) => {
+        res.locals.renderHTML = html;
+        res.render('page');
+      });
+    });
 
-  return {};
-};
+    /**
+     * Partial Page Module
+     */
+    app.get('/:pageModule', (req, res) => {
+      const params = req.params;
+      const locals = {
+        layout: false
+      };
+      res.render('', locals, (err, html) => {
+        res.send(html);
+      });
+    });
+
+    app.get('/help', (req, res) => {
+      res.render('hook');
+    });
+
+    return {};
+  }
+})();

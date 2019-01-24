@@ -1,0 +1,89 @@
+[
+  {
+    "id": "grass",
+    "name": "Grass",
+    "category": "gardening",
+    "time": 0,
+    "revenue": 310,
+    "cost": {
+      "simCash": 0,
+      "dependencies": {
+        "seeds": 1,
+        "shovel": 1
+      }
+    }
+  },
+  {
+    "id": "treesapling",
+    "name": "Tree Sapling",
+    "category": "gardening",
+    "time": 0,
+    "revenue": 420,
+    "cost": {
+      "simCash": 0,
+      "dependencies": {
+        "seeds": 2,
+        "shovel": 1
+      }
+    }
+  },
+  {
+    "id": "gardenfurniture",
+    "name": "Garden Furniture",
+    "category": "gardening",
+    "time": 0,
+    "revenue": 820,
+    "cost": {
+      "simCash": 0,
+      "dependencies": {
+        "planks": 2,
+        "plastic": 2,
+        "textiles": 2
+      }
+    }
+  },
+  {
+    "id": "firepit",
+    "name": "Fire Pit",
+    "category": "gardening",
+    "time": 0,
+    "revenue": 1740,
+    "cost": {
+      "simCash": 0,
+      "dependencies": {
+        "bricks": 2,
+        "shovel": 1,
+        "cement": 2
+      }
+    }
+  },
+  {
+    "id": "lawnmower",
+    "name": "Lawn Mower",
+    "category": "gardening",
+    "time": 0,
+    "revenue": 840,
+    "cost": {
+      "simCash": 0,
+      "dependencies": {
+        "metal": 3,
+        "paint": 1,
+        "electricalcomponents": 1
+      }
+    }
+  },
+  {
+    "id": "gardengnomes",
+    "name": "Garden Gnomes",
+    "category": "gardening",
+    "time": 0,
+    "revenue": 1600,
+    "cost": {
+      "simCash": 0,
+      "dependencies": {
+        "cement": 2,
+        "glue": 1
+      }
+    }
+  }
+]

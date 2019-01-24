@@ -1,0 +1,123 @@
+[
+  {
+    "id": "metal",
+    "name": "Metal",
+    "category": "factory",
+    "time": 1,
+    "revenue": 10,
+    "cost": {
+      "simCash": 0,
+      "dependencies": {}
+    }
+  },
+  {
+    "id": "wood",
+    "name": "Wood",
+    "category": "factory",
+    "time": 3,
+    "revenue": 20,
+    "cost": {
+      "simCash": 1,
+      "dependencies": {}
+    }
+  },
+  {
+    "id": "plastic",
+    "name": "Plastic",
+    "category": "factory",
+    "time": 9,
+    "revenue": 25,
+    "cost": {
+      "simCash": 2,
+      "dependencies": {}
+    }
+  },
+  {
+    "id": "seeds",
+    "name": "Seeds",
+    "category": "factory",
+    "time": 20,
+    "revenue": 30,
+    "cost": {
+      "simCash": 9,
+      "dependencies": {}
+    }
+  },
+  {
+    "id": "minerals",
+    "name": "Minerals",
+    "category": "factory",
+    "time": 30,
+    "revenue": 12,
+    "cost": {
+      "simCash": 0,
+      "dependencies": {}
+    }
+  },
+  {
+    "id": "chemicals",
+    "name": "Chemicals",
+    "category": "factory",
+    "time": 120,
+    "revenue": 0,
+    "cost": {
+      "simCash": 28,
+      "dependencies": {}
+    }
+  },
+  {
+    "id": "textiles",
+    "name": "Textiles",
+    "category": "factory",
+    "time": 180,
+    "revenue": 90,
+    "cost": {
+      "simCash": 36,
+      "dependencies": {}
+    }
+  },
+  {
+    "id": "sugarandspice",
+    "name": "Sugar And Spice",
+    "category": "factory",
+    "time": 240,
+    "revenue": 110,
+    "cost": {
+      "simCash": 44,
+      "dependencies": {}
+    }
+  },
+  {
+    "id": "glass",
+    "name": "Glass",
+    "category": "factory",
+    "time": 300,
+    "revenue": 120,
+    "cost": {
+      "simCash": 52,
+      "dependencies": {}
+    }
+  },
+  {
+    "id": "animalfeed",
+    "name": "Animal Feed",
+    "category": "factory",
+    "time": 360,
+    "revenue": 0,
+    "cost": {
+      "simCash": 60,
+      "dependencies": {}
+    }
+  },
+  {
+    "id": "electricalcomponents",
+    "name": "Electrical Components",
+    "category": "factory",
+    "time": 420,
+    "revenue": 160,
+    "cost": {
+      "simCash": 0,
+      "dependencies": {}
+    }
+  }
+]

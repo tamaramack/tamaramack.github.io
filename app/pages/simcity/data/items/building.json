@@ -1,0 +1,84 @@
+[
+  {
+    "id": "nails",
+    "name": "Nails",
+    "category": "building",
+    "time": 4,
+    "revenue": 80,
+    "cost": {
+      "simCash": 0,
+      "dependencies": {
+        "metal": 2
+      }
+    }
+  },
+  {
+    "id": "planks",
+    "name": "Planks",
+    "category": "building",
+    "time": 24,
+    "revenue": 120,
+    "cost": {
+      "simCash": 0,
+      "dependencies": {
+        "wood": 2
+      }
+    }
+  },
+  {
+    "id": "bricks",
+    "name": "Bricks",
+    "category": "building",
+    "time": 16,
+    "revenue": 190,
+    "cost": {
+      "simCash": 0,
+      "dependencies": {
+        "minerals": 2
+      }
+    }
+  },
+  {
+    "id": "cement",
+    "name": "Cement",
+    "category": "building",
+    "time": 40,
+    "revenue": 440,
+    "cost": {
+      "simCash": 0,
+      "dependencies": {
+        "minerals": 2,
+        "chemicals": 1
+      }
+    }
+  },
+  {
+    "id": "glue",
+    "name": "Glue",
+    "category": "building",
+    "time": 48,
+    "revenue": 440,
+    "cost": {
+      "simCash": 0,
+      "dependencies": {
+        "plastic": 1,
+        "chemicals": 2
+      }
+    }
+  },
+  {
+    "id": "paint",
+    "name": "Paint",
+    "category": "building",
+    "time": 48,
+    "revenue": 320,
+    "cost": {
+      "simCash": 0,
+      "dependencies": {
+        "metal": 2,
+        "minerals": 1,
+        "chemicals": 2
+      }
+    }
+  }
+]

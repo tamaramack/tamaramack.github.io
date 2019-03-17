@@ -1,86 +1,75 @@
 {
-  "name": "tamaramack_porfolio",
+  "name": "tamaramack-portfolio",
   "version": "0.0.7",
+  "private": true,
   "description": "Works completed & explored",
-  "main": "web.js",
-  "config": {
-    "port": 9001,
-    "build": "v0.0.7-14-ged0b06a",
-    "timestamp": 1548360499332
-  },
-  "engines": {
-    "node": "6.11.2",
-    "npm": "5.5.1"
-  },
-  "dependencies": {
-    "async": "^2.6.0",
-    "babel": "^6.23.0",
-    "babel-core": "^6.26.0",
-    "babel-preset-latest": "^6.24.0",
-    "bower": "^1.7.9",
-    "compression": "^1.6.2",
-    "connect-livereload": "^0.6.0",
-    "dotenv": "^4.0.0",
-    "express": "^4.14.0",
-    "geolocation": "^0.2.0",
-    "grunt": "^1.0.1",
-    "grunt-babel": "^7.0.0",
-    "grunt-concurrent": "^2.3.1",
-    "grunt-contrib-clean": "^1.0.0",
-    "grunt-contrib-concat": "^1.0.1",
-    "grunt-contrib-jshint": "^1.0.0",
-    "grunt-contrib-requirejs": "^1.0.0",
-    "grunt-contrib-uglify": "^3.1.0",
-    "grunt-contrib-watch": "^1.0.0",
-    "grunt-express": "^1.4.1",
-    "grunt-jsdoc": "^2.0.0",
-    "grunt-newer": "^1.2.0",
-    "grunt-parallel": "^0.5.1",
-    "grunt-sass": "^2.0.0",
-    "grunt-shell": "^2.1.0",
-    "js-beautify": "^1.6.3",
-    "jshint-stylish": "^2.2.1",
-    "load-grunt-config": "^0.19.2",
-    "mongodb": "^2.2.22",
-    "navigator": "^1.0.1",
-    "node-sass": "^4.6.1",
-    "nodemailer": "^4.4.0",
-    "pug": "^2.0.0-rc.4",
-    "request": "^2.74.0",
-    "request-caching": "0.0.1",
-    "s3": "^4.4.0",
-    "semver": "^5.3.0",
-    "shelljs": "^0.7.8",
-    "swig": "^1.4.2",
-    "time-grunt": "^1.4.0",
-    "underscore": "^1.8.3"
-  },
-  "devDependencies": {
-    "babel-eslint": "^8.0.2",
-    "eslint": "^4.11.0",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-config-airbnb-base": "^11.3.1",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.4.0"
-  },
+  "author": "Tamara Mack <tamaramack0508@gmail.com>",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "env": "env",
-    "init": "bash ./bin/init.sh",
-    "timestamp": "version_timestamp",
-    "preinstall": "bash ./bin/preinstall.sh",
+    "clean": "rimraf dist",
+    "serve": "vue-cli-service serve",
+    "serve:prod": "vue-cli-service serve",
+    "build:dev": "vue-cli-service build",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "deploy": "vue-cli-service s3-deploy",
+    "test:e2e": "vue-cli-service test:e2e",
+    "test:unit": "vue-cli-service test:unit",
     "postinstall": "bash ./bin/postinstall.sh",
     "postversion": "bash ./bin/postversion.sh",
-    "start": "node web.js"
+    "preinstall": "bash ./bin/preinstall.sh",
+    "timestamp": "version_timestamp",
+    "start": "npm run serve"
+  },
+  "dependencies": {
+    "mongodb": "^3.1.13",
+    "register-service-worker": "^1.6.2",
+    "vue": "^2.6.6",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.5.0",
+    "@vue/cli-plugin-e2e-nightwatch": "^3.5.0",
+    "@vue/cli-plugin-eslint": "^3.5.0",
+    "@vue/cli-plugin-pwa": "^3.5.0",
+    "@vue/cli-plugin-unit-jest": "^3.5.0",
+    "@vue/cli-service": "^3.5.0",
+    "@vue/eslint-config-airbnb": "^4.0.0",
+    "@vue/test-utils": "1.0.0-beta.29",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
+    "eslint": "^5.8.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "foundation-sites": "^6.5.3",
+    "lint-staged": "^8.1.4",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.1.0",
+    "vue-cli-plugin-pug": "^1.0.7",
+    "vue-cli-plugin-s3-deploy": "^3.0.0",
+    "vue-template-compiler": "^2.5.21"
   },
   "bin": {
     "build_timestamp": "bin/build_timestamp.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tamaramack/tamaramack.github.io.git"
+  "bugs": {
+    "url": "https://github.com/tamaramack/tamaramack.github.io/issues"
   },
+  "config": {
+    "port": 9001,
+    "build": "v0.0.7-19-gfa3a76d",
+    "timestamp": 1548790601251
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,vue}": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  },
+  "homepage": "https://github.com/tamaramack/tamaramack.github.io#readme",
   "keywords": [
     "porfolio",
     "spa",
@@ -90,10 +79,9 @@
     "pug",
     "ES6"
   ],
-  "author": "Tamara G. Mack",
   "license": "BSD-2-Clause",
-  "bugs": {
-    "url": "https://github.com/tamaramack/tamaramack.github.io/issues"
-  },
-  "homepage": "https://github.com/tamaramack/tamaramack.github.io#readme"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tamaramack/tamaramack.github.io.git"
+  }
 }

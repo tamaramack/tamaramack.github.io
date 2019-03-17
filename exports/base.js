@@ -16,8 +16,8 @@ module.exports = (() => {
   return setBaseFlags;
 
   function setBaseFlags(ENV, PORT) {
-    const isTrue = utils.isTrue,
-        isOne = utils.isOne;
+    const { isTrue } = utils,
+      { isOne } = utils;
 
     return BaseFlags;
 
@@ -25,13 +25,13 @@ module.exports = (() => {
       const isPROD = (ENV === 'production');
 
       var user_agent = req.headers['user-agent'],
-          _port = typeof PORT === 'string'
-              ? `Pipe ${PORT}`
-              : `Port ${PORT}`;
-      var _ip = req.headers['x-forwarded-for'] ||
-          req.connection.remoteAddress ||
-          req.socket.remoteAddress ||
-          req.connection.socket.remoteAddress;
+        _port = typeof PORT === 'string'
+          ? `Pipe ${PORT}`
+          : `Port ${PORT}`;
+      var _ip = req.headers['x-forwarded-for']
+          || req.connection.remoteAddress
+          || req.socket.remoteAddress
+          || req.connection.socket.remoteAddress;
 
       var _query = req.params || req.query || {};
       var datastring = JSON.parse(decodeURIComponent(res.locals.datastring || '{}'));
@@ -62,8 +62,7 @@ module.exports = (() => {
         }
       };
 
-      if (!obj.mode && (/[,*]/g).test(_query.mode))
-        obj.mode = _query.mode.replace(/[\s*]/g, '');
+      if (!obj.mode && (/[,*]/g).test(_query.mode)) obj.mode = _query.mode.replace(/[\s*]/g, '');
 
       _.extend(datastring, obj);
       res.locals.datastring = encodeURIComponent(JSON.stringify(datastring));

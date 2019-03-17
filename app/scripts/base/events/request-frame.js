@@ -3,8 +3,8 @@
  */
 
 (function (base) {
-
-  var GlobalID, CURRENT_STATE;
+  var GlobalID,
+    CURRENT_STATE;
   const CALLBACKS = [];
 
   const requestAnimationFrame = window.requestAnimationFrame
@@ -26,7 +26,7 @@
     off: 'OFF'
   };
 
-  /***
+  /** *
    *
    * @constructor
    */
@@ -34,7 +34,7 @@
     CURRENT_STATE = STATES.off;
 
     Object.defineProperties(this, {
-      timestamp: {value: Date.now()}
+      timestamp: { value: Date.now() }
       , requestId: {
         get: () => GlobalID,
         enumerable: true
@@ -52,7 +52,7 @@
     });
   }
 
-  /***
+  /** *
    *
    * @type {Object}
    */
@@ -63,17 +63,17 @@
     /**
      *
      */
-    process: {value: process}
+    process: { value: process }
 
     /**
      *
      */
-    , start: {value: start}
+    , start: { value: start }
 
     /**
      *
      */
-    , stop: {value: stop}
+    , stop: { value: stop }
 
     /**
      *
@@ -102,12 +102,10 @@
     let i = CALLBACKS.length;
     while (i--) {
       item = CALLBACKS[i];
-      if (item.fn instanceof Function) {
-        if (item.async) {
-          setTimeout((item.fn).bind(item.scope), 1);
-        } else {
-          (item.fn).call(item.scope);
-        }
+      if (item.fn instanceof Function) if (item.async) {
+        setTimeout((item.fn).bind(item.scope), 1);
+      } else {
+        (item.fn).call(item.scope);
       }
     }
     GlobalID = requestAnimationFrame(process);
@@ -136,7 +134,7 @@
     const results = _find(fn, owner);
     if (results.length || !(fn instanceof Function)) {
       window.console.warn('Adding new function to request frame has failed:',
-          results.length, 'results. Is Function?', !(fn instanceof Function));
+        results.length, 'results. Is Function?', !(fn instanceof Function));
       return;
     }
     CALLBACKS.push(new CallbackModel(fn, owner, async));
@@ -153,18 +151,17 @@
     this.fn = fn;
     this.scope = owner;
     this.async = async || false;
-    this.id = (!!async ? 'async_' : '') + 'fn_' + (fn.name || Date.now());
+    this.id = `${!!async ? 'async_' : ''}fn_${fn.name || Date.now()}`;
   }
 
   function _find(fn, owner) {
     const results = [];
-    let item, i = CALLBACKS.length;
+    let item,
+      i = CALLBACKS.length;
     while (i--) {
       item = CALLBACKS[i];
-      if (fn === item.fn && owner === item.scope)
-        results.push(i);
+      if (fn === item.fn && owner === item.scope) results.push(i);
     }
     return results;
   }
-
-})(window.$base);
+}(window.$base));

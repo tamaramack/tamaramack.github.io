@@ -1,16 +1,32 @@
-# Created by .ignore support plugin (hsz.mobi)
-.idea
-*.iml
-.sass-cache
-.DS_store
-npm-debug.log
-.env
-
-bower_components
 node_modules
+/dist
 out
 gen
 
 build
-dist
 package-lock.json
+
+/tests/e2e/reports/
+selenium-debug.log
+
+# local env files
+.env
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+*.iml
+.sass-cache
+.DS_store
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*

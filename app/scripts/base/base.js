@@ -3,28 +3,26 @@
  */
 
 (function () {
-
-    /**
+  /**
      *
      * @type {Object}
      */
-    window.$base = Object.create({}, {
-        timestamp: {value: Date.now()}
+  window.$base = Object.create({}, {
+    timestamp: { value: Date.now() }
 
-        , models: {
-            value: {},
-            enumerable: true
-        }
+    , models: {
+      value: {},
+      enumerable: true
+    }
 
-        , parameters: {
-            value: {},
-            enumerable: true
-        }
+    , parameters: {
+      value: {},
+      enumerable: true
+    }
 
-        , events: {
-            value: {},
-            enumerable: true
-        }
-    });
-
-})();
+    , events: {
+      value: {},
+      enumerable: true
+    }
+  });
+}());

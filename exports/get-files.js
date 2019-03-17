@@ -18,8 +18,8 @@ function GetFiles(path, express, dir) {
     ];
 
     let file,
-        filepath,
-        i = files.length;
+      filepath,
+      i = files.length;
     while (i--) {
       file = files[i];
       filepath = `../${file}`;

@@ -9,8 +9,7 @@ module.export = function verifyLocalhost(ENV, PORT) {
     let len = ipChain.length;
     while (len--) {
       const _ip = (ipChain[len]).address || '';
-      if ((_ip.split(':'))[0] === '172')
-        return true;
+      if ((_ip.split(':'))[0] === '172') return true;
     }
 
     return false;

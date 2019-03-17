@@ -8,12 +8,11 @@
 
   const gv = base.parameters;
 
-  if (gv.debug)
-    $.getScript('/js/common/base_console.js').done((script, textStatus) => {
-      window.console.log('Check console compatibility', textStatus);
-    }).fail((jqxhr, settings, exception) => {
-      window.console.error(exception);
-    });
+  if (gv.debug) $.getScript('/js/common/base_console.js').done((script, textStatus) => {
+    window.console.log('Check console compatibility', textStatus);
+  }).fail((jqxhr, settings, exception) => {
+    window.console.error(exception);
+  });
 
   const level1 = ['warn', 'error'];
   const level2 = (['debug', 'info']).concat(level1);
@@ -23,34 +22,32 @@
 
   let consoleMethodCount = consoleMethods.length;
   var _method,
-      storage = base.store;
+    storage = base.store;
   while (consoleMethodCount--) {
     _method = consoleMethods[consoleMethodCount];
     if (Function.prototype.bind
-        && typeof window.console[_method] === 'object')
-      window.console[_method] = Function.prototype.call.bind(window.console[_method], console);
+        && typeof window.console[_method] === 'object') window.console[_method] = Function.prototype.call.bind(window.console[_method], console);
 
-    supportedConsoleMethods[_method] = (window.console[_method]) instanceof Function ?
-        _method : false;
+    supportedConsoleMethods[_method] = (window.console[_method]) instanceof Function
+      ? _method : false;
   }
 
   function _Console(scopeName, _mode, parent) {
     if ((window.console.constructor instanceof Function)
-        && (window.console.constructor.call instanceof Function))
-      window.console.constructor.call(this);
+        && (window.console.constructor.call instanceof Function)) window.console.constructor.call(this);
 
     let i = consoleMethods.length;
     var method;
     while (i--) {
       method = consoleMethods[i];
       this.__console__[method] = !(window.console[method].bind)
-          ? Function.prototype.bind.call(window.console[method], console)
-          : (window.console[method]).bind(console);
+        ? Function.prototype.bind.call(window.console[method], console)
+        : (window.console[method]).bind(console);
       this._makeStore(method, this.__console__[method]);
     }
 
     Object.defineProperties(this, {
-      timestamp: {value: (new Date()).getTime()}
+      timestamp: { value: (new Date()).getTime() }
       , parent: {
         get: () => (parent || null)
       }
@@ -78,9 +75,8 @@
     }
     , scopeName: {
       get: () => {
-        let name = this.name;
-        if (this.parent && this.parent.scopeName)
-          name = `${this.parent.scopeName}[${name}]`;
+        let { name } = this;
+        if (this.parent && this.parent.scopeName) name = `${this.parent.scopeName}[${name}]`;
 
         return name;
       },
@@ -94,19 +90,19 @@
       value: reload,
       enumerable: true
     }
-    , process: {value: process}
-    , wipe: {value: wipe}
-    , _extend: {get: getExtend}
+    , process: { value: process }
+    , wipe: { value: wipe }
+    , _extend: { get: getExtend }
     , _noop: {
       value: noop,
       writable: true
     }
-    , _default: {value: _default}
-    , _store: {value: _store}
-    , _makeStore: {value: _makeStore}
-    , _wrapConsole: {value: _wrapConsole}
-    , _writeStore: {value: writeStorageObject}
-    , __console__: {value: {}}
+    , _default: { value: _default }
+    , _store: { value: _store }
+    , _makeStore: { value: _makeStore }
+    , _wrapConsole: { value: _wrapConsole }
+    , _writeStore: { value: writeStorageObject }
+    , __console__: { value: {} }
     , _debug: {
       get: () => gv.debug,
       configurable: true
@@ -132,26 +128,23 @@
     // window.console.warn('Connecting', method, 'to CONSOLE LOG & STORAGE', this.id,
     // !!consoleMethod._wrapped);
 
-    if (!(consoleMethod._wrapped))
-      this._makeStore(method, consoleMethod);
+    if (!(consoleMethod._wrapped)) this._makeStore(method, consoleMethod);
 
     return consoleMethod._wrapped;
   }
 
   function _makeStore(method, consoleMethod) {
-    if (!(consoleMethod._wrapped))
-      consoleMethod._wrapped = (...args) => {
-        this._wrapConsole(method, ...args);
-      };
+    if (!(consoleMethod._wrapped)) consoleMethod._wrapped = (...args) => {
+      this._wrapConsole(method, ...args);
+    };
   }
 
   function _wrapConsole(innerMethod, ...args) {
     // console.error('WRAP CONSOLE', innerMethod, args);
     const consoleMethod = this.__console__[innerMethod],
-        _timeStamp = this._writeStore(innerMethod, args);
+      _timeStamp = this._writeStore(innerMethod, args);
 
-    if (base.utils.has(innerMethod, ['dir', 'assert']))
-      return consoleMethod.apply(window.console, args);
+    if (base.utils.has(innerMethod, ['dir', 'assert'])) return consoleMethod.apply(window.console, args);
 
     function timestamp() { }
 
@@ -187,8 +180,7 @@
   }
 
   function reload(mode) {
-    if (typeof mode === 'undefined')
-      mode = gv.mode;
+    if (typeof mode === 'undefined') mode = gv.mode;
 
     this.mode = isNaN(mode) ? this.mode : mode;
     // console.warn('RELOAD REQUESTED.', this.mode);
@@ -197,7 +189,7 @@
 
   function process() {
     var method,
-        utils = base.utils;
+      { utils } = base;
     for (const supportedMethod in supportedConsoleMethods) {
       if (!supportedConsoleMethods[supportedMethod]) continue;
       method = supportedConsoleMethods[supportedMethod];
@@ -210,17 +202,17 @@
   }
 
   function writeStorageObject(method, args) {
-    const StorageEventModel = base.models.StorageEventModel;
+    const { StorageEventModel } = base.models;
     const timeStamp = _getTimestamp(),
-        obj = {
-          id: this.id,
-          timestamp: timeStamp.timestamp,
-          scope: this.scopeName,
-          parent: this.parent && this.parent.name,
-          name: this.name,
-          type: method,
-          arguments: args
-        };
+      obj = {
+        id: this.id,
+        timestamp: timeStamp.timestamp,
+        scope: this.scopeName,
+        parent: this.parent && this.parent.name,
+        name: this.name,
+        type: method,
+        arguments: args
+      };
 
     (storage).push(new StorageEventModel({
       e: obj,
@@ -232,10 +224,10 @@
   }
 
   function _getTimestamp() {
-    const utils = base.utils;
+    const { utils } = base;
     const datetime = utils.getTime(),
-        timestamp = datetime.timestamp,
-        count = timestamp - base.timestamp;
+      { timestamp } = datetime,
+      count = timestamp - base.timestamp;
     return {
       time: datetime.string,
       count: utils.getTimeString(count, true)

@@ -3,24 +3,22 @@
  */
 
 window.$GLOBAL_MODELS.AssetParameterModel = (function () {
+  function AssetParameterModel(obj) {
+    obj = obj || {};
+    Object.defineProperties(this, {
+      label: _define(obj.label || obj.input || `Playlist_${Date.now()}`)
+      , type: _define(obj.type || 'playlistId')
+      , input: _define(obj.input || '')
+    });
+  }
 
-    function AssetParameterModel(obj) {
-        obj = obj || {};
-        Object.defineProperties(this, {
-            label: _define(obj.label || obj.input || 'Playlist_' + Date.now())
-            , type: _define(obj.type || 'playlistId')
-            , input: _define(obj.input || '')
-        });
-    }
+  return AssetParameterModel;
 
-    return AssetParameterModel;
-
-    function _define(obj) {
-        return {
-            value: obj,
-            enumerable: true,
-            writable: true
-        }
-    }
-
-})();
+  function _define(obj) {
+    return {
+      value: obj,
+      enumerable: true,
+      writable: true
+    };
+  }
+}());

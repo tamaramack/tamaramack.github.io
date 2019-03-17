@@ -5,13 +5,13 @@
  * Created by 206445994 on 16-Feb-16.
  */
 
-(function(base, $) {
+(function (base, $) {
   // Date = window.Date;
-  const wait = base.wait;
+  const { wait } = base;
 
   function Utils() {
     Object.defineProperties(this, {
-      timestamp: {value: Date.now()}
+      timestamp: { value: Date.now() }
       , getURL: _define(getURL)
       , resizeElement: _define(resizeElement)
       , getDateTime: _define(getDateTime)
@@ -48,19 +48,19 @@
   Utils.prototype = Object.create({
     constructor: Utils
   }, {
-    requestAnimationFrame: _define((function() {
-      return window.requestAnimationFrame ||
-          window.webkitRequestAnimationFrame ||
-          window.mozRequestAnimationFrame ||
-          window.msRequestAnimationFrame ||
-          function(callback) {
+    requestAnimationFrame: _define((function () {
+      return window.requestAnimationFrame
+          || window.webkitRequestAnimationFrame
+          || window.mozRequestAnimationFrame
+          || window.msRequestAnimationFrame
+          || function (callback) {
             window.setTimeout(callback, 1000 / 60);
           };
     })())
-    , cancelAnimationFrame: _define((function() {
-      return window.cancelAnimationFrame ||
-          window.mozCancelAnimationFrame ||
-          function(requestId) {
+    , cancelAnimationFrame: _define((function () {
+      return window.cancelAnimationFrame
+          || window.mozCancelAnimationFrame
+          || function (requestId) {
             window.clearTimeout(requestId);
           };
     })())
@@ -88,7 +88,7 @@
 
   function resizeElement(jqObj, ratio, dim) {
     const revDim = dim === 'height' ? 'width' : 'height',
-        ele = $(jqObj);
+      ele = $(jqObj);
 
     wait.throttle(() => {
       const calcRatio = (ele[revDim]()) * ratio;
@@ -101,7 +101,7 @@
   function getDateTime(date) {
     date = __isValidDate(date);
     return `${date.toLocaleDateString()
-        }, ${this.getTimeString(date)}`;
+    }, ${this.getTimeString(date)}`;
   }
 
   function getTime() {
@@ -114,9 +114,9 @@
 
   function getTimeString(date, UTC) {
     var h,
-        m,
-        s,
-        _get = 'get';
+      m,
+      s,
+      _get = 'get';
     date = __isValidDate(date);
 
     if (UTC) _get += 'UTC';
@@ -139,16 +139,13 @@
     const regex = /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g;
     return json.replace(regex, (match) => {
       let cls = 'number';
-      if (/^"/.test(match))
-        if (/:$/.test(match)) {
-          cls = 'key';
-        } else {
-          cls = 'string';
-        }
-      else if (/true|false/.test(match))
-        cls = 'boolean';
-      else if (/null/.test(match))
-        cls = 'null';
+      if (/^"/.test(match)) if (/:$/.test(match)) {
+        cls = 'key';
+      } else {
+        cls = 'string';
+      }
+      else if (/true|false/.test(match)) cls = 'boolean';
+      else if (/null/.test(match)) cls = 'null';
 
       return `<span class="${cls}">${match}</span>`;
     });
@@ -161,8 +158,7 @@
   }
 
   function extend(...objs) {
-    if ($.extend)
-      return $.extend(...objs);
+    if ($.extend) return $.extend(...objs);
 
     const extended = {};
     let deep = false;
@@ -179,11 +175,9 @@
       for (const prop in obj) {
         if (!obj[prop]) continue;
         // If deep merge and property is an object, merge properties
-        if (deep &&
-            Object.prototype.toString.call(obj[prop]) === '[object Object]')
-          extended[prop] = extend(true, extended[prop], obj[prop]);
-        else
-          extended[prop] = obj[prop];
+        if (deep
+            && Object.prototype.toString.call(obj[prop]) === '[object Object]') extended[prop] = extend(true, extended[prop], obj[prop]);
+        else extended[prop] = obj[prop];
       }
     }
 
@@ -192,7 +186,7 @@
     // Loop through each object and conduct a merge
     while (len--) {
       const i = (_arguments.length - 1) - len,
-          obj = _arguments[i];
+        obj = _arguments[i];
       merge(obj);
     }
     return extended;
@@ -200,27 +194,24 @@
 
   function cloneObjToJson(obj, replacer) {
     var cache = [],
-        models = base.models;
+      { models } = base;
     if (!obj || obj === null) return obj;
     replacer = replacer || ((key, value) => {
-          if (value instanceof Function) {
-            return (value.toString()).replace(/(\r)(\s+)/gm, ' ');
-          } else if (typeof value === 'object' && value !== null) {
-            let M = models.NativeObjectModel;
-            if (cache.indexOf(value) !== -1) return '[CIRCULAR_REFERENCE]';
-            cache.push(value);
+      if (value instanceof Function) return (value.toString()).replace(/(\r)(\s+)/gm, ' ');
+      if (typeof value === 'object' && value !== null) {
+        let M = models.NativeObjectModel;
+        if (cache.indexOf(value) !== -1) return '[CIRCULAR_REFERENCE]';
+        cache.push(value);
 
-            if (Object.prototype.toString.call(value) ===
-                '[object HTMLVideoElement]')
-              M = models.VideoElementModel;
-            else if (this.isDomElement(value))
-              M = models.DOMElementModel;
+        if (Object.prototype.toString.call(value)
+                === '[object HTMLVideoElement]') M = models.VideoElementModel;
+        else if (this.isDomElement(value)) M = models.DOMElementModel;
 
-            return new M(value);
-          }
+        return new M(value);
+      }
 
-          return value;
-        });
+      return value;
+    });
 
     obj = JSON.stringify(obj, replacer);
     cache = null;
@@ -233,27 +224,23 @@
 
   function isDomElement(obj) {
     if (obj === null) return false;
-    if (typeof HTMLElement === 'object')
-      return obj instanceof HTMLElement;
+    if (typeof HTMLElement === 'object') return obj instanceof HTMLElement;
     return obj && typeof obj === 'object'
         && obj.nodeType === 1
         && typeof obj.nodeName === 'string';
   }
 
   function isHtmlCollection(obj) {
-    if (typeof HTMLCollection === 'object')
-      return obj instanceof HTMLCollection;
+    if (typeof HTMLCollection === 'object') return obj instanceof HTMLCollection;
     return obj && typeof obj === 'object'
         && Object.prototype.toString.call(obj) === '[object HTMLCollection]'
         && obj.hasOwnProperty('length');
   }
 
   function isArray(_obj) {
-    if (Array.isArray)
-      return Array.isArray(_obj);
+    if (Array.isArray) return Array.isArray(_obj);
 
-    if (Object.prototype.toString.call([]) === '[object Array]')
-      return Object.prototype.toString.call(_obj) === '[object Array]';
+    if (Object.prototype.toString.call([]) === '[object Array]') return Object.prototype.toString.call(_obj) === '[object Array]';
 
     return false;
   }
@@ -264,8 +251,8 @@
 
   function getFnName(fn) {
     const f = typeof fn === 'function';
-    const s = f && ((fn.name && ['', fn.name]) ||
-        fn.toString().match(/function ([^\(]+)/));
+    const s = f && ((fn.name && ['', fn.name])
+        || fn.toString().match(/function ([^\(]+)/));
     return (!f && 'false') || (s && s[1] || 'anonymous');
   }
 
@@ -273,13 +260,11 @@
     if (!arr) return false;
     if (this.isArray(arr)) {
       let i = arr.length;
-      while (i--)
-        if (arr[i] === obj) return true;
+      while (i--) if (arr[i] === obj) return true;
     } else {
       let keys = Object.keys(arr),
-          i = keys.length;
-      while (i--)
-        if (arr[keys[i]] === obj) return true;
+        i = keys.length;
+      while (i--) if (arr[keys[i]] === obj) return true;
     }
     return false;
   }
@@ -308,18 +293,15 @@
 
   function getTraceStack(error) {
     let err;
-    if (!(error instanceof Error))
-      err = (this instanceof Error) ? this : new Error();
-    else
-      err = error;
+    if (!(error instanceof Error)) err = (this instanceof Error) ? this : new Error();
+    else err = error;
 
-    let stack = err.stack;
+    let { stack } = err;
     try {
       throw err;
     } catch (e) {
       stack = e.stack;
-      if (!stack)
-        stack = (this.getStackTrace && this.getStackTrace())
+      if (!stack) stack = (this.getStackTrace && this.getStackTrace())
             || (this.captureStackTrace && this.captureStackTrace())
             || e.message;
     }
@@ -327,41 +309,31 @@
   }
 
   function primitiveType(_typeof) {
-    if (_typeof === 'undefined')
-      return 'undefined';
+    if (_typeof === 'undefined') return 'undefined';
 
-    if (_typeof === 'string')
-      return 'String';
+    if (_typeof === 'string') return 'String';
 
-    if (_typeof === 'function')
-      return 'Function';
+    if (_typeof === 'function') return 'Function';
 
-    if (_typeof === 'number')
-      return 'Number';
+    if (_typeof === 'number') return 'Number';
 
-    if (_typeof === 'boolean')
-      return 'Boolean';
+    if (_typeof === 'boolean') return 'Boolean';
 
     return undefined;
   }
 
   function identifyObject(obj) {
     const primitive = this.primitiveType(typeof obj);
-    if (primitive)
-      return primitive;
+    if (primitive) return primitive;
 
-    if (this.isArray(obj))
-      return 'Array';
+    if (this.isArray(obj)) return 'Array';
 
-    if (this.isDomElement(obj))
-      return 'HTMLElement';
+    if (this.isDomElement(obj)) return 'HTMLElement';
 
-    if (this.isHtmlCollection(obj))
-      return 'HTMLCollection';
+    if (this.isHtmlCollection(obj)) return 'HTMLCollection';
 
     const _jq = jQuery;
-    if (obj instanceof _jq)
-      return 'jQuery';
+    if (obj instanceof _jq) return 'jQuery';
 
     return Object.prototype.toString.call(obj);
   }

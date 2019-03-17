@@ -26,12 +26,12 @@ module.exports = (() => {
      */
     app.get('/i/:pageModule', (req, res) => {
       // Compile the source code
-      const params = req.params;
+      const { params } = req;
 
       const pageFile = '',
-          pageLocals = {
-            debug: !isPROD
-          };
+        pageLocals = {
+          debug: !isPROD
+        };
 
       pug.renderFile(pageFile, pageLocals, (error, html) => {
         res.locals.renderHTML = html;
@@ -43,7 +43,7 @@ module.exports = (() => {
      * Partial Page Module
      */
     app.get('/:pageModule', (req, res) => {
-      const params = req.params;
+      const { params } = req;
       const locals = {
         layout: false
       };

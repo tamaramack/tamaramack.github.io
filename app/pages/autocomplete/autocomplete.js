@@ -2,7 +2,7 @@
   const debounce = (fn, delay) => {
     let timer = null;
 
-    function processTimer (...args) {
+    function processTimer(...args) {
       root.clearTimeout(timer);
       timer = setTimeout(() => {
         fn.call(this, ...args);
@@ -12,19 +12,19 @@
     return processTimer;
   };
 
-  function createSelection () {
+  function createSelection() {
     const select = document.createElement('select');
     select.style.display = 'none';
     select.style.maxHeight = '15em';
     select.style.width = '100%';
     return select;
-  };
+  }
 
   /**
    *
    */
   class Autocomplete {
-    constructor (domInput, datalist) {
+    constructor(domInput, datalist) {
       this.selection = createSelection();
       this.selectedItem = null;
       this.callbacks = [];
@@ -33,7 +33,7 @@
           value: datalist
         },
         el: {
-          get () {
+          get() {
             return domInput;
           }
         },
@@ -54,59 +54,60 @@
       this.startEvent();
     }
 
-    get selected () {
+    get selected() {
       return this.selectedItem;
     }
 
-    set selected (value) {
+    set selected(value) {
       this.selectedItem = value;
       this.triggerCallbacks();
       this.clear();
     }
 
-    get filteredList () {
+    get filteredList() {
       return this.htmlList;
     }
 
-    set filteredList (value) {
+    set filteredList(value) {
       if (value !== this.list) {
         this.list = value;
         root.console.log('New List', this.list);
         this.htmlList = (this.list).map(
-          obj => this.createListItem(obj));
+          obj => this.createListItem(obj)
+        );
         root.console.log('New HTML List', this.htmlList);
         this.createHTML();
       }
     }
 
-    get inputText () {
+    get inputText() {
       return this.filterText;
     }
 
-    set inputText (inputStr) {
+    set inputText(inputStr) {
       this.filterText = '';
       if (inputStr.length && inputStr !== this.filterText) {
         root.console.info('New Input Logged', inputStr);
         this.filterText = inputStr;
         this.filteredList = (this.rawdata).filter(
-          obj => (obj.label.toLowerCase()).includes(this.filterText.toLowerCase()));
+          obj => (obj.label.toLowerCase()).includes(this.filterText.toLowerCase())
+        );
       } else if (!(inputStr.length)) {
         this.clear();
       }
     }
 
-    options (datalist) {
-      if (!!datalist) {
-        this.rawdata = datalist;
-      }
+    options(datalist) {
+      if (!!datalist) this.rawdata = datalist;
+
 
       return this.rawdata;
     }
 
-    startEvent () {
+    startEvent() {
       this.el.addEventListener('input', debounce((e) => {
-        const target = e.target,
-          value = target.value;
+        const { target } = e,
+          { value } = target;
         root.console.debug('Event detected!', target.value);
         root.console.dir(target);
 
@@ -117,16 +118,16 @@
         const selectedIndex = (e.target).index;
         root.console.warn('Selection has been made:', selectedIndex);
         root.console.dir(e.target);
-        this.selected = isNaN(selectedIndex) ? null : (this.list[ selectedIndex ]);
+        this.selected = isNaN(selectedIndex) ? null : (this.list[selectedIndex]);
       });
     }
 
-    createListItem (obj) {
+    createListItem(obj) {
       let stringHTML = `<option value="${obj.value}">${obj.label}</option>`;
       return `<option value="${obj.value}">${obj.label}</option>`;
     }
 
-    createHTML () {
+    createHTML() {
       const len = this.htmlList.length;
       if (len) {
         const inner = (this.htmlList).join('');
@@ -138,19 +139,17 @@
       this.selection.size = len;
     }
 
-    triggerCallbacks () {
+    triggerCallbacks() {
       let i = this.callbacks.length;
-      while (i--) (this.callbacks[ i ])(this.selected);
+      while (i--) (this.callbacks[i])(this.selected);
     }
 
-    clear () {
+    clear() {
       this.filteredList = [];
     }
 
-    AddEventCallback (fn) {
-      if (typeof fn === 'function') {
-        this.callbacks.push(fn);
-      }
+    AddEventCallback(fn) {
+      if (typeof fn === 'function') this.callbacks.push(fn);
     }
   }
 

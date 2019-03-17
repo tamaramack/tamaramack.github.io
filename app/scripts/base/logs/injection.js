@@ -6,19 +6,18 @@
   function InjectLog(logFn, withObj, excluded) {
     excluded = (this.isArray(excluded)) ? excluded : [];
     var name,
-        fn;
+      fn;
     for (name in withObj) {
       if (!(withObj[name])) continue;
       fn = withObj[name];
       if (typeof fn === 'function'
-          && !(base.utils.has(name, excluded)))
-        withObj[name] = ((...args) => {
-          const _fn = args[1];
-          return function log(...logArgs) {
-            logFn.apply(this, args);
-            return _fn.apply(this, logArgs);
-          };
-        })(name, fn);
+          && !(base.utils.has(name, excluded))) withObj[name] = ((...args) => {
+        const _fn = args[1];
+        return function log(...logArgs) {
+          logFn.apply(this, args);
+          return _fn.apply(this, logArgs);
+        };
+      })(name, fn);
     }
   }
 

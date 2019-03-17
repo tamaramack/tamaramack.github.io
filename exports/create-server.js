@@ -17,8 +17,8 @@ module.exports = (() => {
       if (error.syscall !== 'listen') throw error;
 
       var bind = typeof port === 'string'
-          ? `Pipe ${port}`
-          : `Port ${port}`;
+        ? `Pipe ${port}`
+        : `Port ${port}`;
 
       // handle specific listen errors with friendly messages
       switch (error.code) {
@@ -42,8 +42,8 @@ module.exports = (() => {
       if (!server) return;
       const addr = server.address();
       const bind = typeof addr === 'string'
-          ? `pipe ${addr}`
-          : `port ${addr.port}`;
+        ? `pipe ${addr}`
+        : `port ${addr.port}`;
       console.log(`Listening on ${bind}`);
     }
   }

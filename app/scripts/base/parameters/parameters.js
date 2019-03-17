@@ -2,7 +2,7 @@
  * parameters file for tamaramack.github.io on 22-Mar-17.
  */
 
-(function(base) {
+(function (base) {
   var _console = window.console;
 
   var jsonString = _decode(window.$DATASTRING);
@@ -24,9 +24,7 @@
   page.$URL_LOCATION = window.location.href;
 
   page.$MODULES = {};
-  for (const prop in jsonString.modules)
-    if ((jsonString.modules).hasOwnProperty(prop))
-      page.$MODULES[prop] = jsonString.modules[prop];
+  for (const prop in jsonString.modules) if ((jsonString.modules).hasOwnProperty(prop)) page.$MODULES[prop] = jsonString.modules[prop];
 
 
   Object.defineProperties(base.parameters, {
@@ -40,8 +38,7 @@
     , modules: {
       get: () => {
         const arr = [];
-        for (const name in page.$MODULES)
-          if (page.$MODULES[name]) arr.push(name);
+        for (const name in page.$MODULES) if (page.$MODULES[name]) arr.push(name);
 
         return arr;
       },
@@ -54,17 +51,16 @@
 
   function _define(returnObject, dataType) {
     function to(value) {
-      const utils = base.utils;
+      const { utils } = base;
       if (dataType === Boolean) return utils.toBoolean(value);
-      else if (dataType === Number) return utils.toNumber(value);
+      if (dataType === Number) return utils.toNumber(value);
       return value;
     }
 
     return {
       get: () => to(page[returnObject]),
       set: base.wait.debounce((newValue) => {
-        if (dataType === Boolean || dataType === Number)
-          newValue = base.utils.toNumber(newValue);
+        if (dataType === Boolean || dataType === Number) newValue = base.utils.toNumber(newValue);
         page[returnObject] = newValue;
       }, 50, `setBase_${returnObject}`),
       enumerable: true

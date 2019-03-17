@@ -28,7 +28,7 @@ module.exports = function geoLocation(isProd) {
     function error(err) {
       const msg = `ERROR(${err.code}): ${err.message}`;
       console.warn(msg);
-      complete({error: msg});
+      complete({ error: msg });
     }
 
     function success(position) {

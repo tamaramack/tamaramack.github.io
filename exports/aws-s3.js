@@ -9,14 +9,14 @@ const path = require('path');
 module.exports = function _s3() {
   const s3 = require('s3');
   const bucket = '',
-      defaultDirPrefix = '',
-      client = s3.createClient({
-        s3Options: {
-          accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-          secretAccessKey: process.env.AWS_SECRET_KEY,
-          region: ''
-        }
-      });
+    defaultDirPrefix = '',
+    client = s3.createClient({
+      s3Options: {
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_KEY,
+        region: ''
+      }
+    });
 
   /**
    *
@@ -29,7 +29,8 @@ module.exports = function _s3() {
     filename,
     localPath,
     remotePath = defaultDirPrefix,
-    customBucket = bucket) {
+    customBucket = bucket
+  ) {
     const params = {
       localFile: path.join(localPath, filename),
       s3Params: {
@@ -61,7 +62,8 @@ module.exports = function _s3() {
     filename,
     localPath,
     remotePath = defaultDirPrefix,
-    customBucket = bucket) {
+    customBucket = bucket
+  ) {
     const params = {
       localFile: path.join(localPath, filename),
       s3Params: {
@@ -91,7 +93,8 @@ module.exports = function _s3() {
   function directoryUpload(
     localPath,
     remotePath = defaultDirPrefix,
-    customBucket = bucket) {
+    customBucket = bucket
+  ) {
     const params = {
       localDir: localPath,
       deleteRemoved: true, // default false, whether to remove s3 objects

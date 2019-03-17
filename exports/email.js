@@ -4,7 +4,7 @@
 const nodemailer = require('nodemailer');
 
 module.exports = function sendEmailerNotifier(req, res) {
-    // https://github.com/andris9/Nodemailer
+  // https://github.com/andris9/Nodemailer
   var date = new Date();
   var datetime = `${date.toDateString()} ${date.toTimeString()}`;
   var smtpTransport = nodemailer.createTransport({

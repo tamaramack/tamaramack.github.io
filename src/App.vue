@@ -4,6 +4,10 @@
       router-link(to="/") Home
       | &nbsp;|&nbsp;
       router-link(to="/about") About
+      | &nbsp;|&nbsp;
+      router-link(to="/foundation") Foundation
+      | &nbsp;|&nbsp;
+      router-link(to="/substring") Substring
     router-view
 </template>
 

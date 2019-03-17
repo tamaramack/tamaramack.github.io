@@ -66,6 +66,7 @@ module.exports = {
         functions: false
       }
     ],
+    'no-bitwise': 0,
     'no-loop-func': 1,
     'no-param-reassign': 0,
     'no-continue': 0,

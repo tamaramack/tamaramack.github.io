@@ -30,7 +30,7 @@ module.exports = {
   runtimeCompiler: true,
   productionSourceMap: undefined,
   parallel: undefined,
-  crossorigin: 'anonumous',
+  crossorigin: 'anonymous',
 
   css: {
     modules: true

@@ -24,7 +24,7 @@ export default new Router({
     {
       path: '/foundation',
       name: 'foundation',
-      component: () => import('./views/Foundation.vue')
+      component: () => import('./pages/foundation/Foundation.vue')
     },
     {
       path: '/substring',

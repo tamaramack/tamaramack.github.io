@@ -4,9 +4,9 @@
 import geolocation from '@/js/geolocation';
 import createLogger from '@/js/utilities/logger';
 import { debounce } from '@/js/utilities/utilities';
-import { getEndPoints, getList } from '@/pages/rv-vue-search/js/api';
-import { ResultModel } from '@/pages/rv-vue-search/js/models';
-import getters from '@/pages/rv-vue-search/js/getters';
+import { getEndPoints, getList } from './js/api';
+import { ResultModel } from './js/models';
+import getters from './js/getters';
 
 const debug = process.env.NODE_ENV !== 'production';
 

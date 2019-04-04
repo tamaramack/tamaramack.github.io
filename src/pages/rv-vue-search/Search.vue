@@ -21,11 +21,12 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import Navigation from '@/components/Navigation.vue';
-import SearchSidebar from '@/components/SearchSidebar.vue';
-import SearchBody from '@/components/SearchBody.vue';
-import { InputItems, InputList } from '@/js/models';
+import { createNamespacedHelpers } from 'vuex';
+import Navigation from './components/Navigation.vue';
+import SearchSidebar from './components/SearchSidebar.vue';
+import SearchBody from './components/SearchBody.vue';
+
+const { mapState } = createNamespacedHelpers('rover');
 
 export default {
   name: 'Search',

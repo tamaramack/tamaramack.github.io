@@ -92,8 +92,8 @@
   },
   "config": {
     "port": 9001,
-    "build": "v0.0.10-0-ge3fbe67",
-    "timestamp": 1554745710612
+    "build": "v0.0.10-1-geb8f3f2",
+    "timestamp": 1554747250494
   },
   "gitHooks": {
     "pre-commit": "lint-staged && npm run precommit"

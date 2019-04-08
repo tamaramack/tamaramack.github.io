@@ -12,7 +12,7 @@ echo "Timestamp output: $timestamp"
 # Pull/Fetch Tags from remote
 git fetch --tags
 
-# Update package.json & bower.json with passing arguments
+# Update package.json with passing arguments
 node ./bin/build_timestamp.js $output $timestamp
 
-git add -A ./*.json
+git add -A ./package.json

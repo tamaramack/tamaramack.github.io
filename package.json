@@ -19,7 +19,7 @@
     "precommit": "bash ./bin/tagpackage.sh",
     "preinstall": "bash ./bin/preinstall.sh",
     "timestamp": "version_timestamp",
-    "start": "npm run serve"
+    "start": "node server.js"
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.0",
@@ -93,8 +93,8 @@
   },
   "config": {
     "port": 9001,
-    "build": "v0.0.10-2-ga0d36d7",
-    "timestamp": 1554750209963
+    "build": "v0.0.10-3-g02883e2",
+    "timestamp": 1554750462409
   },
   "gitHooks": {
     "pre-commit": "lint-staged && npm run precommit"

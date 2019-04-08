@@ -8,6 +8,7 @@
 
 <script>
 import Abide from './components/Abide.vue';
+import { Navigation } from '@/components';
 // import Foundation from 'foundation-sites';
 
 export default {

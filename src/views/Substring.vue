@@ -5,8 +5,13 @@
 </template>
 
 <script>
+import { Navigation } from '@/components';
+
 export default {
-  name: 'Substring'
+  name: 'Substring',
+  components: {
+    Navigation
+  }
 };
 </script>
 

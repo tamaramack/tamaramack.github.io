@@ -343,7 +343,7 @@
       }
 
       // If we have got this far, there is still a chance a userland plugin
-      // is blocking us (either changing the styles, or automatically removing
+      // is blocking us (either changing the css, or automatically removing
       // the element). Both of these require us to take a step back for a moment
       // to allow for them to get time of the thread, hence a setTimeout.
       setTimeout(() => {

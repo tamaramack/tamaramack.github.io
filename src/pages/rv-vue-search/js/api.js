@@ -9,7 +9,7 @@ export {
 function getEndPoints({ commit, state }) {
   state.fetchData = true;
   get(endPoints, {
-    success: data => commit('setSlugs', data),
+    success: data => commit(`setSlugs`, data),
     error: error => console.error('ERROR: ', error)
   }, state);
 }
@@ -19,7 +19,7 @@ function getList({ commit, state }) {
 
   if (state.service_type && state.centerlng) get(`${baseUrl}${state.service_type}/`, {
     parameters,
-    success: data => commit('mapResults', data),
+    success: data => commit(`mapResults`, data),
     error: error => console.error('ERROR: ', error)
   }, state);
 }

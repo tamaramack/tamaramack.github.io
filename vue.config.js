@@ -32,7 +32,7 @@ module.exports = {
   },
 
   publicPath: undefined,
-  outputDir: undefined,
+  outputDir: process.env.NODE_ENV !== 'production' ? 'dev-build' : 'dist',
   assetsDir: 'content',
   runtimeCompiler: true,
   productionSourceMap: undefined,
@@ -40,7 +40,7 @@ module.exports = {
   crossorigin: 'anonymous',
   lintOnSave: process.env.NODE_ENV !== 'production' && true,
   devServer: {
-    port: 9200,
+    port: 9100,
     // https: true,
     overlay: {
       warnings: true,

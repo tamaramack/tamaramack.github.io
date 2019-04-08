@@ -3,9 +3,12 @@
 </template>
 
 <script>
-import InputGroup from '@/components/form/InputGroup.vue';
-import { InputItems, InputList } from '@/js/models';
-import { mapGetters } from 'vuex';
+import { createNamespacedHelpers } from 'vuex';
+import { FormComponents } from '@/components';
+import { InputItems, InputList } from '@/js/models/input';
+
+const { mapGetters } = createNamespacedHelpers('rover');
+const { InputGroup } = FormComponents;
 
 export default {
   name: 'DogPreferences',
@@ -32,7 +35,7 @@ export default {
         return this.dogPreference;
       },
       set(newPreference) {
-        this.$store.commit('updateDogPreference', newPreference);
+        this.$store.commit('rover/updateDogPreference', newPreference);
       }
     }
   }

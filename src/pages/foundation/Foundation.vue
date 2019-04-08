@@ -1,18 +1,25 @@
 <template lang="pug">
   #body-container
+    Navigation(page="foundation", :showLocation="location")
     h1 Kitchen Sink
     p Everything but.
     Abide/
 </template>
 
 <script>
-import Abide from '@/components/foundation/Abide.vue';
+import Abide from './components/Abide.vue';
 // import Foundation from 'foundation-sites';
 
 export default {
   name: 'Foundation',
   components: {
+    Navigation,
     Abide
+  },
+  data() {
+    return {
+      location: false
+    };
   }
 };
 </script>

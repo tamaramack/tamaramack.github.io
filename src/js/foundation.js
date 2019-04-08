@@ -4,7 +4,7 @@
 // Foundation core and utils - Best to import all of these
 import jQuery from 'jquery';
 import Lodash from 'lodash';
-import { Foundation } from 'foundation-sites';
+import Foundation from 'foundation-sites';
 // Require non-modular scripts
 require('motion-ui');
 require('what-input');
@@ -24,13 +24,13 @@ function initFoundation(Vue) {
           value: Lodash,
           enumerable: true
         },
-        Foundation: {
+        $foundation_sites: {
           value: Foundation,
           enumerable: true
         }
       });
 
-      context.prototype.Foundation.addToJquery(context.prototype.$);
+      context.prototype.$foundation_sites.addToJquery(context.prototype.$);
     }
   });
 }

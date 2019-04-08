@@ -13,12 +13,14 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex';
-import DateRange from './SearchCategories/DateRange.vue';
-import PriceRange from './SearchCategories/PriceRange.vue';
-import DogSizes from './SearchCategories/DogSizes.vue';
-import ResidencePreferences from './SearchCategories/ResidencePreferences.vue';
-import DogPreferences from './SearchCategories/DogPreferences.vue';
-import Services from './SearchCategories/Services.vue';
+import {
+  DateRange,
+  PriceRange,
+  DogSizes,
+  ResidencePreferences,
+  DogPreferences,
+  Services
+} from './SearchCategories';
 
 const { mapState, mapGetters } = createNamespacedHelpers('rover');
 
@@ -51,7 +53,7 @@ export default {
   methods: {
     onFormChange(...args) {
       const data = this.$.param(this.parameters, true);
-      this.$store.commit('setUrlParameters', { data });
+      this.$store.commit('rover/setUrlParameters', { data });
       // console.debug('Form changed', args, this.$store.state.urlParameters);
     }
   }

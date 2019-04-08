@@ -3,9 +3,12 @@
 </template>
 
 <script>
-import InputGroup from '@/components/form/InputGroup.vue';
-import { InputItems, InputList } from '@/js/models';
-import { mapGetters } from 'vuex';
+import { createNamespacedHelpers } from 'vuex';
+import { FormComponents } from '@/components';
+import { InputList } from '@/js/models/input';
+
+const { mapGetters } = createNamespacedHelpers('rover');
+const { InputGroup } = FormComponents;
 
 export default {
   name: 'Services',
@@ -31,7 +34,7 @@ export default {
         return this.selectedService;
       },
       set(newService) {
-        this.$store.commit('updateService', newService);
+        this.$store.commit('rover/updateService', newService);
       }
     }
   }

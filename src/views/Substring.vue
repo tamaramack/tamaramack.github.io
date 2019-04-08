@@ -4,9 +4,9 @@
 </template>
 
 <script>
-  export default {
-    name: 'Substring'
-  };
+export default {
+  name: 'Substring'
+};
 </script>
 
 <style scoped lang="scss">

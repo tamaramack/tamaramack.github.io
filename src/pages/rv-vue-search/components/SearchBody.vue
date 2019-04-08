@@ -12,8 +12,10 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import PersonSummaryCard from '@/components/PersonSummaryCard.vue';
+import { createNamespacedHelpers } from 'vuex';
+import PersonSummaryCard from './PersonSummaryCard.vue';
+
+const { mapState } = createNamespacedHelpers('rover');
 
 export default {
   name: 'SearchBody',

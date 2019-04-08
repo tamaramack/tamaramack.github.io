@@ -2,7 +2,7 @@
  * getters js file created on 01-Apr-19 for
  * interview-190319-tm
  */
-import { InputItems, InputList } from '@/js/models';
+import { InputItems, InputList } from '@/js/models/input';
 
 export default getters();
 

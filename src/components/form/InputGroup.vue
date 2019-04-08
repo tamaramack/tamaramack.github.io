@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { InputList } from '@/js/models';
+import { InputList } from '@/js/models/input';
 import SelectInput from '@/components/form/SelectInput.vue';
 
 export default {

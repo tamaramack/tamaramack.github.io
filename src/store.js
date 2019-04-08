@@ -8,7 +8,18 @@ export default new Vuex.Store({
   modules: {
     rover: searchModule
   },
-  state: {},
-  mutations: {},
+  state: {
+    geoError: false,
+    latitude: 0,
+    longitude: 0
+  },
+  mutations: {
+    updateLocation(state, results) {
+      if (results.message)
+        this.state.geoError = results.message;
+      else
+        [state.latitude, state.longitude] = [results.latitude, results.longitude];
+    }
+  },
   actions: {}
 });

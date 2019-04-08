@@ -1,20 +1,9 @@
 <template lang="pug">
-  div#app
-    div#nav
-      router-link(to="/") Home
-      | &nbsp;|&nbsp;
-      router-link(to="/about") About
-      | &nbsp;|&nbsp;
-      router-link(to="/foundation") Foundation
-      | &nbsp;|&nbsp;
-      router-link(to="/substring") Substring
+  #app
     router-view
 </template>
 
 <style lang="scss">
-  @import 'styles/settings';
-  @import "~foundation-sites/scss/foundation";
-
   @include foundation-everything;
 
   #app {
@@ -25,16 +14,4 @@
     color: #2c3e50;
   }
 
-  #nav {
-    padding: 30px;
-
-    a {
-      font-weight: bold;
-      color: #2c3e50;
-
-      &.router-link-exact-active {
-        color: #42b983;
-      }
-    }
-  }
 </style>

@@ -18,9 +18,15 @@ import { mapState } from 'vuex';
 export default {
   name: 'GeoLocation',
   mounted,
+  props: ['module'],
+  data() {
+    return {
+      modulePath: (this.module && this.module.length) ? `${this.module}/` : ''
+    };
+  },
   methods: {
     getLocation() {
-      this.$store.dispatch('geolocation');
+      this.$store.dispatch(`${this.modulePath}geolocation`);
     }
   },
   computed: {
@@ -38,7 +44,7 @@ export default {
 
 
 function mounted() {
-  this.$store.dispatch('geolocation');
+  this.$store.dispatch(`${this.modulePath}geolocation`);
 }
 
 </script>

@@ -14,8 +14,9 @@
 </template>
 
 <script>
-import { InputItems, InputList } from '@/js/models';
-import { mapGetters } from 'vuex';
+import { createNamespacedHelpers } from 'vuex';
+
+const { mapGetters } = createNamespacedHelpers('rover');
 
 export default {
   name: 'PriceRange',
@@ -34,7 +35,7 @@ export default {
         return this.priceRange.min || this.priceRange.default_min;
       },
       set(min) {
-        this.$store.commit('updatePrice', { min });
+        this.$store.commit('rover/updatePrice', { min });
       }
     },
     max: {
@@ -42,7 +43,7 @@ export default {
         return this.priceRange.max || this.priceRange.default_max;
       },
       set(max) {
-        this.$store.commit('updatePrice', { max });
+        this.$store.commit('rover/updatePrice', { max });
       }
     }
   }

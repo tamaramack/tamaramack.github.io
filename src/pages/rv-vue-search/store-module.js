@@ -9,6 +9,7 @@ import { ResultModel } from './js/models';
 import getters from './js/getters';
 
 const debug = process.env.NODE_ENV !== 'production';
+const rover = 'rover/';
 
 export default {
   namespaced: true,
@@ -16,12 +17,9 @@ export default {
   state: {
     fetchData: false,
     isLoading: false,
-    searchValue: 'test',
-    geoError: false,
     centerlat: 0,
     centerlng: 0,
-    latitude: 0,
-    longitude: 0,
+    searchValue: 'test',
     services: {},
     service_type: null,
     selectedPetTypes: [],
@@ -44,20 +42,18 @@ export default {
     },
     geolocation(state, results) {
       console.log(results);
-      if (results.message) {
-        state.geoError = results.message;
-      } else {
-        [state.latitude, state.longitude] = [results.latitude, results.longitude];
+      if (!results.message) {
         state.centerlat = results.latitude;
         state.centerlng = results.longitude;
 
-        this.commit('setUrlParameters', { data: this.getters.parameters });
-        this.dispatch('getEndPoints');
+        this.commit('updateLocation', results);
+        this.commit(`${rover}setUrlParameters`, { data: this.getters[`${rover}parameters`] });
+        this.dispatch(`${rover}getEndPoints`);
       }
     },
     updatePets(state, pets) {
       state.selectedPetTypes = pets;
-      this.dispatch('availableServices');
+      this.dispatch(`${rover}availableServices`);
     },
     updateService(state, slug) {
       state.service_type = slug;
@@ -81,9 +77,10 @@ export default {
     },
     setUrlParameters(state, { form, data }) {
       state.fetchData = true;
+      console.info(data);
       if (typeof data !== 'string') data = this._vm.$.param(data, true);
       state.urlParameters = decodeURIComponent(data);
-      this.dispatch('getList');
+      this.dispatch(`${rover}getList`);
     },
     setSlugs(state, data) {
       // console.debug('service SLUGS', data);

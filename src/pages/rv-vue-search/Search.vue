@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    Navigation(page="search")
+    Navigation(page="search", module="rover")
     div#search_container
       .search-content.grid-y.medium-grid-frame
         .cell.shrink.header.medium-cell-block-container
@@ -22,7 +22,7 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex';
-import Navigation from './components/Navigation.vue';
+import { Navigation } from '@/components';
 import SearchSidebar from './components/SearchSidebar.vue';
 import SearchBody from './components/SearchBody.vue';
 
@@ -35,28 +35,12 @@ export default {
     SearchSidebar,
     SearchBody
   },
-  mounted,
   computed: {
     ...mapState([
       'fetchData'
     ])
   }
 };
-
-function mounted() {
-  this.$nextTick(() => {
-    // resize body padding based off nav bar height
-    const nav = document.getElementById('nav-container');
-    const setBodySize = (e) => {
-      const height = this.$('#nav-container').height();
-      this.$('.search-content').css('height', `calc(100vh - ${height}px)`);
-    };
-
-    this.$(window).resize(setBodySize);
-    this.$(nav).resize(setBodySize);
-    setBodySize();
-  });
-}
 </script>
 
 <style scoped lang="scss">

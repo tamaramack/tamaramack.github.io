@@ -13,8 +13,9 @@
 </template>
 
 <script>
-import { InputItems, InputList } from '@/js/models';
-import { mapGetters } from 'vuex';
+import { createNamespacedHelpers } from 'vuex';
+
+const { mapGetters } = createNamespacedHelpers('rover');
 
 export default {
   name: 'DateRange',
@@ -32,7 +33,7 @@ export default {
         return this.defStart;
       },
       set(start) {
-        this.$store.commit('updateDate', { start });
+        this.$store.commit('rover/updateDate', { start });
       }
     },
     end: {
@@ -42,7 +43,7 @@ export default {
         return this.start;
       },
       set(end) {
-        this.$store.commit('updateDate', { end });
+        this.$store.commit('rover/updateDate', { end });
       }
     }
   }

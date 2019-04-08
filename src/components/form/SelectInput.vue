@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { InputItems } from '@/js/models';
+import { InputItems } from '@/js/models/input';
 
 export default {
   name: 'SelectInput',

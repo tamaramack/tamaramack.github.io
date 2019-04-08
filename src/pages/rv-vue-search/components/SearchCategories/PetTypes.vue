@@ -3,9 +3,12 @@
 </template>
 
 <script>
-import InputGroup from '@/components/form/InputGroup.vue';
-import { InputItems, InputList } from '@/js/models';
-import { mapGetters } from 'vuex';
+import { createNamespacedHelpers } from 'vuex';
+import { FormComponents } from '@/components';
+import { InputItems, InputList } from '@/js/models/input';
+
+const { mapGetters } = createNamespacedHelpers('rover');
+const { InputGroup } = FormComponents;
 
 export default {
   name: 'PetTypes',
@@ -32,7 +35,7 @@ export default {
   },
   watch: {
     types() {
-      this.$store.commit('updatePets', this.types);
+      this.$store.commit('rover/updatePets', this.types);
     }
   }
 };

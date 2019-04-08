@@ -5,3 +5,4 @@ build/*
 dist/*
 app/*
 dev-build/*
+server.js

@@ -11,7 +11,7 @@
     "build:dev": "vue-cli-service build --mode development",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint --fix --cache",
-    "deploy": "vue-cli-service s3-deploy",
+    "deploy:data": "vue-cli-service s3-deploy",
     "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit",
     "postinstall": "bash ./bin/postinstall.sh",
@@ -27,7 +27,6 @@
     "@progress/kendo-theme-default": "^3.4.0",
     "@progress/kendo-ui": "^2019.1.327",
     "core-js": "^3.0.0",
-    "express": "^4.16.4",
     "foundation-sites": "^6.5.3",
     "jquery": "^3.3.1",
     "lodash": "^4.17.11",
@@ -58,6 +57,7 @@
     "debug": "^4.1.1",
     "eslint": "^5.15.3",
     "eslint-plugin-vue": "^5.2.2",
+    "express": "^4.16.4",
     "growl": "^1.10.5",
     "http-proxy-agent": "^2.1.0",
     "https-proxy-agent": "^2.2.1",
@@ -67,6 +67,7 @@
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^7.1.0",
     "semver": "^5.6.0",
+    "serve-static": "^1.13.2",
     "shelljs": "^0.8.3",
     "thread-loader": "^2.1.2",
     "url-loader": "^1.1.2",
@@ -92,8 +93,8 @@
   },
   "config": {
     "port": 9001,
-    "build": "v0.0.10-1-geb8f3f2",
-    "timestamp": 1554747250494
+    "build": "v0.0.10-2-ga0d36d7",
+    "timestamp": 1554750209963
   },
   "gitHooks": {
     "pre-commit": "lint-staged && npm run precommit"

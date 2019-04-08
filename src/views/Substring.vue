@@ -1,5 +1,6 @@
 <template lang="pug">
   .substring-container
+    Navigation(page="substring")
     h1 this is the substring page
 </template>
 

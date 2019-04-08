@@ -4,6 +4,7 @@ out
 gen
 
 build
+dev-build
 package-lock.json
 
 /tests/e2e/reports/

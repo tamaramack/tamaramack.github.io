@@ -9,5 +9,5 @@ const folder = (process.env.NODE_ENV === 'production') ? 'dist' : 'dev-build';
 
 app = express();
 app.use(serveStatic(path.join(__dirname, folder)));
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 9200;
 app.listen(port);

@@ -5,7 +5,7 @@
   "description": "Works completed & explored",
   "author": "Tamara Mack <likwidmack@gmail.com>",
   "scripts": {
-    "clean": "rimraf dist",
+    "clean": "rimraf dist && rimraf dev-build",
     "serve": "vue-cli-service serve",
     "serve:prod": "vue-cli-service serve --mode production",
     "build:dev": "vue-cli-service build --mode development",
@@ -93,8 +93,8 @@
   },
   "config": {
     "port": 9001,
-    "build": "v0.0.10-3-g02883e2",
-    "timestamp": 1554750462409
+    "build": "v0.0.10-4-ge99dd93",
+    "timestamp": 1554752033329
   },
   "gitHooks": {
     "pre-commit": "lint-staged && npm run precommit"

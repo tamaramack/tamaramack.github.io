@@ -14,8 +14,8 @@ export default new Router({
       component: Home
     },
     {
-      path: '/r-search',
-      name: 'rv-search',
+      path: '/rover',
+      name: 'rover',
       component: () => import(/* webpackChunkName: "about" */ './pages/rv-vue-search/Search.vue')
     },
     {

@@ -13,7 +13,7 @@
             ul.menu.vertical
               li(v-if="!isSearch"): router-link(to="/substring") Substring
               li(v-if="!isSearch"): router-link(to="/foundation") Foundation
-              li: router-link(to="/r-search") Search
+              li: router-link(to="/rover") Search
           li: router-link(to="/about") About
       .top-bar-right
         GeoLocation(:module="module", v-if="isSearch || showLocation")

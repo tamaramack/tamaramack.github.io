@@ -29,7 +29,7 @@ import SearchBody from './components/SearchBody.vue';
 const { mapState } = createNamespacedHelpers('rover');
 
 export default {
-  name: 'Search',
+  name: 'RoverSearch',
   components: {
     Navigation,
     SearchSidebar,

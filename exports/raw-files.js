@@ -10,7 +10,7 @@ const util = require('util');
   const readDir = util.promisify(fs.readdir);
 
   const dataDir = path.resolve(__dirname, './txt/');
-  const destinationDir = path.resolve(__dirname, '../src/js/data');
+  const destinationDir = path.resolve(__dirname, '../src/js/data/substr');
   const encoding = 'utf-8';
 
   saveJsonFile();
@@ -18,6 +18,8 @@ const util = require('util');
   async function saveJsonFile() {
     const dataFiles = await mapFiles();
     dataFiles.forEach(readTextFile);
+    fs.writeFileSync(path.join(destinationDir, 'options.json'),
+      JSON.stringify(dataFiles, undefined, 2));
   }
 
   async function mapFiles() {

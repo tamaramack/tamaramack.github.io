@@ -38,7 +38,7 @@
 <script>
 // @ is an alias to /src
 import { Navigation } from '@/components';
-import genericdata from '@/js/generic-data';
+import generic from '@/js/data/generic';
 
 export default {
   name: 'about',
@@ -47,7 +47,7 @@ export default {
   },
   data() {
     return {
-      content: genericdata
+      content: generic
     };
   }
 };

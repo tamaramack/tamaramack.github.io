@@ -1,9 +1,9 @@
 /**
  * generic-data js file created by Tamara G. Mack on 03-Apr-19 for tamaramack.github.io
  */
-export default genericdata();
+export default generic();
 
-function genericdata() {
+function generic() {
   const obj = {};
   obj.frameHeader = 'About T Mack & the Like';
   obj.grid1 = [];

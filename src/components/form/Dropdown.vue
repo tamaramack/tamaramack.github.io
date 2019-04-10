@@ -1,8 +1,8 @@
 <template lang="pug">
   div
-    label
-      select(v-for="option in options")
-        option(value="option.value", label="option.label", v-model="model[selectedKey]")
+    label {{desc}}
+      select(v-model="selected")
+        option(v-for="{value, label} in options", :value="value", :label="label")
 </template>
 
 <script>
@@ -15,7 +15,17 @@ export default {
     'isMulti',
     'selectedKey',
     'model'
-  ]
+  ],
+  computed: {
+    selected: {
+      get() {
+        return this.model[this.selectedKey];
+      },
+      set(value) {
+        this.model[this.selectedKey] = value;
+      }
+    }
+  }
 };
 </script>
 

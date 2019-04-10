@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const util = require('util');
 
-(() => {
+(async () => {
   const readFile = util.promisify(fs.readFile);
   const readDir = util.promisify(fs.readdir);
 
@@ -13,13 +13,14 @@ const util = require('util');
   const destinationDir = path.resolve(__dirname, '../src/js/data/substr');
   const encoding = 'utf-8';
 
-  saveJsonFile();
+  await saveJsonFile();
 
   async function saveJsonFile() {
     const dataFiles = await mapFiles();
     dataFiles.forEach(readTextFile);
+
     fs.writeFileSync(path.join(destinationDir, 'options.json'),
-      JSON.stringify(dataFiles, undefined, 2));
+      JSON.stringify([...dataFiles], undefined, 2));
   }
 
   async function mapFiles() {
@@ -29,7 +30,7 @@ const util = require('util');
     let i = items.length;
     while (i--) {
       const item = items[i].split('.');
-      const file = [item[0], item[1]].join('.');
+      const file = `${item[0]}.${item[1]}`;
       sets.add(file);
     }
     console.log('Directory Contents\n', [...sets]);

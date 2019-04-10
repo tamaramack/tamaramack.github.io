@@ -8,8 +8,7 @@
         .grid-x.padding-gutters
           .cell.medium-4.text-left
             .button-group
-              button.button(@click="getString") Get String
-              button.button(@click="getQueries") Get Queries
+              button.button(@click="getJson") Get JSON
               button.button.alert(@click="runScripts") Run Script
 
           .cell.medium-auto
@@ -23,6 +22,7 @@
         .grid-x.grid-padding-x
 
           .cell.medium-2.medium-cell-block-y
+            Dropdown(desc="Choose Length", :options="choices", :model="model", selectedKey="optionSelect")
             div
               ul.no-bullet(v-if="showR")
                 li(v-for="(item, index) in results")
@@ -42,35 +42,37 @@
           .grid-x.grid-margin-x
             .call.medium-2
               h3 Footer
-            .cell.auto
+            .cell.auto {{optionSelect}} {{options}}
 </template>
 
 <script>
 import { Navigation, FormComponents } from '@/components';
 import { InputItems, InputList } from '@/js/models/input';
-import params from "./js/data/100.1";
-import readTextFile from "./js/get-data";
+import options from '@/js/data/substr/options.json';
 import countstrings from "./js/substrings";
 
-const { InputGroup } = FormComponents;
-
-readTextFile('5.1');
+const { Dropdown, InputGroup } = FormComponents;
 
 export default {
   name: 'Substring',
   components: {
+    Dropdown,
     InputGroup,
     Navigation
   },
   data() {
     return {
+      options,
+      json: {},
+      output: [],
       r: {},
       s: '',
       q: [],
       show: [],
       showS: false,
       showQ: false,
-      showR: false
+      showR: false,
+      optionSelect: null
     };
   },
   computed: {
@@ -106,6 +108,19 @@ export default {
       set(update) {
         this.r = update;
       }
+    },
+    choices: {
+      get() {
+        return this.options.map(opt => ({
+          value: opt.replace('.', '_'),
+          label: opt
+        }));
+      }
+    },
+    model: {
+      get() {
+        return this;
+      }
     }
   },
   watch: {
@@ -113,21 +128,18 @@ export default {
       this.showQ = (this.show).includes('show_queries');
       this.showS = (this.show).includes('show_string');
       this.showR = (this.show).includes('show_results');
+    },
+    json() {
+      const { input, output } = this.json;
+      this.s = input.s;
+      this.q = input.queries;
+      this.output = output;
     }
   },
   methods: {
-    getString() {
-      const sub = params.substring().replace(/[\W]/gm, "");
-      // console.info("substring", sub);
-      this.s = sub;
-    },
-    getQueries() {
-      let queryArray = params.queries();
-      queryArray = queryArray.split("\n");
-      // console.debug("queryArray array", queryArray);
-      queryArray = queryArray.map(i => i.split(" ").map(p => parseInt(p)));
-      // console.debug("queryArray mapped", queryArray);
-      this.q = queryArray;
+    async getJson() {
+      const name = this.optionSelect.replace('_', '.');
+      this.json = await importJson(name);
     },
     runScripts() {
       console.log("Start Calculations");
@@ -136,6 +148,11 @@ export default {
     }
   }
 };
+
+async function importJson(name) {
+  return import(`@/js/data/substr/${name}.json`);
+}
+
 </script>
 
 <style scoped lang="scss">

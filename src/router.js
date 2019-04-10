@@ -16,7 +16,7 @@ export default new Router({
     {
       path: '/rover',
       name: 'rover',
-      component: () => import(/* webpackChunkName: "about" */ './pages/rv-vue-search/Search.vue')
+      component: () => import(/* webpackChunkName: "about" */ './pages/rover/Search.vue')
     },
     {
       path: '/about',
@@ -34,7 +34,17 @@ export default new Router({
     {
       path: '/substring',
       name: 'substring',
-      component: () => import('./views/Substring.vue')
+      component: () => import('./pages/substring/Substring.vue'),
+      children: [
+        {
+          path: ':name',
+          name: 'string-reader',
+          beforeEnter: (to, from, next) => {
+            next();
+          },
+          component: () => import('./pages/substring/StringReader')
+        }
+      ]
     }
   ]
 });

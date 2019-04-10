@@ -7,7 +7,7 @@
 module.exports = (() => {
   const mainFn = require('./pages/main');
   const baseFn = require('./base');
-  const pug = require('pug');
+  const pug = require('pug/lib');
 
   return renderPages;
 

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import searchModule from '@/pages/rv-vue-search/store-module';
+import searchModule from '@/pages/rover/store-module';
 
 Vue.use(Vuex);
 

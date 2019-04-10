@@ -8,7 +8,7 @@
  * @returns {getGeoLocation}
  */
 module.exports = function geoLocation(isProd) {
-  const geolocation = require('geolocation');
+  const geolocation = require('exports/modules/geolocation');
   var options = {
     enableHighAccuracy: isProd,
     timeout: isProd ? 2000 : 5000,

@@ -4,7 +4,7 @@
 </template>
 
 <style lang="scss">
-  @include foundation-everything;
+  @include foundation-everything(true);
 
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;

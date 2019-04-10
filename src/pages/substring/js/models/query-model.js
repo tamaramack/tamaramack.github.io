@@ -1,15 +1,20 @@
 export class QuerySet {
-  constructor(queries, nodeTree, TreeModel) {
+  constructor(queries, s, TreeModel) {
+    const nodes = new Map();
     this.TreeModel = TreeModel;
+
     Object.defineProperties(this, {
-      tree: {
+      nodes: {
         get() {
-          return nodeTree;
+          return nodes;
         }
+      },
+      parentTree: {
+        value: new TreeModel(s, nodes)
       },
       substring: {
         get() {
-          return nodeTree.substring;
+          return s;
         }
       },
       queries: {
@@ -86,14 +91,20 @@ export class QuerySet {
     }
   }
 
-  mapQueries(patterns) {
-    let i = this.queries.length;
-    const string = this.substring;
+  mapQueries(patterns = {}) {
+    const {
+      queries,
+      TreeModel,
+      substring,
+      nodes
+    } = this;
+    let i = queries.length;
     const test = [];
     const arr = [];
     while (i--) {
-      const query = QuerySet.q(this.queries[i], i);
-      query.sub = string.substring(query.start, query.end + 1);
+      const query = QuerySet.q(queries[i], i);
+      query.sub = substring.substring(query.start, query.end + 1);
+      query.tree = new TreeModel(query.sub, nodes);
       arr.unshift(query);
 
       let setEnds = [i];
@@ -120,12 +131,6 @@ export class QuerySet {
       }
       this.lengths.set(query.length, lenValue);
       this.positions.set(query.position, query);
-
-      for (let pattern of patterns) if (pattern.i <= query.start && query.end < (pattern.i + pattern.length)) {
-        query.withinPattern = pattern.cluster;
-        test.push(query.position);
-        break;
-      }
     }
 
     console.debug('TEST the patterns', test.length, test);
@@ -162,7 +167,7 @@ export class QuerySet {
   }
 }
 
-class Query {
+export class Query {
   constructor(query, i) {
     this.length = query[1] - query[0] + 1;
     this.start = query[0];
@@ -212,7 +217,6 @@ function mapQueriesBySize(count) {
   // console.debug('mapQueriesBySize', this.tree.size);
 }
 
-
 function handlePatternsInQueries(start, end, isSingle) {
   // find queries within pattern
   const endsKeys = filter(this.sortedEnds, (key => key < end));
@@ -257,25 +261,16 @@ function handlePatternsInQueries(start, end, isSingle) {
 }
 
 function add(query) {
-  const ss = query.sub;
-  const { TreeModel } = this;
-
   if (this.results[query.position]) return;
+  query.tree.execute();
+  const node = query.tree.get(query.sub);
 
-  if (query.children && query.children.size) {
+  /* if (query.children && query.children.size) {
     query.children.forEach((position) => {
       this.addChildNode(this.queries[position]);
     });
     query.children = null;
-  }
-
-  let node = null;
-  if (!query.tree) {
-    query.tree = new TreeModel(ss, this.tree.parentCollection);
-    node = query.tree.execute();
-  } else {
-    node = this.tree.get(ss);
-  }
+  } */
 
   node.q[node.q.length] = (this.queries[query.position]);
   this.results[query.position] = query.tree.size;

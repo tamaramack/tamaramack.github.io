@@ -1,6 +1,6 @@
 <template lang="pug">
   fieldset
-    legend {{desc}}
+    legend(v-if="desc") {{desc}}
     .input-list.flex-container.flex-dir-row
       .flex-child-auto(v-for="item in list")
         SelectInput(:item="item", :selectedKey="selectedKey",

@@ -8,6 +8,7 @@
     "clean": "rimraf dist && rimraf dev-build",
     "serve": "vue-cli-service serve",
     "serve:prod": "vue-cli-service serve --mode production",
+    "build:txt": "node ./exports/raw-files.js",
     "build:dev": "vue-cli-service build --mode development",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint --fix --cache",

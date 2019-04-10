@@ -10,7 +10,7 @@
  */
 module.exports = (() => {
   const _ = require('underscore');
-  const packageJson = require('../package.json');
+  const packageJson = require('../../package.json');
   const utils = require('./utilities');
 
   return setBaseFlags;

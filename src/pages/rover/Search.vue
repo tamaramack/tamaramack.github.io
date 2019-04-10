@@ -2,7 +2,7 @@
   div
     Navigation(page="search", module="rover")
     div#search_container
-      .search-content.grid-y.medium-grid-frame
+      .search-content.content-size.grid-y.medium-grid-frame
         .cell.shrink.header.medium-cell-block-container
           h1 Find your Sitter
 

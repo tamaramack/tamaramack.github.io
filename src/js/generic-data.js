@@ -5,13 +5,13 @@ export default genericdata();
 
 function genericdata() {
   const obj = {};
-  obj.frameHeader = 'Grid Frame Header';
+  obj.frameHeader = 'About T Mack & the Like';
   obj.grid1 = [];
-  obj.grid1.push('This demo shows what is possible with the new Foundation 6.4 XY Grid');
-  obj.grid1.push('This is a horizontal cell block - on medium+ it will overflow automatically');
-  obj.grid1.push('A medium 4 cell');
+  obj.grid1.push('This demo shows what is possible with XY Grid');
+  obj.grid1.push('This is a horizontal middle cell.');
+  obj.grid1.push('Everything you may want to read about me is not here yet.');
 
-  obj.frameHeader2 = 'Independent scrolling sidebar';
+  obj.frameHeader2 = 'Sidebar!';
   obj.grid2 = [];
   obj.grid2.push(
     'We\'re now in a horizontal grid nested within the vertical grid. The vertical grid is using a frame to exactly fit the window. Both the sidebar and the body scroll independently for medium-up screens, but on small come back inline.'
@@ -23,7 +23,7 @@ function genericdata() {
     'Suspendisse pulvinar, massa iaculis feugiat lobortis, dolor sapien vestibulum nulla, vel cursus tellus leo in lorem. Aliquam eu placerat urna. Suspendisse sed viverra orci, ut mattis neque. Fusce non ultrices nisi. In sagittis varius mollis. Quisque dolor quam, consectetur eu lacinia ac, ullamcorper vel arcu. Nullam mattis imperdiet nulla sed ornare. Praesent tristique, est id eleifend vestibulum, neque nibh condimentum ex, nec lobortis purus justo a libero. Phasellus id ex ac nunc hendrerit hendrerit. Nullam urna ipsum, rutrum at fringilla vel, venenatis non purus. Maecenas egestas ex vitae venenatis molestie. Ut et odio egestas, accumsan neque et, viverra nisl. Sed faucibus nec nulla sed imperdiet. Fusce quis sem ac urna semper tempor a id elit. Nulla fringilla vitae sapien a vehicula.'
   );
 
-  obj.frameHeader3 = 'Independent scrolling body';
+  obj.frameHeader3 = 'Independent body of work';
   obj.grid3 = [];
   obj.grid3.push(
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lacus odio, accumsan id ullamcorper eget, varius nec erat. Nulla facilisi. Donec dui felis, euismod nec finibus vitae, dapibus quis arcu. Maecenas tempor et ipsum quis venenatis. Ut posuere sed augue sit amet efficitur. Sed imperdiet, justo id tempus rhoncus, est est viverra turpis, non vulputate magna lectus et nisl. Pellentesque ultrices porttitor vehicula. Ut aliquet efficitur ligula, a consectetur felis. Proin tristique ut augue nec luctus. Curabitur a sapien pretium, auctor elit a, efficitur erat. Donec tincidunt dui vel velit bibendum euismod. Cras vitae nibh dui. Aliquam erat volutpat. Etiam sit amet arcu a erat efficitur facilisis. Ut viverra dapibus turpis, et ornare justo. Integer in dui cursus, dignissim tortor a, hendrerit risus.'

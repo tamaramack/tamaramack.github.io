@@ -60,10 +60,7 @@ module.exports = {
     'global-require': 1,
     'eol-last': 1,
     'camelcase': 0,
-    'radix': [
-      'warn',
-      'as-needed'
-    ],
+    'radix': 0, // Temporary
     'no-var': 0,
     'vars-on-top': 0, // Temporary
     'one-var': [

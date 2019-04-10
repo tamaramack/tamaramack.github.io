@@ -43,7 +43,7 @@ function mounted() {
     const nav = document.getElementById('nav-container');
     const setBodySize = (e) => {
       const height = this.$(nav).height();
-      this.$('.search-content').css('height', `calc(100vh - ${height}px)`);
+      this.$('.content-size').css('height', `calc(100vh - ${height}px)`);
     };
 
     this.$(window).resize(setBodySize);

@@ -1,6 +1,6 @@
 {
   "name": "tamaramack-portfolio",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "private": true,
   "description": "Works completed & explored",
   "author": "Tamara Mack <likwidmack@gmail.com>",
@@ -94,8 +94,8 @@
   },
   "config": {
     "port": 9001,
-    "build": "v0.0.10-16-g201ab64",
-    "timestamp": 1555024977699
+    "build": "v0.0.10-17-g434cd67",
+    "timestamp": 1555025309748
   },
   "gitHooks": {
     "pre-commit": "lint-staged && npm run precommit"

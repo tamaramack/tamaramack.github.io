@@ -24,15 +24,15 @@
           .cell.medium-2.medium-cell-block-y
             Dropdown(desc="Choose Length", :options="choices", :model="model", selectedKey="optionSelect")
             div
-              ul.no-bullet(v-if="showR")
+              ul.no-bullet(v-if="showResults")
                 li(v-for="(item, index) in results")
                   div(:title="index") {{item}}
 
           .cell.medium-10.medium-cell-block-y
             div.wrap-text
-              p(v-if="showS") {{substring}}
+              p(v-if="showString") {{substring}}
             div
-              ul.no-bullet(v-if="showQ")
+              ul.no-bullet(v-if="showQueries")
                 li.display-inline-block(v-for="(item, index) in queries")
                   .label.secondary(:title="'index: ' + index") {{item[0]}}, {{item[1]}}
 
@@ -69,9 +69,9 @@ export default {
       s: '',
       q: [],
       show: [],
-      showS: false,
-      showQ: false,
-      showR: false,
+      showString: false,
+      showQueries: false,
+      showResults: false,
       optionSelect: null
     };
   },
@@ -125,9 +125,9 @@ export default {
   },
   watch: {
     show() {
-      this.showQ = (this.show).includes('show_queries');
-      this.showS = (this.show).includes('show_string');
-      this.showR = (this.show).includes('show_results');
+      this.showQueries = (this.show).includes('show_queries');
+      this.showString = (this.show).includes('show_string');
+      this.showResults = (this.show).includes('show_results');
     },
     json() {
       const { input, output } = this.json;

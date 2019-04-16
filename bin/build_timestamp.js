@@ -2,7 +2,7 @@
 import fs from 'fs';
 import sh from 'shelljs';
 
-(function () {
+(() => {
   // console.log('\nPROCESS.ENV', process.env);
   console.log('\nPROCESS.ARGV', process.argv);
 
@@ -14,9 +14,9 @@ import sh from 'shelljs';
   data = JSON.parse(data);
 
   // Get git tag that was previously committed during the version process
-  var argvOutput = process.argv.length > 2 && process.argv[2];
+  let argvOutput = process.argv.length > 2 && process.argv[2];
   sh.exec(`echo process.argv Output ${argvOutput}`);
-  var output = argvOutput || sh.exec('git describe --tags --always --long', { silent: true }).output;
+  let output = argvOutput || sh.exec('git describe --tags --always --long', { silent: true }).output;
   output = (output && output.trim()) || data.config.build;
   console.log('\nGIT BUILD NUMBER', output);
 
@@ -33,4 +33,4 @@ import sh from 'shelljs';
   // save updated package.json file
   data = JSON.stringify(data, undefined, 2);
   if (typeof data === 'string' && data.length > 10) fs.writeFileSync(packageFilePath, `${data}\n`);
-}());
+})();

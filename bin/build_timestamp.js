@@ -1,11 +1,11 @@
 #! /usr/bin/env node
+import fs from 'fs';
+import sh from 'shelljs';
 
 (function () {
   // console.log('\nPROCESS.ENV', process.env);
   console.log('\nPROCESS.ARGV', process.argv);
 
-  const fs = require('fs'),
-    sh = require('shelljs');
   const packageFilePath = './package.json',
     date = parseInt(process.argv[3]) || (new Date()).getTime();
 
@@ -32,5 +32,5 @@
 
   // save updated package.json file
   data = JSON.stringify(data, undefined, 2);
-  if (typeof data === 'string' && data.length > 10) fs.writeFileSync(packageFilePath, data);
+  if (typeof data === 'string' && data.length > 10) fs.writeFileSync(packageFilePath, `${data}\n`);
 }());

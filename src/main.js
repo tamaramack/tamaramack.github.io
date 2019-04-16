@@ -1,5 +1,5 @@
 import '@progress/kendo-ui';
-// import '@progress/kendo-theme-default/dist/all.css';
+// import '@progress/kendo-theme-default/scss/all.scss';
 import Vue from 'vue';
 import {
   DateinputsInstaller,
@@ -15,6 +15,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import initFoundation from './js/foundation';
+import './mixin';
 import './registerServiceWorker';
 
 Vue.config.productionTip = false;

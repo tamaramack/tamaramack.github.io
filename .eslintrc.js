@@ -57,7 +57,7 @@ module.exports = {
       'consistent-as-needed'
     ],
     'linebreak-style': 0,
-    'global-require': 1,
+    'global-require': 0, // Temporary
     'eol-last': 1,
     'camelcase': 0,
     'radix': 0, // Temporary
@@ -89,6 +89,7 @@ module.exports = {
     'no-plusplus': 0,
     'no-extra-boolean-cast': 0,
     'import/no-dynamic-require': 1,
+    'import/no-extraneous-dependencies': 0, // Temporary
     'import/extensions': 0, // Temporary
     'import/no-unresolved': 0, // Temporary
     'import/prefer-default-export': 0, // Temporary

@@ -2,12 +2,30 @@
  * server.js js file created by Tamara G. Mack on 08-Apr-19 for tamaramack.github.io
  */
 const express = require('express');
-const serveStatic = require("serve-static");
 const path = require('path');
+const history = require('connect-history-api-fallback');
+const configureAPI = require('./src/server/configure');
 
-const folder = (process.env.NODE_ENV === 'production') ? 'dist' : 'dev-build';
+const app = express();
+const { PORT = 9200, NODE_ENV } = process.env;
 
-app = express();
-app.use(serveStatic(path.join(__dirname, folder)));
-const port = process.env.PORT || 9200;
-app.listen(port);
+const isProd = (NODE_ENV === 'production');
+const staticConf = {
+  maxAge: isProd ? '1y' : 0,
+  etag: !isProd
+};
+
+let folder = isProd ? 'dist' : 'dev-build';
+folder = path.join(__dirname, folder);
+
+// APIs
+configureAPI(app);
+
+// UI
+// app.use(serveStatic(folder));
+app.use(express.static(folder, staticConf));
+app.use('/', history());
+
+app.listen(PORT, () => {
+  console.log(`App running on port ${PORT}`)
+});

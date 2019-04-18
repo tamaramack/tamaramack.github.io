@@ -1,3 +1,5 @@
+const configureAPI = require('./src/server/configure');
+
 module.exports = {
   pluginOptions: {
     s3Deploy: {
@@ -40,8 +42,9 @@ module.exports = {
   crossorigin: 'anonymous',
   lintOnSave: process.env.NODE_ENV !== 'production' && true,
   devServer: {
-    port: 9100,
+    port: 9200,
     // https: true,
+    before: configureAPI,
     overlay: {
       warnings: true,
       errors: true

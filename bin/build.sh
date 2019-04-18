@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 npm run lint
-npm run build:raw
 
 [[ "$1" ]] && mode=$1 || mode="production"
 echo "Build Mode: $1 || $mode"

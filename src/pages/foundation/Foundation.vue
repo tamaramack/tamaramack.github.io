@@ -1,21 +1,35 @@
 <template lang="pug">
-  #body-container
+  div
     Navigation(page="foundation", :showLocation="location")
-    h1 Kitchen Sink
-    p Everything but.
-    Abide/
+    #body-container
+      h1 Kitchen Sink
+      p Everything but.
+      Abide/
+      Accordion/
+      Badge/
+      Breadcrumbs/
+      Button/
+
 </template>
 
 <script>
-import Abide from './components/Abide.vue';
 import { Navigation } from '@/components';
+import Abide from './components/Abide.vue';
+import Accordion from './components/Accordion.vue';
+import Badge from './components/Badge.vue';
+import Breadcrumbs from './components/Breadcrumbs.vue';
+import Button from './components/Button.vue';
 // import Foundation from 'foundation-sites';
 
 export default {
   name: 'Foundation',
   components: {
+    Button,
+    Breadcrumbs,
+    Accordion,
     Navigation,
-    Abide
+    Abide,
+    Badge
   },
   data() {
     return {

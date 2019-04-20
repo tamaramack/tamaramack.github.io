@@ -9,7 +9,7 @@
           li.menu-text T Mack Portfolio
           li: router-link(to="/") Home
           li
-            a(href="#") Projects
+            router-link(to="/projects") Projects
             ul.menu.vertical
               li(v-if="!isSearch"): router-link(to="/substring") Substring
               li(v-if="!isSearch"): router-link(to="/foundation") Foundation

@@ -2,7 +2,35 @@
  * utilities js file created on 02-Apr-19 for
  * interview-190319-tm
  */
-export { debounce, throttle };
+export {
+  debounce,
+  throttle,
+  isIterable,
+  forEach
+};
+
+function isIterable(obj) {
+  return (obj !== undefined
+    && obj !== null
+    && typeof obj[Symbol.iterator] === 'function');
+}
+
+function forEach(objectArray, cb, owner) {
+  if (isIterable(objectArray)) {
+    if (Array.isArray(objectArray) || objectArray instanceof Map) {
+      objectArray.forEach(cb, owner);
+      return;
+    }
+
+    for (let value of objectArray)
+      cb.call(owner || this, value, value, objectArray);
+    return;
+  }
+
+  for (let prop in objectArray)
+    if (obj.hasOwnProperty(prop))
+      cb.call(owner || this, objectArray[prop], prop, objectArray);
+}
 
 function debounce(cb, delay) {
   let inDebounce;

@@ -1,51 +1,8 @@
 /**
  * colors js file created by Tamara G. Mack on 19-Apr-19 for tamaramack.github.io
  */
-import names from "@/js/data/colors.json";
-
-class Color {
-  constructor(color = {
-    red: null,
-    green: null,
-    blue: null,
-    hue: null,
-    saturation: null,
-    lightness: null,
-    alpha: 1
-  }) {
-    for (const key in color) {
-      if (!color.hasOwnProperty(key)) continue;
-      Object.defineProperty(this, key, {
-        value: color[key],
-        enumerable: true
-      });
-    }
-  }
-
-  get rgbaString() {
-    return '';
-  }
-
-  get hslaString() {
-    return '';
-  }
-
-  get hexString() {
-    return '';
-  }
-
-  transition(color, distance) {
-
-  }
-
-  blend(color) {
-
-  }
-
-  is(color) {
-
-  }
-}
+import names from "./colors.json";
+import Color from './color';
 
 export default class Colors {
   constructor(...color) {
@@ -87,21 +44,6 @@ export default class Colors {
 
   static isRgb(color) {
     return isRgbString.call(this, color);
-  }
-}
-
-function determine(color) {
-  let _color = color;
-  if (typeof color[0] === 'string') {
-    // TODO: find color type
-    _color = color[0];
-    if (isHexString(_color))
-      _color = toRGB(_color);
-  } else if (Array.isArray(color[0])) {
-    // TODO: set [red, green, blue, alpha]
-  } else if (color.length === 1) {
-  } else {
-
   }
 }
 

@@ -94,8 +94,8 @@
   },
   "config": {
     "port": 9001,
-    "build": "D:\\Git\\tamaramack.github.io\\bin\\build_timestamp.js",
-    "timestamp": 1556927650043
+    "build": "v0.0.11-13-g7c9ca26",
+    "timestamp": 1556927658042
   },
   "gitHooks": {
     "pre-commit": "lint-staged"

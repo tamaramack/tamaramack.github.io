@@ -1,6 +1,7 @@
-import Vue from 'vue';
 import {
   title
 } from '@/mixins';
 
-Vue.mixin(title);
+export default function setMixins(Vue) {
+  Vue.mixin(title);
+}

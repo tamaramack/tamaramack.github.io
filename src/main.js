@@ -15,11 +15,12 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import initFoundation from './js/foundation';
-import './mixin';
+import Mixins from './mixin';
 import './registerServiceWorker';
 
 Vue.config.productionTip = false;
 Vue.use(DateinputsInstaller);
+Mixins(Vue);
 
 window.mainVue = new Vue({
   router,

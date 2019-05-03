@@ -94,8 +94,8 @@
   },
   "config": {
     "port": 9001,
-    "build": "v0.0.11-13-g7c9ca26",
-    "timestamp": 1556927658042
+    "build": "v0.0.12-0-gd386008",
+    "timestamp": 1556927838169
   },
   "gitHooks": {
     "pre-commit": "lint-staged"

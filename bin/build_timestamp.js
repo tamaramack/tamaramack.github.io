@@ -1,6 +1,6 @@
 #! /usr/bin/env node
-import fs from 'fs';
-import sh from 'shelljs';
+const fs = require('fs');
+const sh = require('shelljs');
 
 (() => {
   // console.log('\nPROCESS.ENV', process.env);

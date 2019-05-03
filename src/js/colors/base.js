@@ -5,13 +5,19 @@
 import regex from './regex';
 
 export default class ColorBase {
-  constructor(color) {
-    const codes = determine(color);
-    Object.defineProperty(this, '_', {
+  constructor(color, unfreeze) {
+    let codes = color instanceof ColorBase ? color._ : determine(color);
+    const descriptors = {
       get() {
         return codes;
       }
-    });
+    };
+    if (unfreeze)
+      descriptors.set = function (value) {
+        return value instanceof ColorBase ? value._ : determine(value);
+      };
+
+    Object.defineProperty(this, '_', descriptors);
   }
 
   toString(type = 'hex', alpha = 1) {

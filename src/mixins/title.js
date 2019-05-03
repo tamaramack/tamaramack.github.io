@@ -15,6 +15,6 @@ export default {
       document.title = `${title} | ${def.title}`;
     else
       document.title = def.title;
-    console.debug('MIXINS TITLE', title, this, document.title);
+    // console.debug('MIXINS TITLE', title, this, document.title);
   }
 };

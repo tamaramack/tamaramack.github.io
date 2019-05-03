@@ -1,9 +1,8 @@
 /**
- * color js file created by Tamara G. Mack on 24-Apr-19 for tamaramack.github.io
+ * flex-color js file created by Tamara G. Mack on 03-May-19 for tamaramack.github.io
  */
 import ColorInterface from './interface';
 import ColorBase from './base';
-import FlexColor from './flex-color';
 import Mani from './manipulations';
 
 const {
@@ -14,13 +13,13 @@ const {
   compare
 } = Mani;
 
-export default class Color extends ColorInterface {
+export default class FlexColor extends ColorInterface {
   constructor(color, name = null, alpha = 0.75) {
-    super(color);
+    super(color, true);
     let a = +alpha;
     Object.defineProperties(this, {
       id: {
-        value: `s${this._.hex}`,
+        value: `x${this._.hex}`,
         enumerable: true
       },
       names: {
@@ -31,8 +30,8 @@ export default class Color extends ColorInterface {
         get() {
           return a;
         },
-        set(value) {
-          a = +value;
+        set(val) {
+          a = +val;
         },
         enumerable: true
       }
@@ -66,7 +65,7 @@ export default class Color extends ColorInterface {
 
   get invert() {
     const base = contrast(this);
-    return new FlexColor(base);
+    return update.call(this, base);
   }
 
   get bw() {
@@ -75,22 +74,22 @@ export default class Color extends ColorInterface {
 
   desaturate(percent) {
     const base = saturation(this, false, percent);
-    return new FlexColor(base);
+    return update.call(this, base);
   }
 
   saturate(percent) {
     const base = saturation(this, true, percent);
-    return new FlexColor(base);
+    return update.call(this, base);
   }
 
   darken(percent) {
     const base = lightness(this, false, percent);
-    return new FlexColor(base);
+    return update.call(this, base);
   }
 
   lighten(percent) {
     const base = lightness(this, true, percent);
-    return new FlexColor(base);
+    return update.call(this, base);
   }
 
   transition(color, distance) {
@@ -99,10 +98,15 @@ export default class Color extends ColorInterface {
 
   blend(...colors) {
     const base = blend(this, ...colors);
-    return new FlexColor(base);
+    return update.call(this, base);
   }
 
   is(color) {
     return compare(this, color);
   }
+}
+
+function update(newColor) {
+  this._ = newColor._;
+  return this;
 }

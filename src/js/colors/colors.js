@@ -3,6 +3,8 @@
  */
 import names from "./colors.json";
 import regex from './regex';
+import ColorBase from './base';
+import FlexColor from './flex-color';
 import Color from './color';
 
 const nameKeys = Object.keys(names).sort();
@@ -106,7 +108,7 @@ export default class Colors {
   }
 
   static invertColor(color) {
-    if (!(color instanceof Color)) {
+    if (!(color instanceof ColorBase)) {
       console.error('Color not instance of Color class');
       return false;
     }
@@ -147,7 +149,7 @@ export default class Colors {
     return false;
   }
 
-  static Color(color) {
+  static Color(color, flex) {
     if (color instanceof Color)
       return color;
 

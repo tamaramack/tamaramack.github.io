@@ -1,12 +1,14 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import searchModule from '@/pages/rover/store-module';
+import ColorsModule from '@/pages/colors/store-module';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
-    rover: searchModule
+    rover: searchModule,
+    colors: ColorsModule
   },
   state: {
     geoError: false,

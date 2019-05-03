@@ -11,6 +11,7 @@
           li
             router-link(to="/projects") Projects
             ul.menu.vertical
+              li(v-if="!isSearch"): router-link(to="/colors") Colors
               li(v-if="!isSearch"): router-link(to="/substring") Substring
               li(v-if="!isSearch"): router-link(to="/foundation") Foundation
               li: router-link(to="/rover") Search

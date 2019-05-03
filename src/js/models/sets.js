@@ -8,7 +8,7 @@ export class SubSets {
         enumerable: true
       },
       set: {
-        value: new Set(...s)
+        value: new Set([...s])
       },
       positions: {
         value: new Map()
@@ -44,19 +44,40 @@ export class Collection {
     return this.set.has(value);
   }
 
-  add(value) {
-    if (this.has(value)) return;
-    this.add(value);
-    this.array.push(value);
+  add(functional, ...values) {
+    for (let i = 0; i < values.length; i++)
+      addValue.call(this, functional, values[i]);
   }
 
   forEach(cb) {
-    for (let i = 0; i < this.length; i++) cb(this[i], i, this);
+    const { array, length } = this;
+    for (let i = 0; i < length; i++) cb(array[i], i, array);
   }
 
-  reduce(cb, number) {
-    const { array } = this;
-    let accummulator = number | 0;
-    for (let i = 0; i < this.length; i++) accummulator = cb(accummulator, array[i], i, array);
+  reduce(cb, accummulator) {
+    const { array, length } = this;
+    if (accummulator === undefined)
+      accummulator = accummulator || retDataType(array[0]) || [];
+    for (let i = 0; i < length; i++)
+      accummulator = cb(accummulator, array[i], i, array);
+    return accummulator;
   }
+}
+
+function retDataType(obj) {
+  const _typeof = typeof obj;
+  if (_typeof === 'string') return '';
+  if (_typeof === 'number') return 0;
+  if (_typeof === 'boolean') return false;
+  if (Array.isArray(obj)) return [];
+  if (Object.prototype.toString.call(obj) === '[object Object]') return {};
+
+  return undefined;
+}
+
+function addValue(functional, value) {
+  if (typeof functional === 'function') functional(value);
+  if (this.has(value)) return;
+  this.set.add(value);
+  this.array[this.length] = value;
 }

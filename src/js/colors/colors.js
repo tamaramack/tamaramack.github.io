@@ -2,134 +2,169 @@
  * colors js file created by Tamara G. Mack on 19-Apr-19 for tamaramack.github.io
  */
 import names from "./colors.json";
+import regex from './regex';
 import Color from './color';
 
+const nameKeys = Object.keys(names).sort();
+
 export default class Colors {
-  constructor(...color) {
-    let _color = color;
-    if (typeof color[0] === 'string') {
-      // TODO: find color type
-      _color = color[0];
-      if (isHexString(_color))
-        _color = toRGB(_color);
-    } else if (Array.isArray(color[0])) {
-      // TODO: set [red, green, blue, alpha]
-    } else if (color.length === 1) {
-    } else {
+  constructor() {
+    Object.defineProperties(this, {
+      colors: {
+        value: [],
+        enumerable: true
+      },
+      hexset: {
+        value: new Map(),
+        enumerable: true
+      }
+    });
 
+    for (let i = 0; i < nameKeys.length; i++) {
+      if (nameKeys[i] === 'transparent') continue;
+      const key = nameKeys[i],
+        color = new Color(names[key], key);
+      if (!this.hexset.has(color.hex)) {
+        this.hexset.set(color.hex, this.length);
+        this.colors.push(color);
+      } else {
+        this.colors[this.hexset.get(color.hex)].names.push(key);
+      }
     }
-    this.base = {};
   }
 
-  static get ColorNames() {
-    return names;
+  get ColorNames() {
+    return nameKeys;
   }
 
-  static toHex(...data) {
-    return toHex.call(this, ...data);
+  get length() {
+    return this.colors.length;
   }
 
-  static toRgb(hex) {
-    const { red, green, blue } = toRGB.call(this, hex);
-    return `rgb(${[red, green, blue].join(',')})`;
+  has(value, property) {
+    for (let i = 0; i < this.colors.length; i++) {
+      let color = this.colors[i];
+      if (property)
+        if (!Array.isArray(property)) {
+          if (color[property] === value) return true;
+        } else {
+          while (property.length) color = color[property.shift()];
+          if (color === value) return true;
+        }
+      else if (color === value) return true;
+    }
+    return false;
   }
 
-  static invertColor() {
+  get(color) {
+    if ((color instanceof Color))
+      color = color.hex;
 
+    return this.colors[this.hexset.get(color)];
+  }
+
+  add(...colors) {
+    for (let i = 0; i < colors.length; i++) {
+      let color = colors[i];
+      if (!(color instanceof Color))
+        color = new Color(color);
+
+      if (!this.hexset.has(color.hex)) {
+        this.hexset.set(color.hex, this.length);
+        this.colors.push(color);
+      } else if (color.names.length) {
+        this.colors[this.hexset.get(color.hex)].names.push(...color.names);
+      }
+    }
+  }
+
+  filter(cb) {
+    const results = [];
+    for (let i = 0; i < this.colors.length; i++) {
+      const value = this.colors[i];
+      if (cb(value, i, this.colors)) results[results.length] = value;
+    }
+    return results;
+  }
+
+  map(cb) {
+    const results = [];
+    for (let i = 0; i < this.colors.length; i++) {
+      const value = cb(this.colors[i], i, this.colors);
+      if (value !== undefined) results[results.length] = value;
+    }
+    return results;
+  }
+
+  static random(alpha) {
+    const opacity = alpha ? round(Math.random(), 2) : 1;
+    return new Color({
+      red: randomRgb256(),
+      green: randomRgb256(),
+      blue: randomRgb256()
+    }, null, opacity);
+  }
+
+  static invertColor(color) {
+    if (!(color instanceof Color)) {
+      console.error('Color not instance of Color class');
+      return false;
+    }
+    let hex = color._.hex;
+    hex = 0xFFFFFF ^ parseInt(hex, 16);
+    hex = (`000000${hex.toString(16)}`).slice(-6);
+
+    return this.Color(`#${hex}`);
+  }
+
+  static isHsl(color) {
+    if (isTypeOf('HSL', color))
+      return 'hsl';
+
+    if (isTypeOf('HSLA', color))
+      return 'hsla';
+
+    return false;
   }
 
   static isHex(color) {
-    return isHexString.call(this, color);
+    if (isTypeOf('HEX', color))
+      return 'hex';
+
+    if (isTypeOf('HEX_ALPHA', color))
+      return 'hex-alpha';
+
+    return false;
   }
 
   static isRgb(color) {
-    return isRgbString.call(this, color);
+    if (isTypeOf('RGB', color))
+      return 'rgb';
+
+    if (isTypeOf('RGBA', color))
+      return 'rgba';
+
+    return false;
+  }
+
+  static Color(color) {
+    if (color instanceof Color)
+      return color;
+
+    return new Color(color);
   }
 }
 
-function toHsl(r, g, b) {
-  r /= 255; g /= 255; b /= 255;
-  const max = Math.max(r, g, b),
-    min = Math.min(r, g, b);
-
-  let hue,
-    saturation,
-    lightness = (max + min) / 2;
-
-  if (max === min) {
-    saturation = 0;
-    hue = saturation;
-  } else {
-    const d = max - min;
-    saturation = lightness > 0.5 ? d / (2 - max - min) : d / (max + min);
-
-    switch (max) {
-      case r:
-        hue = (g - b) / d + (g < b ? 6 : 0);
-        break;
-      case g:
-        hue = (b - r) / d + 2;
-        break;
-      case b:
-        hue = (r - g) / d + 4;
-        break;
-      default:
-    }
-
-    hue /= 6;
-  }
-
-  return { hue, saturation, lightness };
+function isTypeOf(type, color) {
+  return regex[type].test(color);
 }
 
-function isHexString(color) {
-  if (color.length === 4)
-    return /^#?([a-f\d]{1})([a-f\d]{1})([a-f\d]{1})$/i.exec(color);
-  return /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
+function round(number, decimals) {
+  if (!decimals) return Math.round(number);
+  const multiplier = 10 ** decimals;
+  return Math.round(number * multiplier) / multiplier;
 }
 
-function toHex(r, g, b) {
-  let red = (parseInt(r)).toString(16),
-    green = (parseInt(g)).toString(16),
-    blue = (parseInt(b)).toString(16);
-    // rgb = blue | (green << 8) | (red << 16);
-
-  red = (`0${red}`).slice(-2);
-  green = (`0${green}`).slice(-2);
-  blue = (`0${blue}`).slice(-2);
-
-  return `#${red + green + blue}`;
-}
-
-function isRgbString(color) {
-  let alpha;
-  const colorResults = color.match(/\d+/g);
-  if (colorResults.length < 3 && colorResults.length > 5) return false;
-  if (colorResults.length > 3) alpha = parseFloat([...colorResults.slice(3)].join('.'));
-
-  return {
-    red: +colorResults[0],
-    green: +colorResults[1],
-    blue: +colorResults[2],
-    alpha
-  };
-}
-
-function toRGB(hex) {
-  const result = isHexString(hex);
-  let rgb = '',
-    red,
-    green,
-    blue;
-
-  if (result) {
-    red = parseInt(result[1], 16);
-    green = parseInt(result[2], 16);
-    blue = parseInt(result[3], 16);
-    rgb = `rgb(${[red, green, blue].join(',')})`;
-  }
-
-  return result ? {
-    rgb, red, green, blue
-  } : null;
+function randomRgb256() {
+  return Math.floor(Math.random() * 256);
 }

@@ -23,6 +23,11 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     },
     {
+      path: '/playground',
+      name: 'playground',
+      component: () => import(/* webpackChunkName: "about" */ './pages/playground/Playground.vue')
+    },
+    {
       path: '/rover',
       name: 'rover',
       component: () => import(/* webpackChunkName: "about" */ './pages/rover/Search.vue')
@@ -45,6 +50,13 @@ export default new Router({
           },
           component: () => import('./pages/substring/StringReader')
         }
+      ]
+    },
+    {
+      path: '/colors',
+      name: 'colors',
+      component: () => import(/* webpackChunkName: "about" */ './pages/colors/Colors.vue'),
+      children: [
       ]
     },
     {

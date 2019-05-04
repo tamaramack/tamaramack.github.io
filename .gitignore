@@ -5,7 +5,6 @@ gen
 
 build
 dev-build
-package-lock.json
 
 src/js/data/substr/*
 

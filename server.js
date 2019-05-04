@@ -7,7 +7,7 @@ const history = require('connect-history-api-fallback');
 const configureAPI = require('./src/server/configure');
 
 const app = express();
-const { PORT = 9200, NODE_ENV } = process.env;
+const { PORT = 9200, NODE_ENV = 'dev' } = process.env;
 
 const isProd = (NODE_ENV === 'production');
 const staticConf = {
@@ -27,5 +27,5 @@ app.use(express.static(folder, staticConf));
 app.use('/', history());
 
 app.listen(PORT, () => {
-  console.log(`App running on port ${PORT}`)
+  console.log(`App running on port ${PORT} on ${NODE_ENV} environment`)
 });

@@ -94,8 +94,8 @@
   },
   "config": {
     "port": 9001,
-    "build": "D:\\Git\\tamaramack.github.io\\server.js",
-    "timestamp": 1556930052125
+    "build": "D:\\Git\\tamaramack.github.io\\src\\pages\\playground\\js\\justify.js",
+    "timestamp": 1557209403229
   },
   "gitHooks": {
     "pre-commit": "lint-staged"

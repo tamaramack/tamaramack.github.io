@@ -2,7 +2,16 @@
  * server.js js file created by Tamara G. Mack on 08-Apr-19 for tamaramack.github.io
  */
 const express = require('express');
+const dotenv = require('dotenv');
 const path = require('path');
+
+let results = dotenv.config();
+if (results.error) {
+  console.error(results.error);
+} else {
+  console.log(results.parsed);
+}
+
 const history = require('connect-history-api-fallback');
 const configureAPI = require('./src/server/configure');
 

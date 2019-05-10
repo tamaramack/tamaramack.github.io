@@ -28,6 +28,7 @@
     "@progress/kendo-theme-default": "^3.4.0",
     "@progress/kendo-ui": "^2019.1.327",
     "core-js": "^3.0.0",
+    "dotenv": "^8.0.0",
     "foundation-sites": "^6.5.3",
     "jquery": "^3.4.1",
     "lodash": "^4.17.11",
@@ -94,11 +95,12 @@
   },
   "config": {
     "port": 9001,
-    "build": "D:\\Git\\tamaramack.github.io\\src\\pages\\playground\\js\\justify.js",
-    "timestamp": 1557209403229
+    "build": "D:\\Git\\tamaramack.github.io\\server.js",
+    "timestamp": 1557452383253
   },
   "gitHooks": {
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged",
+    "post-checkout": "npm run precommit"
   },
   "lint-staged": {
     "*.{js,vue}": [

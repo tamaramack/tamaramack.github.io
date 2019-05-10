@@ -95,8 +95,8 @@
   },
   "config": {
     "port": 9001,
-    "build": "D:\\Git\\tamaramack.github.io\\src\\pages\\playground\\components\\Justify.vue",
-    "timestamp": 1557453295614
+    "build": "v0.0.12-7-g6e4385e",
+    "timestamp": 1557453374671
   },
   "gitHooks": {
     "pre-commit": "lint-staged",

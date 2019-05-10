@@ -21,8 +21,7 @@ export default {
     text: {
       get() {
         let name = this.Color.hex;
-        if (this.Color.names.length)
-          name = this.Color.names[0];
+        if (this.Color.names.length) name = this.Color.names[0];
 
         return `${name} (${this.Color.id})`;
       }
@@ -30,8 +29,8 @@ export default {
     boxStyle: {
       get() {
         return {
-          "border-color": this.Color.invert.rgb,
-          "background-color": this.Color.rgb
+          'border-color': this.Color.invert.rgb,
+          'background-color': this.Color.rgb
         };
       }
     },

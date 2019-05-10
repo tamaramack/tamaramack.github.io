@@ -1,7 +1,7 @@
 /**
  * colors js file created by Tamara G. Mack on 19-Apr-19 for tamaramack.github.io
  */
-import names from "./colors.json";
+import names from './colors.json';
 import regex from './regex';
 import ColorBase from './base';
 import FlexColor from './flex-color';
@@ -46,21 +46,20 @@ export default class Colors {
   has(value, property) {
     for (let i = 0; i < this.colors.length; i++) {
       let color = this.colors[i];
-      if (property)
+      if (property) {
         if (!Array.isArray(property)) {
           if (color[property] === value) return true;
         } else {
           while (property.length) color = color[property.shift()];
           if (color === value) return true;
         }
-      else if (color === value) return true;
+      } else if (color === value) { return true; }
     }
     return false;
   }
 
   get(color) {
-    if ((color instanceof Color))
-      color = color.hex;
+    if ((color instanceof Color)) color = color.hex;
 
     return this.colors[this.hexset.get(color)];
   }
@@ -68,8 +67,7 @@ export default class Colors {
   add(...colors) {
     for (let i = 0; i < colors.length; i++) {
       let color = colors[i];
-      if (!(color instanceof Color))
-        color = new Color(color);
+      if (!(color instanceof Color)) color = new Color(color);
 
       if (!this.hexset.has(color.hex)) {
         this.hexset.set(color.hex, this.length);
@@ -112,7 +110,7 @@ export default class Colors {
       console.error('Color not instance of Color class');
       return false;
     }
-    let hex = color._.hex;
+    let { hex } = color._;
     hex = 0xFFFFFF ^ parseInt(hex, 16);
     hex = (`000000${hex.toString(16)}`).slice(-6);
 
@@ -120,38 +118,31 @@ export default class Colors {
   }
 
   static isHsl(color) {
-    if (isTypeOf('HSL', color))
-      return 'hsl';
+    if (isTypeOf('HSL', color)) return 'hsl';
 
-    if (isTypeOf('HSLA', color))
-      return 'hsla';
+    if (isTypeOf('HSLA', color)) return 'hsla';
 
     return false;
   }
 
   static isHex(color) {
-    if (isTypeOf('HEX', color))
-      return 'hex';
+    if (isTypeOf('HEX', color)) return 'hex';
 
-    if (isTypeOf('HEX_ALPHA', color))
-      return 'hex-alpha';
+    if (isTypeOf('HEX_ALPHA', color)) return 'hex-alpha';
 
     return false;
   }
 
   static isRgb(color) {
-    if (isTypeOf('RGB', color))
-      return 'rgb';
+    if (isTypeOf('RGB', color)) return 'rgb';
 
-    if (isTypeOf('RGBA', color))
-      return 'rgba';
+    if (isTypeOf('RGBA', color)) return 'rgba';
 
     return false;
   }
 
   static Color(color, flex) {
-    if (color instanceof Color)
-      return color;
+    if (color instanceof Color) return color;
 
     return new Color(color);
   }

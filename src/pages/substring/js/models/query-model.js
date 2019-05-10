@@ -234,29 +234,33 @@ function handlePatternsInQueries(start, end, isSingle) {
     const query = this.positions.get(endPositions[posIndex]);
     if (!query) continue;
     if (query.start < start) continue;
-    if (isSingle) this.addNode(query);
-    else
+    if (isSingle) {
+      this.addNode(query);
+    } else {
     // console.debug('is Not Single', query);
     // sort by start
     // identify short lengths
-
       queries[queries.length] = query;
+    }
   }
 
   // TODO: sort and map from small to large
   queries.sort((a, b) => a.length - b.length);
   console.debug('handlePatternsInQueries', start, end, queries);
-  if (queries.length > 3000) while (queries.length > 0) {
-    const end = (queries.length >> 5) || queries.length;
-    let subQ = queries.splice(0, end);
-    for (let qIndex = 0; qIndex < subQ.length; qIndex++) {
-      const query = subQ[qIndex];
+  if (queries.length > 3000) {
+    while (queries.length > 0) {
+      const end = (queries.length >> 5) || queries.length;
+      let subQ = queries.splice(0, end);
+      for (let qIndex = 0; qIndex < subQ.length; qIndex++) {
+        const query = subQ[qIndex];
+        this.addNode(query);
+      }
+    }
+  } else {
+    for (let qIndex = 0; qIndex < queries.length; qIndex++) {
+      const query = queries[qIndex];
       this.addNode(query);
     }
-  }
-  else for (let qIndex = 0; qIndex < queries.length; qIndex++) {
-    const query = queries[qIndex];
-    this.addNode(query);
   }
 }
 

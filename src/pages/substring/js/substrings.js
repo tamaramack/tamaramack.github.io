@@ -59,28 +59,30 @@ function z_adv(s) {
   let right = 0;
   let shift = 0;
 
-  for (let i = 1; i < s.length; i++) if (i > right) {
-    let n = 0;
-    while ((n + i) < s.length && s[n] === s[n + i]) n++;
+  for (let i = 1; i < s.length; i++) {
+    if (i > right) {
+      let n = 0;
+      while ((n + i) < s.length && s[n] === s[n + i]) n++;
 
-    arr[i] = n;
-    if (n > 0) {
-      left = i;
-      right = i + n - 1;
-    }
-  } else {
-    shift = i - left;
-    const right_len = right - i + 1;
-
-    if (arr[shift] < right_len) {
-      arr[i] = arr[shift];
+      arr[i] = n;
+      if (n > 0) {
+        left = i;
+        right = i + n - 1;
+      }
     } else {
-      let j = right + 1;
-      while (j < s.length && s[j] === s[j - i]) j++;
+      shift = i - left;
+      const right_len = right - i + 1;
 
-      arr[i] = j - i;
-      left = i;
-      right = j - 1;
+      if (arr[shift] < right_len) {
+        arr[i] = arr[shift];
+      } else {
+        let j = right + 1;
+        while (j < s.length && s[j] === s[j - i]) j++;
+
+        arr[i] = j - i;
+        left = i;
+        right = j - 1;
+      }
     }
   }
 

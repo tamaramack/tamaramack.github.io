@@ -22,14 +22,15 @@ function forEach(objectArray, cb, owner) {
       return;
     }
 
-    for (let value of objectArray)
-      cb.call(owner || this, value, value, objectArray);
+    for (let value of objectArray) cb.call(owner || this, value, value, objectArray);
     return;
   }
 
-  for (let prop in objectArray)
-    if (obj.hasOwnProperty(prop))
+  for (let prop in objectArray) {
+    if (objectArray.hasOwnProperty(prop)) {
       cb.call(owner || this, objectArray[prop], prop, objectArray);
+    }
+  }
 }
 
 function debounce(cb, delay) {

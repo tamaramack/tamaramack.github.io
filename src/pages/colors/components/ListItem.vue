@@ -19,15 +19,14 @@ export default {
       get() {
         const c = this.Color;
         let name = c.hex;
-        if (c.names.length)
-          name = c.names[0];
+        if (c.names.length) name = c.names[0];
         return name;
       }
     },
     colorStyle: {
       get() {
         return {
-          "border-color": this.Color.invert.rgb,
+          'border-color': this.Color.invert.rgb,
           'background-color': this.Color.rgb
         };
       }

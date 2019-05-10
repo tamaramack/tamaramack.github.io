@@ -12,10 +12,11 @@ export default class ColorBase {
         return codes;
       }
     };
-    if (unfreeze)
+    if (unfreeze) {
       descriptors.set = function (value) {
         return value instanceof ColorBase ? value._ : determine(value);
       };
+    }
 
     Object.defineProperty(this, '_', descriptors);
   }
@@ -113,7 +114,7 @@ function determine(color) {
 function stringRgbHslConversion(color, c) {
   let hsl;
   const rgb = convertRGBorHSL(color);
-  if (rgb)
+  if (rgb) {
     switch (rgb.type) {
       case 'rgb':
         c.r = rgb.rh;
@@ -136,6 +137,7 @@ function stringRgbHslConversion(color, c) {
       default:
         console.error('ERROR: String not RGB or HSL');
     }
+  }
 }
 
 function objectConversion(color, c) {
@@ -143,9 +145,9 @@ function objectConversion(color, c) {
     red, green, blue, hue, saturation, lightness
   } = color;
 
-  if (!(isNaN(red)
-    && isNaN(green)
-    && isNaN(blue))) {
+  if (!(Number.isNaN(red)
+    && Number.isNaN(green)
+    && Number.isNaN(blue))) {
     c.r = red;
     c.g = green;
     c.b = blue;
@@ -175,9 +177,9 @@ function objectConversion(color, c) {
 }
 
 function fromRGBtoHex(r, g, b) {
-  let red = (parseInt(r)).toString(16),
-    green = (parseInt(g)).toString(16),
-    blue = (parseInt(b)).toString(16);
+  let red = (+r).toString(16),
+    green = (+g).toString(16),
+    blue = (+b).toString(16);
   // rgb = blue | (green << 8) | (red << 16);
 
   red = (`0${red}`).slice(-2);
@@ -272,8 +274,7 @@ function fromHSLtoRGB(h, s, l) {
 
 function fromHEXtoRGB(hex) {
   const [firstChar] = hex;
-  if (firstChar === '#')
-    hex = hex.substring(1);
+  if (firstChar === '#') hex = hex.substring(1);
 
   let red = 0,
     green = 0,

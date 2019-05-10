@@ -55,6 +55,7 @@
     "@vue/test-utils": "1.0.0-beta.29",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.5.0",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "braces": "^2.3.2",
     "debug": "^4.1.1",
     "eslint": "^5.15.3",
@@ -95,8 +96,8 @@
   },
   "config": {
     "port": 9001,
-    "build": "v0.0.12-7-g6e4385e",
-    "timestamp": 1557453374671
+    "build": "D:\\Git\\tamaramack.github.io\\src\\store.js",
+    "timestamp": 1557526158547
   },
   "gitHooks": {
     "pre-commit": "lint-staged",

@@ -25,7 +25,7 @@ class ColorInterface extends ColorBase {
     super(...data);
     let missing = properties.filter(prop => typeof this[prop] === 'undefined');
     if (missing.length) {
-      const name = this.constructor.name,
+      const { name } = this.constructor,
         err = `Colors {${name}} requires these missing properties: [${missing.join(', ')}]`;
       throw new Error(err);
     }

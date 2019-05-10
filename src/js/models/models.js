@@ -151,10 +151,12 @@ export class StoreModel {
   _add(s) {
     if (!(s && s.length)) return;
     this._.add(s);
-    if (!this.__.hasOwnProperty(s)) Object.defineProperty(this.__, s, {
-      value: new StringNodeModel(s, this),
-      enumerable: true
-    });
+    if (!this.__.hasOwnProperty(s)) {
+      Object.defineProperty(this.__, s, {
+        value: new StringNodeModel(s, this),
+        enumerable: true
+      });
+    }
   }
 
   _addAll(...s) {
@@ -212,10 +214,12 @@ export class SetModel {
     if (!(s && s.length)) return;
     this._.add(s);
 
-    if (!this.__.hasOwnProperty(s)) Object.defineProperty(this.__, s, {
-      value: new StringSet(s, this),
-      enumerable: true
-    });
+    if (!this.__.hasOwnProperty(s)) {
+      Object.defineProperty(this.__, s, {
+        value: new StringSet(s, this),
+        enumerable: true
+      });
+    }
 
 
     if (position) this.get(s).addPosition(position);
@@ -325,8 +329,7 @@ export class StringSet {
   stepString(carry, i) {
     if (this.length <= 1) return carry;
     i--;
-    for (let l = 0; l <= this.length - i; l++) exists = setSubstring.call(this, l, l + i, carry);
-
+    for (let l = 0; l <= this.length - i; l++) setSubstring.call(this, l, l + i, carry);
 
     if (i) return this.stepString(carry, i);
     return carry;

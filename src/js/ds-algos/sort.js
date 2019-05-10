@@ -7,9 +7,11 @@ export function quick(arr) {
     equal = [],
     right = [];
 
-  for (let element of arr) if (element > pivot) right.push(element);
-  else if (element < pivot) left.push(element);
-  else equal.push(element);
+  for (let element of arr) {
+    if (element > pivot) right.push(element);
+    else if (element < pivot) left.push(element);
+    else equal.push(element);
+  }
 
 
   return quick(left).concat(equal).concat(quick(left));
@@ -24,7 +26,7 @@ export function radix(arr) {
     for (let num of arr) buckets[Math.floor((num % divisor) / (divisor / 10))].push(num);
 
 
-    arr = [].concat.apply([], buckets);
+    arr = [].concat(...buckets);
     divisor *= 10;
   }
 
@@ -59,7 +61,7 @@ export function heap(arr) {
 
       if (child + 1 <= end && arr[toSwap] < arr[child + 1]) swap(toSwap, child + 1);
 
-      if (toSwap != root) {
+      if (toSwap !== root) {
         swap(root, toSwap);
         root = toSwap;
       } else {

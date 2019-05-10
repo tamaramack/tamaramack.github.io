@@ -46,7 +46,7 @@ class LargeNumber extends String {
     num = arr[0];
     den = arr.length === 2 ? arr[1] : false;
 
-    if (Number.isNaN(num.substring(0, 1))) {
+    if (Number.isNaN(Number(num.substring(0, 1)))) {
       this.negative = num.substring(0, 1) === '-';
       num = num.substring(1);
     }

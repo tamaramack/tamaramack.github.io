@@ -96,17 +96,16 @@
   },
   "config": {
     "port": 9001,
-    "build": "D:\\Git\\tamaramack.github.io\\src\\store.js",
-    "timestamp": 1557526158547
+    "build": "v0.0.12-9-gb29a696",
+    "timestamp": 1557526175336
   },
   "gitHooks": {
     "pre-commit": "lint-staged",
-    "post-checkout": "npm run precommit"
+    "post-merge": "npm run precommit"
   },
   "lint-staged": {
     "*.{js,vue}": [
       "vue-cli-service lint --fix",
-      "npm run precommit",
       "git add"
     ]
   },

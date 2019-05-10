@@ -145,9 +145,9 @@ function objectConversion(color, c) {
     red, green, blue, hue, saturation, lightness
   } = color;
 
-  if (!(Number.isNaN(red)
-    && Number.isNaN(green)
-    && Number.isNaN(blue))) {
+  if (!(Number.isNaN(Number(red))
+    && Number.isNaN(Number(green))
+    && Number.isNaN(Number(blue)))) {
     c.r = red;
     c.g = green;
     c.b = blue;

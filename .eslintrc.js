@@ -14,8 +14,8 @@ module.exports = {
     '@vue/airbnb'
   ],
   rules: {
-    'no-console': prod ? ['error', {allow: ['error', 'warn']}] : 'off',
-    'no-debugger': prod ? 'error' : 'off',
+    'no-console': prod ? ['error', {allow: ['error', 'warn']}] : 0,
+    'no-debugger': prod ? 1 : 0,
     'func-names': 0,
     'no-restricted-syntax': 0,
     'guard-for-in': 0,

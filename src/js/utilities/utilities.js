@@ -3,11 +3,17 @@
  * interview-190319-tm
  */
 export {
+  isNumber,
   debounce,
   throttle,
   isIterable,
   forEach
 };
+
+function isNumber(num) {
+  // return !Number.isNaN(parseFloat(num));
+  return /^-?\d+$/.test(num) || /^-?\d+\.\d+$/.test(num);
+}
 
 function isIterable(obj) {
   return (obj !== undefined

@@ -202,7 +202,7 @@
     var canPlay = !!(v.canPlayType);
     try {
       if (canPlay) {
-        canPlay = new Boolean(canPlay);
+        canPlay = Boolean(canPlay);
         // _console.info('Video canPlayType', canPlay);
         for (var mimeType in MIMETYPES) {
           var arr = MIMETYPES[mimeType];
@@ -299,7 +299,7 @@
     var hasFlashTest = function (result, obj) {
       var _bool = !!result;
       if (_bool) {
-        _bool = new Boolean(_bool);
+        _bool = Boolean(_bool);
         _bool.blocked = (result === 'blocked');
         getSWF_scripts(_bool);
         getFlashDetect_Scripts(_bool);

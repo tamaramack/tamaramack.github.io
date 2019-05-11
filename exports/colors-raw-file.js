@@ -18,14 +18,14 @@ const util = require('util');
   await saveJsonFile();
 
   async function saveJsonFile() {
-    const workFile = `colors.json`;
+    const workFile = 'colors.json';
     const rawInput = await readFile(path.join(dataDir, workFile), encoding);
     const json = JSON.parse(rawInput);
     let content = '';
 
-    for (const prop in json)
-      if (json.hasOwnProperty(prop) && prop !== 'transparent')
-        content += `\$${prop}: ${json[prop]};\n`;
+    for (const prop in json) {
+      if (json.hasOwnProperty(prop) && prop !== 'transparent') { content += `\$${prop}: ${json[prop]};\n`; }
+    }
 
     fs.writeFileSync(path.join(destinationDir, 'colors.scss'), content);
   }

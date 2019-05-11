@@ -102,9 +102,9 @@ function calc(arr) {
 }
 
 function bw(contextColor) {
-  const c = contextColor.invert._;
-  let condition = ((c.red * 0.299) + (c.green * 0.587) + (c.green * 0.114)) > 186;
-  return condition ? '#ffffff' : '#000000';
+  const c = contextColor._;
+  let condition = ((c.red * 0.2126) + (c.green * 0.7152) + (c.green * 0.0722)) > 179;
+  return condition ? '#000000' : '#ffffff';
 }
 
 function invert(contextColor) {

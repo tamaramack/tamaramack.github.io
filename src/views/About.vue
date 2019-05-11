@@ -18,17 +18,11 @@
 
           .cell.medium-4.medium-cell-block-y
             h2 {{content.frameHeader2}}
-            p {{content.grid2[0]}}
-            p {{content.grid2[1]}}
-            p {{content.grid2[2]}}
+            p(v-for="(pg, i) in content.grid2", :key="i") {{pg}}
 
           .cell.medium-8.medium-cell-block-y
             h2 {{content.frameHeader3}}
-            p {{content.grid3[0]}}
-            p {{content.grid3[1]}}
-            p {{content.grid3[2]}}
-            p {{content.grid3[3]}}
-            p {{content.grid3[4]}}
+            p(v-for="(pg, i) in content.grid3", :key="i") {{pg}}
 
       .cell.shrink.footer
         .callout.secondary

@@ -57,7 +57,9 @@ export default {
         let name = this.Color.hex;
         if (this.Color.names.length) {
           name = this.Color.names[0];
-          if (this.Color.names.length > 1) name += ` <small>(${this.Color.names.slice(1).join(', ')})</small>`;
+          if (this.Color.names.length > 1) {
+            name += ` <small>(${this.Color.names.slice(1).join(', ')})</small>`;
+          }
         }
         return `${name}`;
       }

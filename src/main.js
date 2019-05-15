@@ -1,7 +1,7 @@
-import '@progress/kendo-ui';
+// import '@progress/kendo-ui';
 // import '@progress/kendo-theme-default/scss/all.scss';
 import Vue from 'vue';
-import {
+/* import {
   DateinputsInstaller,
   Calendar,
   DateInput,
@@ -10,7 +10,7 @@ import {
   DateTimePicker,
   TimePicker,
   MultiViewCalendar
-} from '@progress/kendo-dateinputs-vue-wrapper';
+} from '@progress/kendo-dateinputs-vue-wrapper'; */
 import App from './App.vue';
 import router from './router';
 import store from './store';
@@ -19,7 +19,7 @@ import Mixins from './mixin';
 import './registerServiceWorker';
 
 Vue.config.productionTip = false;
-Vue.use(DateinputsInstaller);
+// Vue.use(DateinputsInstaller);
 Mixins(Vue);
 
 window.mainVue = new Vue({

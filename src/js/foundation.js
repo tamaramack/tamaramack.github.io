@@ -30,6 +30,7 @@ function initFoundation(Vue) {
         }
       });
 
+      console.log(context.prototype);
       context.prototype.$foundation_sites.addToJquery(context.prototype.$);
     }
   });

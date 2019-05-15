@@ -113,7 +113,7 @@ export default ((root) => {
         const selectedIndex = (e.target).index;
         root.console.warn('Selection has been made:', selectedIndex);
         root.console.dir(e.target);
-        this.selected = isNaN(selectedIndex) ? null : (this.list[selectedIndex]);
+        this.selected = Number.isNaN(Number(selectedIndex)) ? null : (this.list[selectedIndex]);
       });
     }
 

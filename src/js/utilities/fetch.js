@@ -13,10 +13,8 @@ export function getJson(url, {
     method: 'GET'
   };
 
-  if (typeof data === 'string')
-    url += `?${data}`;
-  else if (data)
-    init.body = data;
+  if (typeof data === 'string') url += `?${data}`;
+  else if (data) init.body = data;
 
   const verifyJson = (response) => {
     // console.log('Response', response);
@@ -37,8 +35,7 @@ export function getMedia(mediaURL, {
   error,
   final
 }) {
-  if (typeof mediaURL !== 'string' || !(mediaURL instanceof Request))
-    throw new Error('Media Url must be a string or Request.');
+  if (typeof mediaURL !== 'string' || !(mediaURL instanceof Request)) throw new Error('Media Url must be a string or Request.');
 
   const myRequest = new Request(mediaURL);
   const verifyBlob = (response) => {
@@ -120,12 +117,11 @@ export function postFiles(url, {
       for (let prop in fileData) {
         if (!fileData.hasOwnProperty(prop)) continue;
         const value = fileData[prop];
-        if (Array.isArray(value))
+        if (Array.isArray(value)) {
           value.forEach((item) => {
             formData.append(prop, item);
           });
-        else
-          formData.append(prop, value);
+        } else { formData.append(prop, value); }
       }
       init = {
         method,
@@ -160,14 +156,12 @@ function myFetch(response, init, {
 function getJSON_legacy(url) {
   return new Promise(((resolve, reject) => {
     const xhr = new XMLHttpRequest();
-    xhr.overrideMimeType("application/json");
+    xhr.overrideMimeType('application/json');
     xhr.open('get', url, true);
     xhr.onreadystatechange = function () {
       const status = xhr.status;
-      if (status == '200' && xhr.readyState === 4)
-        resolve(xhr.response);
-      else
-        reject(status);
+      if (+status === 200 && xhr.readyState === 4) resolve(xhr.response);
+      else reject(status);
     };
     xhr.send(null);
   }));

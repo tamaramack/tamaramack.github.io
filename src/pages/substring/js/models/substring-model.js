@@ -4,7 +4,6 @@ export {
   SubstringSet,
   QuerySet
 };
-'use strict;';
 
 const totalCount = 300;
 
@@ -85,10 +84,12 @@ class SubstringSet {
       value: new QuerySet(queries, this)
     });
 
-    for (let [key, value] of this.patterns) for (let i = 0; i < value.clusters.length; i++) {
-      const cluster = value.clusters[i];
-      const end = cluster.i + cluster.length;
-      handlePatternsInQueries.call(this, cluster.i, end, (key.length === 1));
+    for (let [key, value] of this.patterns) {
+      for (let i = 0; i < value.clusters.length; i++) {
+        const cluster = value.clusters[i];
+        const end = cluster.i + cluster.length;
+        handlePatternsInQueries.call(this, cluster.i, end, (key.length === 1));
+      }
     }
   }
 
@@ -202,9 +203,11 @@ class SubModel {
       let gets = [];
       let pSets = value.sets.keys();
       let s = pSets.length;
-      while (s--) if (!this.sets.has(pSets[s]) && search(pSets[s], substring)) {
-        const inner = this.store.queriedSets.get(pSets[s]);
-        gets = gets.concat(inner.sets.keys());
+      while (s--) {
+        if (!this.sets.has(pSets[s]) && search(pSets[s], substring)) {
+          const inner = this.store.queriedSets.get(pSets[s]);
+          gets = gets.concat(inner.sets.keys());
+        }
       }
 
 
@@ -253,8 +256,10 @@ function filter(obj, condition, owner) {
     return arr;
   }
   if (typeof obj === 'string') {
-    const s = '';
-    for (let i = 0; i < obj.length; i++) if (condition.call(owner, obj[i], i, obj)) s += obj[i];
+    let s = '';
+    for (let i = 0; i < obj.length; i++) {
+      if (condition.call(owner, obj[i], i, obj)) s += obj[i];
+    }
 
     return s;
   }
@@ -305,13 +310,15 @@ function handlePatternsInQueries(start, end, isSingle) {
   for (var posIndex = 0; posIndex < endPositions.length; posIndex++) {
     const query = this.queries.positions.get(endPositions[posIndex]);
     if (query.start < start) continue;
-    if (isSingle) this.add(query);
-    else
+    if (isSingle) {
+      this.add(query);
+    } else {
     // console.debug('is Not Single', query);
     // sort by start
     // identify short lengths
 
       queries[queries.length] = query;
+    }
   }
   console.debug('handlePatternsInQueries', start, end, queries);
   for (let qIndex = 0; qIndex < queries.length; qIndex++) {
@@ -394,9 +401,9 @@ function patterns() {
       }
 
       if (pattern.length > cluster.length * 3) {
-        // const smallPrintPattern = pattern.substring(0, pattern.length < totalCount ? undefined : totalCount);
-        // const distinct = this.addDistinctSubstrings(smallPrintPattern, pattern);
-        // this.addSet(smallPrintPattern, distinct.keys());
+        // const spp = pattern.substring(0, pattern.length < totalCount ? undefined : totalCount);
+        // const distinct = this.addDistinctSubstrings(spp, pattern);
+        // this.addSet(spp, distinct.keys());
 
         const clusterValue = {
           i,

@@ -72,12 +72,14 @@ export class SecondNode extends Node {
 export class SingleNode extends Node {
   constructor(substr, collection, childNode) {
     super(substr, collection);
-    if (childNode) Object.defineProperty(this, 'SecondNode', {
-      get() {
-        return this.nodes.get(childNode.substring);
-      },
-      enumerable: true
-    });
+    if (childNode) {
+      Object.defineProperty(this, 'SecondNode', {
+        get() {
+          return this.nodes.get(childNode.substring);
+        },
+        enumerable: true
+      });
+    }
   }
 }
 

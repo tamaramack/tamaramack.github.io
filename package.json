@@ -55,6 +55,7 @@
     "@vue/test-utils": "1.0.0-beta.29",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.5.0",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "braces": "^2.3.2",
     "debug": "^4.1.1",
     "eslint": "^5.15.3",
@@ -95,17 +96,16 @@
   },
   "config": {
     "port": 9001,
-    "build": "D:\\Git\\tamaramack.github.io\\src\\js\\utilities\\load-script.js",
-    "timestamp": 1557881228774
+    "build": "v0.0.12-10-g3548ed1",
+    "timestamp": 1557528082014
   },
   "gitHooks": {
     "pre-commit": "lint-staged",
-    "post-checkout": "npm run precommit"
+    "post-merge": "npm run precommit"
   },
   "lint-staged": {
     "*.{js,vue}": [
       "vue-cli-service lint --fix",
-      "npm run precommit",
       "git add"
     ]
   },

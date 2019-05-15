@@ -11,5 +11,12 @@ module.exports = {
   ],
   plugins: [
     '@babel/plugin-proposal-object-rest-spread'
-  ]
+  ],
+  env: {
+    production: {
+      plugins: [
+        ['transform-remove-console', { exclude: ['error', 'warn'] }]
+      ]
+    }
+  }
 };

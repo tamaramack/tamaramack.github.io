@@ -4,6 +4,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const path = require('path');
+// const serveStatic = require('serve-static');
 
 let results = dotenv.config();
 if (results.error) {
@@ -16,15 +17,16 @@ const history = require('connect-history-api-fallback');
 const configureAPI = require('./src/server/configure');
 
 const app = express();
-const { PORT = 9200, NODE_ENV = 'dev' } = process.env;
+const { PORT = 9200, NODE_ENV = 'development' } = process.env;
 
 const isProd = (NODE_ENV === 'production');
+const isDev = (NODE_ENV === 'development');
 const staticConf = {
-  maxAge: isProd ? '1y' : 0,
+  maxAge: isProd ? '1m' : 0,
   etag: !isProd
 };
 
-let folder = isProd ? 'dist' : 'dev-build';
+let folder = !isDev ? 'dist' : 'dev-build';
 folder = path.join(__dirname, folder);
 
 // APIs

@@ -22,7 +22,8 @@
         .grid-x.grid-padding-x
 
           .cell.medium-2.medium-cell-block-y
-            Dropdown(desc="Choose Length", :options="choices", :model="model", selectedKey="optionSelect")
+            Dropdown(desc="Choose Length", :options="choices", :model="model",
+              selectedKey="optionSelect")
             div
               ul.no-bullet(v-if="showResults")
                 li(v-for="(item, index) in results")
@@ -49,7 +50,7 @@
 import { Navigation, FormComponents } from '@/components';
 import { InputItems, InputList } from '@/js/models/input';
 import options from '@/js/data/substr/options.json';
-import countstrings from "./js/substrings";
+import countstrings from './js/substrings';
 
 const { Dropdown, InputGroup } = FormComponents;
 
@@ -142,9 +143,9 @@ export default {
       this.json = await importJson(name);
     },
     runScripts() {
-      console.log("Start Calculations");
+      console.log('Start Calculations');
       this.results = countstrings(this.s, this.q);
-      console.log("Post Calculations");
+      console.log('Post Calculations');
     }
   }
 };

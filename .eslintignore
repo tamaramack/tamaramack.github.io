@@ -7,3 +7,4 @@ app/*
 dev-build/*
 bin/*
 server.js
+*.config.js

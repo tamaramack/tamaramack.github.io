@@ -11,28 +11,30 @@ function zArray(s) {
   let right = 0;
   let shift = 0;
 
-  for (let i = 1; i < s.length; i++) if (i > right) {
-    let n = 0;
-    while ((n + i) < s.length && s[n] === s[n + i]) n++;
+  for (let i = 1; i < s.length; i++) {
+    if (i > right) {
+      let n = 0;
+      while ((n + i) < s.length && s[n] === s[n + i]) n++;
 
-    array[i] = n;
-    if (n > 0) {
-      left = i;
-      right = i + n - 1;
-    }
-  } else {
-    shift = i - left;
-    const right_len = right - i + 1;
-
-    if (array[shift] < right_len) {
-      array[i] = array[shift];
+      array[i] = n;
+      if (n > 0) {
+        left = i;
+        right = i + n - 1;
+      }
     } else {
-      let j = right + 1;
-      while (j < s.length && s[j] === s[j - i]) j++;
+      shift = i - left;
+      const right_len = right - i + 1;
 
-      array[i] = j - i;
-      left = i;
-      right = j - 1;
+      if (array[shift] < right_len) {
+        array[i] = array[shift];
+      } else {
+        let j = right + 1;
+        while (j < s.length && s[j] === s[j - i]) j++;
+
+        array[i] = j - i;
+        left = i;
+        right = j - 1;
+      }
     }
   }
 

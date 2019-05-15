@@ -29,7 +29,7 @@ function multiply(number, x) {
 
       // console.log("x.numerator", j, i, _x, array);
       while (i--) {
-        let prod = mapLargeNumber((+array[i] * parseInt(_x) + carry));
+        let prod = mapLargeNumber((+array[i] * +_x + carry));
         array[i] = prod.pop();
         carry = +prod.join('');
       }
@@ -37,7 +37,7 @@ function multiply(number, x) {
   } else {
     let i = array.length;
     while (i--) {
-      let prod = mapLargeNumber(+array[i] * parseInt(x) + carry);
+      let prod = mapLargeNumber(+array[i] * +x + carry);
       array[i] = prod.pop();
       carry = +prod.join('');
     }

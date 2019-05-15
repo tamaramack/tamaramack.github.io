@@ -21,7 +21,7 @@ import justify from '../js/justify';
 
 const sentences = [];
 
-sentences.push(justify("The quick brown fox jumps over the lazy dogs.", 55),
+sentences.push(justify('The quick brown fox jumps over the lazy dogs.', 55),
   justify('Hello, my friend!', 40),
   justify('Of all the skies I\'ve loved before, you are the only one that\'s blue. and green. sometimes pink...', 135));
 
@@ -36,8 +36,7 @@ export default {
   },
   methods: {
     onSubmit(e) {
-      if (this.text.length && this.count)
-        sentences.push(justify(this.text, +this.count));
+      if (this.text.length && this.count) sentences.push(justify(this.text, +this.count));
     }
   }
 };

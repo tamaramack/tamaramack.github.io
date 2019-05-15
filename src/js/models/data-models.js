@@ -54,7 +54,9 @@ export class List {
     if (this.length === 0) return;
 
     const value = this.memory[0];
-    for (let address = 0; address < this.len; address++) this.memory[address] = this.memory[address + 1];
+    for (let address = 0; address < this.len; address++) {
+      this.memory[address] = this.memory[address + 1];
+    }
 
 
     delete this.memory[this.len - 1];
@@ -75,7 +77,7 @@ export class HashTable {
 
   hashKey(key) {
     let hash = 0;
-    for (let i = 0; i < key.length; index++) {
+    for (let i = 0; i < key.length; i++) {
       let code = key.charCodeAt(i);
       hash = ((hash << 5) - hash) + code | 0;
     }

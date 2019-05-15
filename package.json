@@ -95,8 +95,8 @@
   },
   "config": {
     "port": 9001,
-    "build": "v0.0.12-7-g6e4385e",
-    "timestamp": 1557453374671
+    "build": "D:\\Git\\tamaramack.github.io\\src\\js\\utilities\\load-script.js",
+    "timestamp": 1557881228774
   },
   "gitHooks": {
     "pre-commit": "lint-staged",

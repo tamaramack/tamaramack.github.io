@@ -25,12 +25,12 @@ export default new Router({
     {
       path: '/playground',
       name: 'playground',
-      component: () => import(/* webpackChunkName: "about" */ './pages/playground/Playground.vue')
+      component: () => import('./pages/playground/Playground.vue')
     },
     {
       path: '/rover',
       name: 'rover',
-      component: () => import(/* webpackChunkName: "about" */ './pages/rover/Search.vue')
+      component: () => import('./pages/rover/Search.vue')
     },
     {
       path: '/foundation',
@@ -55,7 +55,7 @@ export default new Router({
     {
       path: '/colors',
       name: 'colors',
-      component: () => import(/* webpackChunkName: "about" */ './pages/colors/Colors.vue'),
+      component: () => import('./pages/colors/Colors.vue'),
       children: [
       ]
     },

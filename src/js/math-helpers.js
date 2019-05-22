@@ -51,12 +51,29 @@ function multiply(number, x) {
 }
 
 function add(...values) {
+  return plus(...values);
+}
 
+function plus(...n) {
+  let sum = 0;
+  let i = n.length;
+  while (i--) sum += (+n[i]);
+  return sum;
+}
+
+function substract(...values) {
+  return minus(...values);
+}
+
+function minus(...n) {
+  let sum = 0;
+  let i = n.length;
+  while (i--) sum -= (+n[i]);
+  return sum;
 }
 
 function factorialize(number, limiter = 0) {
   let factor = 1;
   for (let i = number; i > limiter; i--) factor *= i;
-
   return factor;
 }

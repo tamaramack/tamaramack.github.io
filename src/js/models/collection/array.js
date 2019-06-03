@@ -3,36 +3,45 @@
  */
 import Collection from './collection';
 
-export default class ArrayCollection extends Collection {
+class ArrayBase extends Array {
+  constructor(...data) {
+    super(...data);
+  }
+}
+
+const collectionPrototype = Object.getOwnPropertyDescriptors(Collection.prototype);
+const arrayPrototype = Object.getOwnPropertyDescriptors(ArrayBase.prototype);
+for (let prop in collectionPrototype) {
+  if (!arrayPrototype[prop]) {
+    arrayPrototype[prop] = collectionPrototype[prop];
+  }
+}
+ArrayBase.prototype = Object.create(ArrayBase.prototype, arrayPrototype);
+
+export default class ArrayCollection extends ArrayBase {
   constructor(entries) {
-    if (entries instanceof Collection) {
-      entries = entries.collection;
-    }
-    super();
+    super(...entries);
     Object.defineProperties(this, {
-      collection: {
-        value: Array.of(...entries)
-      },
-      distinct: {
+      set: {
         value: new Set(entries)
       }
     });
   }
 
   get size() {
-    return this.collection.length;
+    return this.length;
   }
 
   has(value) {
-    return this.collection.includes(value);
+    return this.includes(value);
   }
 
   getValue(key) {
-    return this.collection[key];
+    return this.set.get(key);
   }
 
   getKey(value) {
-    return this.collection.indexOf(value);
+    return this.indexOf(value);
   }
 
   toArray(type) {
@@ -49,8 +58,8 @@ export default class ArrayCollection extends Collection {
   }
 
   add(value) {
-    this.collection[this.collection.length] = value;
-    this.distinct.add(value);
+    this[this.length] = value;
+    this.set.add(value);
   }
 
   addMany(...entries) {
@@ -60,14 +69,16 @@ export default class ArrayCollection extends Collection {
   }
 
   update(key, value) {
-    this.distinct.remove(this.collection[key]);
-    this.collection[key] = value;
-    this.distinct.add(value);
+    const oldValue = this[key];
+    this.splice(key, 1, value);
+    this.set.delete(oldValue);
+    this.set.add(value);
   }
 
-  remove(key) {
-    this.collection.splice(key, 1);
-    this.distinct.delete(key);
+  remove(value) {
+    const key = this.indexOf(value);
+    this.splice(key, 1);
+    this.set.delete(value);
   }
 
   removeMany(...keys) {
@@ -77,8 +88,8 @@ export default class ArrayCollection extends Collection {
   }
 
   removeAll() {
-    this.collection.splice(0, this.collection.length);
-    this.distinct.clear();
+    this.splice(0, this.length);
+    this.set.clear();
   }
 
   merge(otherMap) {

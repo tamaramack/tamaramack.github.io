@@ -4,21 +4,33 @@
  */
 import Collection from './collection';
 
-export default class SetCollection extends Collection {
+class SetBase extends Set {
+  constructor(...data) {
+    super(...data);
+  }
+}
+
+const collectionPrototype = Object.getOwnPropertyDescriptors(Collection.prototype);
+const setPrototype = Object.getOwnPropertyDescriptors(SetBase.prototype);
+for (let prop in collectionPrototype) {
+  if (!setPrototype[prop]) {
+    setPrototype[prop] = collectionPrototype[prop];
+  }
+}
+SetBase.prototype = Object.create(SetBase.prototype, setPrototype);
+
+export default class SetCollection extends SetBase {
   constructor(values) {
-    if (values instanceof Collection) {
-      values = values.collection;
-    }
-    super();
+    super(values);
     Object.defineProperties(this, {
-      collection: {
-        value: new Set(values)
+      list: {
+        value: []
       }
     });
   }
 
   get keys() {
-    return this.collection.values();
+    return this.values();
   }
 
   toArray(type) {
@@ -32,12 +44,27 @@ export default class SetCollection extends Collection {
     }
   }
 
+  get(value) {
+    if (this.has(value)) {
+      return value;
+    }
+    return undefined;
+  }
+
   add(value) {
     super.add('add', value);
   }
 
   addMany(...values) {
     super.addMany('add', ...values);
+  }
+
+  sort(logic) {
+    return new SetCollection(this.toArray().sort(logic));
+  }
+
+  clone() {
+    return super.clone(SetCollection);
   }
 
   merge(otherSet) {

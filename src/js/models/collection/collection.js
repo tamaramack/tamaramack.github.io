@@ -3,7 +3,7 @@
  * tamaramack.github.io
  */
 
-export default class Collection {
+export class Collection {
   constructor() {
     this.collection = new Set();
   }
@@ -46,13 +46,25 @@ export default class Collection {
     return false;
   }
 
+  get(key) {
+    return this.collection.get(key);
+  }
+
   add(type, ...entry) {
     this.collection[type](...entry);
   }
 
   addMany(type, ...entries) {
+    if (entries.length === 1 && Array.isArray(entries[0])) {
+      entries = entries[0];
+    }
     for (let i = 0; i < entries.length; i++) {
-      this.add(type, ...entries[i]);
+      const entry = entries[i];
+      if (Array.isArray(entry)) {
+        this.collection[type](...entry);
+      } else {
+        this.collection[type](entry);
+      }
     }
   }
 
@@ -75,13 +87,27 @@ export default class Collection {
   }
 
   isSuper(sub) {
-    for (let [key, value] of sub) {
+    for (let [key, value] of sub.entries) {
       if (!this.has(key)) return false;
     }
     return true;
   }
 
+  clone(SubCollection) {
+    return new SubCollection(this.collection);
+  }
+
+  compare(sub) {
+    if (!(sub instanceof Collection)) return false;
+    const _this = JSON.stringify(this.toArray('entries'));
+    sub = JSON.stringify(sub.toArray('entries'));
+    return _this === sub;
+  }
+
   merge(SubCollection, other) {
+    if (other instanceof Collection) {
+      other = other.collection;
+    }
     return new SubCollection([...this.collection, ...other]);
   }
 

@@ -2,33 +2,14 @@
  * utilities js file created on 02-Apr-19 for
  * interview-190319-tm
  */
-export {
-  isNumber,
-  debounce,
-  throttle,
-  isIterable,
-  forEach,
-  substringCount,
-  isDistinct,
-  distinctString,
-  setOf,
-  removeDuplicates,
-  clone,
-  compare
-};
 
-function isNumber(num) {
-  // return !Number.isNaN(Number(num));
-  return /^-?\d+$/.test(num) || /^-?\d+\.\d+$/.test(num);
-}
-
-function isIterable(obj) {
+export function isIterable(obj) {
   return (obj !== undefined
     && obj !== null
     && typeof obj[Symbol.iterator] === 'function');
 }
 
-function forEach(objectArray, cb, owner) {
+export function forEach(objectArray, cb, owner) {
   if (isIterable(objectArray)) {
     if (Array.isArray(objectArray) || objectArray instanceof Map) {
       objectArray.forEach(cb, owner);
@@ -46,32 +27,113 @@ function forEach(objectArray, cb, owner) {
   }
 }
 
-function substringCount(sub, str) {
-  const regex = new RegExp(`${sub}`, 'gi');
-  return str.match(regex).length;
+export function setOf(str, num, unique) {
+  const finds = [],
+    count = num;
+  let len = str.length,
+    i = 0;
+  while ((i + count) <= len) {
+    finds[finds.length] = str.slice(i, i + count);
+    i += 1;
+  }
+  if (unique) return new Set(finds);
+  return finds;
 }
 
-function isDistinct(str) {
+export function isNumber(num) {
+  return !Number.isNaN(Number(num));
+}
+
+export function fillArray(num, cb) {
+  return new Array(num).fill(null).map(cb);
+}
+
+export function substringCount(sub, str, retFinds) {
+  const finds = [];
+  let i = 0;
+  while (i < str.length) {
+    let index = str.indexOf(sub, i);
+    if (index === -1) break;
+    finds[finds.length] = index;
+    i = index + sub.length;
+  }
+
+  if (retFinds) return finds;
+  return finds.length;
+}
+
+export function substringCountRegex(sub, str) {
+  const regex = new RegExp(sub, 'gi');
+  const match = str.match(regex);
+  return match ? match.length : 0;
+}
+
+export function hasUnique(str, hasDistinct) {
+  if (isDistinct(str)) return str.split('');
+
+  const set = hasDistinct || distinctString(str);
+  if (set.length === 1) return [];
+
+  const arr = [...str].sort();
+  let i = set.length;
+  while (i--) {
+    const count = substringCount(set[i], str);
+    if (count === 1) arr[arr.length] = str[i];
+  }
+
+  return arr;
+}
+
+export function isDistinct(str) {
   const regex = /^(?:([A-Za-z])(?!.*\1))*$/;
   return regex.test(str);
 }
 
-function distinctString(str) {
+export function distinctString(str, sorted) {
+  if (sorted) return ([...new Set(str)].sort()).join('');
   return ([...new Set(str)]).join('');
 }
 
-function setOf(str, count) {
-  const regex = new RegExp(`[A-Za-z]{${count}}`, 'gi');
-  return new Set(str.match(regex));
+export function getSetOf(str, num, unique) {
+  const finds = [],
+    count = num;
+  let len = str.length,
+    i = 0;
+  while ((i + count) <= len) {
+    finds[finds.length] = str.slice(i, i + count);
+    i += 1;
+  }
+  if (unique) return new Set(finds);
+  return finds;
 }
 
-function removeDuplicates(strArr) {
+export function getSetOfRegex(str, count, unique) {
+  const regex = new RegExp(`[A-Za-z]{${count}}`, 'gi');
+  if (unique) return new Set(str.match(regex));
+  return str.match(regex) || [];
+}
+
+export function getUniqueCharacters(str, hasDistinct) {
+  if (isDistinct(str)) return str.split('');
+  const arr = [],
+    dist = hasDistinct || distinctString(str);
+  for (let i = 0; i < dist.length; i += 1) {
+    if (substringCount(dist[i], str) === 1) arr[arr.length] = dist[i];
+  }
+  return arr;
+}
+
+export function removeDuplicates(strArr) {
   const isString = typeof strArr === 'string';
   const dist = [...new Set(strArr)];
   return isString ? dist.join('') : dist;
 }
 
-function clone(obj) {
+export function reverseString(str) {
+  return [...str].reverse().join('');
+}
+
+export function clone(obj) {
   if (obj instanceof Map) return new Map(obj);
   if (obj instanceof Set) return new Set(obj);
   /* if (obj instanceof WeakMap) return new WeakMap(obj);
@@ -80,11 +142,11 @@ function clone(obj) {
   return JSON.parse(JSON.stringify(obj));
 }
 
-function compare(obj, compare) {
+export function compare(obj, compare) {
   return JSON.stringify(obj) === JSON.stringify(compare);
 }
 
-function debounce(cb, delay) {
+export function debounce(cb, delay) {
   let inDebounce;
   return function (...params) {
     clearTimeout(inDebounce);
@@ -92,7 +154,7 @@ function debounce(cb, delay) {
   };
 }
 
-function throttle(cb, limit) {
+export function throttle(cb, limit) {
   let inThrottle;
   return function (...params) {
     if (!inThrottle) {

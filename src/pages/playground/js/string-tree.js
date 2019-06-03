@@ -16,93 +16,171 @@ import {
 import {
   StringObject
 } from '@/js/models/objects/string-object';
+import {
+  Collection,
+  MapCollection,
+  SetCollection
+} from '@/js/model/collection';
 
-export default function Tree(s, set = {}, majorSet = {}) {
-  if (!(s instanceof StringObject)) {
-    s = new StringObject(s);
+export default class Tree extends SetCollection {
+  constructor(s, set = new SetCollection(), stop = 0, main) {
+    super(set);
+    this.firstBranch(s, stop);
+    this.add(s.toString());
+
+    s.addSubs(this);
+    Object.defineProperties(this, {
+      s: {
+        get() {
+          return s;
+        },
+        enumerable: true
+      },
+      main: {
+        get() {
+          return main || s;
+        },
+        enumerable: true
+      },
+      stop: {
+        value: stop
+      }
+    });
   }
-  if (set.hasOwnProperty(s)) return;
 
-  set[s] = createSet(s, {});
-  firstBranch(s, set, majorSet);
+  add(value) {
+    if (typeof value !== 'string') return;
+    super.add(value);
 
-  setSubTree(set, majorSet);
-}
-
-function setSubTree(set, majorSet = {}) {
-  const keys = Object.keys(set);
-  for (let i = 0; i < keys.length; i += 1) {
-    const sub = keys[i];
-    if (!majorSet[sub]) {
-      majorSet[sub] = set[sub];
+    if (this.main instanceof StringObject) {
+      this.main.subs.add(value);
+      this.main.getSubByCount(value);
     }
   }
-}
 
-function firstBranch(sub, set, majorSet) {
-  const first = sub.slice(0, -1);
-  const second = sub.slice(1);
+  firstBranch(sub, stop) {
+    if (!(sub && sub.length)) return;
+    let first = sub.slice(0, -1);
+    let second = sub.slice(1);
 
-  if (first && !set.hasOwnProperty(first)) {
-    set[first] = (majorSet[first]) ? majorSet[first] : removeChar(sub[sub.length - 1], clone(set[sub]));
-    firstBranch(first, set, majorSet);
+    if (first
+      && first.length
+      && !this.has(first)
+      && first.length > stop) {
+      this.add(first);
+      this.firstBranch(first, stop);
+    }
+
+    if (second
+      && second.length
+      && !this.has(second)
+      && second.length > stop) {
+      this.add(second);
+      this.secondBranch(second, stop);
+    }
   }
 
-  if (second && !set.hasOwnProperty(second)) {
-    set[second] = (majorSet[second]) ? majorSet[second] : removeChar(sub[0], clone(set[sub]));
-    secondBranch(second, set, majorSet);
-  }
-}
+  secondBranch(sub, stop) {
+    if (!(sub && sub.length)) return;
+    let second = sub.slice(1);
 
-function secondBranch(sub, set, majorSet) {
-  const second = sub.slice(1);
-  if (second && !set.hasOwnProperty(second)) {
-    set[second] = (majorSet[second]) ? majorSet[second] : removeChar(sub[0], clone(set[sub]));
-    secondBranch(second, set, majorSet);
+    if (second
+      && second.length
+      && !this.has(second)
+      && second.length > stop) {
+      this.add(second);
+      this.secondBranch(second, stop);
+    }
   }
-}
 
-function removeChar(char, obj) {
-  if (obj[char] && obj[char] > 1) {
-    obj[char] -= 1;
-  } else {
-    delete obj[char];
-  }
-  return obj;
-}
+  mapValuesByLength(map = new MapCollection()) {
+    const arr = fillArray(this.s.length + 1, () => new SetCollection());
+    for (let [key, value] of map.entries) {
+      arr[+key] = value;
+    }
 
-function addChar(char, obj) {
-  if (obj[char]) {
-    obj[char] += 1;
-  } else {
-    obj[char] = 1;
-  }
-  return obj;
-}
+    for (let value of this.values) {
+      if (typeof value !== 'string') {
+        this.remove(value);
+        continue;
+      }
+      (arr[value.length]).add(value);
+    }
 
-function createSet(s, obj) {
-  for (let i = 0; i < s.length; i += 1) {
-    const char = s[i];
-    if (obj[char]) {
-      obj[char] += 1;
+    map = new MapCollection(Object.entries(arr));
+    map.remove('0');
+
+    if (this.map) {
+      this.map = map;
     } else {
-      obj[char] = 1;
+      Object.defineProperty(this, 'map', {
+        value: map,
+        enumerable: true,
+        writable: true
+      });
     }
-  }
-  return obj;
-}
-
-function getUnique(s) {
-  const obj = typeof s === 'string' ? createSet(s, {}) : s;
-
-  const arr = [],
-    entries = Object.entries(obj);
-
-  let i = entries.length;
-  while (i--) {
-    const num = entries[i];
-    if (num[1] === 1) arr[arr.length] = num[0];
+    return this.map;
   }
 
-  return arr.length;
+  addValuesFromMap(map) {
+    if (!this.map) {
+      this.mapValuesByLength(map);
+    }
+    for (let values of map.values) {
+      if (values instanceof Collection) {
+        this.addMany(values.toArray());
+      } else if (Array.isArray(values)) {
+        this.addMany(values);
+      } else {
+        this.add(values);
+      }
+    }
+    return this.clone();
+  }
+
+  mapSubstringCount(map) {
+    if (map || !this.map) {
+      this.mapValuesByLength(map);
+    }
+
+    let sub = this.s;
+    if (!(sub instanceof StringObject)) {
+      sub = new StringObject(sub);
+    }
+    map = Object.fromEntries(this.map.toArray());
+    sub.addSubs(this.clone());
+
+    const chars = sub.chars;
+    for (let count in map) {
+      const set = map[count];
+      const arr = [];
+      for (let value of set.values) {
+        arr[arr.length] = chars.get(value);
+      }
+      map[count] = arr;
+    }
+
+    for (let count in map) {
+      const arr = map[count];
+      const set = new Set(arr);
+      const obj = {
+        arr,
+        set
+      };
+      map[count] = obj;
+    }
+
+    map = new MapCollection(Object.entries(map));
+
+    if (this.count) {
+      this.count = map;
+    } else {
+      Object.defineProperty(this, 'count', {
+        value: map,
+        enumerable: true,
+        writable: true
+      });
+    }
+    return this.count;
+  }
 }

@@ -4,15 +4,27 @@
  */
 import Collection from './collection';
 
-export default class MapCollection extends Collection {
+class MapBase extends Map {
+  constructor(...data) {
+    super(...data);
+  }
+}
+
+const collectionPrototype = Object.getOwnPropertyDescriptors(Collection.prototype);
+const mapPrototype = Object.getOwnPropertyDescriptors(MapBase.prototype);
+for (let prop in collectionPrototype) {
+  if (!mapPrototype[prop]) {
+    mapPrototype[prop] = collectionPrototype[prop];
+  }
+}
+MapBase.prototype = Object.create(MapBase.prototype, mapPrototype);
+
+export default class MapCollection extends MapBase {
   constructor(entries) {
-    if (entries instanceof Collection) {
-      entries = entries.collection;
-    }
-    super();
+    super(entries);
     Object.defineProperties(this, {
-      collection: {
-        value: new Map(entries)
+      list: {
+        value: {}
       }
     });
   }
@@ -38,7 +50,21 @@ export default class MapCollection extends Collection {
   }
 
   update(key, value) {
-    this.add(key, value);
+    if (this.has(key)
+      && !(value instanceof Collection || Array.isArray(value))) {
+      const mapValue = this.get(key);
+      if (mapValue instanceof Collection) {
+        mapValue.add(value);
+      } else if (Array.isArray(mapValue)) {
+        mapValue[mapValue.length] = value;
+      }
+    } else {
+      this.add(key, value);
+    }
+  }
+
+  clone() {
+    return super.clone(MapCollection);
   }
 
   merge(otherMap) {

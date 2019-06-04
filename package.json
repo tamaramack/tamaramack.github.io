@@ -46,10 +46,10 @@
     "@babel/parser": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "@vue/cli-plugin-babel": "^3.7.0",
-    "@vue/cli-plugin-e2e-nightwatch": "^3.7.0",
+    "@vue/cli-plugin-e2e-nightwatch": "^3.8.0",
     "@vue/cli-plugin-eslint": "^3.7.0",
     "@vue/cli-plugin-pwa": "^3.7.0",
-    "@vue/cli-plugin-unit-jest": "^3.7.0",
+    "@vue/cli-plugin-unit-jest": "^3.8.0",
     "@vue/cli-service": "^3.7.0",
     "@vue/eslint-config-airbnb": "^4.0.0",
     "@vue/test-utils": "1.0.0-beta.29",
@@ -96,8 +96,8 @@
   },
   "config": {
     "port": 9001,
-    "build": "v0.0.12-15-g2b3d8e5",
-    "timestamp": 1557951754459
+    "build": "v0.0.12-17-gfd61185",
+    "timestamp": 1559686733
   },
   "gitHooks": {
     "pre-commit": "lint-staged",

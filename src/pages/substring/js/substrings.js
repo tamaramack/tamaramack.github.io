@@ -1,6 +1,6 @@
 import { QuerySet } from './models/query-model';
 import SubstringTree from './models/substring-tree';
-import Timer from '@/js/utilities/timer';
+import Time from '@/js/utilities/time-object';
 
 /** Consider a string of n characters, s, of where each character is indexed from 0 to n-1.
 
@@ -12,7 +12,7 @@ export default countSubstrings;
 
 function countSubstrings(s, queries) {
   const strLen = s.length;
-  const date = new Timer('countSubstrings', Date.now());
+  const date = new Time('countSubstrings', Date.now());
   console.debug('Start distinct', date.time);
 
   const queryCollection = new QuerySet(queries, s, SubstringTree);

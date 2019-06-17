@@ -2,14 +2,14 @@
  * time js file created by Tamara G. Mack on 08-Apr-19 for tamaramack.github.io
  */
 
-export default class Timer {
+export default class TimeObject {
   constructor(id, date) {
     Object.defineProperties(this, {
       timestamp: {
         value: new Date()
       },
       datetime: {
-        value: new Date(date),
+        value: isValidDate(date),
         enumerable: true
       },
       id: {
@@ -29,7 +29,7 @@ export default class Timer {
 }
 
 function timeString(date) {
-  date = new Date(date);
+  date = isValidDate(date);
   const hour = date.getHours(),
     minute = date.getMinutes(),
     second = date.getSeconds(),
@@ -46,13 +46,18 @@ function timeString(date) {
 }
 
 function getEndTime(date) {
-  date = new Date(date).getTime();
-  let now = Date.now();
-  now = new Date(Date.now() - date);
+  date = isValidDate(date).getTime();
+  let now = new Date(Date.now() - date);
   return timeString(now);
 }
 
 function twoDigitFormat(num) {
-  num = num.toString();
-  return num.length > 1 ? num : `0${num}`;
+  return `${num}`.length > 1 ? num : `0${num}`;
+}
+
+function isValidDate(date) {
+  date = new Date(date);
+  if (!(Object.prototype.toString.call(date) === '[object Date]'
+    && Number.isFinite(Number(date)))) date = new Date();
+  return date;
 }

@@ -44,7 +44,6 @@ export class QueryCollection {
       }
     });
   }
-
 }
 
 export class QueryObject {

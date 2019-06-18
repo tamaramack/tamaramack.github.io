@@ -19,7 +19,6 @@
     "postversion": "bash ./bin/postversion.sh",
     "precommit": "bash ./bin/tagpackage.sh",
     "preinstall": "bash ./bin/preinstall.sh",
-    "timestamp": "version_timestamp",
     "start": "node server.js"
   },
   "dependencies": {
@@ -88,16 +87,13 @@
     "debug": ">=1",
     "braces": ">=1"
   },
-  "bin": {
-    "build_timestamp": "bin/build_timestamp.js"
-  },
   "bugs": {
     "url": "https://github.com/tamaramack/tamaramack.github.io/issues"
   },
   "config": {
     "port": 9001,
-    "build": "v0.0.12-17-gfd61185",
-    "timestamp": 1559686733
+    "build": "v0.0.12-18-g9b51394",
+    "timestamp": "2019-06-17T21:48:24.902Z"
   },
   "gitHooks": {
     "pre-commit": "lint-staged",

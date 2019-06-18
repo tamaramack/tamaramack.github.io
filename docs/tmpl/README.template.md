@@ -1,5 +1,5 @@
-# T Mack's Portfolio
-*This project is a Work in Progress*
+# T Mack's Portfolio *(___VERSION___)*
+*This project is a **Work in Progress***
 
 **Last Update: ___DATETIME___**
 

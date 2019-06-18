@@ -12,3 +12,5 @@ git fetch --tags
 node ./exports/build-timestamp.js $output
 
 git add -A ./package.json
+
+node ./exports/template-render.js

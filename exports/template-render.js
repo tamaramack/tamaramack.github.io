@@ -6,6 +6,7 @@
 const fs = require('fs');
 const path = require('path');
 const util = require('util');
+const sh = require('shelljs');
 
 (async () => {
   const readFile = util.promisify(fs.readFile);
@@ -60,6 +61,8 @@ const util = require('util');
     }
 
     temp = fileArr.splice(temp, 1);
-    writeFile(path.join(destinationDir, fileArr.join('.')), content);
+    const filepath = path.join(destinationDir, fileArr.join('.'));
+    writeFile(filepath, content);
+    sh.exec(`git add -A ${filepath}`, { silent: true });
   }
 })();

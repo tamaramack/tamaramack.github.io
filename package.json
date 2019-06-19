@@ -19,7 +19,6 @@
     "postversion": "bash ./bin/postversion.sh",
     "precommit": "bash ./bin/tagpackage.sh",
     "preinstall": "bash ./bin/preinstall.sh",
-    "timestamp": "version_timestamp",
     "start": "node server.js"
   },
   "dependencies": {
@@ -46,10 +45,10 @@
     "@babel/parser": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "@vue/cli-plugin-babel": "^3.7.0",
-    "@vue/cli-plugin-e2e-nightwatch": "^3.7.0",
+    "@vue/cli-plugin-e2e-nightwatch": "^3.8.0",
     "@vue/cli-plugin-eslint": "^3.7.0",
     "@vue/cli-plugin-pwa": "^3.7.0",
-    "@vue/cli-plugin-unit-jest": "^3.7.0",
+    "@vue/cli-plugin-unit-jest": "^3.8.0",
     "@vue/cli-service": "^3.7.0",
     "@vue/eslint-config-airbnb": "^4.0.0",
     "@vue/test-utils": "1.0.0-beta.29",
@@ -88,16 +87,13 @@
     "debug": ">=1",
     "braces": ">=1"
   },
-  "bin": {
-    "build_timestamp": "bin/build_timestamp.js"
-  },
   "bugs": {
     "url": "https://github.com/tamaramack/tamaramack.github.io/issues"
   },
   "config": {
     "port": 9001,
-    "build": "v0.0.12-17-gfd61185",
-    "timestamp": 1559679503970
+    "build": "v0.0.12-20-gd6b6afc",
+    "timestamp": "2019-06-18T01:54:31.447Z"
   },
   "gitHooks": {
     "pre-commit": "lint-staged",

@@ -7,7 +7,7 @@ const sh = require('shelljs');
   console.log('\nPROCESS.ARGV', process.argv);
 
   const packageFilePath = './package.json',
-    date = parseInt(process.argv[3]) || (new Date()).getTime();
+    date = (new Date()).toJSON();
 
   let data = fs.readFileSync(packageFilePath, 'utf8');
   sh.exec('echo shell.exec works');

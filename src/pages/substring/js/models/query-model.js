@@ -16,7 +16,7 @@ import {
   Collection,
   MapCollection,
   SetCollection
-} from '@/js/model/collection';
+} from '@/js/models/collection';
 
 export class QueryCollection {
   constructor(queries, s) {
@@ -44,7 +44,6 @@ export class QueryCollection {
       }
     });
   }
-
 }
 
 export class QueryObject {

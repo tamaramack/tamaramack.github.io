@@ -91,7 +91,7 @@
     "url": "https://github.com/tamaramack/tamaramack.github.io/issues"
   },
   "config": {
-    "port": 9001,
+    "port": 9200,
     "build": "v0.0.12-22-g73eb510",
     "timestamp": "2019-07-03T19:48:52.393Z"
   },

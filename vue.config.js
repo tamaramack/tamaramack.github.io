@@ -34,7 +34,7 @@ module.exports = {
   },
 
   publicPath: undefined,
-  outputDir: process.env.NODE_ENV !== 'production' ? 'dev-build' : 'dist',
+  outputDir: process.env.NODE_ENV === 'development' ? 'dev-build' : 'dist',
   assetsDir: 'content',
   runtimeCompiler: true,
   productionSourceMap: undefined,

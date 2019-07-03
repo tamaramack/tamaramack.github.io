@@ -25,7 +25,7 @@ export default new Router({
     {
       path: '/playground',
       name: 'playground',
-      component: () => import('./pages/playground/Playground.vue')
+      component: () => import(/* webpackChunkName: "playground" */'./pages/playground/Playground.vue')
     },
     {
       path: '/rover',
@@ -40,7 +40,7 @@ export default new Router({
     {
       path: '/substring',
       name: 'substring',
-      component: () => import('./pages/substring/Substring.vue'),
+      component: () => import(/* webpackChunkName: "playground" */ './pages/substring/Substring.vue'),
       children: [
         {
           path: ':name',
@@ -48,14 +48,14 @@ export default new Router({
           beforeEnter: (to, from, next) => {
             next();
           },
-          component: () => import('./pages/substring/StringReader')
+          component: () => import(/* webpackChunkName: "playground" */ './pages/substring/StringReader')
         }
       ]
     },
     {
       path: '/colors',
       name: 'colors',
-      component: () => import('./pages/colors/Colors.vue'),
+      component: () => import(/* webpackChunkName: "colors" */ './pages/colors/Colors.vue'),
       children: [
       ]
     },

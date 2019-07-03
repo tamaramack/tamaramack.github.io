@@ -17,10 +17,8 @@ export default new Vuex.Store({
   },
   mutations: {
     updateLocation(state, results) {
-      if (results.message)
-        this.state.geoError = results.message;
-      else
-        [state.latitude, state.longitude] = [results.latitude, results.longitude];
+      if (results.message) this.state.geoError = results.message;
+      else [state.latitude, state.longitude] = [results.latitude, results.longitude];
     }
   },
   actions: {}

@@ -44,6 +44,7 @@ module.exports = {
   devServer: {
     port: 9200,
     // https: true,
+    historyApiFallback: true,
     before: configureAPI,
     overlay: {
       warnings: true,

@@ -39,14 +39,14 @@ class LargeNumber extends String {
   makeArray() {
     let num,
       den;
-    let arr = this.original.split(/e[\+|\-]/);
+    let arr = this.original.split(/e[+|-]/);
     this.exp = arr.length === 2 ? arr.pop() : false;
 
     arr = arr[0].split('.');
     num = arr[0];
     den = arr.length === 2 ? arr[1] : false;
 
-    if (isNaN(num.substring(0, 1))) {
+    if (Number.isNaN(Number(num.substring(0, 1)))) {
       this.negative = num.substring(0, 1) === '-';
       num = num.substring(1);
     }

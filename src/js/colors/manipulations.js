@@ -15,8 +15,7 @@ export default {
 function saturation(contextColor, saturate, percent) {
   const c = contextColor._;
   let calculation = (c.saturation - (c.saturation * parseFloat(percent)));
-  if (saturate)
-    calculation = (c.saturation + (parseFloat(percent) * (100 - c.saturation)));
+  if (saturate) calculation = (c.saturation + (parseFloat(percent) * (100 - c.saturation)));
   let color = {
     hue: c.hue,
     saturation: +calculation.toFixed(1),
@@ -29,8 +28,7 @@ function saturation(contextColor, saturate, percent) {
 function lightness(contextColor, lighten, percent) {
   const c = contextColor._;
   let calculation = (c.lightness - (c.lightness * parseFloat(percent)));
-  if (lighten)
-    calculation = (c.lightness + (parseFloat(percent) * (100 - c.lightness)));
+  if (lighten) calculation = (c.lightness + (parseFloat(percent) * (100 - c.lightness)));
 
   let color = {
     hue: c.hue,
@@ -67,8 +65,7 @@ function blend(...colors) {
 
   for (let i = 0; i < colors.length; i++) {
     let color = colors[i];
-    if (!(color instanceof ColorBase))
-      color = new ColorBase(color);
+    if (!(color instanceof ColorBase)) color = new ColorBase(color);
     rgbArray.reds.push(color._.red);
     rgbArray.greens.push(color._.green);
     rgbArray.blues.push(color._.blue);
@@ -82,10 +79,8 @@ function blend(...colors) {
 }
 
 function compare(color1, color2) {
-  if (!(color1 instanceof ColorBase))
-    color1 = new ColorBase(color1);
-  if (!(color2 instanceof ColorBase))
-    color2 = new ColorBase(color2);
+  if (!(color1 instanceof ColorBase)) color1 = new ColorBase(color1);
+  if (!(color2 instanceof ColorBase)) color2 = new ColorBase(color2);
   return (color1._.hex === color2._.hex);
 }
 
@@ -113,7 +108,7 @@ function bw(contextColor) {
 }
 
 function invert(contextColor) {
-  let hex = contextColor._.hex;
+  let { hex } = contextColor._;
   hex = 0xFFFFFF ^ parseInt(hex, 16);
   hex = (`000000${hex.toString(16)}`).slice(-6);
 

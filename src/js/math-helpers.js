@@ -3,7 +3,9 @@ import { LargeNumber, mapLargeNumber } from './large-number';
 export default {
   add,
   multiply,
-  factorialize
+  factorialize,
+  minusFactor,
+  plusFactor
 };
 
 function multiply(number, x) {
@@ -29,7 +31,7 @@ function multiply(number, x) {
 
       // console.log("x.numerator", j, i, _x, array);
       while (i--) {
-        let prod = mapLargeNumber((+array[i] * parseInt(_x) + carry));
+        let prod = mapLargeNumber((+array[i] * +_x + carry));
         array[i] = prod.pop();
         carry = +prod.join('');
       }
@@ -37,7 +39,7 @@ function multiply(number, x) {
   } else {
     let i = array.length;
     while (i--) {
-      let prod = mapLargeNumber(+array[i] * parseInt(x) + carry);
+      let prod = mapLargeNumber(+array[i] * +x + carry);
       array[i] = prod.pop();
       carry = +prod.join('');
     }
@@ -51,12 +53,49 @@ function multiply(number, x) {
 }
 
 function add(...values) {
+  return plus(...values);
+}
 
+function plus(...n) {
+  let sum = 0;
+  let i = n.length;
+  while (i--) sum += (+n[i]);
+  return sum;
+}
+
+function substract(...values) {
+  return minus(...values);
+}
+
+function minus(...n) {
+  let sum = 0;
+  let i = n.length;
+  while (i--) sum -= (+n[i]);
+  return sum;
 }
 
 function factorialize(number, limiter = 0) {
   let factor = 1;
   for (let i = number; i > limiter; i--) factor *= i;
-
   return factor;
+}
+
+function minusFactor(count) {
+  let n = 1;
+  let sum = 0;
+  while (count >= n++) {
+    sum += n;
+  }
+
+  return sum;
+}
+
+function plusFactor(count) {
+  let n = count;
+  let sum = count;
+  while (n--) {
+    sum += n;
+  }
+
+  return sum;
 }

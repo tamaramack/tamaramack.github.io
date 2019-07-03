@@ -45,8 +45,7 @@ export class Collection {
   }
 
   add(functional, ...values) {
-    for (let i = 0; i < values.length; i++)
-      addValue.call(this, functional, values[i]);
+    for (let i = 0; i < values.length; i++) addValue.call(this, functional, values[i]);
   }
 
   forEach(cb) {
@@ -56,10 +55,8 @@ export class Collection {
 
   reduce(cb, accummulator) {
     const { array, length } = this;
-    if (accummulator === undefined)
-      accummulator = accummulator || retDataType(array[0]) || [];
-    for (let i = 0; i < length; i++)
-      accummulator = cb(accummulator, array[i], i, array);
+    if (accummulator === undefined) accummulator = accummulator || retDataType(array[0]) || [];
+    for (let i = 0; i < length; i++) accummulator = cb(accummulator, array[i], i, array);
     return accummulator;
   }
 }

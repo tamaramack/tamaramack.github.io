@@ -19,15 +19,15 @@
     "postversion": "bash ./bin/postversion.sh",
     "precommit": "bash ./bin/tagpackage.sh",
     "preinstall": "bash ./bin/preinstall.sh",
-    "timestamp": "version_timestamp",
     "start": "node server.js"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.4.0",
-    "@progress/kendo-dateinputs-vue-wrapper": "^2019.1.220",
+    "@babel/polyfill": "^7.4.4",
+    "@progress/kendo-dateinputs-vue-wrapper": "^2019.2.514",
     "@progress/kendo-theme-default": "^3.4.0",
-    "@progress/kendo-ui": "^2019.1.327",
+    "@progress/kendo-ui": "^2019.2.514",
     "core-js": "^3.0.0",
+    "dotenv": "^8.0.0",
     "foundation-sites": "^6.5.3",
     "jquery": "^3.4.1",
     "lodash": "^4.17.11",
@@ -35,25 +35,26 @@
     "motion-ui": "^2.0.3",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
-    "vue-router": "^3.0.2",
+    "vue-router": "^3.0.6",
     "vue-server-renderer": "^2.6.10",
-    "vuex": "^3.1.0",
+    "vuex": "^3.1.1",
     "what-input": "^5.2.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.0",
-    "@babel/parser": "^7.4.2",
-    "@babel/preset-env": "^7.4.2",
-    "@vue/cli-plugin-babel": "^3.5.3",
-    "@vue/cli-plugin-e2e-nightwatch": "^3.7.0",
-    "@vue/cli-plugin-eslint": "^3.5.1",
-    "@vue/cli-plugin-pwa": "^3.5.1",
-    "@vue/cli-plugin-unit-jest": "^3.7.0",
+    "@babel/core": "^7.4.4",
+    "@babel/parser": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@vue/cli-plugin-babel": "^3.7.0",
+    "@vue/cli-plugin-e2e-nightwatch": "^3.8.0",
+    "@vue/cli-plugin-eslint": "^3.7.0",
+    "@vue/cli-plugin-pwa": "^3.7.0",
+    "@vue/cli-plugin-unit-jest": "^3.8.0",
     "@vue/cli-service": "^3.7.0",
     "@vue/eslint-config-airbnb": "^4.0.0",
     "@vue/test-utils": "1.0.0-beta.29",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.5.0",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "braces": "^2.3.2",
     "debug": "^4.1.1",
     "eslint": "^5.15.3",
@@ -86,24 +87,21 @@
     "debug": ">=1",
     "braces": ">=1"
   },
-  "bin": {
-    "build_timestamp": "bin/build_timestamp.js"
-  },
   "bugs": {
     "url": "https://github.com/tamaramack/tamaramack.github.io/issues"
   },
   "config": {
     "port": 9001,
-    "build": "D:\\Git\\tamaramack.github.io\\.eslintrc.js",
-    "timestamp": 1556931510837
+    "build": "v0.0.12-22-g73eb510",
+    "timestamp": "2019-07-03T19:48:52.393Z"
   },
   "gitHooks": {
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged",
+    "post-merge": "npm run precommit"
   },
   "lint-staged": {
     "*.{js,vue}": [
       "vue-cli-service lint --fix",
-      "npm run precommit",
       "git add"
     ]
   },

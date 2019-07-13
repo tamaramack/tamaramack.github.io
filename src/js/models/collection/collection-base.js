@@ -2,26 +2,29 @@
  * collection js file created by Tamara G. Mack on 21-May-19 for
  * tamaramack.github.io
  */
-
-export class Collection {
-  constructor() {
-    this.collection = new Set();
-  }
-
+/** *
+ *
+ * @param BaseType
+ * @constructor
+ */
+export default (BaseType = Object) => class extends BaseType {
   get size() {
-    return this.collection.size;
+    return super.size || super.length;
   }
 
   get keys() {
-    return this.collection.keys();
+    if (super.keys) return [...super.keys(this)];
+    return Object.keys(this);
   }
 
   get values() {
-    return this.collection.values();
+    if (super.values) return [...super.values(this)];
+    return Object.values(this);
   }
 
   get entries() {
-    return this.collection.entries();
+    if (super.entries) return [...super.entries(this)];
+    return Object.entries(this);
   }
 
   toArray() {
@@ -29,7 +32,9 @@ export class Collection {
   }
 
   has(value) {
-    return this.collection.has(value);
+    if (super.has) return super.has(value);
+    if (!Array.isArray(this)) return this.keys.indexOf(value) > -1;
+    return super.indexOf(value) > -1;
   }
 
   hasAll(...values) {
@@ -47,11 +52,12 @@ export class Collection {
   }
 
   get(key) {
-    return this.collection.get(key);
+    if (super.get) return super.get(key);
+    return this.get(key);
   }
 
   add(type, ...entry) {
-    this.collection[type](...entry);
+    this[type](...entry);
   }
 
   addMany(type, ...entries) {
@@ -61,15 +67,15 @@ export class Collection {
     for (let i = 0; i < entries.length; i++) {
       const entry = entries[i];
       if (Array.isArray(entry)) {
-        this.collection[type](...entry);
+        this[type](...entry);
       } else {
-        this.collection[type](entry);
+        this[type](entry);
       }
     }
   }
 
   remove(keys) {
-    this.collection.delete(keys);
+    this.delete(keys);
   }
 
   removeMany(...keys) {
@@ -79,11 +85,11 @@ export class Collection {
   }
 
   removeAll() {
-    this.collection.clear();
+    this.clear();
   }
 
   forEach(cb, owner) {
-    this.collection.forEach(cb, owner);
+    this.forEach(cb, owner);
   }
 
   isSuper(sub) {
@@ -98,23 +104,16 @@ export class Collection {
   }
 
   compare(sub) {
-    if (!(sub instanceof Collection)) return false;
     const _this = JSON.stringify(this.toArray('entries'));
     sub = JSON.stringify(sub.toArray('entries'));
     return _this === sub;
   }
 
   merge(SubCollection, other) {
-    if (other instanceof Collection) {
-      other = other.collection;
-    }
     return new SubCollection([...this.collection, ...other]);
   }
 
   difference(SubCollection, other, exclusive) {
-    if (other instanceof Collection) {
-      other = other.collection;
-    }
     const set = new SubCollection(this.collection);
     for (let [key, value] of other) {
       if (!exclusive) {
@@ -143,7 +142,7 @@ export class Collection {
     }
     return set;
   }
-}
+};
 
 
 function valueFromDataType(obj) {

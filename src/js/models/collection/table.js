@@ -1,25 +1,10 @@
 /**
  * table js file created by Tamara G. Mack on 28-May-19 for tamaramack.github.io
  */
-import Collection from './collection';
+import Collection from './collection-base';
 import MapCollection from './map';
 
-class ObjectBase extends Object {
-  constructor(...data) {
-    super(...data);
-  }
-}
-
-const collectionPrototype = Object.getOwnPropertyDescriptors(Collection.prototype);
-const objectPrototype = Object.getOwnPropertyDescriptors(ObjectBase.prototype);
-for (let prop in collectionPrototype) {
-  if (!objectPrototype[prop]) {
-    objectPrototype[prop] = collectionPrototype[prop];
-  }
-}
-ObjectBase.prototype = Object.create(ObjectBase.prototype, objectPrototype);
-
-export class ObjectCollection extends ObjectBase {
+export class ObjectCollection extends Collection(Object) {
   constructor(keyMap, entries) {
     super();
     Object.defineProperties(this, {

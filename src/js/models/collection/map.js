@@ -2,24 +2,9 @@
  * map-collection js file created by Tamara G. Mack on 21-May-19 for
  * tamaramack.github.io
  */
-import Collection from './collection';
+import Collection from './collection-base';
 
-class MapBase extends Map {
-  constructor(...data) {
-    super(...data);
-  }
-}
-
-const collectionPrototype = Object.getOwnPropertyDescriptors(Collection.prototype);
-const mapPrototype = Object.getOwnPropertyDescriptors(MapBase.prototype);
-for (let prop in collectionPrototype) {
-  if (!mapPrototype[prop]) {
-    mapPrototype[prop] = collectionPrototype[prop];
-  }
-}
-MapBase.prototype = Object.create(MapBase.prototype, mapPrototype);
-
-export default class MapCollection extends MapBase {
+export default class MapCollection extends Collection(Map) {
   constructor(entries) {
     super(entries);
     Object.defineProperties(this, {

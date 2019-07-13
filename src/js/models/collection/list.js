@@ -2,25 +2,10 @@
  * object js file created by Tamara G. Mack on 21-May-19 for
  * tamaramack.github.io
  */
-import Collection from './collection';
+import Collection from './collection-base';
 import MapCollection from './map';
 
-class ObjectBase extends Object {
-  constructor(...data) {
-    super(...data);
-  }
-}
-
-const collectionPrototype = Object.getOwnPropertyDescriptors(Collection.prototype);
-const objectPrototype = Object.getOwnPropertyDescriptors(ObjectBase.prototype);
-for (let prop in collectionPrototype) {
-  if (!objectPrototype[prop]) {
-    objectPrototype[prop] = collectionPrototype[prop];
-  }
-}
-ObjectBase.prototype = Object.create(ObjectBase.prototype, objectPrototype);
-
-export class ObjectCollection extends ObjectBase {
+export class ListCollection extends Collection(Array) {
   constructor(entries) {
     super();
     Object.defineProperties(this, {
@@ -107,14 +92,14 @@ export class ObjectCollection extends ObjectBase {
   }
 
   merge(otherMap) {
-    return super.merge(ObjectCollection, otherMap);
+    return super.merge(ListCollection, otherMap);
   }
 
   difference(otherMap, exclusive) {
-    return super.difference(ObjectCollection, otherMap, exclusive);
+    return super.difference(ListCollection, otherMap, exclusive);
   }
 
   match(otherMap) {
-    return super.match(ObjectCollection, otherMap);
+    return super.match(ListCollection, otherMap);
   }
 }

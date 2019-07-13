@@ -2,24 +2,9 @@
  * set-collection js file created by Tamara G. Mack on 21-May-19 for
  * tamaramack.github.io
  */
-import Collection from './collection';
+import Collection from './collection-base';
 
-class SetBase extends Set {
-  constructor(...data) {
-    super(...data);
-  }
-}
-
-const collectionPrototype = Object.getOwnPropertyDescriptors(Collection.prototype);
-const setPrototype = Object.getOwnPropertyDescriptors(SetBase.prototype);
-for (let prop in collectionPrototype) {
-  if (!setPrototype[prop]) {
-    setPrototype[prop] = collectionPrototype[prop];
-  }
-}
-SetBase.prototype = Object.create(SetBase.prototype, setPrototype);
-
-export default class SetCollection extends SetBase {
+export default class SetCollection extends Collection(Set) {
   constructor(values) {
     super(values);
     Object.defineProperties(this, {

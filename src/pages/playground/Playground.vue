@@ -116,7 +116,7 @@ function countSubstrings(s, queries) {
       this.set = new Set(arr);
 
       if (this.l > 3000) {
-
+        // TODO: if length is greater then 3000
       } else {
         this.set = new Tree(this.s, this.set);
       }

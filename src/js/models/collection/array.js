@@ -1,24 +1,10 @@
 /**
  * array js file created by Tamara G. Mack on 21-May-19 for tamaramack.github.io
  */
-import Collection from './collection';
+import Collection from './collection-base';
 
-class ArrayBase extends Array {
-  constructor(...data) {
-    super(...data);
-  }
-}
 
-const collectionPrototype = Object.getOwnPropertyDescriptors(Collection.prototype);
-const arrayPrototype = Object.getOwnPropertyDescriptors(ArrayBase.prototype);
-for (let prop in collectionPrototype) {
-  if (!arrayPrototype[prop]) {
-    arrayPrototype[prop] = collectionPrototype[prop];
-  }
-}
-ArrayBase.prototype = Object.create(ArrayBase.prototype, arrayPrototype);
-
-export default class ArrayCollection extends ArrayBase {
+export default class ArrayCollection extends Collection(Array) {
   constructor(entries) {
     super(...entries);
     Object.defineProperties(this, {

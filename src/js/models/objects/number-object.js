@@ -6,5 +6,7 @@
 export default class NumberObject extends Number {
   constructor(...nums) {
     super(...nums);
+
+    this.stringBase = '';
   }
 }

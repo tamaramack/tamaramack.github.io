@@ -2,7 +2,7 @@
   div
     label {{desc}}
       select(v-model="selected")
-        option(v-for="{value, label} in options", :value="value", :label="label")
+        option(v-for="{value, label} in options", :value="value", :label="label") {{label}}
 </template>
 
 <script>

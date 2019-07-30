@@ -124,9 +124,10 @@ export function getUniqueCharacters(str, hasDistinct) {
 }
 
 export function removeDuplicates(strArr) {
-  const isString = typeof strArr === 'string';
-  const dist = [...new Set(strArr)];
-  return isString ? dist.join('') : dist;
+  const o = {};
+  let i = strArr.length;
+  while (i--) o[strArr[i]] = 1;
+  return Object.keys(o);
 }
 
 export function reverseString(str) {

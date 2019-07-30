@@ -49,10 +49,11 @@
 <script>
 import { Navigation, FormComponents } from '@/components';
 import { InputItems, InputList } from '@/js/models/input';
-import options from '@/js/data/substr/options.json';
-import countstrings from './js/substrings';
+import optionsJson from '@/js/data/substr/options.json';
+import countstrings from './js/async-substrings';
 
 const { Dropdown, InputGroup } = FormComponents;
+const options = optionsJson.sort();
 
 export default {
   name: 'Substring',
@@ -107,6 +108,7 @@ export default {
         return this.r.results;
       },
       set(update) {
+        console.debug('Results', update);
         this.r = update;
       }
     },
@@ -140,12 +142,16 @@ export default {
   methods: {
     async getJson() {
       const name = this.optionSelect.replace('_', '.');
+      console.debug('getJson', name);
       this.json = await importJson(name);
     },
     runScripts() {
-      console.log('Start Calculations');
-      this.results = countstrings(this.s, this.q);
-      console.log('Post Calculations');
+      const then = Date.now();
+      console.log('Start Calculations', dt(Date.now() - then));
+      countstrings(this.s, this.q).then((data) => {
+        this.results = data;
+        console.log('Post Calculations', dt(Date.now() - then));
+      });
     }
   }
 };
@@ -154,6 +160,11 @@ async function importJson(name) {
   return import(`@/js/data/substr/${name}.json`);
 }
 
+function dt(now) {
+  now = new Date(now);
+  const t = n => (`0${now[`get${n}`]()}`).slice(-2);
+  return `${t('Minutes')}:${t('Seconds')}.${now.getMilliseconds()}`;
+}
 </script>
 
 <style scoped lang="scss">

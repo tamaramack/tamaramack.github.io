@@ -3,14 +3,8 @@ module.exports = {
     [
       '@vue/app', {
         useBuiltIns: 'entry',
-        corejs: {
-          version: 3,
-          proposals: true
-        }
+        corejs: '3.1'
       }]
-  ],
-  plugins: [
-    '@babel/plugin-proposal-object-rest-spread'
   ],
   env: {
     production: {

@@ -21,13 +21,13 @@
 </template>
 
 <script>
-import { GeoLocation } from '@/components';
+// import { GeoLocation } from '@/components';
 
 export default {
   name: 'Navigation',
   mounted,
   components: {
-    GeoLocation
+    GeoLocation: this.$GeoLocation
   },
   props: ['page', 'module', 'showLocation'],
   data() {

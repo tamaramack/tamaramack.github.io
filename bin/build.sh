@@ -8,8 +8,8 @@ echo "Build Mode: $1 || $mode"
 if [[ "$mode" == "development" ]];
     then
         rimraf dev-build
-        vue-cli-service build --mode development
+        vue-cli-service build --modern --mode development
     else
         rimraf dist
-        vue-cli-service build
+        vue-cli-service build --modern
 fi

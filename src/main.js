@@ -37,7 +37,7 @@ function mounted() {
 
 function beforeCreate() {
   console.debug('Vue before Create');
-  console.dir(Vue);
-  console.debug(this);
+  // console.dir(Vue);
+  // console.debug(this);
   initFoundation(Vue);
 }

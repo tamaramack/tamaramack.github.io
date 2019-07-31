@@ -1,7 +1,10 @@
 import { LargeNumber, mapLargeNumber } from './large-number';
 
-export default {
+export {
   add,
+  plus,
+  minus,
+  substract,
   multiply,
   factorialize,
   minusFactor,
@@ -61,6 +64,11 @@ function plus(...n) {
   let i = n.length;
   while (i--) sum += (+n[i]);
   return sum;
+}
+
+function plusRecursive(...n) {
+  if (n.length === 1) return n[0];
+  return n[0] + plus(...n.slice(1));
 }
 
 function substract(...values) {

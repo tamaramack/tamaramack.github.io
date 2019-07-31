@@ -19,6 +19,7 @@ module.exports = {
     'func-names': 0,
     'no-restricted-syntax': 0,
     'guard-for-in': 0,
+    "no-loop-func": 0,
     'no-unreachable': 0, // Temporary
     'no-const-assign': 0, // Temporary
     'no-labels': 0,  // Temporary

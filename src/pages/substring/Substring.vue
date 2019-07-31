@@ -50,7 +50,7 @@
 import { Navigation, FormComponents } from '@/components';
 import { InputItems, InputList } from '@/js/models/input';
 import optionsJson from '@/js/data/substr/options.json';
-import countstrings from './js/async-substrings';
+import countSubstrings from './js/map-query-substring';
 
 const { Dropdown, InputGroup } = FormComponents;
 const options = optionsJson.sort();
@@ -148,7 +148,7 @@ export default {
     runScripts() {
       const then = Date.now();
       console.log('Start Calculations', dt(Date.now() - then));
-      countstrings(this.s, this.q).then((data) => {
+      countSubstrings(this.s, this.q, then).then((data) => {
         this.results = data;
         console.log('Post Calculations', dt(Date.now() - then));
       });

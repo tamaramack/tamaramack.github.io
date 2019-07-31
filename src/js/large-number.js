@@ -1,9 +1,5 @@
-export default {
-  LargeNumber,
-  mapLargeNumber
-};
 
-class LargeNumber extends String {
+export class LargeNumber extends String {
   exp = false;
 
   neg = false;
@@ -56,7 +52,7 @@ class LargeNumber extends String {
   }
 }
 
-function mapLargeNumber(number) {
+export function mapLargeNumber(number) {
   const numberCount = 9;
   const tmp = [];
   console.log('number pre', number, tmp);

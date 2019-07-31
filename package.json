@@ -30,7 +30,7 @@
     "dotenv": "^8.0.0",
     "foundation-sites": "^6.5.3",
     "jquery": "^3.4.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.15",
     "mongodb": "^3.2.3",
     "motion-ui": "^2.0.3",
     "register-service-worker": "^1.6.2",

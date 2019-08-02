@@ -21,13 +21,14 @@
 </template>
 
 <script>
-// import { GeoLocation } from '@/components';
+// eslint-disable-next-line import/no-cycle
+import { GeoLocation } from '@/components';
 
 export default {
   name: 'Navigation',
   mounted,
   components: {
-    GeoLocation: this.$GeoLocation
+    GeoLocation
   },
   props: ['page', 'module', 'showLocation'],
   data() {

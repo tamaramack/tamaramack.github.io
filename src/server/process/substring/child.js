@@ -16,7 +16,7 @@ process.on('message', (data) => {
   let files = [];
 
   for (let j = start; j < end; j += 1) {
-    const filename = path.resolve(__dirname, `./substring/big-${j}.txt`);
+    const filename = path.resolve(__dirname, `./.store/big-${j}.txt`);
     const fb = fs.openSync(filename, 'w');
     const file = fs.createWriteStream(filename);
     const subs = countSubs(s, j + 1);

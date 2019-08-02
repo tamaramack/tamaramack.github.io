@@ -72,6 +72,7 @@ module.exports = {
     'no-prototype-builtins': 0,
     'no-plusplus': 0,
     'no-extra-boolean-cast': 0,
+    'import/no-dynamic-require':0,
     'import/no-extraneous-dependencies': 0,
     'import/extensions': 0,
     'import/no-unresolved': 0,

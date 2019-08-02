@@ -17,9 +17,9 @@ export default async function (s, queries, then) {
     .filter(v => v[1].length);
 
   console.log('Mapped && Start Queries', dt(Date.now() - time), tree, store);
-  return { results };
+
   // Start mapping initial 100 lengths
-  let initialLength = 1;
+  let initialLength = 100;
   if (s.length < initialLength) initialLength = s.length;
   await mapQuerySubs(s, queries, mapped, 0, initialLength);
   console.log(`End initial ${initialLength}`, dt(Date.now() - time));
@@ -48,12 +48,12 @@ async function countSubs(s, queries, mapped, count) {
     len = s.length - count;
   for (let i = 0; i <= len; i += 1) keys[keys.length] = s.slice(i, i + count);
   keys = removeDuplicates(keys);
-  matchSubs(s, queries, mapped, keys);
+  await matchSubs(s, queries, mapped, keys);
 }
 
 async function mapQuerySubs(s, queries, mapped, start = 0, length = 1) {
-  countSubs(s, queries, mapped, start + 1);
-  if (start < length) mapQuerySubs(s, queries, mapped, start + 1, length);
+  await countSubs(s, queries, mapped, start + 1);
+  if (start < length) await mapQuerySubs(s, queries, mapped, start + 1, length);
 }
 
 function searchStore(s, count, store) {
@@ -77,22 +77,22 @@ async function startTreeMap(s, count, store) {
 }
 
 async function Tree(s, store) {
-  firstBranch(s, store);
+  await firstBranch(s, store);
 }
 
-function firstBranch(s, store) {
+async function firstBranch(s, store) {
   if (store[s.length][s]) return;
   store[s.length][s] = 1;
   if (!store[s.length - 1]) return;
-  firstBranch(s.slice(0, -1), store);
-  secondBranch(s.slice(1), store);
+  await firstBranch(s.slice(0, -1), store);
+  await secondBranch(s.slice(1), store);
 }
 
-function secondBranch(s, store) {
+async function secondBranch(s, store) {
   if (store[s.length][s]) return;
   store[s.length][s] = 1;
   if (!store[s.length - 1]) return;
-  secondBranch(s.slice(1), store);
+  await secondBranch(s.slice(1), store);
 }
 
 function newMatrix(length) {

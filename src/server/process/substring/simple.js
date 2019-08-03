@@ -214,7 +214,9 @@ function dt(now) {
 }
 
 function distinct(arr) {
-  return [...new Set(arr)];
+  let set = new Set();
+  for (let value of arr.values()) set.add(value);
+  return [...set];
 }
 
 function plusFactor(n) {

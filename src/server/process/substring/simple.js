@@ -7,9 +7,9 @@ const cluster = require('cluster');// const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const util = require('util');
-const count = require('os').cpus().length;
+const cpus = require('os').cpus().length;
 
-const substringJson = '3000.1';
+const substringJson = '100.1';
 const substringPath = `../../../js/data/substr/${substringJson}`;
 const strDb = require(substringPath);
 
@@ -19,54 +19,89 @@ let time = Date.now();
 // Run Process
 if (cluster.isMaster) {
   console.log(`${dt(Date.now() - time)} \tMaster ${process.pid} is running`);
-  let complete = 0;
+  const results = {
+    loop: [],
+    tree: [],
+    recursive: []
+  };
+  let complete = 0,
+    completeTotal = () => Object.keys(cluster.workers).length;
 
   let exit = setTimeout(() => {
-    console.log(`${dt(Date.now() - time)} \tMaster ${process.pid} now exiting\n`);
-    process.exit();
-  }, 25000);
-
-  // countSubstring Worker
-  const worker1 = cluster.fork();
-  worker1.on('message', (data) => {
-    console.log(`${dt(Date.now() - time)} \tMessage from worker 1 [Tree]\n`, data.results.join(', '));
-    complete++;
-    if (complete === 2) {
-      clearTimeout(exit);
+    cluster.disconnect(() => {
       process.exit();
+    });
+  }, 15000);
+
+  cluster.on('exit', (worker, code, signal) => {
+    let msg = `${dt(Date.now() - time)} \t`;
+    console.log(msg, `Process ${worker.id || 'Parent'}::${worker.pid} now exiting\n`);
+  });
+
+  cluster.on('message', (worker, data, handle) => {
+    const pid = worker.process.pid,
+      final = results[data.type];
+
+    let msgStr = `${dt(Date.now() - time)}\t`;
+    msgStr += `[${data.type.toUpperCase()}] Worker ${worker.id}::${pid}`;
+
+    final[data.i] = data.results;
+    if (final.every(v => v && v.length)) {
+      console.log(`${msgStr} FINAL\n`, final.flat().join(', '));
+      worker.disconnect();
+    }
+
+    complete++;
+    if (complete === completeTotal()) {
+      cluster.disconnect(() => {
+        clearTimeout(exit);
+        process.exit();
+      });
     }
   });
 
-  // countSubstring Worker
-  const worker2 = cluster.fork();
-  worker2.on('message', (data) => {
-    console.log(`${dt(Date.now() - time)} \tMessage from worker 2 [Loop]\n`, data.results.join(', '));
-    complete++;
-    if (complete === 2) {
-      clearTimeout(exit);
-      process.exit();
-    }
-  });
-
-  worker1.send({ worker: 'tree' });
-  worker2.send({ worker: 'loop' });
+  let count = cpus - 1;
+  worker(count >> 1, 'loop', results.loop);
 } else {
   process.on('message', (data) => {
-    console.log(`${dt(Date.now() - time)} \tWorker ${process.pid} receives start cmd`);
-    if (data.worker === 'tree') {
-      tree(queries).then(() => {
+    const { type } = data;
+
+    let msg = `${dt(Date.now() - time)} \t`;
+    msg += `Worker ${cluster.worker.id}::${process.pid} receives start cmd =>`;
+    console.log(msg, type, '\n', data);
+
+    if (type === 'tree') {
+      tree(data).then(() => {
+        process.disconnect();
+      });
+    } else if (type === 'loop') {
+      loop(data).then(() => {
         process.disconnect();
       });
     } else {
-      loop(queries).then(() => {
+      recursive(data).then(() => {
         process.disconnect();
       });
     }
   });
 }
 
-async function loop(queries) {
-  const results = queries.map(v => s.slice(v[0], v[1] + 1));
+function worker(num, type, final) {
+  final = Array(num).fill(null);
+  for (let i = 0; i < final.length; i++) {
+    const worker = cluster.fork();
+
+    let count = Math.ceil(s.length / final.length);
+    let start = !i ? i : i * count;
+    if (count === s.length) count = 0;
+
+    worker.send({
+      type, count, start, i
+    });
+  }
+}
+
+async function loop(data) {
   let store = [];
   console.log(`${dt(Date.now() - time)} \t[Loop] Start Loop`);
 
@@ -79,14 +114,12 @@ async function loop(queries) {
   }
   console.log(`${dt(Date.now() - time)} \t[Loop] End Loop`, store.length);
 
-  store = removeDuplicates(store).sort((a, b) => a.length - b.length);
+  store = distinct(store).sort((a, b) => a.length - b.length);
   console.log(`${dt(Date.now() - time)} \t[Loop] Distinct & Sorted`, store.length);
-  await addToResults(store, results, 'Loop');
+  await addToResults(store, 'Loop', data);
 }
 
-async function tree() {
-  const results = queries.map(v => s.slice(v[0], v[1] + 1));
-
+async function tree(data) {
   let store = new Set();
   console.log(`${dt(Date.now() - time)} \t[Tree] Start Recursive Call`);
   await firstBranch(s, store);
@@ -95,7 +128,7 @@ async function tree() {
   store = ([...store]).sort((a, b) => a.length - b.length);
   console.log(`${dt(Date.now() - time)} \t[Tree] Distinct & Sorted`, store.length);
 
-  await addToResults(store, results, 'Tree');
+  await addToResults(store, 'Tree', data);
 }
 
 async function firstBranch(sub, store) {
@@ -110,7 +143,12 @@ async function secondBranch(sub, store) {
   await secondBranch(sub.slice(1), store);
 }
 
-async function addToResults(store, results, name) {
+async function addToResults(store, name, data) {
+  const { count, start } = data;
+  let end = start + count;
+  end = end > queries.length ? queries.length : end;
+
+  const results = queries.slice(start, end).map(v => s.slice(v[0], v[1] + 1));
   for (let i = 0; i < results.length; i += 1) {
     const qs = results[i];
     let c = 0;
@@ -123,9 +161,51 @@ async function addToResults(store, results, name) {
   }
   console.log(`${dt(Date.now() - time)} \t[${name}] End map results`);
 
-  process.send({ results });
+  process.send({ results, ...data });
 }
 
+async function recursive(data) {
+  const { count, start } = data;
+  let end = start + count;
+  end = end > queries.length ? queries.length : end;
+  let results = queries.slice(start, end).map(v => s.slice(v[0], v[1] + 1));
+  console.log(`${dt(Date.now() - time)} \t[Recursive] Start Recursive Call`);
+
+  for (let i of results.keys()) results[i] = recurCount(i, results);
+  console.log(`${dt(Date.now() - time)} \t[Recursive] End map results`);
+
+  results = await Promise.all(results);
+  process.send({ results, ...data });
+}
+
+async function recurCount(idx, results) {
+  const sub = results[idx];
+  const d = distinct(sub);
+  if (d.length === 1) return sub.length;
+  if (d.length === sub.length) {
+    return plusFactor(d.length);
+  }
+
+  if (d.length === 2) {
+    // return 0;
+  }
+
+  let n = d.length;
+  for (let i = 0; i < d.length; i += 1) {
+    n = map(n, d[i], sub.indexOf(d[i]), d, sub);
+  }
+
+  // console.log('sub', `${idx} => ${sub.length}`, `${r[idx]} :: ${n}`);
+  return n;
+}
+
+function map(n, cluster, start, dist, sub) {
+  for (let i = 0; i < dist.length; i++) {
+    const index = sub.indexOf(cluster + dist[i], start);
+    if (index > -1) n = map(n + 1, cluster + dist[i], index, dist, sub);
+  }
+  return n;
+}
 
 function dt(now) {
   now = new Date(now);
@@ -133,8 +213,14 @@ function dt(now) {
   return `${t('Minutes')}:${t('Seconds')}.${now.getMilliseconds()}`;
 }
 
-function removeDuplicates(arr) {
+function distinct(arr) {
   return [...new Set(arr)];
+}
+
+function plusFactor(n) {
+  let sum = n;
+  while (n--) sum += n;
+  return sum;
 }
 
 function sortingByLength(arr) {

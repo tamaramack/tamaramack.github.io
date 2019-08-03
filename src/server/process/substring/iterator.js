@@ -6,7 +6,7 @@ const cluster = require('cluster');// const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const util = require('util');
-const count = require('os').cpus().length;
+const cpus = require('os').cpus().length;
 
 const substringJson = '3000.1';
 const substringPath = `../../../js/data/substr/${substringJson}`;
@@ -22,40 +22,95 @@ if (cluster.isMaster) {
   let complete = 0;
 
   let exit = setTimeout(() => {
-    console.log(`${dt(Date.now() - time)} \tMaster ${process.pid} now exiting\n`);
-    process.exit();
+    cluster.disconnect(() => {
+      process.exit();
+    });
   }, 25000);
-
-  // countSubstring Worker
-  const worker1 = cluster.fork();
-  worker1.on('message', (data) => {
-    console.log(`${dt(Date.now() - time)} \tMessage from worker 1\n`, data.results.join(', '));
-    complete++;
-    if (complete === 2) {
-      clearTimeout(exit);
-      process.exit();
-    }
-  });
-
-  // countSubstring Worker
-  const worker2 = cluster.fork();
-  worker2.on('message', (data) => {
-    console.log(`${dt(Date.now() - time)} \tMessage from worker 2\n`, data.results.join(', '));
-    complete++;
-    if (complete === 2) {
-      clearTimeout(exit);
-      process.exit();
-    }
-  });
-
-  worker1.send({ worker: 'getSubs' });
-  worker2.send({ worker: 'addToResults' });
 } else {
   process.on('message', (data) => {
     console.log(`${dt(Date.now() - time)} \tWorker ${process.pid} receives start cmd`);
   });
 }
 
+/**
+ * Private Process Functions
+ */
+
+function parentMainProcess() {
+  const workers = mainCreateWorkers();
+  console.info(`${dt(Date.now() - time)} \tWorkers created\n`, workers);
+}
+
+function mainWorkerEvents(workers) {
+  cluster.on('exit', (worker, code, signal) => {
+    const pid = worker.process.pid;
+    const msgStr = `${dt(Date.now() - time)}\t worker ${pid}`;
+    if (signal) {
+      console.log(`${msgStr} was killed by signal: ${signal}`);
+    } else if (code !== 0) {
+      console.log(`${msgStr} exited with error code: ${code}`);
+    } else {
+      console.log(`${msgStr} died`);
+    }
+  });
+
+  cluster.on('message', (worker, message, handle) => {
+    const pid = worker.process.pid;
+    const msgStr = `${dt(Date.now() - time)}\t worker ${pid}`;
+    if (workers.i.includes(worker.id)) {
+      // TODO: pipeline
+    } else if (workers.sub.primary.includes(worker.id)) {
+      // TODO: mapping
+    } else {
+      // TODO: whatever left
+    }
+  });
+}
+
+function mainCreateWorkers() {
+  let count = cpus - 1;
+  const workers = {};
+  workers.parent = cluster.worker.id;
+
+  for (let i = 0; i < count; i++) cluster.fork();
+  const ids = Object.keys(cluster.workers).values();
+
+  // have 4 pcs for iteration
+  workers.i = Array(4).fill(null).map(() => ids.next().value);
+  count -= workers.i.length;
+
+  // make subprocess workers
+  workers.sub = {};
+  if (count > 1) {
+    workers.sub.primary = Array(count >> 1).fill(null).map(() => ids.next().value);
+    count -= workers.sub.primary.length;
+    workers.sub.secondary = Array(count).fill(null).map(() => ids.next().value);
+  } else {
+    workers.sub.primary = Array(count).fill(null).map(() => ids.next().value);
+    workers.sub.secondary = null;
+  }
+
+  return workers;
+}
+
+function childMainProcess() {
+
+}
+
+function childIterativeProcess() {
+
+}
+
+
+/**
+ * Private Counting Functions
+ */
+
+/**
+ *
+ * @param sub
+ * @returns {Promise<*|[]>}
+ */
 async function getSubs(sub) {
   let store = [];
   console.log(`${dt(Date.now() - time)} \t[Simple] Start Loop`);
@@ -95,17 +150,6 @@ function removeDuplicates(strArr) {
   let i = strArr.length;
   while (i--) set.add(strArr[i]);
   return [...set];
-}
-
-function isNumber(num) {
-  return !Number.isNaN(Number(num));
-}
-
-function plus(...n) {
-  let sum = 0;
-  let i = n.length;
-  while (i--) sum += (+n[i]);
-  return sum;
 }
 
 function dt(now) {

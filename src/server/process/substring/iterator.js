@@ -32,7 +32,6 @@ if (cluster.isMaster) {
   let iter = keys.values();
 
   process.send({});
-
 } else {
   process.on('message', (data) => {
     console.log(`${dt(Date.now() - time)} \tWorker ${process.pid} receives start cmd`);
@@ -46,6 +45,11 @@ if (cluster.isMaster) {
 function parentMainProcess() {
   const workers = mainCreateWorkers();
   console.info(`${dt(Date.now() - time)} \tWorkers created\n`, workers);
+
+  const results = queries.map((v, i) => [i, s.slice(v[0], v[1] + 1)]);
+  for (let arr of results.values()) arr.push(Array(arr[arr.length - 1].length).fill(0));
+
+  return { workers, results };
 }
 
 function mainWorkerEvents(workers) {
@@ -132,7 +136,7 @@ async function getSubs(sub) {
   }
   console.log(`${dt(Date.now() - time)} \t[Simple] End Loop`, store.length);
 
-  store = removeDuplicates(store).sort((a, b) => a.length - b.length);
+  store = distinct(store).sort((a, b) => a.length - b.length);
   console.log(`${dt(Date.now() - time)} \t[Simple] Distinct & Sorted`, store.length);
 
   return store;
@@ -153,10 +157,9 @@ async function addToResults(store, results) {
 }
 
 
-function removeDuplicates(strArr) {
+function distinct(arr) {
   let set = new Set();
-  let i = strArr.length;
-  while (i--) set.add(strArr[i]);
+  for (let value of arr.values()) set.add(value);
   return [...set];
 }
 

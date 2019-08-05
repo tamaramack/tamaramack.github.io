@@ -9,7 +9,7 @@ const path = require('path');
 const util = require('util');
 const cpus = require('os').cpus().length;
 
-const substringJson = '100.1';
+const substringJson = '100000.1';
 const substringPath = `../../../js/data/substr/${substringJson}`;
 const strDb = require(substringPath);
 
@@ -31,7 +31,7 @@ if (cluster.isMaster) {
     cluster.disconnect(() => {
       process.exit();
     });
-  }, 15000);
+  }, 240000);
 
   cluster.on('exit', (worker, code, signal) => {
     let msg = `${dt(Date.now() - time)} \t`;
@@ -60,8 +60,25 @@ if (cluster.isMaster) {
     }
   });
 
-  let count = cpus - 1;
-  worker(count >> 1, 'loop', results.loop);
+  // let count = cpus - 1;
+  // worker(count >> 1, 'loop', results.loop);
+  console.log(`${dt(Date.now() - time)} \tStart creating mapped queries`);
+  const q = queries.map((v, i) => ({ v, i }));
+  console.log(`${dt(Date.now() - time)} \tEnd Map Objects, \n\tStart Map Substrings`);
+
+  for (let obj of q.values()) obj.v = s.slice(obj.v[0], obj.v[1] + 1);
+  console.log(`${dt(Date.now() - time)} \tEnd Map Substrings, \n\tStart Map Array of Lengths`);
+
+  for (let obj of q.values()) obj.r = [];
+  // console.log(`${dt(Date.now() - time)} \tCont Map Array of Lengths`);
+  // for (let obj of q.values()) obj.r.fill(0);
+  console.log(`${dt(Date.now() - time)} \tEnd Map Array of Lengths, \n\tStart Map Distinct`);
+
+  for (let obj of q.values()) {
+    obj.r[0] = distinct(obj.v).length;
+    obj.r[obj.v.length - 1] = obj.s;
+  }
+  console.log(`${dt(Date.now() - time)} \tEnd Map Distinct`, JSON.stringify(q));
 } else {
   process.on('message', (data) => {
     const { type } = data;
@@ -214,7 +231,9 @@ function dt(now) {
 }
 
 function distinct(arr) {
-  return [...new Set(arr)];
+  const set = new Set();
+  for (let i = 0; i < arr.length; i += 1) set.add(arr[i]);
+  return [...set];
 }
 
 function plusFactor(n) {

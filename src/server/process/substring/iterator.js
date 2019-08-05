@@ -26,6 +26,13 @@ if (cluster.isMaster) {
       process.exit();
     });
   }, 25000);
+
+  for (let i = 0; i < cpus; i++) cluster.fork();
+  const keys = Object.keys(cluster.workers);
+  let iter = keys.values();
+
+  process.send({});
+
 } else {
   process.on('message', (data) => {
     console.log(`${dt(Date.now() - time)} \tWorker ${process.pid} receives start cmd`);
@@ -73,7 +80,8 @@ function mainCreateWorkers() {
   workers.parent = cluster.worker.id;
 
   for (let i = 0; i < count; i++) cluster.fork();
-  const ids = Object.keys(cluster.workers).values();
+  const keys = Object.keys(cluster.workers);
+  const ids = keys.values();
 
   // have 4 pcs for iteration
   workers.i = Array(4).fill(null).map(() => ids.next().value);

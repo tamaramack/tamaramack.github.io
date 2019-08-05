@@ -8,3 +8,4 @@ dev-build/*
 bin/*
 server.js
 *.config.js
+server/process/*

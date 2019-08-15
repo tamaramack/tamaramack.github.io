@@ -31,7 +31,7 @@ if (cluster.isMaster) {
     cluster.disconnect(() => {
       process.exit();
     });
-  }, 240000);
+  }, 15000);
 
   cluster.on('exit', (worker, code, signal) => {
     let msg = `${dt(Date.now() - time)} \t`;

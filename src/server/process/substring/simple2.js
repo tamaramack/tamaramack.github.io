@@ -126,7 +126,10 @@ async function tree(s, end) {
 async function firstBranch(sub, store, end) {
   if (!sub || store.has(sub) || sub.length === end) return;
   store.add(sub);
-  await Promise.all([firstBranch(sub.slice(0, -1), store, end), secondBranch(sub.slice(1), store, end)]);
+  await Promise.all([
+    firstBranch(sub.slice(0, -1), store, end),
+    secondBranch(sub.slice(1), store, end)
+  ]);
 }
 
 async function secondBranch(sub, store, end) {

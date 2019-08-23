@@ -4,25 +4,30 @@
  */
 const fs = require('fs');
 const util = require('util');
+const { dt } = require('./utilities');
+const writeStreamFile = require('./write-stream');
 
 const open = util.promisify(fs.open);
 
 let time = Date.now();
 
-async function tree(s, end, mappedFile) {
+async function mapWithTree(s, stop, useStream) {
+  tree(s, stop).then((set) => {
+    if (useStream) {
+      writeStreamFile(set.values(), useStream, { stop, useStream });
+    } else {
+      process.send({ stop, set });
+    }
+    console.log(`${dt(Date.now() - time)} \t[Tree] Write Stream Complete`);
+  });
+}
+
+async function tree(s, end) {
   let set = new Set();
   console.log(`${dt(Date.now() - time)} \t[Tree] Start Recursive Call`);
   await firstBranch(s, set, end);
   console.log(`${dt(Date.now() - time)} \t[Tree] End Recursive`, set.size);
-
-  await open(mappedFile, 'w');
-  const file = fs.createWriteStream(mappedFile);
-  console.log(`${dt(Date.now() - time)} \t[Tree] Write Stream`);
-
-  for (let sub of set.values()) file.write(`${sub}\n`);
-  set.clear();
-  file.end('\n');
-  process.send({ end, mappedFile });
+  return set;
 }
 
 async function firstBranch(sub, store, end) {

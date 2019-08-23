@@ -3,6 +3,12 @@
  * tamaramack.github.io
  */
 
+module.exports = {
+  dt,
+  distinct,
+  plusFactor
+};
+
 function dt(now) {
   now = new Date(now);
   const t = n => (`0${now[`get${n}`]()}`).slice(-2);

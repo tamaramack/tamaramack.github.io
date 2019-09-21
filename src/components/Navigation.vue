@@ -55,7 +55,7 @@ function mounted() {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .no-js {
     @include breakpoint(small only) {
       .top-bar {

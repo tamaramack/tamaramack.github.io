@@ -16,13 +16,13 @@ function dt(now) {
 }
 
 function distinct(arr) {
-  const set = new Set();
-  for (let i = 0; i < arr.length; i += 1) set.add(arr[i]);
-  return [...set];
+  const o = {};
+  for (let value of arr) o[value] = 1;
+  return Object.keys(o);
 }
 
 function plusFactor(n) {
-  let sum = n;
+  let sum = +n;
   while (n--) sum += n;
   return sum;
 }

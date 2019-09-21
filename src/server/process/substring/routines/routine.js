@@ -1,17 +1,10 @@
-/* eslint-disable lines-around-directive */
-/* eslint-disable strict */
-/**
- * routine js file created by Tamara G. Mack on 04-Aug-19 for
- * tamaramack.github.io
- */
 
-'use strict';
 
 const cluster = require('cluster');
-const cpus = require('os').cpus().length;
-const fs = require('fs');
+// const http = require('http');
 const path = require('path');
-const util = require('util');
+const fs = require('fs');
+let cpus = require('os').cpus().length;
 
 if (cluster.isMaster) {
   process.stdin.resume();
@@ -45,64 +38,34 @@ if (cluster.isMaster) {
   function countSubstrings(s, queries) {
     console.log('CPUs', ids.length);
 
-    const qWorker = cluster.workers[ids.pop()];
-    qWorker.send({
-      type: 'queries', s, queries, then
-    });
-    qWorker.on('message', (data) => {
-      console.log(dt(then), 'queries worker response');
-      const { result, lengths } = data;
-    });
-
     let currentLevel = 0;
-    let store = Array(s.length).fill(null).map((v, i) => []);
-    store[0] = s.split('');
 
-    /* const lvlWorker = cluster.workers[ids.pop()];
-     lvlWorker.on('message', (data) => {
-     const { row } = data;
-     const level = row[0].length - 1;
-     store[level] = row;
-     console.log('level worker response', level, currentLevel);
-
-     if (currentLevel < s.length) {
-     currentLevel = level;
-     lvlWorker.send({ type: 'levels', prev: store[currentLevel] });
-     }
-     });
-     lvlWorker.send({ type: 'levels', prev: store[currentLevel] }); */
-
-    let start = 0;
-    const temp = [];
-    iters.forEach((v, i) => {
+    let count = Math.ceil(s.length / 20);
+    let start = -count;
+    let temp = [];
+    iters.forEach(async (v, i) => {
       const worker = cluster.workers[v];
       worker.on('message', (data) => {
-        const { row } = data;
-        temp.push(row);
-        console.log(`${dt(then)} loop worker ${worker.id} response`, start, row.length, temp.length);
+        let { row } = data;
+        console.log(`${dt(then)} worker ${worker.id} response`, start, row.length);
 
-        if (start < s.length) {
+        if (start + count < s.length) {
+          start += count;
           worker.send({
-            type: 'nested', start: start++, s, then
+            type: 'lengths', start, s, count, then
           });
         }
       });
-      if (start < s.length) worker.send({ type: 'nested', start: start++, s });
+      if (start + count < s.length) {
+        start += count;
+        console.log(`${dt(then)} worker ${worker.id} start`, start);
+        worker.send({
+          type: 'lengths', start, s, count, then
+        });
+      }
     });
-    // console.info('Loop substring', JSON.stringify(store));
 
-    const loopWorker = cluster.workers[ids.pop()];
-    loopWorker.on('message', (data) => {
-      const { arr } = data;
-      console.log(dt(then), 'simple worker response', arr);
-      arr = arr.sort((a, b) => a.length - b.length);
-      arr = arr.filter((v, i, tmp) => v !== tmp[i + 1]);
-      console.log(dt(then), 'distinct simple', arr.length);
-    });
-    loopWorker.send({ type: 'simple', s, then });
-    // for (let [i, arr] of store.entries()) store[i] = distinct(arr);
-
-    // console.info('Loop substring store', store);
+    // console.info('substring', count);
     return [];// results;
   }
 
@@ -122,6 +85,8 @@ if (cluster.isMaster) {
     for (let queriesRowItr = 0; queriesRowItr < q; queriesRowItr++) {
       queries[queriesRowItr] = readLine().split(' ').map(queriesTemp => parseInt(queriesTemp, 10));
     }
+    queries = queries.map((v, i) => ({ i, s: s.slice(v[0], v[1] + 1), c: {} }));
+    queries = queries.sort((a, b) => a.s.length - b.s.length);
 
     let result = countSubstrings(s, queries);
 
@@ -130,30 +95,24 @@ if (cluster.isMaster) {
     ws.end();
   }
 } else {
-  process.on('message', (data) => {
+  process.on('message', async (data) => {
     const {
       type, s, queries, then
     } = data;
     switch (type) {
-      case 'queries':
-        process.send(mapQueries(s, queries));
+      case 'count':
+        const { q } = data;
+        count(1500, q, then);
         break;
-      case 'levels':
-        const { prev } = data;
-        process.send(mapLengthLevel(prev, then));
+      case 'match':
+        const { start, count } = data;
+        setTimeout(() => {
+          nestedLoop(s, start, count, then);
+        }, 1);
         break;
       case 'tree':
         const { stop } = data;
         process.send(tree(s, stop, then));
-        break;
-      case 'nested':
-        const { start } = data;
-        process.send(nestedLoop(s, start, then));
-        break;
-      case 'simple':
-        process.send(simpleLoop(s, then));
-        break;
-      default:
         break;
     }
   });
@@ -173,14 +132,35 @@ function distinct(arr) {
 }
 
 function mapQueries(s, queries) {
-  const results = queries.map(v => s.slice(v[0], v[1] + 1));
-  let lengths = Array(s.length).fill(null).map((v, i) => [i + 1, []]);
+  const tmp = queries.map((v, i) => ({ i, s: s.slice(v[0], v[1] + 1), c: {} }));
+  const q = tmp.sort((a, b) => a.s.length - b.s.length);
+  return { q };
+}
 
-  for (let i = 0; i < results.length; i++) lengths[results[i].length - 1][1].push(i);
-  lengths = lengths.filter(v => v[1].length);
+async function count(num, s, then) {
+  const o = {};
+  for (let j = 0; j <= s.length - num; j++) {
+    o[s.slice(j, j + num)] = 1;
+  }
+  process.send({ row: Object.keys(o) });
+}
 
-  // console.log('lengths', lengths);
-  return { results, lengths };
+async function map(lengths, q, then) {
+  const len = lengths[0].length;
+  for (const query of q) {
+    let remainder = query.s.length - len + 1;
+    if (remainder <= 0) continue;
+    let i = 0,
+      count = 0;
+    while (remainder && i < lengths.length) {
+      if (!query.s.includes(lengths[i++])) continue;
+      remainder--;
+      count++;
+    }
+
+    query.r[len] = count;
+  }
+  process.send({ q });
 }
 
 function tree(s, stop) {
@@ -205,34 +185,59 @@ function tree(s, stop) {
   }
 }
 
-function simpleLoop(s, then) {
-  let arr = [];
-  for (let i = 0; i < s.length; i++) {
-    let sub = '';
-    for (let j = i; j < s.length; j++) {
-      sub += s[j];
-      arr.push(sub);
+async function simpleLoop(s, then, start = 0, count = Infinity) {
+  const fb = fs.openSync('data.txt', 'w');
+  let file = fs.createWriteStream('data.txt');
+  const end = start + count < s.length ? start + count : s.length;
+  let arr = [],
+    i = 0;
+  for (i = start; i < end; i++) {
+    const o = Array(s.length - i).fill(null);
+    for (let j = 0; j < s.length - i; j++) {
+      o[j] = (s.slice(j, j + i + 1));
+    }
+    arr[i] = o;
+    // file.write(o.join(',')+'\n');
+  }
+
+  // process.stdout.write(JSON.stringify(arr));
+  // process.stdout.end('\n');
+  console.log(dt(then), 'simple loop', arr.length);
+  while (arr.length) {
+    process.send({ arr: arr.pop() });
+  }
+}
+
+async function vine(substring, stop = Infinity) {
+  const store = Array.call(null, ...Array(substring.length)).map(_ => ({}));
+  let len = 0,
+    positionCount = 0;
+
+  for (let i = 0; i < substring.length; i++) add(substring[i], i);
+  store[len] = Object.values(store[len]);
+
+  let tmp = substring.split('');
+  while (tmp.length > 1 && tmp[0].length < stop) lateral();
+
+  return { subs: store.flat(), tmp };
+  async function lateral() {
+    len += 1;
+    positionCount = 0;
+    for (let i = 0; i < tmp.length - 1; i += 1) {
+      const fir = tmp[i],
+        sec = tmp[i + 1];
+      tmp[i] = fir[0] + sec;
+      add(tmp[i], i);
+    }
+    const discard = tmp.pop();
+    store[len] = Object.values(store[len]);
+  }
+
+  function add(sub, startIndex) {
+    if (!store[len][sub]) {
+      store[len][sub] = [`${len + 1};${positionCount++}`, `${startIndex}`];
+    } else {
+      store[len][sub][1] += `,${startIndex}`;
     }
   }
-
-  console.log(dt(then), 'simple loop', arr.length);
-  return { arr };
-}
-
-function nestedLoop(s, start) {
-  const o = [];
-  let sub = '';
-  for (let i = +start; i < s.length; i += 1) {
-    sub += s[i];
-    o[sub] = 1;
-  }
-  return { row: Object.keys(o).sort((a, b) => a.length - b.length) };
-}
-
-function mapLengthLevel(prev) {
-  const row = [];
-  for (let i = 1; i < prev.length; i += 1) {
-    row[row.length] = (prev[i - 1][0] + prev[i]);
-  }
-  return { row };
 }

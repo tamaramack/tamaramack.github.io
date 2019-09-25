@@ -42,6 +42,10 @@ import generic from '@/js/data/generic';
 
 export default {
   name: 'about',
+  page: {
+    title: 'Home'
+  },
+  foundation: true,
   components: {
     Navigation
   },

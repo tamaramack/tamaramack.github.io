@@ -4,12 +4,9 @@
  */
 import {
   getSetOf,
-  clone,
-  sum
+  clone
 } from '@/js/utilities/utilities';
-import {
-  StringObject
-} from '@/js/models/objects/string-object';
+import StringObject from '@/js/models/objects/string-object';
 
 import Tree from './string-tree';
 
@@ -179,7 +176,14 @@ function rmvDups(s) {
 }
 
 function repChar(s) {
-  var regex = /^([A-Za-z])\1*$/;
-  var result = s.match(regex);
+  const regex = /^([A-Za-z])\1*$/;
+  const result = s.match(regex);
   return result;
+}
+
+function sum(...n) {
+  let s = 0;
+  let i = n.length;
+  while (i--) s += (+n[i]);
+  return s;
 }

@@ -11,17 +11,14 @@ import {
   removeDuplicates,
   clone,
   compare,
-  sum,
   substringCount
 } from '@/js/utilities/utilities';
-import {
-  StringObject
-} from '@/js/models/objects/string-object';
+import StringObject from '@/js/models/objects/string-object';
 import {
   Collection,
   MapCollection,
   SetCollection
-} from '@/js/model/collection';
+} from '@/js/models/collection';
 
 export default class Tree extends SetCollection {
   constructor(s, set = new SetCollection(), stop = 0, main) {

@@ -2,6 +2,7 @@
  * async-substrings js file created by Tamara G. Mack on 30-Jul-19 for
  * tamaramack.github.io
  */
+/* eslint-disable */
 import { removeDuplicates } from '@/js/utilities/utilities';
 
 export default async function (s, queries) {

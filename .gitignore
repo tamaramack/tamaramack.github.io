@@ -1,12 +1,12 @@
 node_modules
 /dist
+/devdist
 out
 gen
 
 build
-dev-build
-
 src/js/data/substr/*
+.store/
 
 /tests/e2e/reports/
 selenium-debug.log
@@ -33,4 +33,3 @@ yarn-error.log*
 *.sln
 *.sw*
 .eslintcache
-/src/server/process/substring/.store/

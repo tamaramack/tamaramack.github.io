@@ -2,7 +2,7 @@
  * patterns js file created by Tamara G. Mack on 12-Jul-19 for
  * tamaramack.github.io
  */
-
+/* eslint-disable */
 export function findPatterns(s) {
   const pattern = {};
   const getChars = s => distinctArray(s)

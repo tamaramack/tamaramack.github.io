@@ -3,5 +3,4 @@
 # ./node_modules/bower/bin/bower cache clean
 npm audit fix
 npm run build:raw
-vue-cli-service build
-vue-cli-service build --mode development
+npm run build all

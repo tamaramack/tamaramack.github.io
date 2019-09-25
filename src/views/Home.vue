@@ -11,6 +11,9 @@ import { HelloWorld, Navigation } from '@/components';
 
 export default {
   name: 'home',
+  page: {
+    title: 'Home'
+  },
   components: {
     Navigation,
     HelloWorld

@@ -1,6 +1,5 @@
 <template lang="pug">
   div
-    Navigation(page="playground")
     .content-size.grid-y.medium-grid-frame
       .cell.shrink.header.medium-cell-block-container
         div.grid-x
@@ -26,13 +25,11 @@
                 ItemCard.inline(v-for="(item, index) in colors", :Color="item",
                   :key="index+item.id", :id="'card'+index+item.id")
 
-
 </template>
 
 <script>
 import { createNamespacedHelpers } from 'vuex';
 import Colors from '@/js/colors/colors';
-import { Navigation } from '@/components';
 import { ListItem, ItemCard, ItemDetails } from './components';
 
 const { mapState, mapGetters } = createNamespacedHelpers('colors');
@@ -55,8 +52,7 @@ export default {
   components: {
     ItemCard,
     ItemDetails,
-    ListItem,
-    Navigation
+    ListItem
   },
   data() {
     return {

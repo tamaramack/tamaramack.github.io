@@ -30,6 +30,7 @@ const { mapState } = createNamespacedHelpers('rover');
 
 export default {
   name: 'RoverSearch',
+  foundation: true,
   components: {
     Navigation,
     SearchSidebar,

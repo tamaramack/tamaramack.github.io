@@ -13,7 +13,6 @@
             ul.menu.vertical
               li(v-if="!isSearch"): router-link(to="/colors") Colors
               li(v-if="!isSearch"): router-link(to="/substring") Substring
-              li(v-if="!isSearch"): router-link(to="/foundation") Foundation
               li: router-link(to="/rover") Search
           li: router-link(to="/about") About
       .top-bar-right
@@ -26,7 +25,7 @@ import { GeoLocation } from '@/components';
 
 export default {
   name: 'Navigation',
-  mounted,
+  foundation,
   components: {
     GeoLocation
   },
@@ -38,20 +37,17 @@ export default {
   }
 };
 
-function mounted() {
-  this.$(document).foundation();
-  this.$nextTick(() => {
-    // resize body padding based off nav bar height
-    const nav = document.getElementById('nav-container');
-    const setBodySize = (e) => {
-      const height = this.$(nav).height();
-      this.$('.content-size').css('height', `calc(100vh - ${height}px)`);
-    };
+function foundation(Foundation, $) {
+  // resize body padding based off nav bar height
+  const nav = document.getElementById('nav-container');
+  const setBodySize = (e) => {
+    const height = $(nav).height();
+    $('.content-size').css('height', `calc(100vh - ${height}px)`);
+  };
 
-    this.$(window).resize(setBodySize);
-    this.$(nav).resize(setBodySize);
-    setBodySize();
-  });
+  $(window).resize(setBodySize);
+  $(nav).resize(setBodySize);
+  setBodySize();
 }
 </script>
 

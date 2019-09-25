@@ -6,10 +6,12 @@ npm run lint
 echo "Build Mode: $1 || $mode"
 
 if [[ "$mode" == "development" ]];
-    then
-        rimraf dev-build
-        vue-cli-service build --modern --mode development
-    else
-        rimraf dist
-        vue-cli-service build --modern
+then
+  vue-cli-service build --modern --mode development
+elif [ "$mode" == "all" ];
+then
+  vue-cli-service build --modern --mode development
+  vue-cli-service build --modern
+else
+  vue-cli-service build --modern
 fi

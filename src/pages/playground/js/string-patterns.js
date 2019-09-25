@@ -10,17 +10,13 @@ import {
   removeDuplicates,
   clone,
   compare,
-  sum,
   substringCount
 } from '@/js/utilities/utilities';
-import {
-  SubstringObject,
-  StringObject
-} from '@/js/models/objects/string-object';
+import StringObject from '@/js/models/objects/string-object';
 import {
   MapCollection,
   SetCollection
-} from '@/js/models/collections';
+} from '@/js/models/collection';
 import Tree from './string-tree';
 
 export default class StringPatterns extends MapCollection {

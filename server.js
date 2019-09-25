@@ -4,7 +4,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const path = require('path');
-// const serveStatic = require('serve-static');
+const opn = require('open');
 
 let results = dotenv.config();
 if (results.error) {
@@ -14,10 +14,14 @@ if (results.error) {
 }
 
 const history = require('connect-history-api-fallback');
-const configureAPI = require('./src/server/configure');
+const configureAPI = require('./api/configure');
+const packageJson = require('./package.json');
 
 const app = express();
-const { PORT = 9200, NODE_ENV = 'development' } = process.env;
+const {
+  PORT = packageJson.config.port,
+  NODE_ENV = 'production'
+} = process.env;
 
 const isProd = (NODE_ENV === 'production');
 const isDev = (NODE_ENV === 'development');
@@ -26,17 +30,17 @@ const staticConf = {
   etag: !isProd
 };
 
-let folder = !isDev ? 'dist' : 'dev-build';
+let folder = !isDev ? 'dist' : 'devdist';
 folder = path.join(__dirname, folder);
 
 // APIs
 configureAPI(app);
 
 // UI
-// app.use(serveStatic(folder));
 app.use(express.static(folder, staticConf));
 app.use('/', history());
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
+  await opn(`http://localhost:${PORT}`);
   console.log(`App running on port ${PORT} on ${NODE_ENV} environment`)
 });

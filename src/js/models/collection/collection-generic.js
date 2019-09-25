@@ -2,7 +2,7 @@
  * generic js file created by Tamara G. Mack on 12-Jul-19 for
  * tamaramack.github.io
  */
-export class Collection {
+export default class Collection {
   constructor() {
     this.collection = new Set();
   }

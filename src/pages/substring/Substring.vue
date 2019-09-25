@@ -57,6 +57,7 @@ const options = optionsJson.sort();
 
 export default {
   name: 'Substring',
+  foundation: true,
   components: {
     Dropdown,
     InputGroup,

@@ -1,4 +1,5 @@
-const configureAPI = require('./src/server/configure');
+const configureAPI = require('./api/configure');
+const packageJson = require('./package.json');
 
 module.exports = {
   pluginOptions: {
@@ -6,11 +7,11 @@ module.exports = {
       registry: undefined,
       awsProfile: '0',
       region: 'us-west-2',
-      bucket: 'tamaramack-data',
+      bucket: process.env.S3_BUCKET,
       createBucket: false,
       staticHosting: true,
       staticIndexPage: 'index.html',
-      staticErrorPage: 'index.html',
+      staticErrorPage: 'error.html',
       assetPath: 'dist',
       assetMatch: '**',
       deployPath: '/app',
@@ -33,16 +34,41 @@ module.exports = {
     name: 'ConfigureThis'
   },
 
+  pages: {
+    index: {
+      // entry for the page
+      entry: 'src/main.js',
+      // the source template
+      template: 'public/index.html',
+      // output as dist/index.html
+      filename: 'index.html',
+      // when using title option,
+      // template title tag needs to be <title><%= htmlWebpackPlugin.options.title %></title>
+      title: 'Index Page',
+      // chunks to include on this page, by default includes
+      // extracted common chunks and vendor chunks.
+      chunks: ['chunk-vendors', 'chunk-common', 'index']
+    },
+    // when using the entry-only string format,
+    // template is inferred to be `public/subpage.html`
+    // and falls back to `public/index.html` if not found.
+    // Output filename is inferred to be `subpage.html`.
+    // subpage: 'src/subpage/main.js'
+  },
+
   publicPath: undefined,
-  outputDir: process.env.NODE_ENV !== 'production' ? 'dev-build' : 'dist',
-  assetsDir: 'content',
+  outputDir: process.env.NODE_ENV !== 'production' ? 'devdist' : 'dist',
+  assetsDir: 'lib',
   runtimeCompiler: true,
-  productionSourceMap: undefined,
+  filenameHashing: true,
+  productionSourceMap: true,
   parallel: undefined,
+  integrity: false,
   crossorigin: 'anonymous',
   lintOnSave: process.env.NODE_ENV !== 'production' && true,
+
   devServer: {
-    port: 9200,
+    port: packageJson.config.port || process.env.PORT,
     // https: true,
     before: configureAPI,
     overlay: {
@@ -62,8 +88,8 @@ module.exports = {
     modules: true,
     loaderOptions: {
       css: {
-        localIdentName: '[name]_[local]_[hash:base64]',
-        modules: false,
+        // localIdentName: '[name]_[local]_[hash:base64]',
+        localIdentName: '[local]_[hash:base64]',
         camelCase: false
       },
       sass: {

@@ -1,31 +1,18 @@
-// import '@progress/kendo-ui';
-// import '@progress/kendo-theme-default/scss/all.scss';
 import Vue from 'vue';
-/* import {
-  DateinputsInstaller,
-  Calendar,
-  DateInput,
-  DatePicker,
-  DateRangePicker,
-  DateTimePicker,
-  TimePicker,
-  MultiViewCalendar
-} from '@progress/kendo-dateinputs-vue-wrapper'; */
 import App from './App.vue';
-import router from './router';
-import store from './store';
-import initFoundation from './js/foundation';
-import Mixins from './mixin';
+import store from '@/js/.store';
+import router from '@/js/.router';
+import * as Mixins from '@/js/.mixins';
+import * as Uses from '@/js/.use';
 import './registerServiceWorker';
 
 Vue.config.productionTip = false;
-// Vue.use(DateinputsInstaller);
-Mixins(Vue);
+for (let name in Mixins) Vue.mixin(Mixins[name]);
+for (let name in Uses) Vue.use(Uses[name]);
 
 window.mainVue = new Vue({
   router,
   store,
-  beforeCreate,
   mounted,
   render: h => h(App)
 });
@@ -33,11 +20,5 @@ window.mainVue = new Vue({
 window.mainVue.$mount('#app');
 
 function mounted() {
-}
-
-function beforeCreate() {
-  console.debug('Vue before Create');
-  // console.dir(Vue);
-  // console.debug(this);
-  initFoundation(Vue);
+  console.info('Vue engine mounted.');
 }

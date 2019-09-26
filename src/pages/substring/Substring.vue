@@ -1,6 +1,5 @@
 <template lang="pug">
   .substring-container
-    Navigation(page="substring")
     .content-size.grid-y.medium-grid-frame
       .cell.shrink.header.medium-cell-block-container
         h1 The Substring Code Challenge
@@ -47,7 +46,7 @@
 </template>
 
 <script>
-import { Navigation, FormComponents } from '@/components';
+import { FormComponents } from '@/components';
 import { InputItems, InputList } from '@/js/models/input';
 import optionsJson from '@/js/data/substr/options.json';
 import countSubstrings from './js/map-query-substring';
@@ -60,8 +59,7 @@ export default {
   foundation: true,
   components: {
     Dropdown,
-    InputGroup,
-    Navigation
+    InputGroup
   },
   data() {
     return {

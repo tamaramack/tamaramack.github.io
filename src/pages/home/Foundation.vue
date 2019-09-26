@@ -1,6 +1,5 @@
 <template lang="pug">
   div
-    Navigation(page="foundation", :showLocation="location")
     #body-container
       h1 Kitchen Sink
       p Everything but.
@@ -13,7 +12,6 @@
 </template>
 
 <script>
-import { Navigation } from '@/components';
 import Abide from './components/Abide.vue';
 import Accordion from './components/Accordion.vue';
 import Badge from './components/Badge.vue';
@@ -27,7 +25,6 @@ export default {
     Button,
     Breadcrumbs,
     Accordion,
-    Navigation,
     Abide,
     Badge
   },

@@ -1,6 +1,5 @@
 <template lang="pug">
 div
-  Navigation(page="playground")
   h1 Playground
 
   div.grid-x.grid-padding-x
@@ -11,12 +10,9 @@ div
 </template>
 
 <script>
-import { Navigation } from '@/components';
-
 export default {
   name: 'playground',
   components: {
-    Navigation
   }
 };
 </script>

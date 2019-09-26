@@ -16,7 +16,7 @@
               li: router-link(to="/rover") Search
           li: router-link(to="/about") About
       .top-bar-right
-        GeoLocation(:module="module", v-if="isSearch || showLocation")
+        component(v-bind:is="GeoLocation" :module="module")
 </template>
 
 <script>
@@ -29,10 +29,9 @@ export default {
   components: {
     GeoLocation
   },
-  props: ['page', 'module', 'showLocation'],
+  props: ['section', 'module'],
   data() {
     return {
-      isSearch: this.page === 'search'
     };
   }
 };

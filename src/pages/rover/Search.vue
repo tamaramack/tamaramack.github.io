@@ -1,6 +1,5 @@
 <template lang="pug">
   div
-    Navigation(page="search", module="rover")
     div#search_container
       .search-content.content-size.grid-y.medium-grid-frame
         .cell.shrink.header.medium-cell-block-container
@@ -22,7 +21,6 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex';
-import { Navigation } from '@/components';
 import SearchSidebar from './components/SearchSidebar.vue';
 import SearchBody from './components/SearchBody.vue';
 
@@ -32,7 +30,6 @@ export default {
   name: 'RoverSearch',
   foundation: true,
   components: {
-    Navigation,
     SearchSidebar,
     SearchBody
   },

@@ -2,7 +2,7 @@
  * home js file created by Tamara G. Mack on 24-Sep-19 for tamaramack.github.io
  */
 import Home from '@/views/Home.vue';
-import i from '@/js/.router/import-url';
+import i from '@/js/.sys/router/import-url';
 
 const { home: imp } = i;
 

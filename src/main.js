@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import App from './App.vue';
-import store from '@/js/.store';
-import router from '@/js/.router';
-import * as Mixins from '@/js/.mixins';
-import * as Uses from '@/js/.use';
+import store from '@/js/.sys/store';
+import router from '@/js/.sys/router';
+import * as Mixins from '@/js/.sys/mixins';
+import * as Uses from '@/js/.sys/use';
 import './registerServiceWorker';
 
 Vue.config.productionTip = false;

@@ -1,7 +1,6 @@
 /**
  * store-module js file created by Tamara G. Mack on 03-Apr-19 for tamaramack.github.io
  */
-import geolocation from '@/js/geolocation';
 import createLogger from '@/js/utilities/logger';
 import { debounce } from '@/js/utilities/utilities';
 import { getEndPoints, getList } from './js/api';
@@ -46,7 +45,6 @@ export default {
         state.centerlat = results.latitude;
         state.centerlng = results.longitude;
 
-        this.commit('updateLocation', results);
         this.commit(`${rover}setUrlParameters`, { data: this.getters[`${rover}parameters`] });
         this.dispatch(`${rover}getEndPoints`);
       }
@@ -94,7 +92,6 @@ export default {
     }
   },
   actions: {
-    geolocation,
     getEndPoints,
     getList: debounce(getList, 300)
   },

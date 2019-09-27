@@ -2,7 +2,7 @@
  * projects js file created by Tamara G. Mack on 24-Sep-19 for
  * tamaramack.github.io
  */
-import i from '@/js/.router/import-url';
+import i from '@/js/.sys/router/import-url';
 
 const { projects: imp, _async: iAsync } = i;
 

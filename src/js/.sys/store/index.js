@@ -9,13 +9,24 @@ import ColorsModule from '@/pages/colors/store-module';
 
 Vue.use(Vuex);
 
+const style = Object.create({}, {
+  light: {
+    value: 'light',
+    enumerable: true
+  },
+  dark: {
+    value: 'dark',
+    enumerable: true
+  }
+});
+
 export default new Vuex.Store({
   modules: {
     rover: searchModule,
     colors: ColorsModule
   },
   state: {
-    styleMode: 'light',
+    styleMode: style.light,
     geoError: false,
     latitude: 0,
     longitude: 0

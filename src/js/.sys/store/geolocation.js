@@ -3,7 +3,7 @@
  * interview-190319-tm
  */
 
-const location = 'geolocation';
+const location = 'updateLocation';
 const options = {
   enableHighAccuracy: true,
   timeout: 5000,

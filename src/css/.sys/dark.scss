@@ -1,0 +1,293 @@
+$foundation-palette: (primary: rgb(23, 121, 186), //#1779ba,
+        secondary: rgb(118, 118, 118), //#767676,
+        success: rgb(58, 219, 118), //#3adb76,
+        warning: rgb(255, 174, 0), //#ffae00,
+        alert: rgb(204, 75, 55), //#cc4b37,
+        inform: rgb(210, 215, 240)
+);
+$light-gray: #ccc;
+$medium-gray: #cacaca;
+$dark-gray: #333;
+$black: #0a0a0a;
+$white: #fefefe;
+$body-background: #121212;
+$body-font-color: #a5a5a5;
+$header-small-font-color: $medium-gray;
+$code-color: $black;
+$code-background: $light-gray;
+$code-border: 1px solid $medium-gray;
+$anchor-color: $primary-color;
+$anchor-color-hover: scale-color($anchor-color, $lightness: -14%);
+$hr-border: 1px solid $dark-gray;
+$blockquote-color: #fff;
+$blockquote-border: 1px solid #444;
+$cite-color: $dark-gray;
+$keystroke-color: $black;
+$keystroke-background: $light-gray;
+$abbr-underline: 1px dotted $black;
+
+// 5. Typography Helpers
+// ---------------------
+
+$subheader-color: $dark-gray;
+
+// 6. Abide
+// --------
+
+$input-background-invalid: get-color(alert);
+$form-label-color-invalid: get-color(alert);
+$input-error-color: get-color(alert);
+
+// 7. Accordion
+// ------------
+
+$accordion-background: $black;
+$accordion-item-color: $primary-color; //foreground($accordion-background, $primary-color)
+$accordion-item-background-hover: $body-background;
+$accordion-content-background: $body-background;
+$accordion-content-border: 1px solid $black;
+$accordion-content-color: $body-font-color; //foreground($accordion-background, $primary-color)
+
+// 8. Accordion Menu
+// -----------------
+
+$accordionmenu-arrow-color: $primary-color;
+$accordionmenu-item-background: null;
+$accordionmenu-border: null;
+$accordionmenu-submenu-toggle-background: null;
+
+// 9. Badge
+// --------
+
+$badge-background: $primary-color;
+$badge-color: $white;
+$badge-color-alt: $black;
+$badge-palette: $foundation-palette;
+
+// 10. Breadcrumbs
+// ---------------
+
+$breadcrumbs-item-color: $primary-color;
+$breadcrumbs-item-color-current: $black;
+$breadcrumbs-item-color-disabled: $medium-gray;
+$breadcrumbs-item-separator-color: $medium-gray;
+
+// 11. Button
+// ----------
+
+$button-background: $primary-color;
+$button-background-hover: scale-color($button-background, $lightness: -15%);
+$button-color: $white;
+$button-color-alt: $black;
+$button-palette: $foundation-palette;
+
+// 13. Callout
+// -----------
+
+$callout-background: $white;
+$callout-border: 1px solid rgba($black, 0.25);
+$callout-font-color: $body-font-color;
+$callout-font-color-alt: $body-background;
+$callout-radius: $global-radius;
+
+// 14. Card
+// --------
+
+$card-background: $white;
+$card-divider-background: $light-gray;
+$card-border: 1px solid $light-gray;
+
+// 15. Close Button
+// ----------------
+
+$closebutton-color: $dark-gray;
+$closebutton-color-hover: $black;
+
+// 16. Drilldown
+// -------------
+
+$drilldown-background: $white;
+$drilldown-submenu-background: $white;
+$drilldown-arrow-color: $primary-color;
+
+// 17. Dropdown
+// ------------
+
+$dropdown-background: $body-background;
+$dropdown-border: 1px solid $medium-gray;
+
+// 18. Dropdown Menu
+// -----------------
+
+$dropdownmenu-arrow-color: $anchor-color;
+$dropdownmenu-background: null;
+$dropdownmenu-submenu-background: $white;
+$dropdownmenu-border: 1px solid $medium-gray;
+$dropdown-menu-item-color-active: get-color(primary);
+$dropdown-menu-item-background-active: transparent;
+
+// 20. Forms
+// ---------
+
+$fieldset-border: 1px solid $medium-gray;
+$helptext-color: $black;
+$input-prefix-color: $black;
+$input-prefix-background: $light-gray;
+$input-prefix-border: 1px solid $medium-gray;
+$form-label-color: $black;
+$select-background: $white;
+$select-triangle-color: $dark-gray;
+$input-color: $black;
+$input-placeholder-color: $medium-gray;
+$input-background: $white;
+$input-background-focus: $white;
+$input-background-disabled: $light-gray;
+$input-border: 1px solid $medium-gray;
+$input-border-focus: 1px solid $dark-gray;
+$input-shadow: inset 0 1px 2px rgba($black, 0.1);
+$input-shadow-focus: 0 0 5px $medium-gray;
+
+// 21. Label
+// ---------
+
+$label-background: $primary-color;
+$label-color: $white;
+$label-color-alt: $black;
+
+// 23. Menu
+// --------
+
+$menu-item-color-active: $white;
+$menu-item-background-active: get-color(primary);
+
+// 24. Meter
+// ---------
+
+$meter-background: $medium-gray;
+$meter-fill-good: $success-color;
+$meter-fill-medium: $warning-color;
+$meter-fill-bad: $alert-color;
+
+// 25. Off-canvas
+// --------------
+
+$offcanvas-background: $light-gray;
+$offcanvas-shadow: 0 0 10px rgba($black, 0.7);
+$offcanvas-inner-shadow-color: rgba($black, 0.25);
+$offcanvas-exit-background: rgba($white, 0.25);
+
+// 26. Orbit
+// ---------
+
+$orbit-bullet-background: $medium-gray;
+$orbit-bullet-background-active: $dark-gray;
+$orbit-caption-background: rgba($black, 0.5);
+$orbit-control-background-hover: rgba($black, 0.5);
+
+// 27. Pagination
+// --------------
+
+$pagination-item-color: $black;
+$pagination-item-background-hover: $light-gray;
+$pagination-item-background-current: $primary-color;
+$pagination-item-color-current: $white;
+$pagination-item-color-disabled: $medium-gray;
+$pagination-ellipsis-color: $black;
+
+// 28. Progress Bar
+// ----------------
+
+$progress-background: $medium-gray;
+$progress-meter-background: $primary-color;
+
+// 29. Prototype Arrow
+// -------------------
+
+$prototype-arrow-color: $black;
+
+// 32. Prototype Bordered
+// ----------------------
+
+$prototype-border-color: $medium-gray;
+
+// 39. Prototype Separator
+// -----------------------
+
+$prototype-separator-background: $primary-color;
+
+// 47. Reveal
+// ----------
+
+$reveal-background: $white;
+$reveal-border: 1px solid $medium-gray;
+$reveal-overlay-background: rgba($black, 0.45);
+
+// 48. Slider
+// ----------
+
+$slider-background: $light-gray;
+$slider-fill-background: $medium-gray;
+$slider-handle-background: $primary-color;
+
+// 49. Switch
+// ----------
+
+$switch-background: $medium-gray;
+$switch-background-active: $primary-color;
+$switch-paddle-background: $white;
+
+// 50. Table
+// ---------
+
+$table-background: $white;
+$table-border: 1px solid smart-scale($table-background, $table-color-scale);
+$table-row-hover: darken($table-background, $table-hover-scale);
+$table-row-stripe-hover: darken($table-background, $table-color-scale + $table-hover-scale);
+$table-striped-background: smart-scale($table-background, $table-color-scale);
+$table-head-background: smart-scale($table-background, $table-color-scale / 2);
+$table-head-row-hover: darken($table-head-background, $table-hover-scale);
+$table-foot-background: smart-scale($table-background, $table-color-scale);
+$table-foot-row-hover: darken($table-foot-background, $table-hover-scale);
+$table-head-font-color: $body-font-color;
+$table-foot-font-color: $body-font-color;
+
+// 51. Tabs
+// --------
+
+$tab-background: $white;
+$tab-color: $primary-color;
+$tab-background-active: $light-gray;
+$tab-active-color: $primary-color;
+$tab-item-background-hover: $white;
+$tab-content-background: $white;
+$tab-content-border: $light-gray;
+$tab-content-color: $body-font-color;
+
+// 52. Thumbnail
+// -------------
+
+$thumbnail-border: 4px solid $white;
+$thumbnail-shadow: 0 0 0 1px rgba($black, 0.2);
+$thumbnail-shadow-hover: 0 0 6px 1px rgba($primary-color, 0.5);
+
+// 53. Title Bar
+// -------------
+
+$titlebar-background: $black;
+$titlebar-color: $white;
+$titlebar-icon-color: $white;
+$titlebar-icon-color-hover: $medium-gray;
+
+// 54. Tooltip
+// -----------
+
+$has-tip-font-weight: $global-weight-bold;
+$has-tip-border-bottom: dotted 1px $dark-gray;
+$tooltip-background-color: $black;
+$tooltip-color: $white;
+
+// 55. Top Bar
+// -----------
+
+$topbar-background: $light-gray;
+$topbar-submenu-background: $topbar-background;

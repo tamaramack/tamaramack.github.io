@@ -93,7 +93,7 @@ module.exports = {
         camelCase: false
       },
       sass: {
-        data: '@import "~@/css/settings.scss", "~foundation-sites/scss/foundation";'
+        data: '@import "~@/css/.sys/settings.scss", "~foundation-sites/scss/foundation";'
       }
     }
   }

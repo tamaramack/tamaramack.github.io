@@ -38,13 +38,3 @@ div
         li: a(href="#0") Item 2B
     li: a(href="#0") Item 3
 </template>
-
-<script>
-export default {
-  name: 'Accordion'
-};
-</script>
-
-<style lang="scss" scoped>
-
-</style>

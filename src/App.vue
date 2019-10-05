@@ -1,15 +1,36 @@
 <template lang="pug">
-  #app
-    router-view
+  #app.grid-y.medium-grid-frame
+    #app-header.cell.shrink.medium-cell-block-container
+      Navigation
+
+    #app-body.cell.medium-auto.medium-cell-block-container
+      router-view
+
+    #app-footer.cell.shrink.callout.secondary
+      Footer
 </template>
+
+<script>
+// @ is an alias to /src
+import { Navigation, Footer } from '@/components';
+
+export default {
+  page: {
+    title: 'Home'
+  },
+  components: {
+    Navigation,
+    Footer
+  }
+};
+</script>
 
 <style lang="scss">
   @include foundation-everything(true);
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
+  body { overflow: hidden }
+  #app {}
+  #app-body {
+    overflow: auto;
   }
+  #app-footer { margin: 0; }
 </style>

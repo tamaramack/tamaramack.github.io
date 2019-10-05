@@ -1,15 +1,11 @@
 <template lang="pug">
-  div.projects
-    router-view
+div
+  h3 Portfolio
 </template>
 
 <script>
-
 export default {
-  name: 'projects',
-  page: {
-    title: 'Projects'
-  }
+  name: 'Footer'
 };
 </script>
 

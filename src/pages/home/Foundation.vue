@@ -8,6 +8,8 @@
       Badge/
       Breadcrumbs/
       Button/
+      Callout/
+
 
 </template>
 
@@ -17,6 +19,7 @@ import Accordion from './components/Accordion.vue';
 import Badge from './components/Badge.vue';
 import Breadcrumbs from './components/Breadcrumbs.vue';
 import Button from './components/Button.vue';
+import Callout from './components/Callout.vue';
 
 export default {
   name: 'Foundation',
@@ -26,7 +29,8 @@ export default {
     Breadcrumbs,
     Accordion,
     Abide,
-    Badge
+    Badge,
+    Callout
   },
   data() {
     return {
@@ -38,7 +42,7 @@ export default {
 
 <style scoped lang="scss">
   #body-container {
-    width: 80%;
+    width: 95%;
     margin: auto;
     text-align: left;
   }

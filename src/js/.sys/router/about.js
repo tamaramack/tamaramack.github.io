@@ -11,7 +11,7 @@ const c = {
 
 export default (() => {
   const resume = {
-    path: '/resume',
+    path: 'resume',
     name: 'resume',
     component: c.resume
   };

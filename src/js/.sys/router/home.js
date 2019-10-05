@@ -15,19 +15,19 @@ const c = {
 
 export default (() => {
   const foundation = {
-    path: '/foundation',
+    path: 'foundation',
     name: 'foundation',
     component: c.foundation
   };
 
   const docs = {
-    path: '/docs',
+    path: 'docs',
     name: 'docs',
     component: c.docs
   };
 
   const summary = {
-    path: '/summary',
+    path: 'summary',
     name: 'summary',
     component: c.summary
   };

@@ -9,7 +9,7 @@ import ColorsModule from '@/pages/colors/store-module';
 
 Vue.use(Vuex);
 
-const style = Object.create({}, {
+const theme = Object.create({}, {
   light: {
     value: 'light',
     enumerable: true
@@ -25,15 +25,20 @@ export default new Vuex.Store({
     rover: searchModule,
     colors: ColorsModule
   },
+  getters: {
+    navigationComponent() {
+      return () => import('@/components/GeoLocation.vue');
+    }
+  },
   state: {
-    styleMode: style.light,
+    styleMode: theme.light,
     geoError: false,
     latitude: 0,
     longitude: 0
   },
   mutations: {
     updateLocation(state, results) {
-      if (results.message) this.state.geoError = results.message;
+      if (results.message) state.geoError = results.message;
       else [state.latitude, state.longitude] = [results.latitude, results.longitude];
     }
   },

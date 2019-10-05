@@ -1,29 +1,28 @@
 <template lang="pug">
-  div
-    .content-size.grid-y.medium-grid-frame
-      .cell.shrink.header.medium-cell-block-container
-        div.grid-x
-          div.cell.auto
-            h1.text-left Colors
-          div.cell.auto
-            div.text-right
-              button.button(v-show="color", @click="onShowCards") Show Color Cards
+  div#colors-content
+    div
+      div.grid-x
+        div.cell.auto
+          h1.text-left Colors
+        div.cell.auto
+          div.text-right
+            button.button(v-show="color", @click="onShowCards") Show Color Cards
 
-      .cell.medium-auto.medium-cell-block-container
-        div.grid-x.grid-padding-x
-          div.cell.small-12.medium-4.large-3.cell-block-y
-            ul.no-bullet
-              li(v-for="item in colors", @click.stop="onSelectColor(item)")
-                ListItem(:Color="item", :active="item === color")
+    div
+      div.grid-x.grid-padding-x
+        div.cell.small-12.medium-4.large-3.cell-block-y
+          ul.no-bullet
+            li(v-for="item in colors", @click.stop="onSelectColor(item)")
+              ListItem(:Color="item", :active="item === color")
 
-          div.cell.small-12.medium-8.large-9.cell-block-y
-            transition(name="fade")
-              ItemDetails(v-if="color", :Color="color")
+        div.cell.small-12.medium-8.large-9.cell-block-y
+          transition(name="fade")
+            ItemDetails(v-if="color", :Color="color")
 
-            transition(name="fade")
-              div.box(v-if="!color")
-                ItemCard.inline(v-for="(item, index) in colors", :Color="item",
-                  :key="index+item.id", :id="'card'+index+item.id")
+          transition(name="fade")
+            div.box(v-if="!color")
+              ItemCard.inline(v-for="(item, index) in colors", :Color="item",
+                :key="index+item.id", :id="'card'+index+item.id")
 
 </template>
 

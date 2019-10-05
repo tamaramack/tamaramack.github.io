@@ -1,56 +1,66 @@
 <template lang="pug">
   #nav-container
-    div.title-bar(data-responsive-toggle="nav", data-hide-for="medium")
+    div#nav-title.title-bar(data-responsive-toggle="nav", data-hide-for="medium")
       button.menu-icon(type="button", data-toggle="nav")
-      .title-bar-title Menu
-    div#nav.top-bar
+      .title-bar-title TM Portfolio
+    nav#nav.top-bar
       .top-bar-left
         ul.dropdown.menu(data-dropdown-menu)
-          li.menu-text T Mack Portfolio
-          li: router-link(to="/") Home
+          li.menu-text
+            router-link.h4(to="/") T Mack Portfolio
           li
             router-link(to="/projects") Projects
             ul.menu.vertical
-              li(v-if="!isSearch"): router-link(to="/colors") Colors
-              li(v-if="!isSearch"): router-link(to="/substring") Substring
+              li: router-link(to="/colors") Colors
+              li: router-link(to="/substring") Substring
               li: router-link(to="/rover") Search
           li: router-link(to="/about") About
       .top-bar-right
-        component(v-bind:is="GeoLocation" :module="module")
+        component(:is="navigationComponent")
 </template>
 
 <script>
-// eslint-disable-next-line import/no-cycle
-import { GeoLocation } from '@/components';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'Navigation',
-  foundation,
-  components: {
-    GeoLocation
+  foundation: {
+    init: false,
+    callback: foundation
   },
-  props: ['section', 'module'],
   data() {
     return {
     };
+  },
+  computed: {
+    ...mapGetters(['navigationComponent'])
   }
 };
 
 function foundation(Foundation, $) {
   // resize body padding based off nav bar height
-  const nav = document.getElementById('nav-container');
-  const setBodySize = (e) => {
-    const height = $(nav).height();
-    $('.content-size').css('height', `calc(100vh - ${height}px)`);
-  };
-
-  $(window).resize(setBodySize);
-  $(nav).resize(setBodySize);
-  setBodySize();
+  const navContainer = document.getElementById('nav-container');
+  const navTitle = new Foundation.ResponsiveToggle($('#nav-title'));
+  // const navResponsiveMenu = new Foundation.ResponsiveMenu($('#nav ul.menu'));
+  const navDropdownMenu = new Foundation.DropdownMenu($('#nav ul.dropdown.menu'));
 }
 </script>
 
 <style lang="scss" scoped>
+  #nav {
+    h1, h2, h3, h4, h5 {
+      margin: 0;
+      padding: 0;
+    }
+
+    .menu-text a {
+      padding: 0 0 0 2rem;
+      background: url('../assets/RedMoon_th.png') no-repeat;
+      background-size: contain;
+      background-clip: padding-box;
+    }
+  }
+
   .no-js {
     @include breakpoint(small only) {
       .top-bar {

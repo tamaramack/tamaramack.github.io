@@ -4,11 +4,13 @@
 import GeoLocation from '@/components/GeoLocation.vue';
 import HelloWorld from '@/components/HelloWorld.vue';
 import Navigation from '@/components/Navigation.vue';
+import Footer from '@/components/Footer.vue';
 import * as FormComponents from '@/components/form';
 
 export {
   FormComponents,
   HelloWorld,
   GeoLocation,
-  Navigation
+  Navigation,
+  Footer
 };

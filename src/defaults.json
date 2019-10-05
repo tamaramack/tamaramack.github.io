@@ -1,3 +1,32 @@
 {
-  "title": "TMack Portfolio"
+  "title": "TMack Portfolio",
+  "pages": {
+    "home": {
+      "link": "/",
+      "children": ["foundation", "docs"]
+    },
+    "about": {
+      "link": "/about",
+      "children": ["resume"]
+    },
+    "projects": {
+      "link": "/projects",
+      "children": ["colors", "playground"]
+    },
+    "foundation":{
+      "link": "/foundation"
+    },
+    "docs": {
+      "link": "/docs"
+    },
+    "resume": {
+      "link": "/resume"
+    },
+    "colors": {
+      "link": "/colors"
+    },
+    "playground": {
+      "link": "/playground"
+    }
+  }
 }

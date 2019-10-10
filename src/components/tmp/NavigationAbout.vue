@@ -1,16 +1,10 @@
 <template lang="pug">
-  div.projects
-    router-view
+
 </template>
 
 <script>
-
 export default {
-  name: 'projects',
-  page: {
-    title: 'Projects',
-    view: 'projects'
-  }
+  name: 'Navigation'
 };
 </script>
 

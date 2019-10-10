@@ -7,6 +7,7 @@ import * as Uses from '@/js/.sys/use';
 import './registerServiceWorker';
 
 Vue.config.productionTip = false;
+
 for (let name in Mixins) Vue.mixin(Mixins[name]);
 for (let name in Uses) Vue.use(Uses[name]);
 

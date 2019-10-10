@@ -4,21 +4,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import geolocation from './geolocation';
+import enums from './enums';
 import searchModule from '@/pages/rover/store-module';
 import ColorsModule from '@/pages/colors/store-module';
 
-Vue.use(Vuex);
+const { view, theme } = enums;
 
-const theme = Object.create({}, {
-  light: {
-    value: 'light',
-    enumerable: true
-  },
-  dark: {
-    value: 'dark',
-    enumerable: true
-  }
-});
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
@@ -26,12 +18,14 @@ export default new Vuex.Store({
     colors: ColorsModule
   },
   getters: {
-    navigationComponent() {
-      return () => import('@/components/GeoLocation.vue');
+    navigationComponent(state, getters) {
+      return () => import('@/components/tmp/GeoLocation.vue');
     }
   },
   state: {
     styleMode: theme.light,
+    activeView: false,
+    activePage: null,
     geoError: false,
     latitude: 0,
     longitude: 0
@@ -40,6 +34,13 @@ export default new Vuex.Store({
     updateLocation(state, results) {
       if (results.message) state.geoError = results.message;
       else [state.latitude, state.longitude] = [results.latitude, results.longitude];
+    },
+    updateView(state, v) {
+      state.activeView = view[v] || state.activeView;
+      console.info('Commit view state', v, state.activeView);
+    },
+    updateStyle(state, mode) {
+      state.styleMode = theme[mode] || theme.light;
     }
   },
   actions: {

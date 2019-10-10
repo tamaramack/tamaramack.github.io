@@ -36,7 +36,8 @@ import generic from '@/js/data/generic';
 export default {
   name: 'about',
   page: {
-    title: 'Home'
+    title: 'About Me',
+    view: 'about'
   },
   foundation: true,
   data() {

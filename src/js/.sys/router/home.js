@@ -10,10 +10,17 @@ const c = {
   Home,
   foundation: imp('pages/home/Foundation.vue'),
   docs: imp('pages/home/Docs.vue'),
-  summary: imp('pages/home/Summary.vue')
+  summary: imp('pages/home/Summary.vue'),
+  helloworld: imp('pages/home/HelloWorld.vue')
 };
 
 export default (() => {
+  const helloworld = {
+    path: '',
+    name: 'hello',
+    component: c.helloworld
+  };
+
   const foundation = {
     path: 'foundation',
     name: 'foundation',
@@ -36,7 +43,7 @@ export default (() => {
     path: '/',
     name: 'home',
     component: c.Home,
-    children: [ foundation, docs, summary ]
+    children: [ foundation, docs, summary, helloworld ]
   };
 
   return [home];

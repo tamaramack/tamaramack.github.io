@@ -1,22 +1,18 @@
 <template lang="pug">
   div.home
     router-view
-      img(alt="TMack logo" width=350 src="../assets/RedMoon.png")
-      HelloWorld(msg="Welcome to Your Vue.js App")/
 </template>
 
 <script>
 // @ is an alias to /src
-import { HelloWorld } from '@/components';
 
 export default {
   name: 'home',
   page: {
-    title: 'Home'
+    title: 'Home',
+    view: 'home'
   },
-  components: {
-    HelloWorld
-  }
+  components: {}
 };
 </script>
 

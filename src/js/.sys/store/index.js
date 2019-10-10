@@ -35,9 +35,10 @@ export default new Vuex.Store({
       if (results.message) state.geoError = results.message;
       else [state.latitude, state.longitude] = [results.latitude, results.longitude];
     },
-    updateView(state, v) {
-      state.activeView = view[v] || state.activeView;
-      console.info('Commit view state', v, state.activeView);
+    updateView(state, value) {
+      if (value === false) state.activeView = value;
+      else state.activeView = view[value] || state.activeView;
+      // console.info('Commit view state', value, state.activeView);
     },
     updateStyle(state, mode) {
       state.styleMode = theme[mode] || theme.light;

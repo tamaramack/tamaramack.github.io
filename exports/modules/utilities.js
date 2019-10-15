@@ -12,7 +12,6 @@ const envPublicUrl = process.env.PUBLIC_URL;
 
 const getPublicUrl = appPackageJson => envPublicUrl || require(appPackageJson).homepage;
 
-
 module.exports = {
   getPublicUrl,
   resolveApp,
@@ -116,10 +115,17 @@ function extend(target, ...sources) {
     while (keys.length) {
       const propertyName = keys.shift();
       console.log(`\nisComplexObject(${propertyName}) 
-        => ${isComplexObject(newTarget[propertyName]) && isComplexObject(source[propertyName])}`);
-      // console.log(`\npropertyName: ${propertyName}\n`, newTarget[propertyName], '\n', source[propertyName], '\nEND\n');
-      if (isComplexObject(newTarget[propertyName]) && isComplexObject(source[propertyName])) newTarget[propertyName] = extend(newTarget[propertyName], source[propertyName]);
-      else if ((typeof source[propertyName]) !== 'undefined') newTarget[propertyName] = source[propertyName];
+        => ${isComplexObject(newTarget[propertyName])
+      && isComplexObject(source[propertyName])}`);
+      // console.log(`\npropertyName: ${propertyName}\n`, newTarget[propertyName], '\n',
+      // source[propertyName], '\nEND\n');
+      if (isComplexObject(newTarget[propertyName])
+        && isComplexObject(source[propertyName])) {
+        newTarget[propertyName] = extend(
+          newTarget[propertyName], source[propertyName]
+        );
+      } else if ((typeof source[propertyName])
+        !== 'undefined') { newTarget[propertyName] = source[propertyName]; }
     }
   }
 

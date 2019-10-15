@@ -2,6 +2,7 @@
  * server.js js file created by Tamara G. Mack on 08-Apr-19 for tamaramack.github.io
  */
 const express = require('express');
+const favicon = require('serve-favicon');
 const dotenv = require('dotenv');
 const path = require('path');
 const opn = require('open');
@@ -33,6 +34,7 @@ const staticConf = {
 let folder = !isDev ? 'dist' : 'devdist';
 folder = path.join(__dirname, folder);
 
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 // APIs
 configureAPI(app);
 
@@ -42,5 +44,5 @@ app.use('/', history());
 
 app.listen(PORT, async () => {
   await opn(`http://localhost:${PORT}`);
-  console.log(`App running on port ${PORT} on ${NODE_ENV} environment`)
+  console.log(`App running on port ${PORT} on ${NODE_ENV} environment`);
 });

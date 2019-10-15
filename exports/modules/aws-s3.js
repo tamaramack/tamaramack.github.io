@@ -29,7 +29,7 @@ module.exports = function _s3() {
     filename,
     localPath,
     remotePath = defaultDirPrefix,
-    customBucket = bucket
+    customBucket = bucket,
   ) {
     const params = {
       localFile: path.join(localPath, filename),
@@ -62,7 +62,7 @@ module.exports = function _s3() {
     filename,
     localPath,
     remotePath = defaultDirPrefix,
-    customBucket = bucket
+    customBucket = bucket,
   ) {
     const params = {
       localFile: path.join(localPath, filename),
@@ -93,7 +93,7 @@ module.exports = function _s3() {
   function directoryUpload(
     localPath,
     remotePath = defaultDirPrefix,
-    customBucket = bucket
+    customBucket = bucket,
   ) {
     const params = {
       localDir: localPath,

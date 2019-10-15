@@ -29,9 +29,9 @@ module.exports = (() => {
           ? `Pipe ${PORT}`
           : `Port ${PORT}`;
       var _ip = req.headers['x-forwarded-for']
-          || req.connection.remoteAddress
-          || req.socket.remoteAddress
-          || req.connection.socket.remoteAddress;
+        || req.connection.remoteAddress
+        || req.socket.remoteAddress
+        || req.connection.socket.remoteAddress;
 
       var _query = req.params || req.query || {};
       var datastring = JSON.parse(decodeURIComponent(res.locals.datastring || '{}'));

@@ -32,5 +32,8 @@ const sh = require('shelljs');
 
   // save updated package.json file
   data = JSON.stringify(data, undefined, 2);
-  if (typeof data === 'string' && data.length > 10) fs.writeFileSync(packageFilePath, `${data}\n`);
+  if (typeof data === 'string' && data.length > 10) {
+    fs.writeFileSync(packageFilePath,
+      `${data}\n`);
+  }
 })();

@@ -24,7 +24,8 @@ const util = require('util');
     let content = '';
 
     for (const prop in json) {
-      if (json.hasOwnProperty(prop) && prop !== 'transparent') { content += `$${prop}: ${json[prop]};\n`; }
+      if (json.hasOwnProperty(prop) && prop
+        !== 'transparent') { content += `$${prop}: ${json[prop]};\n`; }
     }
 
     fs.writeFileSync(path.join(destinationDir, 'colors.scss'), content);

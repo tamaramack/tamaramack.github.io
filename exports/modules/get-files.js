@@ -9,6 +9,7 @@ function GetFiles(path, express, dir) {
   const _path = utils.static_path(path, express, dir);
 
   return getFiles;
+
   function getFiles(app, _package) {
     const results = {};
 

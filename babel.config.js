@@ -11,6 +11,12 @@ module.exports = {
       plugins: [
         ['transform-remove-console', { exclude: ['error', 'warn'] }]
       ]
+    },
+    test: {
+      presets: [['@babel/preset-env']],
+      plugins: [
+        '@babel/plugin-transform-modules-commonjs'
+      ]
     }
   }
 };

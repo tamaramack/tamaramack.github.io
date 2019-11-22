@@ -42,6 +42,10 @@ configureAPI(app);
 app.use(express.static(folder, staticConf));
 app.use('/', history());
 
+app.route('/*').get(function(req, res) {
+  res.sendFile(path.join(folder, '/index.html'));
+});
+
 app.listen(PORT, async () => {
   await opn(`http://localhost:${PORT}`);
   console.log(`App running on port ${PORT} on ${NODE_ENV} environment`);

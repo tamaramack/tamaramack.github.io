@@ -70,6 +70,7 @@ module.exports = {
   devServer: {
     port: packageJson.config.port || process.env.PORT,
     // https: true,
+    historyApiFallback: true,
     before: configureAPI,
     overlay: {
       warnings: true,

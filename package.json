@@ -34,7 +34,7 @@
     "motion-ui": "^2.0.3",
     "regenerator-runtime": "^0.13.3",
     "register-service-worker": "^1.6.2",
-    "vue": "^2.6.10",
+    "vue": "^3.0.0",
     "vue-router": "^3.0.7",
     "vue-server-renderer": "^2.6.10",
     "vuex": "^3.1.1"

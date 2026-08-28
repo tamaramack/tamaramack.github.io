@@ -1,9 +1,13 @@
 <template lang="pug">
 footer.app-footer
   .app-footer__inner
-    p Portfolio
-    p.app-footer__meta Built with Nuxt SSR, Nitro, TypeScript, Pug, and SCSS.
+    p Tamara Mack · {{ profile?.organization.legalName }}
+    a(:href="profile?.linkedIn" target="_blank" rel="noopener") LinkedIn
 </template>
+
+<script setup lang="ts">
+const { data: profile } = await useProfile()
+</script>
 
 <style lang="scss" scoped>
 .app-footer {
@@ -15,13 +19,21 @@ footer.app-footer
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  padding-block: 1.4rem;
+  padding-block: 1.35rem;
   color: $muted;
-  font-size: 0.92rem;
+  font-family: $font-ui;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 
   p {
     margin: 0;
     color: inherit;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
   }
 }
 

@@ -1,10 +1,10 @@
 <template lang="pug">
 .study
-  p.kicker {{ project?.status }}
+  p.kicker Studio · {{ project?.status }}
   h1 Search
   p.lede {{ project?.summary }}
-  p The Rover-inspired faceted search stays at /rover so existing links keep working while the UI is rebuilt on Nitro.
-  NuxtLink(to="/projects") All projects
+  p A personal study of faceted search UI. Not a HyperActivity engagement.
+  NuxtLink(to="/projects") All studies
 </template>
 
 <script setup lang="ts">
@@ -17,5 +17,9 @@ useHead({ title: 'Search' })
 <style lang="scss" scoped>
 .study {
   @include page-wrap;
+}
+
+h1 {
+  font-size: clamp(2.6rem, 7vw, 4.8rem);
 }
 </style>

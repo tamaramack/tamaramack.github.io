@@ -1,10 +1,10 @@
 <template lang="pug">
 .study
-  p.kicker {{ project?.status }}
+  p.kicker Studio · {{ project?.status }}
   h1 Substring
   p.lede {{ project?.summary }}
-  p Large-string readers and mapping experiments stay on this URL. Nested reader routes from the Vue app can be added as Nuxt dynamic pages.
-  NuxtLink(to="/projects") All projects
+  p A personal study of large-string readers and mapping. Not a HyperActivity engagement.
+  NuxtLink(to="/projects") All studies
 </template>
 
 <script setup lang="ts">
@@ -17,5 +17,9 @@ useHead({ title: 'Substring' })
 <style lang="scss" scoped>
 .study {
   @include page-wrap;
+}
+
+h1 {
+  font-size: clamp(2.6rem, 7vw, 4.8rem);
 }
 </style>

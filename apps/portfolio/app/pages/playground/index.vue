@@ -1,10 +1,10 @@
 <template lang="pug">
 .study
-  p.kicker {{ project?.status }}
+  p.kicker Studio · {{ project?.status }}
   h1 Playground
   p.lede {{ project?.summary }}
-  p Layout and justification experiments from the Vue playground now have a Nuxt home at the same path.
-  NuxtLink(to="/projects") All projects
+  p Layout and pattern experiments. Not a HyperActivity engagement.
+  NuxtLink(to="/projects") All studies
 </template>
 
 <script setup lang="ts">
@@ -17,5 +17,9 @@ useHead({ title: 'Playground' })
 <style lang="scss" scoped>
 .study {
   @include page-wrap;
+}
+
+h1 {
+  font-size: clamp(2.6rem, 7vw, 4.8rem);
 }
 </style>

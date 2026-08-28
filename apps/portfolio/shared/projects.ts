@@ -15,28 +15,28 @@ export const PROJECTS: readonly Project[] = [
     slug: 'colors',
     title: 'Colors',
     href: '/colors',
-    summary: 'Color models, conversions, and interactive swatches.',
+    summary: 'Studio study: color models, conversions, and interactive swatches.',
     status: 'in-progress'
   },
   {
     slug: 'substring',
     title: 'Substring',
     href: '/substring',
-    summary: 'String algorithms, mapping, and large-input readers.',
+    summary: 'Studio study: string algorithms, mapping, and large-input readers.',
     status: 'in-progress'
   },
   {
     slug: 'rover',
     title: 'Search',
     href: '/rover',
-    summary: 'Faceted search UI exploring live listing filters.',
+    summary: 'Studio study: faceted search UI and live listing filters.',
     status: 'archive'
   },
   {
     slug: 'playground',
     title: 'Playground',
     href: '/playground',
-    summary: 'Layout, justification, and pattern experiments.',
+    summary: 'Studio study: layout, justification, and pattern experiments.',
     status: 'live'
   }
 ] as const

@@ -23,4 +23,4 @@ apps/portfolio/
   nuxt.config.ts
 ```
 
-Public URLs match the legacy information architecture: `/`, `/projects`, `/colors`, `/substring`, `/rover`, `/playground`, `/about`, `/about/resume`.
+Public URLs: `/` (profile), `/practice`, `/hyperactivity`, `/about`, `/about/resume`, `/projects` (studio), plus study routes.

@@ -43,7 +43,7 @@ function labelForStatus(status: ProjectStatus): string {
 
 h2 {
   margin-bottom: 0.5rem;
-  font-size: 1.7rem;
+  font-size: 2.15rem;
 
   a {
     color: inherit;

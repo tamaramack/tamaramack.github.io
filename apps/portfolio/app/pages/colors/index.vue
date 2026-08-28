@@ -1,10 +1,10 @@
 <template lang="pug">
 .study
-  p.kicker {{ project?.status }}
+  p.kicker Studio · {{ project?.status }}
   h1 Colors
   p.lede {{ project?.summary }}
-  p This study originally modeled color spaces and swatch cards. The Nuxt route is in place so the rebuilt UI can drop in without changing the public URL.
-  NuxtLink(to="/projects") All projects
+  p A personal study of color spaces and swatch cards. Not a HyperActivity engagement.
+  NuxtLink(to="/projects") All studies
 </template>
 
 <script setup lang="ts">
@@ -17,5 +17,9 @@ useHead({ title: 'Colors' })
 <style lang="scss" scoped>
 .study {
   @include page-wrap;
+}
+
+h1 {
+  font-size: clamp(2.6rem, 7vw, 4.8rem);
 }
 </style>

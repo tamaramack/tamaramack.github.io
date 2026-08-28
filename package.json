@@ -2,7 +2,7 @@
   "name": "tamaramack-portfolio",
   "version": "0.0.13",
   "private": true,
-  "description": "Works completed & explored",
+  "description": "Professional profile for Tamara Mack — Founder of HyperActivity, Creative Technologist. Nuxt 4 portfolio at tamaramack.github.io.",
   "author": "Tamara Mack <likwidmack@gmail.com>",
   "scripts": {
     "clean": "bash ./bin/clean.sh",
@@ -102,15 +102,19 @@
       "git add"
     ]
   },
-  "homepage": "https://github.com/tamaramack/tamaramack.github.io#readme",
+  "homepage": "https://tamaramack.github.io/",
   "keywords": [
-    "porfolio",
-    "spa",
-    "javascript",
-    "node",
-    "canvas",
+    "portfolio",
+    "nuxt",
+    "nitro",
+    "typescript",
+    "github-pages",
+    "creative-technologist",
+    "hyperactivity",
     "pug",
-    "ES6"
+    "scss",
+    "ssr",
+    "vue"
   ],
   "license": "BSD-2-Clause",
   "repository": {

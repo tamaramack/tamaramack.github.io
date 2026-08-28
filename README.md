@@ -51,6 +51,21 @@ Push to `development` runs [.github/workflows/deploy-pages.yml](.github/workflow
 
 Stale feature branches from the Vue CLI era can be deleted once no longer needed.
 
+## Repository topics
+
+Set in **Settings → General → Topics** (or run locally with `gh auth login`):
+
+```
+nuxt nitro typescript portfolio creative-technologist hyperactivity github-pages pug scss ssr vue tamara-mack
+```
+
+```bash
+gh api --method PUT repos/tamaramack/tamaramack.github.io/topics \
+  --input '{"names":["nuxt","nitro","typescript","portfolio","creative-technologist","hyperactivity","github-pages","pug","scss","ssr","vue","tamara-mack"]}'
+```
+
+Also update the repository description to: *Professional profile for Tamara Mack — Founder of HyperActivity, Creative Technologist. Nuxt 4 at tamaramack.github.io.*
+
 ## Documentation
 
 - [docs/architecture.md](docs/architecture.md) — runtime, layout, URLs

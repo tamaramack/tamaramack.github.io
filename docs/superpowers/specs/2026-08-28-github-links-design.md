@@ -54,6 +54,16 @@ portfolioRepo: string    // likwidmack/portfolio
 
 Protection rules require repo admin; automation token returns 403.
 
+## Topics and metadata
+
+GitHub repository topics (updated Aug 2026):
+
+`nuxt`, `nitro`, `typescript`, `portfolio`, `creative-technologist`, `hyperactivity`, `github-pages`, `pug`, `scss`, `ssr`, `vue`, `tamara-mack`
+
+Site meta tags in `nuxt.config.ts`: description, keywords, author, Open Graph, Twitter card.
+
+Package keywords in root `package.json`, `apps/portfolio/package.json`, and legacy `app.json`.
+
 ## Navigation
 
 Add **Portfolio** to primary nav between HyperActivity and About. Header keeps likwidmack.com and LinkedIn only; GitHub links live in footer, about sidebar, and `/portfolio`.

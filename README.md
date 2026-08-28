@@ -37,7 +37,7 @@ See [apps/portfolio/README.md](apps/portfolio/README.md) and [docs/architecture.
 
 ## Deployment
 
-Push to `development` runs [.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages.yml), which builds `apps/portfolio` with Nitro's `github_pages` preset and deploys to GitHub Pages.
+Pushes and pull requests to `development` run [.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages.yml) to **typecheck and build** the Nuxt app. Production deploy to GitHub Pages is **manual only** — run the workflow from **Actions → Deploy to GitHub Pages → Run workflow**.
 
 **Settings → Pages → Source** should be **GitHub Actions** (not the legacy `main` or `master` branch).
 
@@ -45,7 +45,7 @@ Push to `development` runs [.github/workflows/deploy-pages.yml](.github/workflow
 
 | Branch | Purpose |
 | --- | --- |
-| `development` | Default branch; deploys to GitHub Pages |
+| `development` | Default branch; CI build on push/PR — does **not** deploy |
 | `main` | Legacy Pages source — retire after Actions deploy is confirmed |
 | `master` | Legacy protected branch — unprotect and delete when Pages migrates |
 
@@ -59,10 +59,11 @@ Set in **Settings → General → Topics** (or run locally with `gh auth login`)
 nuxt nitro typescript portfolio creative-technologist hyperactivity github-pages pug scss ssr vue tamara-mack
 ```
 
-```bash
-gh api --method PUT repos/tamaramack/tamaramack.github.io/topics \
-  --input '{"names":["nuxt","nitro","typescript","portfolio","creative-technologist","hyperactivity","github-pages","pug","scss","ssr","vue","tamara-mack"]}'
+```powershell
+gh api --method PUT repos/tamaramack/tamaramack.github.io/topics -f "names[]=nuxt" -f "names[]=nitro" -f "names[]=typescript" -f "names[]=portfolio" -f "names[]=creative-technologist" -f "names[]=hyperactivity" -f "names[]=github-pages" -f "names[]=pug" -f "names[]=scss" -f "names[]=ssr" -f "names[]=vue" -f "names[]=tamara-mack"
 ```
+
+On macOS/Linux you can also pass JSON: `gh api --method PUT repos/tamaramack/tamaramack.github.io/topics --input topics.json`
 
 Also update the repository description to: *Professional profile for Tamara Mack — Founder of HyperActivity, Creative Technologist. Nuxt 4 at tamaramack.github.io.*
 

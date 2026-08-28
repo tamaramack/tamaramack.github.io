@@ -50,7 +50,8 @@ Link destinations are defined in `shared/profile.ts` and surfaced in the footer,
 
 ## Branches and deployment
 
-- **Default branch:** `development` — pushes trigger [.github/workflows/deploy-pages.yml](../.github/workflows/deploy-pages.yml).
+- **Default branch:** `development` — pushes and PRs run CI (typecheck + build) via [.github/workflows/deploy-pages.yml](../.github/workflows/deploy-pages.yml). Does **not** deploy to GitHub Pages.
+- **Production deploy:** manual only — **Actions → Deploy to GitHub Pages → Run workflow** (`workflow_dispatch`).
 - **GitHub Pages source:** should be **GitHub Actions**, not `main` or `master`.
 - **Legacy branches:** `main` and `master` served the old Jekyll/Vue CLI site. Unprotect and delete `master` once Actions deploy is confirmed; review `main` and `gh-pages` for removal.
 - **Stale remotes:** pre-Nuxt feature branches (`colors-page`, `qa`, `staging`, etc.) are safe to delete when no longer needed.

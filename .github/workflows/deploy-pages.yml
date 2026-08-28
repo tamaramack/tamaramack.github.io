@@ -48,7 +48,7 @@ jobs:
           path: apps/portfolio/.output/public
 
   deploy:
-    if: github.event_name != 'pull_request'
+    if: github.event_name == 'workflow_dispatch'
     needs: build
     environment:
       name: github-pages

@@ -1,5 +1,5 @@
 {
-  "name": "portfolio",
+  "name": "profile",
   "type": "module",
   "private": true,
   "description": "Nuxt 4 SSR professional profile published at tamaramack.github.io",

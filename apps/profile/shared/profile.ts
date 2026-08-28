@@ -33,7 +33,7 @@ export const PROFILE: Profile = {
   personalSite: 'https://likwidmack.com',
   site: 'https://tamaramack.github.io/',
   repository: 'https://github.com/tamaramack/tamaramack.github.io',
-  portfolioSource: 'https://github.com/tamaramack/tamaramack.github.io/tree/development/apps/portfolio',
+  portfolioSource: 'https://github.com/tamaramack/tamaramack.github.io/tree/development/apps/profile',
   portfolioRepo: 'https://github.com/likwidmack/portfolio',
   technicalDocs: 'https://github.com/tamaramack/tamaramack.github.io/blob/development/docs/architecture.md',
   organization: {

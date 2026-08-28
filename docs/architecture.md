@@ -1,8 +1,8 @@
 # Nuxt portfolio
 
-The site source lives in `apps/portfolio`: **Nuxt 4**, **SSR through Nitro**, TypeScript, Pug templates, and SCSS.
+The site source lives in `apps/profile`: **Nuxt 4**, **SSR through Nitro**, TypeScript, Pug templates, and SCSS.
 
-**Published root page:** `https://tamaramack.github.io/` is always this Nuxt app (prerendered from `apps/portfolio`). Do not replace it with a static root app, Jekyll, or legacy Vue CLI code.
+**Published root page:** `https://tamaramack.github.io/` is always this Nuxt app (prerendered from `apps/profile`). The route is `apps/profile/app/pages/index.vue`. Do not replace it with a static root app, Jekyll, or legacy Vue CLI code.
 
 **Also published:** [tamaramack.github.io/architecture](https://tamaramack.github.io/architecture) — the public architecture page. This file is the full repository copy for contributors.
 
@@ -20,9 +20,10 @@ The site source lives in `apps/portfolio`: **Nuxt 4**, **SSR through Nitro**, Ty
 GitHub Pages cannot run that Node server. CI builds with Nitro's `github_pages` preset, which pre-renders the same SSR app to static HTML at **domain root** (`https://tamaramack.github.io/`, `baseURL: '/'`).
 
 ```
-apps/portfolio/
+apps/profile/
   app/
-    pages/             File-based routes (/, /practice, /architecture, …)
+    pages/index.vue    Root route (/)
+    pages/             Other file-based routes
     layouts/           default.vue shell (header, main, footer)
     components/        AppHeader, AppFooter, CapabilityCard, RoleEntry
     composables/       useProfile, usePractice, useExperience
@@ -63,7 +64,7 @@ Nitro runs an SSR server. Pages render on the server, hydrate in the browser, an
 | --- | --- |
 | `site` | https://tamaramack.github.io/ |
 | `repository` | https://github.com/tamaramack/tamaramack.github.io |
-| `portfolioSource` | …/tree/development/apps/portfolio |
+| `portfolioSource` | …/tree/development/apps/profile |
 | `portfolioRepo` | https://github.com/likwidmack/portfolio |
 | `personalSite` | https://likwidmack.com |
 
@@ -83,7 +84,7 @@ GitHub Actions uploads `.output/public` and deploys on push to `main`.
 | `development` | typecheck + build | No |
 | `main` | typecheck + build | Yes — GitHub Pages |
 
-[deploy-pages.yml](../.github/workflows/deploy-pages.yml) builds `apps/portfolio`. [promote-to-main.yml](../.github/workflows/promote-to-main.yml) opens a squash PR after `development` CI passes.
+[deploy-pages.yml](../.github/workflows/deploy-pages.yml) builds `apps/profile`. [promote-to-main.yml](../.github/workflows/promote-to-main.yml) opens a squash PR after `development` CI passes.
 
 ## Public routes
 

@@ -8,6 +8,8 @@ Stack: **Nuxt 4**, **Nitro**, **TypeScript**, **Pug**, **SCSS**.
 
 The original Vue CLI app at the repository root was removed in Aug 2026. This directory is the **required** site source and GitHub Pages publish target for the domain root.
 
+**Root route:** `app/pages/index.vue` → `https://tamaramack.github.io/`
+
 ## Public routes
 
 | Path | Page |
@@ -28,7 +30,7 @@ Full technical documentation: [docs/architecture.md](../../docs/architecture.md)
 | --- | --- |
 | Live site | [tamaramack.github.io](https://tamaramack.github.io/) |
 | Portfolio page | [tamaramack.github.io/portfolio](https://tamaramack.github.io/portfolio) |
-| Source (this app) | [apps/portfolio on GitHub](https://github.com/tamaramack/tamaramack.github.io/tree/development/apps/portfolio) |
+| Source (this app) | [apps/profile on GitHub](https://github.com/tamaramack/tamaramack.github.io/tree/development/apps/profile) |
 | Repository | [tamaramack/tamaramack.github.io](https://github.com/tamaramack/tamaramack.github.io) |
 | Nx portfolio | [likwidmack/portfolio](https://github.com/likwidmack/portfolio) |
 | Creative work | [likwidmack.com](https://likwidmack.com) |

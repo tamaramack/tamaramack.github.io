@@ -13,9 +13,9 @@ Professional profile for [Tamara Gisele Mack](https://tamaramack.github.io/) —
 
 | Path | Stack | Role |
 | --- | --- | --- |
-| `apps/portfolio/` | Nuxt 4, Nitro, TypeScript, Pug, SCSS | **Required** site source; GitHub Pages publish target for domain root |
+| `apps/profile/` | Nuxt 4, Nitro, TypeScript, Pug, SCSS | **Required** site source; GitHub Pages publish target for domain root |
 
-**Do not overwrite the root page.** `/` is the root page route for [tamaramack.github.io](https://tamaramack.github.io/) — always served by the Nuxt app in `apps/portfolio/` (`baseURL: '/'`). Do not add a competing app at the repository root or replace `/` with static HTML, Jekyll, or legacy Vue CLI code.
+**Do not overwrite the root page.** `/` is the root page route for [tamaramack.github.io](https://tamaramack.github.io/) — always served by `apps/profile/app/pages/index.vue` in the Nuxt app (`baseURL: '/'`). Do not add a competing app at the repository root or replace `/` with static HTML, Jekyll, or legacy Vue CLI code.
 
 ## Related repositories
 
@@ -27,7 +27,7 @@ Professional profile for [Tamara Gisele Mack](https://tamaramack.github.io/) —
 ## Development
 
 ```bash
-cd apps/portfolio
+cd apps/profile
 pnpm install
 pnpm dev          # Nitro SSR dev server
 pnpm typecheck
@@ -36,7 +36,7 @@ pnpm build:pages  # static output for GitHub Pages
 
 Or from the repository root: `pnpm dev`, `pnpm build:pages`, `pnpm typecheck`.
 
-See [apps/portfolio/README.md](apps/portfolio/README.md) and [docs/architecture.md](docs/architecture.md) for detail.
+See [apps/profile/README.md](apps/profile/README.md) and [docs/architecture.md](docs/architecture.md) for detail.
 
 ## Deployment
 

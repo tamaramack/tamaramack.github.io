@@ -15,7 +15,7 @@
   section.architecture__layout
     h2 Layout
     pre.layout
-      | apps/portfolio/
+      | apps/profile/
       |   app/              pages, layouts, components, composables, SCSS
       |   server/api/       Nitro GET routes
       |   shared/           profile, practice, experience content
@@ -34,7 +34,7 @@
       code main
       | , which publishes through GitHub Actions. Manual deploy is available from the Actions tab.
     p.architecture__links
-      a(:href="profile.portfolioSource" target="_blank" rel="noopener") View apps/portfolio on GitHub
+      a(:href="profile.portfolioSource" target="_blank" rel="noopener") View apps/profile on GitHub
       a(:href="profile.technicalDocs" target="_blank" rel="noopener") Full technical documentation
 </template>
 

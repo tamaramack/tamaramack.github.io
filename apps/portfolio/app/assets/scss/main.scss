@@ -1,0 +1,96 @@
+@use 'abstracts' as *;
+
+:root {
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: $bg;
+  color: $ink;
+  font-family: $font-body;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+body {
+  background-image:
+    linear-gradient(180deg, rgba(212, 82, 62, 0.08), transparent 28%),
+    repeating-linear-gradient(
+      90deg,
+      rgba(243, 239, 228, 0.025) 0,
+      rgba(243, 239, 228, 0.025) 1px,
+      transparent 1px,
+      transparent 72px
+    );
+}
+
+a {
+  color: $gold;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  color: $ink;
+}
+
+img {
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3 {
+  font-family: $font-display;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  text-transform: uppercase;
+  margin: 0 0 0.55em;
+}
+
+p {
+  margin: 0 0 1em;
+  color: $ink-soft;
+}
+
+.page-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.page-main {
+  padding-block: clamp(2rem, 6vw, 5rem);
+}
+
+.kicker {
+  @include label;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.9rem;
+  color: $accent;
+}
+
+.lede {
+  max-width: 38rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.rule {
+  height: 1px;
+  margin: 2.5rem 0;
+  background: $line;
+  border: 0;
+}

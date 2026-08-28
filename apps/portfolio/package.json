@@ -1,0 +1,47 @@
+{
+  "name": "portfolio",
+  "type": "module",
+  "private": true,
+  "description": "Nuxt 4 SSR professional profile published at tamaramack.github.io",
+  "keywords": [
+    "nuxt",
+    "nitro",
+    "typescript",
+    "portfolio",
+    "github-pages",
+    "pug",
+    "scss",
+    "ssr"
+  ],
+  "engines": {
+    "node": ">=22.19"
+  },
+  "packageManager": "pnpm@10.14.0",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "@parcel/watcher"
+    ]
+  },
+  "scripts": {
+    "build": "nuxt build",
+    "build:pages": "nuxt build --preset github_pages",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck"
+  },
+  "dependencies": {
+    "nuxt": "^4.5.2",
+    "vue": "^3.5.41",
+    "vue-router": "^5.2.0"
+  },
+  "devDependencies": {
+    "pug": "^3.0.3",
+    "rolldown": "~1.2.1",
+    "sass": "^1.90.0",
+    "typescript": "^5.9.2",
+    "vue-tsc": "^3.0.6"
+  }
+}

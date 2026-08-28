@@ -1,0 +1,34 @@
+$bg: #07080c;
+$bg-elevated: #10131a;
+$bg-overlay: #181c27;
+$ink: #f3efe4;
+$ink-soft: #c4bdb0;
+$muted: #8a8378;
+$line: rgba(243, 239, 228, 0.14);
+$accent: #d4523e;
+$accent-deep: #9e2f24;
+$gold: #d7b06a;
+$radius: 2px;
+$gutter: clamp(1.25rem, 4vw, 3.75rem);
+$content: 74rem;
+$font-display: 'Big Shoulders Display', 'Arial Narrow', Impact, sans-serif;
+$font-body: 'Newsreader', 'Iowan Old Style', Georgia, serif;
+$font-ui: 'Sora', 'Segoe UI', sans-serif;
+
+@mixin page-wrap {
+  width: min(100%, $content);
+  margin-inline: auto;
+  padding-inline: $gutter;
+}
+
+@mixin hairline {
+  border: 1px solid $line;
+}
+
+@mixin label {
+  font-family: $font-ui;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}

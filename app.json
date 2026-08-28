@@ -1,14 +1,14 @@
 {
   "name": "tamaramack.github.io",
-  "description": "Tamara Mack's Portfolio and Sample Pages",
+  "description": "Professional profile for Tamara Mack — HyperActivity founder and Creative Technologist",
   "keywords": [
-    "Resume",
     "Portfolio",
-    "Samples",
-    "SPA",
-    "Tester"
+    "Nuxt",
+    "GitHub Pages",
+    "Creative Technologist",
+    "HyperActivity"
   ],
-  "website": "tamaramack.herokuapp.com/",
+  "website": "https://tamaramack.github.io/",
   "repository": "https://github.com/tamaramack/tamaramack.github.io",
   "success_url": "/",
   "formation": {

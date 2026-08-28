@@ -3,3 +3,10 @@
 # Ignore built files except build/index.js
 build/*
 dist/*
+devdist/*
+app/*
+bin/*
+server.js
+*.config.js
+**/server/process/*
+api/process/*

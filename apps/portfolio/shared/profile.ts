@@ -14,6 +14,9 @@ export interface Profile {
   linkedIn: string
   personalSite: string
   site: string
+  repository: string
+  portfolioSource: string
+  portfolioRepo: string
   organization: Organization
 }
 
@@ -26,6 +29,9 @@ export const PROFILE: Profile = {
   linkedIn: 'https://www.linkedin.com/in/likwidmack',
   personalSite: 'https://likwidmack.com',
   site: 'https://tamaramack.github.io/',
+  repository: 'https://github.com/tamaramack/tamaramack.github.io',
+  portfolioSource: 'https://github.com/tamaramack/tamaramack.github.io/tree/development/apps/portfolio',
+  portfolioRepo: 'https://github.com/likwidmack/portfolio',
   organization: {
     name: 'HyperActivity',
     legalName: 'HyperActivity LLC',

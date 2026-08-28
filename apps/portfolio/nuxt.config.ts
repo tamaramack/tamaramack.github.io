@@ -17,7 +17,25 @@ export default defineNuxtConfig({
           name: 'description',
           content: 'Tamara Mack — Founder of HyperActivity and Creative Technologist. Architecture, intelligent interfaces, and technical delivery.'
         },
-        { name: 'theme-color', content: '#0b0d12' }
+        {
+          name: 'keywords',
+          content: 'Tamara Mack, HyperActivity, creative technologist, software architecture, Nuxt, portfolio, Portland'
+        },
+        { name: 'author', content: 'Tamara Mack' },
+        { name: 'theme-color', content: '#0b0d12' },
+        { property: 'og:type', content: 'profile' },
+        { property: 'og:title', content: 'Tamara Mack' },
+        {
+          property: 'og:description',
+          content: 'Founder of HyperActivity. Creative Technologist.'
+        },
+        { property: 'og:url', content: 'https://tamaramack.github.io/' },
+        { name: 'twitter:card', content: 'summary' },
+        { name: 'twitter:title', content: 'Tamara Mack' },
+        {
+          name: 'twitter:description',
+          content: 'Founder of HyperActivity. Creative Technologist.'
+        }
       ],
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
     }
@@ -30,7 +48,7 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: true,
-      routes: ['/', '/practice', '/hyperactivity', '/api/profile', '/api/practice', '/api/experience', '/api/health']
+      routes: ['/', '/practice', '/hyperactivity', '/portfolio', '/api/profile', '/api/practice', '/api/experience', '/api/health']
     }
   },
   vite: {

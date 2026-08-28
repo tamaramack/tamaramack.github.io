@@ -37,10 +37,11 @@ Grounded facts:
 | `/` | Positioning: founder + creative technologist |
 | `/practice` | Capabilities |
 | `/hyperactivity` | The firm |
+| `/portfolio` | Portfolio links hub (repos + likwidmack.com) |
 | `/about` | Biography |
 | `/about/resume` | Experience |
 
-Primary nav: Practice, HyperActivity, About, Resume. External: likwidmack.com, LinkedIn.
+Primary nav: Practice, HyperActivity, Portfolio, About, Resume. External in header: likwidmack.com, LinkedIn. GitHub links in footer, about sidebar, and `/portfolio`. See [2026-08-28-github-links-design.md](./2026-08-28-github-links-design.md).
 
 ## Voice
 

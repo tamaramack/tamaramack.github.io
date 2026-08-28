@@ -11,6 +11,10 @@
       p Founder & Principal Architect
       p {{ profile.organization.legalName }}
       NuxtLink(to="/about/resume") Resume
+      NuxtLink(to="/portfolio") Portfolio
+      a(:href="profile.portfolioSource" target="_blank" rel="noopener") Source
+      a(:href="profile.portfolioRepo" target="_blank" rel="noopener") Nx portfolio
+      a(:href="profile.repository" target="_blank" rel="noopener") GitHub
       a(:href="profile.personalSite" target="_blank" rel="noopener") likwidmack.com
       a(:href="profile.linkedIn" target="_blank" rel="noopener") LinkedIn
     article

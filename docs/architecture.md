@@ -23,4 +23,34 @@ apps/portfolio/
   nuxt.config.ts
 ```
 
-Public URLs: `/` (profile), `/practice`, `/hyperactivity`, `/about`, `/about/resume`. Portfolio experiments and studies live at [likwidmack.com](https://likwidmack.com).
+## Public URLs
+
+| Path | Role |
+| --- | --- |
+| `/` | Profile home |
+| `/practice` | Capabilities |
+| `/hyperactivity` | Firm page |
+| `/portfolio` | Portfolio links hub (repos + likwidmack.com) |
+| `/about` | Biography |
+| `/about/resume` | Experience |
+
+Creative experiments live at [likwidmack.com](https://likwidmack.com).
+
+## External links
+
+Link destinations are defined in `shared/profile.ts` and surfaced in the footer, about sidebar, and `/portfolio` page.
+
+| Key | URL | Where documented |
+| --- | --- | --- |
+| `site` | https://tamaramack.github.io/ | README (live site) |
+| `repository` | https://github.com/tamaramack/tamaramack.github.io | Live site |
+| `portfolioSource` | …/tree/development/apps/portfolio | Live site (source folder) |
+| `portfolioRepo` | https://github.com/likwidmack/portfolio | Live site |
+| `personalSite` | https://likwidmack.com | Live site |
+
+## Branches and deployment
+
+- **Default branch:** `development` — pushes trigger [.github/workflows/deploy-pages.yml](../.github/workflows/deploy-pages.yml).
+- **GitHub Pages source:** should be **GitHub Actions**, not `main` or `master`.
+- **Legacy branches:** `main` and `master` served the old Jekyll/Vue CLI site. Unprotect and delete `master` once Actions deploy is confirmed; review `main` and `gh-pages` for removal.
+- **Stale remotes:** pre-Nuxt feature branches (`colors-page`, `qa`, `staging`, etc.) are safe to delete when no longer needed.

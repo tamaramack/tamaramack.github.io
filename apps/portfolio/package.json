@@ -2,7 +2,17 @@
   "name": "portfolio",
   "type": "module",
   "private": true,
-  "description": "Parallel Nuxt SSR / Nitro portfolio published at the GitHub Pages root",
+  "description": "Nuxt 4 SSR professional profile published at tamaramack.github.io",
+  "keywords": [
+    "nuxt",
+    "nitro",
+    "typescript",
+    "portfolio",
+    "github-pages",
+    "pug",
+    "scss",
+    "ssr"
+  ],
   "engines": {
     "node": ">=22.19"
   },

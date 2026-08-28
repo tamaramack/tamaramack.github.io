@@ -15,11 +15,12 @@
       a(:href="profile.portfolioRepo" target="_blank" rel="noopener") github.com/likwidmack/portfolio
     article
       h2 Profile source
-      p The Nuxt app published at tamaramack.github.io — SSR through Nitro, prerendered for GitHub Pages.
+      p The Nuxt 4 app published at tamaramack.github.io — SSR through Nitro, prerendered for GitHub Pages.
       a(:href="profile.portfolioSource" target="_blank" rel="noopener") apps/portfolio on GitHub
+      NuxtLink.more-link(to="/architecture") Nuxt architecture
     article
       h2 This repository
-      p User site monorepo: parallel Nuxt portfolio and legacy Vue CLI experiments at the root.
+      p User site monorepo for the tamaramack.github.io profile.
       a(:href="profile.repository" target="_blank" rel="noopener") github.com/tamaramack/tamaramack.github.io
 </template>
 
@@ -51,7 +52,8 @@ h2 {
   font-size: 1.4rem;
 }
 
-article a {
+article a,
+article .more-link {
   display: inline-block;
   margin-top: 0.75rem;
   font-family: $font-ui;

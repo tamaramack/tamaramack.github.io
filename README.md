@@ -78,5 +78,5 @@ Also update the repository description to: *Professional profile for Tamara Mack
 
 ## Documentation
 
-- [docs/architecture.md](docs/architecture.md) — runtime, layout, URLs
+- [docs/architecture.md](docs/architecture.md) — Nuxt 4 stack, data flow, GitHub Pages deploy
 - [docs/superpowers/specs/](docs/superpowers/specs/) — design specs

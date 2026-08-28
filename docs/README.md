@@ -2,7 +2,7 @@
 
 ## Architecture
 
-- [architecture.md](architecture.md) — dual-app layout, Nitro SSR, GitHub Pages deploy, public URLs
+- [architecture.md](architecture.md) — Nuxt 4 stack, Nitro SSR, data flow, GitHub Pages deploy
 
 ## Design specs
 

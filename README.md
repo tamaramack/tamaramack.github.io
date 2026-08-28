@@ -37,7 +37,7 @@ See [apps/portfolio/README.md](apps/portfolio/README.md) and [docs/architecture.
 
 ## Deployment
 
-Push to `development` runs [.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages.yml), which builds `apps/portfolio` with Nitro's `github_pages` preset and deploys to GitHub Pages.
+Pushes and pull requests to `development` run [.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages.yml) to **typecheck and build** the Nuxt app. Production deploy to GitHub Pages is **manual only** — run the workflow from **Actions → Deploy to GitHub Pages → Run workflow**.
 
 **Settings → Pages → Source** should be **GitHub Actions** (not the legacy `main` or `master` branch).
 
@@ -45,7 +45,7 @@ Push to `development` runs [.github/workflows/deploy-pages.yml](.github/workflow
 
 | Branch | Purpose |
 | --- | --- |
-| `development` | Default branch; deploys to GitHub Pages |
+| `development` | Default branch; CI build on push/PR — does **not** deploy |
 | `main` | Legacy Pages source — retire after Actions deploy is confirmed |
 | `master` | Legacy protected branch — unprotect and delete when Pages migrates |
 

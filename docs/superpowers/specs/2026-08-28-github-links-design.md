@@ -46,7 +46,7 @@ portfolioRepo: string    // likwidmack/portfolio
 
 | Branch | Action |
 | --- | --- |
-| `development` | Keep as default; deploy target |
+| `development` | Keep as default; CI only — does not deploy |
 | `cr/*-ffee` (merged) | Delete local and remote |
 | `master` | Unprotect and delete (manual, admin) |
 | `main`, `gh-pages` | Review after Actions deploy confirmed |

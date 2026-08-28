@@ -22,4 +22,4 @@ pnpm typecheck
 
 User site URL: `https://tamaramack.github.io/` (root, not `/repo/`).
 
-After the workflow runs, set **Settings → Pages → Source** to **GitHub Actions** if it is still on the legacy `master` branch.
+After the workflow runs, set **Settings → Pages → Source** to **GitHub Actions** if it is still on the legacy `main` branch.

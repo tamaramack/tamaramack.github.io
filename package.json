@@ -19,7 +19,10 @@
     "postversion": "bash ./bin/postversion.sh",
     "precommit": "bash ./bin/tagpackage.sh",
     "preinstall": "bash ./bin/preinstall.sh",
-    "start": "node server.js"
+    "start": "node server.js",
+    "portfolio:dev": "pnpm --dir apps/portfolio dev",
+    "portfolio:build": "pnpm --dir apps/portfolio build",
+    "portfolio:pages": "pnpm --dir apps/portfolio build:pages"
   },
   "dependencies": {
     "@progress/kendo-dateinputs-vue-wrapper": "^2019.2.621",

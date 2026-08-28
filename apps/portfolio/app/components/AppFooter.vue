@@ -1,7 +1,7 @@
 <template lang="pug">
 footer.app-footer
   .app-footer__inner
-    p Tamara Mack · {{ profile?.organization.legalName }}
+    p {{ profile?.name }} · {{ profile?.organization.legalName }}
     nav.app-footer__links(v-if="profile")
       NuxtLink(to="/portfolio") Portfolio
       a(:href="profile.repository" target="_blank" rel="noopener") GitHub

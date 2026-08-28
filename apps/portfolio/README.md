@@ -1,8 +1,8 @@
-# Tamara Mack — Nuxt profile
+# Tamara Gisele Mack — Nuxt profile
 
 Parallel SSR professional profile for [tamaramack.github.io](https://tamaramack.github.io/).
 
-Tamara Mack — Founder of HyperActivity, Creative Technologist.
+Tamara Gisele Mack — Founder of HyperActivity, Creative Technologist.
 
 Stack: **Nuxt 4**, **Nitro**, **TypeScript**, **Pug**, **SCSS**.
 

@@ -4,7 +4,7 @@ header.app-header
     NuxtLink.brand(to="/")
       span.brand__mark(aria-hidden="true")
       span.brand__text
-        strong Tamara Mack
+        strong {{ PROFILE.casualName }}
         small HyperActivity
     button.nav-toggle(
       type="button"

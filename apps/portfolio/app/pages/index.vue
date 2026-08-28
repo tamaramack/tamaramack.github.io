@@ -3,7 +3,7 @@
   section.hero
     p.kicker {{ profile.location }}
     h1
-      span.name {{ profile.name }}
+      span.name {{ profile.casualName }}
       span.line {{ profile.headline }}
     p.lede {{ profile.lede }}
     p.hero__actions

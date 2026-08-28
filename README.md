@@ -59,10 +59,11 @@ Set in **Settings → General → Topics** (or run locally with `gh auth login`)
 nuxt nitro typescript portfolio creative-technologist hyperactivity github-pages pug scss ssr vue tamara-mack
 ```
 
-```bash
-gh api --method PUT repos/tamaramack/tamaramack.github.io/topics \
-  --input '{"names":["nuxt","nitro","typescript","portfolio","creative-technologist","hyperactivity","github-pages","pug","scss","ssr","vue","tamara-mack"]}'
+```powershell
+gh api --method PUT repos/tamaramack/tamaramack.github.io/topics -f "names[]=nuxt" -f "names[]=nitro" -f "names[]=typescript" -f "names[]=portfolio" -f "names[]=creative-technologist" -f "names[]=hyperactivity" -f "names[]=github-pages" -f "names[]=pug" -f "names[]=scss" -f "names[]=ssr" -f "names[]=vue" -f "names[]=tamara-mack"
 ```
+
+On macOS/Linux you can also pass JSON: `gh api --method PUT repos/tamaramack/tamaramack.github.io/topics --input topics.json`
 
 Also update the repository description to: *Professional profile for Tamara Mack — Founder of HyperActivity, Creative Technologist. Nuxt 4 at tamaramack.github.io.*
 

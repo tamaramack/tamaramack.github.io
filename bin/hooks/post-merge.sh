@@ -3,7 +3,7 @@
 # To enable this hook, rename this file to "post-merge".
 
 current_branch=`git rev-parse --abbrev-ref HEAD 2>/dev/null`
-branches=("master" "staging" "qa" "development")
+branches=("main" "staging" "qa" "development")
 
 array__contains (){
     local return_=1

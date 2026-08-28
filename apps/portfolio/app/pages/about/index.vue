@@ -11,6 +11,7 @@
       p Founder & Principal Architect
       p {{ profile.organization.legalName }}
       NuxtLink(to="/about/resume") Resume
+      a(:href="profile.personalSite" target="_blank" rel="noopener") likwidmack.com
       a(:href="profile.linkedIn" target="_blank" rel="noopener") LinkedIn
     article
       h2 Path

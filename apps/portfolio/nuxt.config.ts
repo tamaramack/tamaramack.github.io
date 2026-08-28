@@ -30,7 +30,7 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: true,
-      routes: ['/', '/practice', '/hyperactivity', '/api/profile', '/api/practice', '/api/experience', '/api/projects', '/api/health']
+      routes: ['/', '/practice', '/hyperactivity', '/api/profile', '/api/practice', '/api/experience', '/api/health']
     }
   },
   vite: {

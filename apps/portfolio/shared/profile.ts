@@ -12,6 +12,7 @@ export interface Profile {
   headline: string
   lede: string
   linkedIn: string
+  personalSite: string
   site: string
   organization: Organization
 }
@@ -23,6 +24,7 @@ export const PROFILE: Profile = {
   headline: 'Founder of HyperActivity. Creative Technologist.',
   lede: 'I founded and lead HyperActivity, an independent practice for software architecture, intelligent interfaces, and technical delivery. The through-line is craft: systems that stay legible to the people who use them, even when the stack is agentic, immersive, or both.',
   linkedIn: 'https://www.linkedin.com/in/likwidmack',
+  personalSite: 'https://likwidmack.com',
   site: 'https://tamaramack.github.io/',
   organization: {
     name: 'HyperActivity',

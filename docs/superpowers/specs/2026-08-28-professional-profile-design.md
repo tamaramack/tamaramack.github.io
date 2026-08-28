@@ -26,9 +26,9 @@ Grounded facts:
 
 ## Approaches considered
 
-1. **Brochure only** — delete studio routes. Clean, but throws away public work that still demonstrates craft.
+1. **Brochure only (chosen)** — professional profile only; experiments and studies live at [likwidmack.com](https://likwidmack.com).
 2. **Keep experiments as the homepage** — fails the new brief.
-3. **Professional primary, studio secondary (chosen)** — home / practice / HyperActivity / about / resume lead. `/projects` and study URLs remain as Studio.
+3. ~~**Professional primary, studio secondary**~~ — superseded; studio removed Aug 2026.
 
 ## Information architecture
 
@@ -39,10 +39,8 @@ Grounded facts:
 | `/hyperactivity` | The firm |
 | `/about` | Biography |
 | `/about/resume` | Experience |
-| `/projects` | Studio archive |
-| `/colors`, `/substring`, `/rover`, `/playground` | Individual studies |
 
-Primary nav: Practice, HyperActivity, About, Resume. Studio is a quieter nav item. Contact is LinkedIn.
+Primary nav: Practice, HyperActivity, About, Resume. External: likwidmack.com, LinkedIn.
 
 ## Voice
 

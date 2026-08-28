@@ -9,6 +9,7 @@
     p.hero__actions
       NuxtLink(to="/hyperactivity") HyperActivity
       a(:href="profile.linkedIn" target="_blank" rel="noopener") LinkedIn
+      a(:href="profile.personalSite" target="_blank" rel="noopener") likwidmack.com
 
   section.home-practice
     header
@@ -16,19 +17,11 @@
       h2 What I take on
     CapabilityCard(v-for="area in areas.slice(0, 3)" :key="area.slug" :area="area")
     NuxtLink.more(to="/practice") Full practice
-
-  section.home-studio
-    header
-      p.kicker Studio
-      h2 Selected public studies
-    .home-studio__grid
-      ProjectCard(v-for="project in projects" :key="project.slug" :project="project")
 </template>
 
 <script setup lang="ts">
 const { data: profile } = await useProfile()
 const { data: areas } = await usePractice()
-const { data: projects } = await useProjects()
 
 useHead({
   title: 'Home',
@@ -46,7 +39,7 @@ useHead({
               name: profile.value.organization.legalName
             },
             url: profile.value.site,
-            sameAs: [profile.value.linkedIn],
+            sameAs: [profile.value.linkedIn, profile.value.personalSite],
             address: {
               '@type': 'PostalAddress',
               addressLocality: 'Portland',
@@ -62,8 +55,7 @@ useHead({
 
 <style lang="scss" scoped>
 .hero,
-.home-practice,
-.home-studio {
+.home-practice {
   @include page-wrap;
 }
 
@@ -91,6 +83,7 @@ h1 {
 
 .hero__actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 1.5rem;
   margin-top: 1.5rem;
   font-family: $font-ui;
@@ -99,16 +92,8 @@ h1 {
   font-size: 0.78rem;
 }
 
-.home-practice,
-.home-studio {
+.home-practice {
   margin-top: 1rem;
-}
-
-.home-studio__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-  gap: 1rem;
-  margin-top: 1.2rem;
 }
 
 .more {

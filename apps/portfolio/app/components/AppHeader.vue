@@ -21,20 +21,14 @@ header.app-header
             :exact-active-class="item.exact ? 'router-link-active' : undefined"
             @click="open = false"
           ) {{ item.label }}
-        li.nav-group
-          span Studio
-          ul
-            li
-              NuxtLink(to="/projects" @click="open = false") All studies
-            li(v-for="project in PROJECTS" :key="project.slug")
-              NuxtLink(:to="project.href" @click="open = false") {{ project.title }}
+        li
+          a(:href="PROFILE.personalSite" target="_blank" rel="noopener") likwidmack.com
         li
           a(:href="PROFILE.linkedIn" target="_blank" rel="noopener") LinkedIn
 </template>
 
 <script setup lang="ts">
 import { PROFILE } from '#shared/profile'
-import { PROJECTS } from '#shared/projects'
 
 const open = ref(false)
 
@@ -135,35 +129,6 @@ nav a {
   }
 }
 
-.nav-group {
-  position: relative;
-
-  > span {
-    @include label;
-    color: $muted;
-    cursor: default;
-  }
-
-  ul {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: calc(100% + 0.5rem);
-    min-width: 12rem;
-    padding: 0.7rem;
-    background: $bg-elevated;
-    @include hairline;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.35rem;
-  }
-
-  &:hover ul,
-  &:focus-within ul {
-    display: flex;
-  }
-}
-
 @keyframes pulse {
   0% {
     box-shadow: 0 0 0 0 rgba($accent, 0.5);
@@ -196,15 +161,9 @@ nav a {
     display: block;
   }
 
-  nav ul,
-  .nav-group ul {
-    display: flex;
+  nav ul {
     flex-direction: column;
-    position: static;
-    background: transparent;
-    border: 0;
-    padding: 0;
-    min-width: 0;
+    align-items: stretch;
   }
 }
 </style>

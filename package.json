@@ -1,124 +1,22 @@
 {
-  "name": "tamaramack-portfolio",
-  "version": "0.0.13",
+  "name": "tamaramack.github.io",
+  "version": "1.0.0",
   "private": true,
-  "description": "Professional profile for Tamara Mack — Founder of HyperActivity, Creative Technologist. Nuxt 4 portfolio at tamaramack.github.io.",
+  "description": "Professional profile for Tamara Mack — published from apps/portfolio",
   "author": "Tamara Mack <likwidmack@gmail.com>",
-  "scripts": {
-    "clean": "bash ./bin/clean.sh",
-    "serve": "vue-cli-service serve",
-    "serve:prod": "vue-cli-service serve --mode production",
-    "build:raw": "bash ./bin/rawrender.sh",
-    "build:dev": "bash ./bin/build.sh development",
-    "build": "bash ./bin/build.sh",
-    "lint": "vue-cli-service lint --fix --cache",
-    "deploy:data": "vue-cli-service s3-deploy",
-    "test:e2e": "vue-cli-service test:e2e",
-    "test:unit": "vue-cli-service test:unit",
-    "postinstall": "bash ./bin/postinstall.sh",
-    "postversion": "bash ./bin/postversion.sh",
-    "precommit": "bash ./bin/tagpackage.sh",
-    "preinstall": "bash ./bin/preinstall.sh",
-    "start": "node server.js",
-    "portfolio:dev": "pnpm --dir apps/portfolio dev",
-    "portfolio:build": "pnpm --dir apps/portfolio build",
-    "portfolio:pages": "pnpm --dir apps/portfolio build:pages"
-  },
-  "dependencies": {
-    "@progress/kendo-dateinputs-vue-wrapper": "^2019.2.621",
-    "@progress/kendo-theme-default": "^4.1.0",
-    "@progress/kendo-ui": "^2019.2.724",
-    "core-js": "^3.1.4",
-    "dotenv": "^8.0.0",
-    "foundation-sites": "^6.5.3",
-    "jquery": "^3.4.1",
-    "lodash": "^4.17.15",
-    "mongodb": "^3.3.2",
-    "motion-ui": "^2.0.3",
-    "regenerator-runtime": "^0.13.3",
-    "register-service-worker": "^1.6.2",
-    "vue": "^2.6.10",
-    "vue-router": "^3.0.7",
-    "vue-server-renderer": "^2.6.10",
-    "vuex": "^3.1.1"
-  },
-  "devDependencies": {
-    "@babel/parser": "^7.6.3",
-    "@babel/plugin-transform-modules-commonjs": "^7.6.0",
-    "@babel/preset-env": "^7.6.3",
-    "@vue/cli-plugin-babel": "^3.11.0",
-    "@vue/cli-plugin-e2e-nightwatch": "^3.11.0",
-    "@vue/cli-plugin-eslint": "^3.11.0",
-    "@vue/cli-plugin-pwa": "^3.11.0",
-    "@vue/cli-plugin-unit-jest": "^3.11.0",
-    "@vue/cli-service": "^3.11.0",
-    "@vue/eslint-config-airbnb": "^4.0.1",
-    "@vue/test-utils": "1.0.0-beta.29",
-    "autoprefixer": "^9.6.1",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^10.0.3",
-    "babel-jest": "^23.6.0",
-    "babel-plugin-transform-remove-console": "^6.9.4",
-    "eslint": "^6.5.1",
-    "eslint-plugin-vue": "^5.2.3",
-    "express": "^4.17.1",
-    "lint-staged": "^9.2.1",
-    "node-sass": "^4.12.0",
-    "open": "^6.4.0",
-    "pug": "^3.0.1",
-    "pug-plain-loader": "^1.0.0",
-    "sass-loader": "^7.1.0",
-    "semver": "^6.3.0",
-    "serve-favicon": "^2.5.0",
-    "shelljs": "^0.8.3",
-    "thread-loader": "^2.1.2",
-    "url-loader": "^2.1.0",
-    "vue-cli-plugin-pug": "^1.0.7",
-    "vue-cli-plugin-s3-deploy": "^3.0.0",
-    "vue-template-compiler": "^2.6.10"
-  },
-  "resolutions": {
-    "@babel/parser": "7.3.0"
-  },
-  "peerDependencies": {
-    "autoprefixer": ">=9",
-    "eslint": ">=6"
-  },
-  "bugs": {
-    "url": "https://github.com/tamaramack/tamaramack.github.io/issues"
-  },
-  "config": {
-    "port": 9200,
-    "build": "v0.0.13-0-g65065b8",
-    "timestamp": "2019-11-22T22:12:52.057Z"
-  },
-  "gitHooks": {
-    "pre-commit": "lint-staged",
-    "post-merge": "npm run precommit"
-  },
-  "lint-staged": {
-    "*.{js,vue}": [
-      "vue-cli-service lint --fix",
-      "git add"
-    ]
-  },
-  "homepage": "https://tamaramack.github.io/",
-  "keywords": [
-    "portfolio",
-    "nuxt",
-    "nitro",
-    "typescript",
-    "github-pages",
-    "creative-technologist",
-    "hyperactivity",
-    "pug",
-    "scss",
-    "ssr",
-    "vue"
-  ],
   "license": "BSD-2-Clause",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tamaramack/tamaramack.github.io.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tamaramack/tamaramack.github.io/issues"
+  },
+  "homepage": "https://tamaramack.github.io/",
+  "scripts": {
+    "dev": "pnpm --dir apps/portfolio dev",
+    "build": "pnpm --dir apps/portfolio build",
+    "build:pages": "pnpm --dir apps/portfolio build:pages",
+    "typecheck": "pnpm --dir apps/portfolio typecheck"
   }
 }

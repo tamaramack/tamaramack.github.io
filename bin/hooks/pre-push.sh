@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 current_branch=`git rev-parse --abbrev-ref HEAD 2>/dev/null`
-branches=("master" "staging" "qa" "development")
+branches=("main" "staging" "qa" "development")
 
 array__contains (){
     local return_=1
@@ -11,7 +11,7 @@ array__contains (){
 
 staging_branch="staging"
 dev_branch="development"
-master_branch="master"
+main_branch="main"
 
 if [[ 0 == "$(array__contains $current_branch)" ]]
 then

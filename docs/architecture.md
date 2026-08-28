@@ -1,58 +1,100 @@
-# Nuxt portfolio
+# Nuxt portfolio architecture
 
-The site source lives in `apps/portfolio`: **Nuxt 4**, **SSR through Nitro**, TypeScript, Pug templates, and SCSS.
+The published site is a **Nuxt 4** application in `apps/portfolio`: **Vue 3**, **Nitro**, **TypeScript**, **Pug**, and **SCSS**.
 
-## Runtime
+Live site: [tamaramack.github.io](https://tamaramack.github.io/) · Architecture page: [/architecture](https://tamaramack.github.io/architecture)
 
-`nuxt dev` and `nuxt build` produce a Nitro Node server (`ssr: true`). Pages fetch `/api/profile`, `/api/practice`, `/api/experience`, and `/api/health` from Nitro routes.
+## Stack
 
-GitHub Pages cannot run that Node server. CI builds with Nitro's `github_pages` preset, which pre-renders the same SSR app to static HTML at **domain root** (`https://tamaramack.github.io/`, `baseURL: '/'`).
+| Layer | Technology | Role |
+| --- | --- | --- |
+| Framework | Nuxt 4 | App router, layouts, pages, composables |
+| UI | Vue 3 | Composition API, `<script setup>`, Pug SFC templates |
+| Server | Nitro | SSR, API routes, static prerender |
+| Language | TypeScript | Shared types in `shared/` |
+| Styles | SCSS | Global tokens + scoped page styles |
+| Hosting | GitHub Pages | Static output from `github_pages` preset |
 
-Do not set `NUXT_APP_BASE_URL` to a repository slug. This is a user site, not a project site under `/repo/`.
-
-## Layout
+## Directory layout
 
 ```
 apps/portfolio/
-  app/                 Vue app (pages, layouts, components, SCSS)
-  server/api/          Nitro routes
-  shared/              Types and catalog used by app + server
-  nuxt.config.ts
+  app/
+    pages/             File-based routes (/, /practice, /architecture, …)
+    layouts/           default.vue shell (header, main, footer)
+    components/        AppHeader, AppFooter, CapabilityCard, RoleEntry
+    composables/       useProfile, usePractice, useExperience
+    assets/scss/       Design tokens and global styles
+  server/api/          Nitro handlers (profile, practice, experience, health)
+  shared/              Content modules imported by app + server
+  public/              favicon, robots.txt
+  nuxt.config.ts       SSR, prerender routes, head meta, SCSS injection
 ```
 
-## Public URLs
+## Data flow
 
-| Path | Role |
-| --- | --- |
-| `/` | Profile home |
-| `/practice` | Capabilities |
-| `/hyperactivity` | Firm page |
-| `/portfolio` | Portfolio links hub (repos + likwidmack.com) |
-| `/about` | Biography |
-| `/about/resume` | Experience |
+One content source, two consumers:
 
-Creative experiments live at [likwidmack.com](https://likwidmack.com).
+```
+shared/profile.ts ──┬── server/api/profile.get.ts ── GET /api/profile
+shared/practice.ts ──┼── server/api/practice.get.ts ── GET /api/practice
+shared/experience.ts ┴── server/api/experience.get.ts ─ GET /api/experience
+                              │
+                              ▼
+                    composables/use*.ts (useFetch)
+                              │
+                              ▼
+                         app/pages/*.vue
+```
 
-## External links
+This keeps GitHub Pages prerender and local `nuxt dev` SSR aligned — both read the same API routes.
 
-Link destinations are defined in `shared/profile.ts` and surfaced in the footer, about sidebar, and `/portfolio` page.
+## Runtime modes
 
-| Key | URL |
-| --- | --- |
-| `site` | https://tamaramack.github.io/ |
-| `repository` | https://github.com/tamaramack/tamaramack.github.io |
-| `portfolioSource` | …/tree/development/apps/portfolio |
-| `portfolioRepo` | https://github.com/likwidmack/portfolio |
-| `personalSite` | https://likwidmack.com |
+### Development (`pnpm dev`)
 
-## Branches and deployment
+Nitro runs an SSR server. Pages render on the server, hydrate in the browser, and fetch `/api/*` from local Nitro routes.
+
+### Production build (`pnpm build`)
+
+Outputs a Node SSR bundle in `.output/server` for environments that can run Nitro.
+
+### GitHub Pages (`pnpm build:pages`)
+
+Uses Nitro's `github_pages` preset:
+
+- `ssr: true` — same Vue app as dev
+- `baseURL: '/'` — user site at domain root (not `/repo/`)
+- Prerender crawls routes listed in `nuxt.config.ts` plus internal links
+- Output: static HTML + `_payload.json` in `.output/public`
+
+GitHub Actions uploads `.output/public` and deploys on push to `main`.
+
+## CI and branches
 
 | Branch | CI | Deploy |
 | --- | --- | --- |
-| `development` | Push and PR via [.github/workflows/deploy-pages.yml](../.github/workflows/deploy-pages.yml) | No |
-| `main` | Push | Yes — automatic GitHub Pages publish |
+| `development` | typecheck + build | No |
+| `main` | typecheck + build | Yes — GitHub Pages |
 
-After CI succeeds on a push to `development`, [.github/workflows/promote-to-main.yml](../.github/workflows/promote-to-main.yml) creates a PR to `main` and enables squash auto-merge. Manual deploy remains available via `workflow_dispatch`.
+[deploy-pages.yml](../.github/workflows/deploy-pages.yml) builds `apps/portfolio`. [promote-to-main.yml](../.github/workflows/promote-to-main.yml) opens a squash PR after `development` CI passes.
 
-- **GitHub Pages source:** **GitHub Actions**, not `main` or `master` as a static branch.
-- **Legacy branches:** `master` and `gh-pages` can be removed once this flow is confirmed.
+## Public routes
+
+| Path | Page |
+| --- | --- |
+| `/` | Profile home |
+| `/practice` | Capabilities |
+| `/hyperactivity` | Firm |
+| `/portfolio` | Related repos and links |
+| `/architecture` | This Nuxt stack |
+| `/about` | Biography |
+| `/about/resume` | Experience |
+
+## Related repositories
+
+| Repo | Role |
+| --- | --- |
+| [tamaramack/tamaramack.github.io](https://github.com/tamaramack/tamaramack.github.io) | This site (Nuxt source in `apps/portfolio`) |
+| [likwidmack/portfolio](https://github.com/likwidmack/portfolio) | Nx full-stack portfolio |
+| [likwidmack.com](https://likwidmack.com) | Creative experiments |

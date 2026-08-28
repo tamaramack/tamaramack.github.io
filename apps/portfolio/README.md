@@ -16,6 +16,7 @@ The original Vue CLI app at the repository root was removed in Aug 2026. This di
 | `/practice` | Capabilities |
 | `/hyperactivity` | Firm |
 | `/portfolio` | Portfolio links hub |
+| `/architecture` | Nuxt 4 stack and deploy model |
 | `/about` | Biography |
 | `/about/resume` | Experience |
 

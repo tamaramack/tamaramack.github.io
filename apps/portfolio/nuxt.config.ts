@@ -8,14 +8,14 @@ export default defineNuxtConfig({
     baseURL: '/',
     head: {
       htmlAttrs: { lang: 'en' },
-      title: 'Portfolio',
-      titleTemplate: '%s · T Mack',
+      title: 'Tamara Mack',
+      titleTemplate: '%s · Tamara Mack',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         {
           name: 'description',
-          content: 'Works completed and explored — Tamara Mack portfolio'
+          content: 'Tamara Mack — Founder of HyperActivity and Creative Technologist. Architecture, intelligent interfaces, and technical delivery.'
         },
         { name: 'theme-color', content: '#0b0d12' }
       ],
@@ -30,7 +30,7 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: true,
-      routes: ['/', '/api/projects', '/api/health']
+      routes: ['/', '/practice', '/hyperactivity', '/api/profile', '/api/practice', '/api/experience', '/api/health']
     }
   },
   vite: {

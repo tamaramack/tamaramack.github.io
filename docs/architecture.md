@@ -7,7 +7,7 @@ This repository now has two apps:
 
 ## Runtime
 
-`nuxt dev` and `nuxt build` produce a Nitro Node server (`ssr: true`). Pages can fetch `/api/projects` and `/api/health` from server routes.
+`nuxt dev` and `nuxt build` produce a Nitro Node server (`ssr: true`). Pages fetch `/api/profile`, `/api/practice`, `/api/experience`, and `/api/health` from Nitro routes.
 
 GitHub Pages cannot run that Node server. CI therefore builds with Nitro's `github_pages` preset, which pre-renders the same SSR app to static HTML at **domain root** (`https://tamaramack.github.io/`, `baseURL: '/'`).
 
@@ -23,4 +23,4 @@ apps/portfolio/
   nuxt.config.ts
 ```
 
-Public URLs match the legacy information architecture: `/`, `/projects`, `/colors`, `/substring`, `/rover`, `/playground`, `/about`, `/about/resume`.
+Public URLs: `/` (profile), `/practice`, `/hyperactivity`, `/about`, `/about/resume`. Portfolio experiments and studies live at [likwidmack.com](https://likwidmack.com).

@@ -1,6 +1,8 @@
 # T Mack portfolio (Nuxt)
 
-Parallel SSR portfolio for [tamaramack.github.io](https://tamaramack.github.io/).
+Parallel SSR professional profile for [tamaramack.github.io](https://tamaramack.github.io/).
+
+Tamara Mack — Founder of HyperActivity, Creative Technologist.
 
 Stack: **Nuxt 4**, **Nitro**, **TypeScript**, **Pug**, **SCSS**.
 

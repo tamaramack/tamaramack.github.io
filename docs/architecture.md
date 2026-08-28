@@ -1,8 +1,6 @@
-# Nuxt portfolio architecture
+# Nuxt portfolio
 
-The published site is a **Nuxt 4** application in `apps/portfolio`: **Vue 3**, **Nitro**, **TypeScript**, **Pug**, and **SCSS**.
-
-Live site: [tamaramack.github.io](https://tamaramack.github.io/) · Architecture page: [/architecture](https://tamaramack.github.io/architecture)
+The site source lives in `apps/portfolio`: **Nuxt 4**, **SSR through Nitro**, TypeScript, Pug templates, and SCSS.
 
 ## Stack
 
@@ -15,7 +13,7 @@ Live site: [tamaramack.github.io](https://tamaramack.github.io/) · Architecture
 | Styles | SCSS | Global tokens + scoped page styles |
 | Hosting | GitHub Pages | Static output from `github_pages` preset |
 
-## Directory layout
+GitHub Pages cannot run that Node server. CI builds with Nitro's `github_pages` preset, which pre-renders the same SSR app to static HTML at **domain root** (`https://tamaramack.github.io/`, `baseURL: '/'`).
 
 ```
 apps/portfolio/
@@ -57,9 +55,13 @@ Nitro runs an SSR server. Pages render on the server, hydrate in the browser, an
 
 ### Production build (`pnpm build`)
 
-Outputs a Node SSR bundle in `.output/server` for environments that can run Nitro.
-
-### GitHub Pages (`pnpm build:pages`)
+| Key | URL |
+| --- | --- |
+| `site` | https://tamaramack.github.io/ |
+| `repository` | https://github.com/tamaramack/tamaramack.github.io |
+| `portfolioSource` | …/tree/development/apps/portfolio |
+| `portfolioRepo` | https://github.com/likwidmack/portfolio |
+| `personalSite` | https://likwidmack.com |
 
 Uses Nitro's `github_pages` preset:
 
@@ -93,8 +95,5 @@ GitHub Actions uploads `.output/public` and deploys on push to `main`.
 
 ## Related repositories
 
-| Repo | Role |
-| --- | --- |
-| [tamaramack/tamaramack.github.io](https://github.com/tamaramack/tamaramack.github.io) | This site (Nuxt source in `apps/portfolio`) |
-| [likwidmack/portfolio](https://github.com/likwidmack/portfolio) | Nx full-stack portfolio |
-| [likwidmack.com](https://likwidmack.com) | Creative experiments |
+- **GitHub Pages source:** **GitHub Actions**, not `main` or `master` as a static branch.
+- **Legacy branches:** `master` and `gh-pages` can be removed once this flow is confirmed.

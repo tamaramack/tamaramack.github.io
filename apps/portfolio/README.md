@@ -44,4 +44,6 @@ pnpm typecheck
 
 User site URL: `https://tamaramack.github.io/` (root, not `/repo/`).
 
-After the workflow runs, set **Settings → Pages → Source** to **GitHub Actions** if it is still on the legacy `main` branch.
+CI on `development` builds the static site but does **not** publish it. Deploy manually from **Actions → Deploy to GitHub Pages → Run workflow**.
+
+Set **Settings → Pages → Source** to **GitHub Actions** if it is still on the legacy `main` branch.

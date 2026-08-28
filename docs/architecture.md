@@ -1,15 +1,12 @@
-# Parallel Nuxt portfolio
+# Nuxt portfolio
 
-This repository now has two apps:
-
-- **Legacy Vue CLI 3 / Vue 2 app** at the repository root. It stays in place so existing experiments are not rewritten in one pass.
-- **Parallel Nuxt 4 portfolio** in `apps/portfolio`. This is the architecture going forward: **SSR through Nitro**, TypeScript, Pug templates, and SCSS.
+The site source lives in `apps/portfolio`: **Nuxt 4**, **SSR through Nitro**, TypeScript, Pug templates, and SCSS.
 
 ## Runtime
 
 `nuxt dev` and `nuxt build` produce a Nitro Node server (`ssr: true`). Pages fetch `/api/profile`, `/api/practice`, `/api/experience`, and `/api/health` from Nitro routes.
 
-GitHub Pages cannot run that Node server. CI therefore builds with Nitro's `github_pages` preset, which pre-renders the same SSR app to static HTML at **domain root** (`https://tamaramack.github.io/`, `baseURL: '/'`).
+GitHub Pages cannot run that Node server. CI builds with Nitro's `github_pages` preset, which pre-renders the same SSR app to static HTML at **domain root** (`https://tamaramack.github.io/`, `baseURL: '/'`).
 
 Do not set `NUXT_APP_BASE_URL` to a repository slug. This is a user site, not a project site under `/repo/`.
 
@@ -40,13 +37,13 @@ Creative experiments live at [likwidmack.com](https://likwidmack.com).
 
 Link destinations are defined in `shared/profile.ts` and surfaced in the footer, about sidebar, and `/portfolio` page.
 
-| Key | URL | Where documented |
-| --- | --- | --- |
-| `site` | https://tamaramack.github.io/ | README (live site) |
-| `repository` | https://github.com/tamaramack/tamaramack.github.io | Live site |
-| `portfolioSource` | …/tree/development/apps/portfolio | Live site (source folder) |
-| `portfolioRepo` | https://github.com/likwidmack/portfolio | Live site |
-| `personalSite` | https://likwidmack.com | Live site |
+| Key | URL |
+| --- | --- |
+| `site` | https://tamaramack.github.io/ |
+| `repository` | https://github.com/tamaramack/tamaramack.github.io |
+| `portfolioSource` | …/tree/development/apps/portfolio |
+| `portfolioRepo` | https://github.com/likwidmack/portfolio |
+| `personalSite` | https://likwidmack.com |
 
 ## Branches and deployment
 
@@ -59,4 +56,3 @@ After CI succeeds on a push to `development`, [.github/workflows/promote-to-main
 
 - **GitHub Pages source:** **GitHub Actions**, not `main` or `master` as a static branch.
 - **Legacy branches:** `master` and `gh-pages` can be removed once this flow is confirmed.
-- **Stale remotes:** pre-Nuxt feature branches (`colors-page`, `qa`, `staging`, etc.) are safe to delete when no longer needed.

@@ -34,3 +34,7 @@ yarn-error.log*
 *.sw*
 .eslintcache
 app/_archives/
+apps/portfolio/.nuxt
+apps/portfolio/.output
+apps/portfolio/.nitro
+apps/portfolio/.cache

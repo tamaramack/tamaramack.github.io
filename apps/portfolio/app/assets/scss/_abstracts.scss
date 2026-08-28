@@ -1,0 +1,25 @@
+$bg: #0b0d12;
+$bg-elevated: #151922;
+$bg-overlay: #1c2230;
+$ink: #f4efe6;
+$ink-soft: #c9c2b6;
+$muted: #8b93a7;
+$line: rgba(244, 239, 230, 0.12);
+$accent: #e05a4f;
+$accent-deep: #b73c34;
+$gold: #e6c07b;
+$radius: 18px;
+$gutter: clamp(1.25rem, 4vw, 3.5rem);
+$content: 72rem;
+$font-display: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', serif;
+$font-body: 'Figtree', 'Segoe UI', sans-serif;
+
+@mixin page-wrap {
+  width: min(100%, $content);
+  margin-inline: auto;
+  padding-inline: $gutter;
+}
+
+@mixin hairline {
+  border: 1px solid $line;
+}

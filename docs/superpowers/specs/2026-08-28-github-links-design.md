@@ -46,10 +46,10 @@ portfolioRepo: string    // likwidmack/portfolio
 
 | Branch | Action |
 | --- | --- |
-| `development` | Keep as default; CI only — does not deploy |
-| `cr/*-ffee` (merged) | Delete local and remote |
+| `development` | Keep as default; CI only — promotes to `main` via auto-squash PR |
+| `main` | Production; auto-deploys GitHub Pages on push |
 | `master` | Unprotect and delete (manual, admin) |
-| `main`, `gh-pages` | Review after Actions deploy confirmed |
+| `gh-pages` | Review for removal after Actions deploy confirmed |
 | Stale feature branches | Delete remotes |
 
 Protection rules require repo admin; automation token returns 403.

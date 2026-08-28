@@ -37,17 +37,25 @@ See [apps/portfolio/README.md](apps/portfolio/README.md) and [docs/architecture.
 
 ## Deployment
 
-Pushes and pull requests to `development` run [.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages.yml) to **typecheck and build** the Nuxt app. Production deploy to GitHub Pages is **manual only** — run the workflow from **Actions → Deploy to GitHub Pages → Run workflow**.
+| Branch | CI (build + typecheck) | Deploy to GitHub Pages |
+| --- | --- | --- |
+| `development` | On push and PR | No |
+| `main` | On push | Yes (automatic) |
+| Manual | Actions → Run workflow | Yes |
 
-**Settings → Pages → Source** should be **GitHub Actions** (not the legacy `main` or `master` branch).
+Pushes to `development` run [.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages.yml). When CI succeeds, [.github/workflows/promote-to-main.yml](.github/workflows/promote-to-main.yml) opens a PR from `development` → `main` and enables **squash auto-merge**. Merging to `main` deploys the site.
+
+**Settings → Pages → Source** should be **GitHub Actions**.
+
+**Settings → General → Pull Requests:** enable **Allow auto-merge**. On `main` branch rules, allow squash merges only if you want to enforce that method.
 
 ## Branches
 
 | Branch | Purpose |
 | --- | --- |
-| `development` | Default branch; CI build on push/PR — does **not** deploy |
-| `main` | Legacy Pages source — retire after Actions deploy is confirmed |
-| `master` | Legacy protected branch — unprotect and delete when Pages migrates |
+| `development` | Default integration branch; CI on push/PR |
+| `main` | Production; squash-merged from `development`; deploys GitHub Pages |
+| `master` | Legacy — unprotect and delete when no longer needed |
 
 Stale feature branches from the Vue CLI era can be deleted once no longer needed.
 

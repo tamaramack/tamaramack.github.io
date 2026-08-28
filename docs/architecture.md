@@ -50,8 +50,13 @@ Link destinations are defined in `shared/profile.ts` and surfaced in the footer,
 
 ## Branches and deployment
 
-- **Default branch:** `development` — pushes and PRs run CI (typecheck + build) via [.github/workflows/deploy-pages.yml](../.github/workflows/deploy-pages.yml). Does **not** deploy to GitHub Pages.
-- **Production deploy:** manual only — **Actions → Deploy to GitHub Pages → Run workflow** (`workflow_dispatch`).
-- **GitHub Pages source:** should be **GitHub Actions**, not `main` or `master`.
-- **Legacy branches:** `main` and `master` served the old Jekyll/Vue CLI site. Unprotect and delete `master` once Actions deploy is confirmed; review `main` and `gh-pages` for removal.
+| Branch | CI | Deploy |
+| --- | --- | --- |
+| `development` | Push and PR via [.github/workflows/deploy-pages.yml](../.github/workflows/deploy-pages.yml) | No |
+| `main` | Push | Yes — automatic GitHub Pages publish |
+
+After CI succeeds on a push to `development`, [.github/workflows/promote-to-main.yml](../.github/workflows/promote-to-main.yml) creates a PR to `main` and enables squash auto-merge. Manual deploy remains available via `workflow_dispatch`.
+
+- **GitHub Pages source:** **GitHub Actions**, not `main` or `master` as a static branch.
+- **Legacy branches:** `master` and `gh-pages` can be removed once this flow is confirmed.
 - **Stale remotes:** pre-Nuxt feature branches (`colors-page`, `qa`, `staging`, etc.) are safe to delete when no longer needed.

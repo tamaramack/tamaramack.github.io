@@ -13,7 +13,10 @@ Professional profile for [Tamara Gisele Mack](https://tamaramack.github.io/) —
 
 | Path | Stack | Role |
 | --- | --- | --- |
-| `apps/portfolio/` | Nuxt 4, Nitro, TypeScript, Pug, SCSS | Site source and GitHub Pages publish target |
+| `apps/profile/` | Nuxt 4, Nitro, TypeScript, Pug, SCSS | **Required** site source; GitHub Pages publish target for domain root |
+| `apps/portfolio/` | Nx / Nuxt (planned) | Portfolio repo — [likwidmack/portfolio](https://github.com/likwidmack/portfolio) |
+
+**Do not overwrite the root page.** `/` is the root page route for [tamaramack.github.io](https://tamaramack.github.io/) — always served by `apps/profile/app/pages/index.vue` in the Nuxt app (`baseURL: '/'`). Do not add a competing app at the repository root or replace `/` with static HTML, Jekyll, or legacy Vue CLI code.
 
 ## Related repositories
 
@@ -25,7 +28,7 @@ Professional profile for [Tamara Gisele Mack](https://tamaramack.github.io/) —
 ## Development
 
 ```bash
-cd apps/portfolio
+cd apps/profile
 pnpm install
 pnpm dev          # Nitro SSR dev server
 pnpm typecheck
@@ -34,7 +37,7 @@ pnpm build:pages  # static output for GitHub Pages
 
 Or from the repository root: `pnpm dev`, `pnpm build:pages`, `pnpm typecheck`.
 
-See [apps/portfolio/README.md](apps/portfolio/README.md) and [docs/architecture.md](docs/architecture.md) for detail.
+See [apps/profile/README.md](apps/profile/README.md), [apps/portfolio/README.md](apps/portfolio/README.md), and [docs/architecture.md](docs/architecture.md) for detail.
 
 ## Deployment
 
@@ -78,5 +81,7 @@ Also update the repository description to: *Professional profile for Tamara Gise
 
 ## Documentation
 
-- [docs/architecture.md](docs/architecture.md) — Nuxt 4 stack, data flow, GitHub Pages deploy
+- [docs/README.md](docs/README.md) — documentation index
+- [tamaramack.github.io/architecture](https://tamaramack.github.io/architecture) — live architecture page
+- [docs/architecture.md](docs/architecture.md) — full Nuxt 4 stack, data flow, GitHub Pages deploy
 - [docs/superpowers/specs/](docs/superpowers/specs/) — design specs

@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: apps/portfolio
+        working-directory: apps/profile
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -37,7 +37,7 @@ jobs:
         with:
           node-version: '22'
           cache: pnpm
-          cache-dependency-path: apps/portfolio/pnpm-lock.yaml
+          cache-dependency-path: apps/profile/pnpm-lock.yaml
       - run: pnpm install --frozen-lockfile
       - name: Typecheck
         run: pnpm typecheck
@@ -47,7 +47,7 @@ jobs:
           NUXT_APP_BASE_URL: /
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: apps/portfolio/.output/public
+          path: apps/profile/.output/public
 
   deploy:
     if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main')

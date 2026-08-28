@@ -2,7 +2,7 @@
   "name": "tamaramack.github.io",
   "version": "1.0.0",
   "private": true,
-  "description": "Professional profile for Tamara Gisele Mack — published from apps/portfolio",
+  "description": "Professional profile for Tamara Gisele Mack — published from apps/profile",
   "author": "Tamara Gisele Mack <likwidmack@gmail.com>",
   "license": "BSD-2-Clause",
   "repository": {
@@ -14,9 +14,9 @@
   },
   "homepage": "https://tamaramack.github.io/",
   "scripts": {
-    "dev": "pnpm --dir apps/portfolio dev",
-    "build": "pnpm --dir apps/portfolio build",
-    "build:pages": "pnpm --dir apps/portfolio build:pages",
-    "typecheck": "pnpm --dir apps/portfolio typecheck"
+    "dev": "pnpm --dir apps/profile dev",
+    "build": "pnpm --dir apps/profile build",
+    "build:pages": "pnpm --dir apps/profile build:pages",
+    "typecheck": "pnpm --dir apps/profile typecheck"
   }
 }

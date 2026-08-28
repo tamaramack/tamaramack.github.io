@@ -36,7 +36,6 @@ const navItems = [
   { to: '/practice', label: 'Practice', exact: false },
   { to: '/hyperactivity', label: 'HyperActivity', exact: false },
   { to: '/portfolio', label: 'Portfolio', exact: false },
-  { to: '/architecture', label: 'Architecture', exact: false },
   { to: '/about', label: 'About', exact: false },
   { to: '/about/resume', label: 'Resume', exact: false }
 ] as const

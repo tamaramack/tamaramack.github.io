@@ -53,7 +53,6 @@ export default defineNuxtConfig({
         '/practice',
         '/hyperactivity',
         '/portfolio',
-        '/architecture',
         '/about',
         '/about/resume',
         '/api/profile',

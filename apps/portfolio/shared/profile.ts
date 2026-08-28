@@ -18,6 +18,7 @@ export interface Profile {
   repository: string
   portfolioSource: string
   portfolioRepo: string
+  technicalDocs: string
   organization: Organization
 }
 
@@ -34,6 +35,7 @@ export const PROFILE: Profile = {
   repository: 'https://github.com/tamaramack/tamaramack.github.io',
   portfolioSource: 'https://github.com/tamaramack/tamaramack.github.io/tree/development/apps/portfolio',
   portfolioRepo: 'https://github.com/likwidmack/portfolio',
+  technicalDocs: 'https://github.com/tamaramack/tamaramack.github.io/blob/development/docs/architecture.md',
   organization: {
     name: 'HyperActivity',
     legalName: 'HyperActivity LLC',

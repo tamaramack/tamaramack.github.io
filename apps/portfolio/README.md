@@ -6,19 +6,20 @@ Tamara Gisele Mack — Founder of HyperActivity, Creative Technologist.
 
 Stack: **Nuxt 4**, **Nitro**, **TypeScript**, **Pug**, **SCSS**.
 
-The original Vue CLI app at the repository root was removed in Aug 2026. This directory is the sole site source and GitHub Pages publish target.
+The original Vue CLI app at the repository root was removed in Aug 2026. This directory is the **required** site source and GitHub Pages publish target for the domain root.
 
 ## Public routes
 
 | Path | Page |
 | --- | --- |
-| `/` | Home |
+| `/` | Profile home (Nuxt app root — do not replace) |
 | `/practice` | Capabilities |
 | `/hyperactivity` | Firm |
 | `/portfolio` | Portfolio links hub |
-| `/architecture` | Nuxt 4 stack and deploy model |
 | `/about` | Biography |
 | `/about/resume` | Experience |
+
+Technical stack documentation: [docs/architecture.md](../../docs/architecture.md) in this repository (linked from `/portfolio`, not published as a site route).
 
 ## Related links
 

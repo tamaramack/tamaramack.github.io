@@ -13,7 +13,9 @@ Professional profile for [Tamara Gisele Mack](https://tamaramack.github.io/) —
 
 | Path | Stack | Role |
 | --- | --- | --- |
-| `apps/portfolio/` | Nuxt 4, Nitro, TypeScript, Pug, SCSS | Site source and GitHub Pages publish target |
+| `apps/portfolio/` | Nuxt 4, Nitro, TypeScript, Pug, SCSS | **Required** site source; GitHub Pages publish target for domain root |
+
+**Do not overwrite the root page.** The published site at [tamaramack.github.io](https://tamaramack.github.io/) is always the Nuxt app in `apps/portfolio/`. Do not add a competing app at the repository root or replace `/` with static HTML, Jekyll, or legacy Vue CLI code. Stack and deploy documentation belongs in [docs/](docs/) — link to it; do not mirror it as a public site route.
 
 ## Related repositories
 
@@ -78,5 +80,6 @@ Also update the repository description to: *Professional profile for Tamara Gise
 
 ## Documentation
 
-- [docs/architecture.md](docs/architecture.md) — Nuxt 4 stack, data flow, GitHub Pages deploy
+- [docs/README.md](docs/README.md) — documentation index
+- [docs/architecture.md](docs/architecture.md) — Nuxt 4 stack, data flow, GitHub Pages deploy (repository docs; not a public site route)
 - [docs/superpowers/specs/](docs/superpowers/specs/) — design specs

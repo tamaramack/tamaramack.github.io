@@ -1,8 +1,12 @@
 # Documentation
 
-## Architecture
+## Technical documentation
 
-- [architecture.md](architecture.md) — Nuxt 4 stack, Nitro SSR, data flow, GitHub Pages deploy
+Portfolio site stack, data flow, and GitHub Pages deploy:
+
+- [architecture.md](architecture.md) — Nuxt 4 app in `apps/portfolio/`, Nitro SSR, prerender, CI branches
+
+The live site root (`/`) is the Nuxt profile app. Keep technical write-ups here in `docs/`; link to them from README and the `/portfolio` page rather than adding stack-documentation routes to the public site.
 
 ## Design specs
 

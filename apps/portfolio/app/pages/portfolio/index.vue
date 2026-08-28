@@ -17,7 +17,7 @@
       h2 Profile source
       p The Nuxt 4 app published at tamaramack.github.io — SSR through Nitro, prerendered for GitHub Pages.
       a(:href="profile.portfolioSource" target="_blank" rel="noopener") apps/portfolio on GitHub
-      NuxtLink.more-link(to="/architecture") Nuxt architecture
+      a.more-link(:href="profile.technicalDocs" target="_blank" rel="noopener") Technical documentation
     article
       h2 This repository
       p User site monorepo for the tamaramack.github.io profile.

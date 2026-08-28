@@ -8,6 +8,7 @@
     p.lede {{ profile.lede }}
     p.hero__actions
       NuxtLink(to="/hyperactivity") HyperActivity
+      NuxtLink(to="/portfolio") Portfolio
       a(:href="profile.linkedIn" target="_blank" rel="noopener") LinkedIn
       a(:href="profile.personalSite" target="_blank" rel="noopener") likwidmack.com
 
@@ -39,7 +40,12 @@ useHead({
               name: profile.value.organization.legalName
             },
             url: profile.value.site,
-            sameAs: [profile.value.linkedIn, profile.value.personalSite],
+            sameAs: [
+              profile.value.linkedIn,
+              profile.value.personalSite,
+              profile.value.repository,
+              profile.value.portfolioRepo
+            ],
             address: {
               '@type': 'PostalAddress',
               addressLocality: 'Portland',

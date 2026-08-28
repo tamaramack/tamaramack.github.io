@@ -45,6 +45,8 @@ useHead({
               profile.value.linkedIn,
               profile.value.personalSite,
               profile.value.repository,
+              profile.value.profileSource,
+              profile.value.portfolioSource,
               profile.value.portfolioRepo
             ],
             address: {

@@ -64,7 +64,8 @@ Nitro runs an SSR server. Pages render on the server, hydrate in the browser, an
 | --- | --- |
 | `site` | https://tamaramack.github.io/ |
 | `repository` | https://github.com/tamaramack/tamaramack.github.io |
-| `portfolioSource` | …/tree/development/apps/profile |
+| `profileSource` | …/tree/development/apps/profile |
+| `portfolioSource` | …/tree/development/apps/portfolio |
 | `portfolioRepo` | https://github.com/likwidmack/portfolio |
 | `personalSite` | https://likwidmack.com |
 

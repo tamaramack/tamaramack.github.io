@@ -34,7 +34,7 @@
       code main
       | , which publishes through GitHub Actions. Manual deploy is available from the Actions tab.
     p.architecture__links
-      a(:href="profile.portfolioSource" target="_blank" rel="noopener") View apps/profile on GitHub
+      a(:href="profile.profileSource" target="_blank" rel="noopener") View apps/profile on GitHub
       a(:href="profile.technicalDocs" target="_blank" rel="noopener") Full technical documentation
 </template>
 

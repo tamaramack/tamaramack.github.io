@@ -33,6 +33,14 @@ Full technical documentation: [docs/architecture.md](../../docs/architecture.md)
 | Source (this app) | [apps/profile on GitHub](https://github.com/tamaramack/tamaramack.github.io/tree/development/apps/profile) |
 | Repository | [tamaramack/tamaramack.github.io](https://github.com/tamaramack/tamaramack.github.io) |
 | Nx portfolio | [likwidmack/portfolio](https://github.com/likwidmack/portfolio) |
+| Portfolio app path | [apps/portfolio](../../apps/portfolio) (reserved for portfolio repo) |
+
+## Apps in this monorepo
+
+| App | Path | Role |
+| --- | --- | --- |
+| Profile site | `apps/profile/` | Publishes tamaramack.github.io |
+| Portfolio repo | `apps/portfolio/` | Reserved for likwidmack/portfolio |
 | Creative work | [likwidmack.com](https://likwidmack.com) |
 
 ## Scripts

@@ -9,7 +9,7 @@ Portfolio site stack, data flow, and GitHub Pages deploy:
 | Live site page | [tamaramack.github.io/architecture](https://tamaramack.github.io/architecture) |
 | Repository doc | [architecture.md](architecture.md) — full detail for contributors |
 
-The live site root (`/`) is the Nuxt profile app. Technical documentation is available on the public `/architecture` page and in this `docs/` section.
+The live site root (`/`) is the Nuxt profile app in `apps/profile/`. The portfolio repo is reserved at `apps/portfolio/`. Technical documentation is on `/architecture` and in this `docs/` section.
 
 ## Design specs
 

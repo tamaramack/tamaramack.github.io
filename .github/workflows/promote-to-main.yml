@@ -1,0 +1,43 @@
+name: Promote development to main
+
+on:
+  workflow_run:
+    workflows: [Deploy to GitHub Pages]
+    types: [completed]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  promote:
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_branch == 'development' &&
+      github.event.workflow_run.event == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create or update promotion PR
+        id: pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          EXISTING=$(gh pr list --repo "${{ github.repository }}" --base main --head development --state open --json number -q '.[0].number' || true)
+          if [ -z "${EXISTING}" ]; then
+            if ! gh pr create --repo "${{ github.repository }}" --base main --head development \
+              --title "Promote development to main" \
+              --body "Auto-generated after CI succeeds on \`development\`. Squash-merged when checks pass."; then
+              echo "No changes to promote."
+              exit 0
+            fi
+            EXISTING=$(gh pr list --repo "${{ github.repository }}" --base main --head development --state open --json number -q '.[0].number')
+          fi
+          echo "number=${EXISTING}" >> "$GITHUB_OUTPUT"
+
+      - name: Enable squash auto-merge
+        if: steps.pr.outputs.number != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr merge "${{ steps.pr.outputs.number }}" --repo "${{ github.repository }}" --auto --squash

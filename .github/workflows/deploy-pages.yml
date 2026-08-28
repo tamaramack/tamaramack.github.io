@@ -7,9 +7,11 @@ on:
   push:
     branches:
       - development
+      - main
   pull_request:
     branches:
       - development
+      - main
 
 permissions:
   contents: read
@@ -48,7 +50,7 @@ jobs:
           path: apps/portfolio/.output/public
 
   deploy:
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
     needs: build
     environment:
       name: github-pages

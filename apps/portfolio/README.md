@@ -44,6 +44,6 @@ pnpm typecheck
 
 User site URL: `https://tamaramack.github.io/` (root, not `/repo/`).
 
-CI on `development` builds the static site but does **not** publish it. Deploy manually from **Actions → Deploy to GitHub Pages → Run workflow**.
+CI on `development` builds the static site but does not publish it. Successful pushes trigger an auto-squash PR to `main`; merging `main` deploys GitHub Pages. You can also deploy manually from **Actions → Deploy to GitHub Pages → Run workflow**.
 
 Set **Settings → Pages → Source** to **GitHub Actions** if it is still on the legacy `main` branch.

@@ -16,10 +16,11 @@ The original Vue CLI app at the repository root was removed in Aug 2026. This di
 | `/practice` | Capabilities |
 | `/hyperactivity` | Firm |
 | `/portfolio` | Portfolio links hub |
+| `/architecture` | Nuxt stack and deploy overview |
 | `/about` | Biography |
 | `/about/resume` | Experience |
 
-Technical stack documentation: [docs/architecture.md](../../docs/architecture.md) in this repository (linked from `/portfolio`, not published as a site route).
+Full technical documentation: [docs/architecture.md](../../docs/architecture.md) (also linked from `/architecture` and `/portfolio`).
 
 ## Related links
 

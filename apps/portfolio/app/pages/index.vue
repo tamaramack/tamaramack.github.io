@@ -9,6 +9,7 @@
     p.hero__actions
       NuxtLink(to="/hyperactivity") HyperActivity
       NuxtLink(to="/portfolio") Portfolio
+      NuxtLink(to="/architecture") Architecture
       a(:href="profile.linkedIn" target="_blank" rel="noopener") LinkedIn
       a(:href="profile.personalSite" target="_blank" rel="noopener") likwidmack.com
 

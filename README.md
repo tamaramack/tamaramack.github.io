@@ -15,7 +15,7 @@ Professional profile for [Tamara Gisele Mack](https://tamaramack.github.io/) —
 | --- | --- | --- |
 | `apps/portfolio/` | Nuxt 4, Nitro, TypeScript, Pug, SCSS | **Required** site source; GitHub Pages publish target for domain root |
 
-**Do not overwrite the root page.** `/` is the root page route for [tamaramack.github.io](https://tamaramack.github.io/) — always served by the Nuxt app in `apps/portfolio/` (`baseURL: '/'`). Do not add a competing app at the repository root or replace `/` with static HTML, Jekyll, or legacy Vue CLI code. Stack and deploy documentation belongs in [docs/](docs/) — link to it; do not mirror it as a public site route.
+**Do not overwrite the root page.** `/` is the root page route for [tamaramack.github.io](https://tamaramack.github.io/) — always served by the Nuxt app in `apps/portfolio/` (`baseURL: '/'`). Do not add a competing app at the repository root or replace `/` with static HTML, Jekyll, or legacy Vue CLI code.
 
 ## Related repositories
 
@@ -81,5 +81,6 @@ Also update the repository description to: *Professional profile for Tamara Gise
 ## Documentation
 
 - [docs/README.md](docs/README.md) — documentation index
-- [docs/architecture.md](docs/architecture.md) — Nuxt 4 stack, data flow, GitHub Pages deploy (repository docs; not a public site route)
+- [tamaramack.github.io/architecture](https://tamaramack.github.io/architecture) — live architecture page
+- [docs/architecture.md](docs/architecture.md) — full Nuxt 4 stack, data flow, GitHub Pages deploy
 - [docs/superpowers/specs/](docs/superpowers/specs/) — design specs

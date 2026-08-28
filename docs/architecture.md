@@ -2,7 +2,9 @@
 
 The site source lives in `apps/portfolio`: **Nuxt 4**, **SSR through Nitro**, TypeScript, Pug templates, and SCSS.
 
-**Published root page:** `https://tamaramack.github.io/` is always this Nuxt app (prerendered from `apps/portfolio`). Do not replace it with a static root app, Jekyll, or legacy Vue CLI code. This file is repository documentation only — it is not served as a public site route.
+**Published root page:** `https://tamaramack.github.io/` is always this Nuxt app (prerendered from `apps/portfolio`). Do not replace it with a static root app, Jekyll, or legacy Vue CLI code.
+
+**Also published:** [tamaramack.github.io/architecture](https://tamaramack.github.io/architecture) — the public architecture page. This file is the full repository copy for contributors.
 
 ## Stack
 
@@ -20,7 +22,7 @@ GitHub Pages cannot run that Node server. CI builds with Nitro's `github_pages` 
 ```
 apps/portfolio/
   app/
-    pages/             File-based routes (/, /practice, /portfolio, …)
+    pages/             File-based routes (/, /practice, /architecture, …)
     layouts/           default.vue shell (header, main, footer)
     components/        AppHeader, AppFooter, CapabilityCard, RoleEntry
     composables/       useProfile, usePractice, useExperience
@@ -90,7 +92,8 @@ GitHub Actions uploads `.output/public` and deploys on push to `main`.
 | `/` | Profile home |
 | `/practice` | Capabilities |
 | `/hyperactivity` | Firm |
-| `/portfolio` | Related repos and links (includes link to this doc) |
+| `/portfolio` | Related repos and links |
+| `/architecture` | Nuxt stack overview (see also this doc) |
 | `/about` | Biography |
 | `/about/resume` | Experience |
 

@@ -1,6 +1,6 @@
 # tamaramack.github.io
 
-Professional profile and legacy experiments for [Tamara Mack](https://tamaramack.github.io/) — Founder of HyperActivity, Creative Technologist.
+Professional profile for [Tamara Mack](https://tamaramack.github.io/) — Founder of HyperActivity, Creative Technologist.
 
 ## Live site
 
@@ -13,8 +13,7 @@ Professional profile and legacy experiments for [Tamara Mack](https://tamaramack
 
 | Path | Stack | Role |
 | --- | --- | --- |
-| `apps/portfolio/` | Nuxt 4, Nitro, TypeScript, Pug, SCSS | **Publish target** — professional profile |
-| Repository root | Vue CLI 2, Vue 2 | Legacy experiments (unchanged) |
+| `apps/portfolio/` | Nuxt 4, Nitro, TypeScript, Pug, SCSS | Site source and GitHub Pages publish target |
 
 ## Related repositories
 
@@ -32,6 +31,8 @@ pnpm dev          # Nitro SSR dev server
 pnpm typecheck
 pnpm build:pages  # static output for GitHub Pages
 ```
+
+Or from the repository root: `pnpm dev`, `pnpm build:pages`, `pnpm typecheck`.
 
 See [apps/portfolio/README.md](apps/portfolio/README.md) and [docs/architecture.md](docs/architecture.md) for detail.
 

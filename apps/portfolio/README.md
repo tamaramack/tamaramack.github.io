@@ -6,7 +6,7 @@ Tamara Mack — Founder of HyperActivity, Creative Technologist.
 
 Stack: **Nuxt 4**, **Nitro**, **TypeScript**, **Pug**, **SCSS**.
 
-The original Vue CLI app remains at the repository root. This app is the architecture going forward and the GitHub Pages publish target.
+The original Vue CLI app at the repository root was removed in Aug 2026. This directory is the sole site source and GitHub Pages publish target.
 
 ## Public routes
 

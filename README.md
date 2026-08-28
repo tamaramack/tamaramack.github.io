@@ -1,6 +1,6 @@
 # tamaramack.github.io
 
-Professional profile for [Tamara Mack](https://tamaramack.github.io/) — Founder of HyperActivity, Creative Technologist.
+Professional profile for [Tamara Gisele Mack](https://tamaramack.github.io/) — Founder of HyperActivity, Creative Technologist.
 
 ## Live site
 
@@ -74,7 +74,7 @@ gh api --method PUT repos/tamaramack/tamaramack.github.io/topics -f "names[]=nux
 
 On macOS/Linux you can also pass JSON: `gh api --method PUT repos/tamaramack/tamaramack.github.io/topics --input topics.json`
 
-Also update the repository description to: *Professional profile for Tamara Mack — Founder of HyperActivity, Creative Technologist. Nuxt 4 at tamaramack.github.io.*
+Also update the repository description to: *Professional profile for Tamara Gisele Mack — Founder of HyperActivity, Creative Technologist. Nuxt 4 at tamaramack.github.io.*
 
 ## Documentation
 

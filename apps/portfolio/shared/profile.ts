@@ -7,6 +7,7 @@ export interface Organization {
 
 export interface Profile {
   name: string
+  casualName: string
   shortName: string
   location: string
   headline: string
@@ -21,8 +22,9 @@ export interface Profile {
 }
 
 export const PROFILE: Profile = {
-  name: 'Tamara Mack',
-  shortName: 'Tamara Mack',
+  name: 'Tamara Gisele Mack',
+  casualName: 'Tamara',
+  shortName: 'TMack',
   location: 'Portland, Oregon',
   headline: 'Founder of HyperActivity. Creative Technologist.',
   lede: 'I founded and lead HyperActivity, an independent practice for software architecture, intelligent interfaces, and technical delivery. The through-line is craft: systems that stay legible to the people who use them, even when the stack is agentic, immersive, or both.',

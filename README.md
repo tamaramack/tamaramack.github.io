@@ -15,7 +15,7 @@ Professional profile for [Tamara Gisele Mack](https://tamaramack.github.io/) —
 | --- | --- | --- |
 | `apps/portfolio/` | Nuxt 4, Nitro, TypeScript, Pug, SCSS | **Required** site source; GitHub Pages publish target for domain root |
 
-**Do not overwrite the root page.** The published site at [tamaramack.github.io](https://tamaramack.github.io/) is always the Nuxt app in `apps/portfolio/`. Do not add a competing app at the repository root or replace `/` with static HTML, Jekyll, or legacy Vue CLI code. Stack and deploy documentation belongs in [docs/](docs/) — link to it; do not mirror it as a public site route.
+**Do not overwrite the root page.** `/` is the root page route for [tamaramack.github.io](https://tamaramack.github.io/) — always served by the Nuxt app in `apps/portfolio/` (`baseURL: '/'`). Do not add a competing app at the repository root or replace `/` with static HTML, Jekyll, or legacy Vue CLI code. Stack and deploy documentation belongs in [docs/](docs/) — link to it; do not mirror it as a public site route.
 
 ## Related repositories
 

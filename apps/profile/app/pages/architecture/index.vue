@@ -15,7 +15,7 @@
   section.architecture__layout
     h2 Layout
     pre.layout
-      | apps/portfolio/
+      | apps/profile/
       |   app/              pages, layouts, components, composables, SCSS
       |   server/api/       Nitro GET routes
       |   shared/           profile, practice, experience content
@@ -33,7 +33,9 @@
       | development runs CI (typecheck + build). A squash PR promotes to
       code main
       | , which publishes through GitHub Actions. Manual deploy is available from the Actions tab.
-    a(:href="profile.portfolioSource" target="_blank" rel="noopener") View apps/portfolio on GitHub
+    p.architecture__links
+      a(:href="profile.profileSource" target="_blank" rel="noopener") View apps/profile on GitHub
+      a(:href="profile.technicalDocs" target="_blank" rel="noopener") Full technical documentation
 </template>
 
 <script setup lang="ts">
@@ -94,9 +96,14 @@ code {
   color: $accent;
 }
 
-a {
-  display: inline-block;
+.architecture__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
   margin-top: 1rem;
+}
+
+.architecture__links a {
   font-family: $font-ui;
   font-size: 0.78rem;
   letter-spacing: 0.08em;

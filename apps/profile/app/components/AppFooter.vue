@@ -5,7 +5,8 @@ footer.app-footer
     nav.app-footer__links(v-if="profile")
       NuxtLink(to="/portfolio") Portfolio
       a(:href="profile.repository" target="_blank" rel="noopener") GitHub
-      a(:href="profile.portfolioSource" target="_blank" rel="noopener") Source
+      a(:href="profile.profileSource" target="_blank" rel="noopener") Source
+      a(:href="profile.portfolioSource" target="_blank" rel="noopener") Portfolio app
       a(:href="profile.portfolioRepo" target="_blank" rel="noopener") Nx portfolio
       a(:href="profile.personalSite" target="_blank" rel="noopener") likwidmack.com
       a(:href="profile.linkedIn" target="_blank" rel="noopener") LinkedIn

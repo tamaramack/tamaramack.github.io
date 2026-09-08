@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   ssr: true,
   devtools: { enabled: true },
   app: {
-    // User site https://tamaramack.github.io/ is served from domain root.
+    // `/` is the root page route for tamaramack.github.io (user site at domain root).
     baseURL: '/',
     head: {
       htmlAttrs: { lang: 'en' },

@@ -14,7 +14,7 @@ pnpm-debug.log*
 *.iml
 .eslintcache
 
-apps/portfolio/.nuxt
-apps/portfolio/.output
-apps/portfolio/.nitro
-apps/portfolio/.cache
+apps/profile/.nuxt
+apps/profile/.output
+apps/profile/.nitro
+apps/profile/.cache

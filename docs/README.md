@@ -1,8 +1,15 @@
 # Documentation
 
-## Architecture
+## Technical documentation
 
-- [architecture.md](architecture.md) — Nuxt 4 stack, Nitro SSR, data flow, GitHub Pages deploy
+Portfolio site stack, data flow, and GitHub Pages deploy:
+
+| Format | Link |
+| --- | --- |
+| Live site page | [tamaramack.github.io/architecture](https://tamaramack.github.io/architecture) |
+| Repository doc | [architecture.md](architecture.md) — full detail for contributors |
+
+The live site root (`/`) is the Nuxt profile app in `apps/profile/`. The portfolio repo is reserved at `apps/portfolio/`. Technical documentation is on `/architecture` and in this `docs/` section.
 
 ## Design specs
 
@@ -18,6 +25,7 @@
 | Destination | URL |
 | --- | --- |
 | Profile site | [tamaramack.github.io](https://tamaramack.github.io/) |
+| Architecture page | [tamaramack.github.io/architecture](https://tamaramack.github.io/architecture) |
 | Portfolio page | [tamaramack.github.io/portfolio](https://tamaramack.github.io/portfolio) |
 | Creative work | [likwidmack.com](https://likwidmack.com) |
 | This repository | [github.com/tamaramack/tamaramack.github.io](https://github.com/tamaramack/tamaramack.github.io) |

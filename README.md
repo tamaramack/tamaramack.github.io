@@ -49,7 +49,7 @@ See [apps/profile/README.md](apps/profile/README.md), [apps/portfolio/README.md]
 | `main` | On push | Yes (automatic) |
 | Manual | Actions → Run workflow | Yes |
 
-Pushes to `development` run [.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages.yml). When CI succeeds, [.github/workflows/promote-to-main.yml](.github/workflows/promote-to-main.yml) opens a PR from `development` → `main` and enables **squash auto-merge**. Merging to `main` deploys the site.
+Pushes to `development` run [.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages.yml). When CI succeeds, [.github/workflows/promote-to-main.yml](.github/workflows/promote-to-main.yml) opens a PR from `development` → `main`, enables **squash auto-merge**, then dispatches **Deploy to GitHub Pages** on `main` after the merge (token-authored merges do not fire a normal `push` deploy).
 
 **Settings → Pages → Source** should be **GitHub Actions**.
 

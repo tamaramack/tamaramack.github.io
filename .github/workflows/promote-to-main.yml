@@ -8,6 +8,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  actions: write
 
 jobs:
   promote:
@@ -41,3 +42,28 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh pr merge "${{ steps.pr.outputs.number }}" --repo "${{ github.repository }}" --auto --squash
+
+      # Merges performed with GITHUB_TOKEN do not emit push workflow runs.
+      # workflow_dispatch is allowed to chain from GITHUB_TOKEN, so deploy Pages after merge.
+      - name: Wait for promotion merge then deploy Pages
+        if: steps.pr.outputs.number != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ steps.pr.outputs.number }}
+        run: |
+          set -euo pipefail
+          for _ in $(seq 1 90); do
+            STATE=$(gh pr view "$PR_NUMBER" --repo "${{ github.repository }}" --json state -q .state)
+            if [ "$STATE" = "MERGED" ]; then
+              gh workflow run "Deploy to GitHub Pages" --repo "${{ github.repository }}" --ref main
+              echo "Dispatched Deploy to GitHub Pages on main after PR #$PR_NUMBER merged."
+              exit 0
+            fi
+            if [ "$STATE" = "CLOSED" ]; then
+              echo "Promotion PR #$PR_NUMBER closed without merge; skipping Pages deploy."
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "Timed out waiting for PR #$PR_NUMBER to merge." >&2
+          exit 1

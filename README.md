@@ -13,10 +13,12 @@ Professional profile for [Tamara Gisele Mack](https://tamaramack.github.io/) —
 
 | Path | Stack | Role |
 | --- | --- | --- |
-| `apps/profile/` | Nuxt 4, Nitro, TypeScript, Pug, SCSS | **Required** site source; GitHub Pages publish target for domain root |
+| `apps/profile/` | Nuxt 4, Nitro, TypeScript, Pug, SCSS | Site source; GitHub Pages publish target for domain root |
 | `apps/portfolio/` | Nx / Nuxt (planned) | Portfolio repo — [likwidmack/portfolio](https://github.com/likwidmack/portfolio) |
 
-**Do not overwrite the root page.** `/` is the root page route for [tamaramack.github.io](https://tamaramack.github.io/) — always served by `apps/profile/app/pages/index.vue` in the Nuxt app (`baseURL: '/'`). Do not add a competing app at the repository root or replace `/` with static HTML, Jekyll, or legacy Vue CLI code.
+The live site root (`/`) for [tamaramack.github.io](https://tamaramack.github.io/) is served by `apps/profile/app/pages/index.vue` in the Nuxt app (`baseURL: '/'`).
+
+For AI agents, see [AGENTS.md](AGENTS.md).
 
 ## Related repositories
 

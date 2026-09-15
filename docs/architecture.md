@@ -2,7 +2,7 @@
 
 The site source lives in `apps/profile`: **Nuxt 4**, **SSR through Nitro**, TypeScript, Pug templates, and SCSS.
 
-**Published root page:** `https://tamaramack.github.io/` is always this Nuxt app (prerendered from `apps/profile`). The route is `apps/profile/app/pages/index.vue`. Do not replace it with a static root app, Jekyll, or legacy Vue CLI code.
+**Published root page:** `https://tamaramack.github.io/` is this Nuxt app (prerendered from `apps/profile`). The route is `apps/profile/app/pages/index.vue`.
 
 **Also published:** [tamaramack.github.io/architecture](https://tamaramack.github.io/architecture) — the public architecture page. This file is the full repository copy for contributors.
 

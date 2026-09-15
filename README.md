@@ -43,24 +43,24 @@ See [apps/profile/README.md](apps/profile/README.md), [apps/portfolio/README.md]
 
 ## Deployment
 
-| Branch | CI (build + typecheck) | Deploy to GitHub Pages |
-| --- | --- | --- |
-| `development` | On push and PR | No |
-| `main` | On push | Yes (automatic) |
-| Manual | Actions → Run workflow | Yes |
+| Branch | How changes land | CI (build + typecheck) | Deploy to GitHub Pages |
+| --- | --- | --- | --- |
+| `development` | Pull request only (no direct pushes) | On push and PR | No |
+| `main` | Pull request from `development` only (no direct pushes) | On push and PR | Yes (after promote merge) |
+| Manual | Actions → Run workflow | — | Yes |
 
-Pushes to `development` run [.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages.yml). When CI succeeds, [.github/workflows/promote-to-main.yml](.github/workflows/promote-to-main.yml) opens a PR from `development` → `main`, enables **squash auto-merge**, then dispatches **Deploy to GitHub Pages** on `main` after the merge (token-authored merges do not fire a normal `push` deploy).
+Feature work lands via PR into `development`. Successful CI on `development` runs [.github/workflows/promote-to-main.yml](.github/workflows/promote-to-main.yml), which opens a PR from `development` → `main`, enables **squash auto-merge**, then dispatches **Deploy to GitHub Pages** on `main` after that merge (token-authored merges do not fire a normal `push` deploy).
 
 **Settings → Pages → Source** should be **GitHub Actions**.
 
-**Settings → General → Pull Requests:** enable **Allow auto-merge**. On `main` branch rules, allow squash merges only if you want to enforce that method.
+**Settings → General → Pull Requests:** enable **Allow auto-merge**. Branch rulesets require a pull request before merging to `development` and `main`.
 
 ## Branches
 
 | Branch | Purpose |
 | --- | --- |
-| `development` | Default integration branch; CI on push/PR |
-| `main` | Production; squash-merged from `development`; deploys GitHub Pages |
+| `development` | Default integration branch; PR target for feature work; CI on push/PR |
+| `main` | Production; PR from `development` only; deploys GitHub Pages |
 | `master` | Legacy — unprotect and delete when no longer needed |
 
 Stale feature branches from the Vue CLI era can be deleted once no longer needed.
